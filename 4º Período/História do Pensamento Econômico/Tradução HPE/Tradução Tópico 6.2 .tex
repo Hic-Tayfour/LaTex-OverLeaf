@@ -1,0 +1,588 @@
+\documentclass[12pt]{article}
+\usepackage{siunitx} % Fornece suporte para a tipografia de unidades do Sistema Internacional e formatação de números
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{graphicx} % Suporte para inclusão de imagens
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{ragged2e} % Justificação de texto melhorada
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, rigH=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização)
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\usepackage{siunitx} % (Este pacote está duplicado, você pode querer removê-lo)
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\usepackage{hyperref} % (Este pacote está duplicado, você pode querer ajustar isso)
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdfborder={0 0 0},
+}
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+\onehalfspacing
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Tradução Tópico 6.2 - HPE}\\
+    \vspace{1.5cm}
+    Prof. Pedro Duarte\\
+    Prof. Auxiliar Guilherme Mazer\\
+    \vfill
+    \normalsize
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    4º Período - Economia B\\
+    \vfill
+    São Paulo\\
+    Abril/2024
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % This command removes the page number from the table of contents page
+\newpage
+\setcounter{page}{1} % This command sets the page number to start from this page
+\justify
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+\section{\textbf{Boumans e Davis (2010)}}
+\subsection{\textbf{Metodologia da Economia Positiva}}
+
+Até meados do século XX, economistas e econometristas
+haviam desenvolvido um interesse considerável em estabelecer uma metodologia apropriada
+para pesquisa empírica em economia. Essas ideias foram desenvolvidas
+e expressas principalmente em debates longos e muitas vezes acalorados que foram
+fortemente influenciados pelas ideias do positivismo lógico.
+
+Devido ao surgimento do nazismo na Alemanha e sua expansão por
+boa parte da Europa, os principais proponentes do positivismo lógico "migraram"
+para os Estados Unidos durante esse período, ganhando influência substancial lá
+durante as décadas de 1940 e 1950 no campo da filosofia – mas também em economia.
+No entanto, não foram apenas filósofos que emigraram; muitos econometristas
+também atravessaram o Atlântico nessa época, vindo a desempenhar papéis importantes
+no desenvolvimento da disciplina nas próximas décadas.
+
+Esses econometristas compartilhavam os ideais científicos dos positivistas lógicos,
+tendo uma crença profunda na rigorosidade matemática e no teste empírico
+de teorias. Neste capítulo, nos concentraremos nos debates que foram
+estimulados por – e ocorreram em relação a – o surgimento da econometria
+como uma nova forma de pesquisa empírica, particularmente conforme foi moldada
+pelos escritos de três econometristas líderes: Jan Tinbergen, Trygve
+Haavelmo e Tjalling Koopmans. Esses debates chave foram:
+
+(i) o debate Keynes – Tinbergen sobre o novo método de econometria;
+
+(ii) o debate medição-sem-teoria, comparando o método
+empregado pelo National Bureau of Economic Research com a
+abordagem econômica da Cowles Commission;
+
+(iii) o ensaio de Friedman sobre uma metodologia positiva para pesquisa empírica
+como uma alternativa à abordagem da Cowles Commission; e
+
+(iv) o descritivismo de Samuelson, que foi proposto como uma alternativa à
+metodologia de Friedman.
+
+Esses debates mostram que não havia – e de fato ainda não há – uma única metodologia acordada para a realização de pesquisas empíricas em economia, nem de fato existe uma conta sistemática. Cada uma das metodologias discutidas aqui foi desenvolvida dentro da prática da pesquisa empírica. Somente muito mais tarde os economistas começaram a produzir relatos mais sistemáticos da metodologia econômica – dos quais a Metodologia de Economia de Mark Blaug, publicada pela primeira vez em 1980, é uma das mais conhecidas.
+
+\subsubsection{\textbf{A nova disciplina da econometria}}
+A década de 1930 viu o desenvolvimento de uma nova disciplina acadêmica, a econometria, que tinha como objetivo desenvolver métodos empíricos que oferecessem uma alternativa aos métodos experimentais da ciência. Os princípios da econometria foram definidos implicitamente pela constituição da Sociedade de Econometria, que foi fundada em 1931:
+
+A Sociedade de Econometria é uma sociedade internacional para o avanço da teoria econômica em sua relação com estatísticas e matemática. A Sociedade operará como uma organização científica completamente desinteressada, sem viés político, social, financeiro ou nacionalista. Seu principal objetivo será promover estudos que visem a unificação da abordagem teórico-quantitativa e empírico-quantitativa aos problemas econômicos e que sejam penetrados por um pensamento construtivo e rigoroso semelhante ao que passou a dominar nas ciências naturais.
+
+Nas palavras da pessoa que cunhou o termo, Ragnar Frisch, a econometria envolvia a junção de três disciplinas distintas: teoria econômica, estatística e matemática. Nos Estados Unidos, a Comissão Cowles para Pesquisa em Economia foi criada em 1932, sendo financiada por Alfred Cowles (1891–1984) especificamente para realizar pesquisas econômicas. O jornal da Sociedade, Econometrica, foi publicado pela Comissão. A abordagem econômica da Comissão Cowles, desenvolvida nas décadas de 1940 e 1950, tornou-se a abordagem padrão encontrada na maioria dos livros didáticos de econometria.
+
+Um dos livros didáticos mais populares, Métodos Econômicos de Jack Johnston, identifica o principal propósito da econometria como dar alguma carne e sangue empíricos às estruturas teóricas. Para Johnston, isso envolve três etapas distintas:
+
+1. Primeiro, o modelo deve ser especificado em forma funcional explícita – frequentemente
+linear.
+
+2. O segundo passo é decidir sobre as definições de dados apropriadas e
+montar as séries de dados relevantes para aquelas variáveis incluídas no
+modelo.
+
+3. O terceiro passo é formar uma ponte entre teoria e dados por meio do
+uso de métodos estatísticos. A ponte consiste de vários conjuntos de estatísticas,
+que ajudam a determinar a validade do modelo teórico.
+
+O conjunto mais importante de estatísticas consiste em estimativas numéricas dos
+parâmetros do modelo. Estatísticas adicionais permitem avaliar a
+confiabilidade ou precisão com que esses parâmetros foram estimados.
+Mais estatísticas e testes diagnósticos ajudarão a avaliar o desempenho
+do modelo.
+
+\subsubsection{\textbf{O Debate Keynes–Tinbergen}}
+Os dois primeiros modelos macroeconométricos (ver Foco 1.2) foram construídos
+por Jan Tinbergen (junto com Ragnar Frisch, os primeiros laureados com o Prêmio Nobel
+em Ciências Econômicas em 1969, "por terem desenvolvido e aplicado
+modelos dinâmicos para a análise de processos econômicos").
+
+O primeiro modelo de Tinbergen foi da economia holandesa, publicado em 1936.
+No mesmo ano, Tinbergen foi comissionado pela Liga das Nações
+para realizar testes estatísticos em teorias de ciclos de negócios. Os resultados deste
+estudo posterior foram publicados em uma obra de dois volumes, Testes Estatísticos de
+Teorias de Ciclos de Negócios (1939). O primeiro continha uma explicação deste
+novo método de teste econométrico, bem como uma demonstração do que
+poderia ser alcançado, baseado em três estudos de caso. O segundo volume desenvolveu
+um modelo dos Estados Unidos, o segundo modelo macroeconômico na
+história da economia.
+
+O primeiro estudo da Liga das Nações de Tinbergen provocou muita controvérsia.
+Foi circulado em 1938 antes de sua publicação e gerou
+discussões animadas sobre o papel que a econometria poderia desempenhar no teste
+da teoria econômica. Foi a crítica de John Maynard Keynes (1939)
+ao primeiro volume de Tinbergen que desencadeou o debate sobre o papel da
+econometria e o que ela poderia alcançar.
+
+O ataque de Keynes, formulado em seu estilo retórico usual, foi tal que
+a historiadora da econometria Mary Morgan (1990: 121) concluiu que
+"ele claramente não leu o volume com grande cuidado" e revelou
+ignorância sobre os aspectos técnicos da econometria. (Em sua resposta a
+Keynes, ao discutir a técnica pela qual as tendências são eliminadas,
+Tinbergen (1940: 151) até comentou: "O Sr. Keynes parece não estar
+bem informado. ... Uma olhada ... em qualquer livro-texto elementar sobre esses assuntos
+poderia ter ajudado ele.")
+
+Não obstante a possível ignorância de Keynes sobre técnicas econométricas,
+sua resposta destacou uma série de preocupações importantes sobre
+este novo método. Segundo Keynes, a técnica de análise de correlação múltipla que havia sido adotada por Tinbergen era apenas um método
+de medição. Não contribuía em termos de descoberta ou
+crítica. A implicação era que se o teórico econômico não fornecer
+ao modelador um conjunto completo de fatores causais, então a medição
+dos outros fatores causais será tendenciosa.
+
+Estou certo em pensar que o método de análise de correlação múltipla
+depende essencialmente de o economista ter fornecido, não apenas
+uma lista das causas significativas, o que está correto até certo ponto, mas
+uma lista completa? Por exemplo, suponha que três fatores sejam levados em
+conta, não é suficiente que estes sejam de fato veræ causæ;
+não deve haver nenhum outro fator significativo. Se houver um fator adicional,
+não levado em conta, então o método não é capaz de descobrir a importância
+quantitativa relativa dos três primeiros. Se for esse o caso, isso significa que
+o método só é aplicável onde o economista é capaz de fornecer
+antecipadamente uma análise correta e indubitavelmente completa dos fatores
+significativos.
+(Keynes 1939: 560)
+
+Além disso, Keynes argumentou que alguns fatores significativos em qualquer economia são
+incapazes de medição, ou podem ser interdependentes.
+
+Outra preocupação de Keynes era a linearidade assumida das relações
+entre esses fatores. Ele também observou que a determinação de defasagens temporais
+e tendências era muitas vezes tentativa e erro, e pouco informada pela teoria.
+E por último, mas não menos importante, era o problema da invariância: as relações
+encontradas também valeriam para o futuro? Essas questões permaneceram centrais
+no debate subsequente e precisam ser consideradas em qualquer discussão sobre
+métodos econométricos.
+
+A resposta de Tinbergen foi técnica, em vez de metodológica. Ele
+deu uma descrição muito detalhada de como havia resolvido cada problema ao
+explicar as técnicas que havia empregado. A implicação era que
+através da adoção dessas aplicações ele havia superado quaisquer problemas metodológicos (veja a Introdução acima para a distinção entre
+método e metodologia).
+
+A resposta de Tinbergen foi amplamente ignorada por Keynes, que encerrou a
+troca com uma proposta de experimento:
+
+Deve-se lembrar que os setenta tradutores da Septuaginta foram
+trancados em setenta salas separadas com o texto hebraico e trouxeram consigo
+quando emergiram, setenta traduções idênticas. O mesmo milagre seria concedido se setenta correlacionadores múltiplos fossem
+trancados com o mesmo material estatístico? E de qualquer forma, suponho que, se
+cada um tivesse um economista diferente apoiado em seu a priori, isso faria
+uma diferença no resultado.
+(Keynes 1940: 155–6)
+
+A resposta simples para a pergunta de Keynes é "Não". No meio dos
+anos 1990, Jan Magnus e Mary Morgan tentaram realizar o experimento sugerido por Keynes.
+
+A ideia básica do experimento é muito simples: pegar um conjunto de dados especificado
+e permitir que vários pesquisadores realizem o mesmo conjunto de tarefas aplicadas
+de econometria, mas com seus próprios métodos, abordagens
+e crenças diferentes. Nosso objetivo geral era avaliar, dentro do ambiente de
+nosso experimento, as diferenças entre as várias maneiras de fazer
+econometria em uma aplicação prática.
+(Magnus e Morgan 1999: 4)
+
+Os resultados do experimento foram significativos. Mesmo em relação à simples
+primeira tarefa de medição, as oito equipes participantes produziram diferentes
+versões das variáveis, construíram modelos diferentes, usaram diferentes elementos
+dos conjuntos de dados e adotaram diferentes procedimentos de medição.
+Levando em conta todas essas preocupações, Keynes chegou à conclusão
+de que a econometria ainda não era uma abordagem científica:
+
+Ninguém poderia ser mais franco, mais meticuloso, mais livre de viés subjetivo
+ou parti pris do que o Professor Tinbergen. Portanto, não há ninguém,
+em termos de qualidades humanas, em quem seria mais seguro confiar
+com magia negra. Que haja alguém em quem eu confiaria com isso no presente
+estágio ou que essa marca de alquimia estatística esteja madura para se tornar
+um ramo da ciência, ainda não estou convencido. Mas Newton, Boyle e
+Locke todos brincaram com alquimia. Então deixe-o continuar.
+(Keynes 1940: 156)
+
+Em sua aula inaugural em Londres "Econometria – Alquimia ou Ciência?",
+David Hendry admitiu que "é difícil fornecer um caso convincente
+em defesa contra a acusação de Keynes de quase 40 anos atrás de que
+a econometria é alquimia estatística, já que muitas de suas críticas permanecem
+apropriadas" (1980: 402). A facilidade com que correlações espúrias podem ser
+produzidas por uma aplicação mecânica do método econométrico sugere
+alquimia, mas, segundo Hendry, o status científico da econometria
+pode ser mantido mostrando que tais enganos são testáveis. Ele, portanto,
+propõe a seguinte metodologia simples: "As três regras de ouro
+da econometria são testar, testar e testar" (p. 403). Em sua visão, modelos rigorosamente
+testados, que oferecem descrições adequadas dos dados disponíveis, levam
+em conta descobertas anteriores e são derivados de teorias bem fundamentadas
+justificam qualquer reivindicação de serem científicos.
+
+\subsubsection{\textbf{Leis na Economia}}
+Como vimos no capítulo anterior (ver pp. 15–18), na teoria do conhecimento (ou epistemologia) do positivismo lógico, as leis são cruciais tanto para a explicação quanto para a previsão. O problema particular no caso da economia e das ciências sociais, no entanto, é que nessas instâncias as leis têm que ser encontradas fora de um ambiente experimental ou laboratório, o que cria dificuldades consideráveis em termos de controle do ambiente e realização de estudos separados das relações causais entre variáveis.
+
+Um dos primeiros trabalhos a fazer uma contribuição significativa para o desenvolvimento da econometria foi o de Trygve Haavelmo (1944) "A Abordagem Probabilística na Econometria". (Em 1989, Haavelmo (1911–1999) foi premiado com o Nobel de Economia "por sua clarificação das fundações da teoria da probabilidade da econometria e suas análises de estruturas econômicas simultâneas.") Um dos temas centrais do artigo foi uma discussão sobre o problema de como descobrir leis fora do ambiente de laboratório. A questão foi explicada em termos de "julgar o grau de persistência ao longo do tempo das relações entre variáveis econômicas", ou, falando mais genericamente, "se podemos ou não esperar encontrar elementos de invariância na vida econômica, sobre os quais estabelecer 'leis' permanentes" (p. 13). Isso resulta do fato de que fenômenos econômicos reais não podem ser "artificialmente isolados de 'outras influências'" (p. 14). Sempre temos que lidar com observações passivas, e estas são "influenciadas por muitos fatores não contabilizados na teoria; em outras palavras, as dificuldades de cumprir a condição 'Ceteris paribus'" (p. 18).
+
+Para esclarecer este problema de descobrir leis fora do laboratório, vamos examinar a questão através do uso de um exemplo simples.
+
+Suponha que gostaríamos de encontrar uma explicação para o comportamento de uma variável econômica y. Vamos considerar que o comportamento de y seja determinado por uma função F de todos os possíveis e independentes fatores causais xi:
+$$
+y = F(x_{1}, x_{2}, ...)
+$$
+
+Então, a maneira pela qual os fatores \( x_i \) podem influenciar \( y \) pode ser representada pela seguinte equação:
+
+$$
+{\Delta}F = {\Delta}F(x_{1}, x_{2}, ...) = F_1{\Delta}x_1 + F_2{\Delta}x_2 + ...
+$$
+
+A ideia expressa é que a mudança na variável econômica \( y \) pode ser representada pela equação:
+
+$$ \Delta y = F_1 \Delta x_1 + \ldots + F_n \Delta x_n $$
+
+Aqui, \( \Delta \) indica uma mudança de magnitude. \( F_i \) indica quanto \( y \) mudará proporcionalmente devido a uma mudança de magnitude do fator \( x_i \). Em um experimento controlado, podemos isolar artificialmente um conjunto selecionado de fatores das outras influências, ou seja, garantir que a cláusula ceteris paribus seja imposta. Em tal instância, \( \Delta x_{n+1} = \Delta x_{n+2} = \ldots = 0 \), permitindo que uma relação mais simples seja investigada.
+
+Com apenas observações passivas disponíveis, a distinção de Haavelmo entre influências potenciais e factuais é fundamental para julgar o grau de persistência de uma relação ao longo do tempo. Quando um \( F_i \) é significativamente diferente de zero, então o fator \( x_i \) é dito ter "influência potencial". A combinação \( F_i \cdot \Delta x_i \) indica quanto a "influência factual" de um fator \( x_i \) é sobre \( y \). O problema com observações passivas é que só se pode observar se um fator tem influência "factual" (isto é, real). Pode haver muitos fatores com influência potencial que nunca são observados. Portanto, se estamos tentando explicar uma variável observável \( y \) por um sistema de fatores causais, em geral, não há limite para o número de tais fatores que podem ter uma influência potencial sobre \( y \). A resposta de Haavelmo a esse risco de excessiva complexidade (causada por muitos fatores explicativos) foi uma observação otimista de que "a Natureza pode limitar o número de fatores que têm uma influência factual não negligenciável a um número relativamente pequeno".
+
+Assim, a relação \( y = F(x_1, \ldots, x_n) \), que contém apenas um número limitado de influências factuais (n), explica os valores observados reais de \( y \), desde que a influência factual de todos os fatores não especificados juntos seja muito pequena em comparação com a influência factual dos fatores especificados \( x_1, \ldots, x_n \). No entanto, o problema não reside em estabelecer relações simples, mas sim no fato de que as relações encontradas empiricamente, derivadas da observação ao longo de certos intervalos de tempo, são "ainda mais simples do que esperamos que sejam pela teoria, de modo que somos levados a descartar elementos de uma teoria que seriam suficientes para explicar aparentes 'rupturas na estrutura' mais tarde" (p. 26). A causa desse problema é que pode ser impossível identificar a razão para a influência factual de um fator, digamos \( x_{n+1} \), ser negligenciável, ou seja, \( F_{n+1} \cdot \Delta x_{n+1} \approx 0 \). Nem sempre podemos distinguir se sua influência potencial é muito pequena, \( F_{n+1} \approx 0 \), ou se a variação factual desse fator durante o período considerado é inexistente, \( \Delta x_{n+1} = 0 \). Gostaríamos de "descartar" apenas os fatores cuja influência não foi observada porque sua influência potencial era negligenciável para começar. Ao mesmo tempo, queremos reter fatores que são importantes, mas cuja influência não é observada; mas se \( \Delta x \approx 0 \), então não seremos capazes de medir essa influência, e não saberemos que ela é importante, a menos que tenhamos outros motivos (geralmente teóricos) para pensar isso.
+
+Haavelmo entendeu que a estatística não é suficiente para lidar com esse problema de encontrar a lista completa de influências potenciais; em vez disso, é "um problema de realmente conhecer algo sobre fenômenos reais e de fazer suposições realistas sobre eles" (p. 29). Para resolver esse problema, o teórico deve primeiro sugerir "hipóteses frutíferas sobre como a realidade realmente é" (p. 31), e subsequentemente o econometrista deve testar essas hipóteses. Ele, portanto, introduziu a teoria de testes estatísticos de Neyman e Pearson na econometria, pela qual este artigo se tornou renomado.
+
+\subsubsection{\textbf{O debate sobre "medição sem teoria"}}
+Outro dos primeiros debates econômicos começou com uma extensa resenha de livro escrita em 1947 para a "The Review of Economic Statistics" por Tjalling C. Koopmans (1910–1985, laureado com o Prêmio Nobel em 1975 junto com Leonid Kantorovich, "por suas contribuições à teoria da alocação ótima de recursos"). Em 1949, sob o título geral "Questões Metodológicas em Economia Quantitativa", uma série de publicações avançando o debate apareceu no periódico: uma resposta de Rutledge Vining, "Koopmans sobre a Escolha de Variáveis a serem Estudadas e de Métodos de Medição", foi seguida por uma "Réplica" de Koopmans, e finalmente uma "Tréplica" de Vining.
+
+O assunto da resenha de Koopmans era "Measuring Business Cycles", de Arthur F. Burns e Wesley C. Mitchell, e publicado pelo National Bureau of Economic Research (NBER), do qual Mitchell foi diretor entre 1920 e 1945. Naquela época, Koopmans era uma figura sênior de pesquisa e, no meio do debate (1948), tornou-se diretor da Cowles Commission. Assim, seu artigo original era mais do que uma resenha de livro. Koopmans estava fazendo uma crítica completa à abordagem empírica do NBER enquanto simultaneamente defendia a abordagem econométrica da Cowles Commission.
+
+A crítica de Koopmans baseava-se na "Abordagem Probabilística" de Haavelmo. Ele acusou Burns e Mitchell de tentarem medir ciclos econômicos na ausência de qualquer teoria econômica sobre o funcionamento de tais ciclos: "O kit de ferramentas do economista teórico é deliberadamente desprezado" (Koopmans 1947: 163).
+
+Koopmans apresentou três argumentos para explicar as implicações e limitações da "posição empiricista" do NBER.
+
+1. O primeiro argumento de Koopmans é que, para fins de observação sistemática e em larga escala de um fenômeno multifacetado como o ciclo econômico, "preconceitos teóricos sobre sua natureza não podem ser dispensados, e os autores fazem isso apenas em detrimento da análise" (p. 163). Ele comparou essa posição empiricista com a descoberta de Kepler das regularidades empíricas mais superficiais do movimento planetário, que ficaram aquém das "leis fundamentais" mais profundas descobertas posteriormente por Newton. A conquista de Newton foi baseada não apenas nas regularidades observadas por Kepler, mas também em experimentos conduzidos por Galileu.
+
+No entanto, Koopmans acreditava que os economistas são incapazes de realizar experimentos em um sistema econômico como um todo, e que, portanto, é impossível para muitos problemas econômicos separar causas e efeitos variando causas uma a uma e estudando os efeitos separados de cada causa. Segundo Koopmans, em vez de experimentos, os economistas possuem "teorias mais elaboradas e melhor estabelecidas do comportamento econômico do que as teorias do movimento de corpos materiais conhecidas por Kepler" (p. 166), porque as evidências para essas teorias são baseadas em introspecção, em entrevistas e em inferências a partir do comportamento observado dos indivíduos.
+
+Em geral, as variáveis econômicas são determinadas pela validade simultânea de um grande número de equações estruturais descrevendo comportamento e tecnologia. Qualquer regularidade empírica observada entre um número de variáveis pode ser o resultado do funcionamento de várias relações estruturais simultâneas. Como tantas relações empíricas são válidas simultaneamente, pode ser difícil – ou mesmo impossível – descobrir as relações estruturais mais fundamentais. Na ausência de experimentação, a identificação dessas relações estruturais é possível apenas se o conjunto de variáveis envolvidas em cada equação, e talvez também a maneira como são combinadas, for especificado pela teoria econômica.
+
+2. O segundo argumento de Koopmans contra a posição empiricista do NBER era que ela não oferecia evidências para a suposição de que as relações empíricas encontradas seriam invariantes ao longo do tempo. Enquanto a dinâmica das variáveis econômicas não se basear em relações estruturais de comportamento e tecnologia, era difícil saber quão confiáveis elas seriam para fins de previsão ou como guia para a política econômica.
+
+Os movimentos das variáveis econômicas são estudados como se fossem as erupções de um vulcão misterioso cujo caldeirão fervente nunca pode ser penetrado. Não há discussão explícita alguma sobre o problema da previsão, suas possibilidades e limitações, com ou sem mudança estrutural, embora certamente a história do vulcão seja importante principalmente como chave para suas atividades futuras. (p. 167)
+
+Ironicamente, trinta anos depois, Robert Lucas (laureado com o Prêmio Nobel de Economia de 1995, "por ter desenvolvido e aplicado a hipótese das expectativas racionais, e assim transformado a análise macroeconômica e aprofundado nosso entendimento da política econômica") usaria um raciocínio semelhante em sua crítica à abordagem da Cowles Commission. A avaliação de políticas requer "invariância da estrutura do modelo sob variações de política" (Lucas 1977: 12).
+
+A ideia subjacente, que ficou conhecida como a Crítica de Lucas, é que, de acordo com os métodos adotados pela Cowles Commission, aqueles parâmetros estimados que anteriormente eram considerados "estruturais" na análise econométrica da política econômica são na verdade dependentes da política econômica perseguida durante o período de estudo. Portanto, os parâmetros em uso podem mudar de acordo com as mudanças no regime de política, significando que as relações não são estáveis sob variações de política.
+
+3. O terceiro argumento de Koopmans contra uma abordagem puramente empírica é que a análise estatística dos dados requer suposições adicionais sobre suas características probabilísticas que não podem ser submetidas a testes estatísticos a partir dos mesmos dados. Essas suposições precisam ser fornecidas pela teoria econômica e devem ser testadas independentemente.
+
+Em resumo, a crítica de Koopmans ao estudo de Burns e Mitchell é que:
+
+a decisão de não usar teorias do comportamento econômico do homem, mesmo hipoteticamente, limita o valor da ciência econômica e para o formulador de políticas, dos resultados obtidos ou obtíveis pelos métodos desenvolvidos. Essa decisão restringe grandemente o benefício que poderia ser garantido pelo uso de métodos modernos de inferência estatística. O caráter pedestre dos dispositivos estatísticos empregados é diretamente rastreável à relutância do autor em formular suposições explícitas, por mais gerais que sejam, sobre a distribuição de probabilidade das variáveis, ou seja, suposições que expressem e especifiquem como as perturbações aleatórias operam na economia através das relações econômicas entre as variáveis. (Koopmans 1947: 172)
+
+Em defesa do "empirismo como parte fundamental do procedimento científico", Vining respondeu oferecendo três pontos que desafiaram os argumentos de Koopmans.
+
+1. Seu primeiro ponto é que ele duvidava se "o método do grupo de Koopmans" levaria à descoberta das relações invariantes fundamentais:
+
+Não é um salto considerável implicar que a função de preferência postulada de um indivíduo é de alguma forma análoga às leis gerais da termodinâmica, a dinâmica do atrito, etc.? A concepção Walrasiana não é de fato um sujeito bastante magro de capacidade não testada sobre o qual carregar o fardo de uma teoria geral contabilizando os eventos no espaço e tempo que ocorrem dentro do limite espacial de um sistema econômico? (p. 82)
+
+Ele afirmou que a teoria sobre o comportamento dos agentes econômicos não havia sido dada em detalhes suficientes. Vining declarou que o modelo da Cowles Commission era, portanto, um "sujeito bastante magro" sobre o qual basear tanta estimativa estatística de alto nível.
+
+2. Ele questionou a posição de que a pesquisa empírica deveria ser avaliada do ponto de vista da utilidade social. No entanto, Vining não ofereceu mais discussões sobre esse ponto.
+
+3. O terceiro ponto era que a versão da Cowles Commission da economia estatística, se incluísse apenas a estimativa de relações postuladas, teria pouco ou nenhum papel a desempenhar na descoberta de hipóteses econômicas. Segundo Vining, a teoria estatística deve desempenhar um papel semelhante na pesquisa econômica ao desempenhado pela microscopia na biologia: "Ela deve nos ajudar a ver nossos materiais, e métodos de organização de nossos dados devem ser descobertos pelos quais será revelada qualquer ordem que exista no turbilhão de movimento e confusão mostrado pelas unidades desordenadas do estudo" (p. 85).
+
+Assim como o anterior Debate Keynes-Tinbergen, o Debate Medição-Sem-Teoria teve um eco por várias décadas.
+
+Finn E. Kydland e Edward C. Prescott (laureados conjuntos do Prêmio Nobel de Economia de 2004, "por suas contribuições à macroeconomia dinâmica: a consistência temporal da política econômica e as forças motrizes por trás dos ciclos de negócios") resumiram a crítica de Koopmans ao estudo de Burns e Mitchell como envolvendo duas críticas básicas.
+
+A primeira é que não fornece uma discussão sistemática das razões teóricas para a inclusão de algumas variáveis em vez de outras em sua investigação empírica. Eles concordaram amplamente com Koopmans a respeito dessa crítica: "A teoria é crucial na seleção de quais fatos relatar" (1990: 3). No entanto, eles discordaram fortemente do que viram como sua segunda crítica: que o estudo de Burns e Mitchell carece de suposições explícitas sobre a distribuição de probabilidade das variáveis, ou seja, suposições sobre como as perturbações aleatórias operam através das relações econômicas entre as variáveis, o modelo de probabilidade, que o economista deve então estimar e testar. Segundo Kydland e Prescott, Koopmans convenceu a profissão econômica de que fazer de outra forma é anti-científico: "Pensamos que ele fez um grande desserviço à economia, porque a reportagem de fatos – sem assumir que os dados são gerados por algum modelo de probabilidade – é uma atividade científica importante" (Kydland e Prescott 1990: 3).
+
+\subsubsection{\textbf{A Comissão Cowles e a metodologia de economia positiva de Milton Friedman}}
+Como mencionado no contexto da crítica de Keynes ao método de Tinbergen (ver pp. 37–39), a modelagem econométrica sempre corre o risco de incompletude: algumas das variáveis que foram omitidas por razões empíricas podem mais tarde revelar-se significativas nas relações econômicas.
+
+Haavelmo também apontou para a possibilidade de que as relações observadas empiricamente possam ser mais simples do que a teoria sugeria. Esse problema poderia ser evitado construindo modelos o mais abrangentes possível, baseados em especificações teóricas a priori.
+
+Era a visão da Comissão Cowles que, para entender um aspecto particular do comportamento econômico, é necessário ter um sistema completo de equações descritivas. Essas equações deveriam conter todas as variáveis observáveis relevantes, ser de uma forma conhecida (preferencialmente linear) e ter coeficientes estimáveis. No entanto, pouca atenção foi dada tanto à questão da seleção das variáveis quanto à forma que as equações deveriam tomar. Pensava-se que, em cada caso, essa informação poderia ser fornecida pela teoria econômica.
+
+A solução da Comissão Cowles para o problema da incompletude era, portanto, construir modelos cada vez mais abrangentes, que deveriam incluir tantas influências potenciais quanto possível. Na década de 1940, Lawrence R. Klein (laureado com o Prêmio Nobel de 1980, "pela criação de modelos econométricos e a aplicação à análise de flutuações econômicas e políticas econômicas") foi encarregado de construir um modelo tipo Comissão Cowles da economia dos Estados Unidos no espírito do método de modelagem macroeconométrica de Jan Tinbergen. O objetivo era construir modelos cada vez mais abrangentes para melhorar sua previsibilidade, de modo que pudessem ser usados como instrumentos confiáveis para a política econômica. As implicações de uma mudança de política poderiam então ser previstas.
+
+Um dos primeiros resultados desse projeto foram três modelos que compreendiam entre 3 e 15 equações. Logo após a publicação desses modelos, eles foram submetidos a uma série de testes por Carl Christ.
+
+Esses estudos estavam entre os primeiros a serem avaliados com base na suposição de que os modelos econométricos deveriam ser testados de acordo com seu desempenho em fazer previsões bem-sucedidas. Uma parte importante de seus testes foi uma comparação do poder preditivo do modelo de 15 equações de Klein contra o de modelos simples de extrapolação, os chamados modelos ingênuos.
+No decorrer dos testes de Christ, dois modelos ingênuos foram usados:
+
+● O primeiro modelo afirma que o valor do próximo ano de qualquer variável será igual ao valor deste ano mais uma perturbação normal aleatória \( \epsilon_t \) com média zero e variância constante (também chamado de "ruído branco").
+
+O segundo modelo afirma que o valor do próximo ano será igual ao valor deste ano mais a mudança do ano passado para este ano mais "ruído branco" \( \epsilon_{t_{II}} \).
+
+Esses dois modelos podem ser expressos matematicamente da seguinte forma:
+
+Modelo ingênuo I: \( y_{t+1} = y_t + \epsilon_{t_{I}} \)
+
+Modelo ingênuo II: \( y_{t+1} = y_t + (y_t - y_{t-1}) + \epsilon_{t_{II}} \)
+
+Esses testes de modelo ingênuo alcançaram resultados notáveis. Em cada um dos dois casos, o modelo ingênuo previu cerca de dois terços das variáveis melhor do que o modelo de 15 equações de Klein. Em defesa da abordagem de modelagem econométrica, Christ argumentou que um modelo econométrico é preferível a um modelo ingênuo porque ele "pode ser capaz de prever os efeitos de medidas de política alternativas ou outras mudanças exógenas... enquanto o modelo ingênuo só pode dizer que não haverá efeito" (1951: 80).
+
+Para ilustrar a questão, é esclarecedor comparar modelos econométricos com aqueles modelos amplamente empregados na previsão do tempo. Foi sugerido que, ao comparar previsões diárias ao longo de um período de um ano inteiro, um dispositivo de previsão muito bom, até melhor do que os modelos mais sofisticados usados pelos institutos meteorológicos, é a regra de que o tempo de amanhã será o mesmo de hoje. Essa é uma percepção compartilhada pelo economista Kenneth Arrow. Convidado a explicar sua Filosofia de Vida, ele relatou a seguinte anedota autobiográfica:
+
+É minha visão que a maioria dos indivíduos subestima a incerteza do mundo. Isso é quase tão verdade para economistas e outros especialistas quanto é para o público leigo... A experiência durante a Segunda Guerra Mundial como meteorologista adicionou a notícia de que o mundo natural também era imprevisível. Um incidente... ilustra tanto a incerteza quanto a relutância em entretê-la. Alguns dos meus colegas tinham a responsabilidade de preparar previsões meteorológicas de longo alcance, ou seja, para o mês seguinte. Os estatísticos entre nós submeteram essas previsões à verificação e descobriram que elas não diferiam em nada do acaso. Os próprios meteorologistas estavam convencidos e solicitaram que as previsões fossem descontinuadas. A resposta foi mais ou menos assim: "O Comandante Geral está bem ciente de que as previsões não são boas. No entanto, ele precisa delas para fins de planejamento."
+(Arrow 1992: 46-7)
+
+Uma crítica importante à abordagem da Comissão Cowles que refletiu a percepção de Arrow veio de Milton Friedman (1912–2006, laureado com o Prêmio Nobel de 1976 "por suas realizações nos campos de análise de consumo, história monetária e teoria e por sua demonstração da complexidade da política de estabilização").
+
+Friedman (1951) foi muito crítico do programa da Comissão Cowles, mas expressou alguma aprovação dos testes pós-modelo de Christ, em particular os testes de modelos ingênuos: "A economia precisa muito de trabalhos desse tipo. É um dos nossos principais defeitos que damos ênfase demais à derivação de hipóteses e muito pouca à verificação de sua validade" (p. 107). A validade das equações não deve ser determinada por coeficientes de correlação altos:
+
+"O fato de as equações se ajustarem aos dados dos quais são derivadas é um teste principalmente da habilidade e paciência do analista; não é um teste da validade das equações para qualquer conjunto mais amplo de dados. Tal teste é fornecido apenas pela consistência das equações com dados não utilizados na derivação, como dados de períodos subsequentes ao período analisado."
+(Friedman 1951: 108)
+
+Por algum tempo, Friedman foi crítico desse tipo de modelagem econométrica. Em uma resenha do trabalho de Tinbergen para a Liga das Nações (1940), Friedman afirmou que "os resultados de Tinbergen não podem ser julgados por testes estatísticos de significância ordinários", porque as variáveis
+
+"foram selecionadas após um extenso processo de tentativa e erro porque produzem altos coeficientes de correlação. Tinbergen raramente se contenta com um coeficiente de correlação inferior a .98. Mas esses coeficientes de correlação atraentes não criam nenhuma presunção de que as relações que descrevem se manterão no futuro."
+(Friedman 1940: 659)
+
+Friedman não considerava modelos ingênuos como teorias concorrentes de mudança de curto prazo; em vez disso, ele os via como padrões de comparação, o que poderia ser rotulado de hipóteses alternativas "naturais" – ou hipóteses "nulas" – contra as quais testamos a hipótese de que o modelo econométrico faz boas previsões, como em um teste de Neyman-Pearson (ver Foco 3.3). Com base no exercício de Christ, então, deveríamos rejeitar a última hipótese.
+
+No entanto, Friedman rejeitou o argumento de Christ de que esses modelos são preferíveis a modelos ingênuos por causa de sua capacidade de prever as consequências de medidas de política alternativas. Friedman afirmou que era possível que modelos ingênuos também pudessem fazer tais previsões, simplesmente afirmando que uma mudança proposta na política não terá efeito. A afirmação de que o modelo econométrico pode prever as consequências de mudanças de política, segundo Friedman, é um "ato de fé puro". E "o fato de o modelo falhar em prever um tipo de mudança é motivo para ter menos, e não mais, fé em sua capacidade de prever um tipo de mudança relacionado" (1951: 111).
+
+Friedman interpretou os resultados decepcionantes dos testes como evidência de que qualquer tentativa de produzir um modelo econométrico preciso de toda a economia era um empreendimento prematuro naquele ponto do desenvolvimento da disciplina e não poderia ser alcançado até que modelos dinâmicos adequados de partes da economia tivessem sido desenvolvidos:
+
+"Como tenho certeza de que aqueles que tentaram fazer isso concordarão, agora sabemos tão pouco sobre os mecanismos dinâmicos em ação que há uma enorme arbitrariedade em qualquer sistema estabelecido. Limitações de recursos – mentais, computacionais e estatísticos – impõem um modelo que, embora complicado o suficiente para nossas capacidades, é ainda enormemente simples em relação ao estado atual de compreensão do mundo que buscamos explicar. Até que possamos desenvolver uma imagem mais simples do mundo, por meio de um entendimento das inter-relações dentro de seções da economia, a construção de um modelo para a economia como um todo está fadada a ser quase uma completa busca às cegas. A probabilidade de que tal processo produza um resultado significativo parece-me quase insignificante."
+(Friedman 1951: 112–13)
+
+A falta de fé de Friedman no programa macroeconométrico o levou a outra direção de pesquisa – a saber, a de particionamento, uma abordagem chamada de Marshalliana. Como Alfred Marshall (1842–1924) colocou,
+
+"Os poderes do homem são limitados: quase todos os enigmas da natureza são complexos. Ele os decompõe, estuda um pedaço de cada vez e, por fim, combina suas soluções parciais com um esforço supremo de toda a sua pequena força em algum tipo de tentativa de solução do enigma inteiro."
+(citado em Friedman 1949: 469)
+
+Essa abordagem Marshalliana de particionamento foi ecoada no comentário de Friedman sobre a modelagem macro:
+
+"A direção do trabalho que me parece oferecer mais esperança para estabelecer uma base para uma teoria de mudança viável é a análise de partes da economia na esperança de que possamos encontrar pedaços de ordem aqui e ali e gradualmente combinar esses pedaços em uma imagem sistemática do todo."
+(Friedman 1951: 114)
+
+Essa abordagem tem sido empregada cada vez mais na pesquisa econômica aplicada. Nas últimas décadas, muitos modeladores aplicados deslocaram seu interesse na modelagem macro da economia como um todo para partes individuais da economia, como a função de consumo, para a qual as teorias econômicas eram relativamente bem desenvolvidas.
+
+A abordagem de particionamento de Marshall baseava-se no uso da cláusula ceteris paribus - algo que fica claro pela frase imediatamente seguinte à citação acima.
+
+Ao dividi-la, ele usa alguma adaptação de uma prisão primitiva, mas eficaz, ou curral, para segregar aquelas causas perturbadoras, cujas andanças acontecem ser inconvenientes, por enquanto: o curral é chamado Cæteris Paribus.
+(Marshall 1925: 314)
+
+Marshall considerou este método particularmente apropriado nos estágios iniciais da análise econômica. A vantagem do uso do curral ceteris paribus era que os problemas poderiam ser tratados "com mais exatidão".
+
+No entanto, Marshall observou que quanto mais uma teoria era estreitada em escopo "menos ela corresponde à vida real" (p. 314), porque não reconheceria as inter-relações entre diferentes partes da economia. Nos próximos estágios de desenvolvimento da teoria, esperava-se que uma correspondência com a realidade pudesse ser recuperada: "Com cada passo de avanço, mais coisas podem ser soltas do curral; discussões exatas podem ser feitas menos abstratas, discussões realistas podem ser feitas menos inexatas do que era possível em um estágio anterior" (p. 315).
+
+Para Friedman, um modelo deve ser avaliado por sua capacidade de prever, em vez de sua realidade (ver Foco 6.3). Este ponto de vista metodológico foi detalhado em seu famoso artigo, "A Metodologia da Economia Positiva" (1953). A posição anti-realista de Friedman foi declarada mais claramente em seu famoso ditado (p. 14):
+
+Hipóteses verdadeiramente importantes e significativas serão encontradas para ter "suposições" que são representações descritivas extremamente imprecisas da realidade e, em geral, quanto mais significativa a teoria, mais irrealistas as suposições (neste sentido).
+
+Em termos do argumento de Friedman, o uso do termo "irrealista" foi infeliz. Isso significou que seu ponto de vista metodológico foi interpretado como uma versão econômica da doutrina do "instrumentalismo" (ver Capítulo 1). O uso do termo "irrealista" neste ditado foi entendido por muitos filósofos da ciência (e muitos economistas) como referindo-se a uma visão específica sobre o status de verdade das suposições. Neste sentido, "irrealista" significa que o valor de verdade das suposições é irrelevante. Essa má interpretação do ponto de vista de Friedman foi endossada pelo exemplo de um tipo específico de suposição, uma suposição "como se" (p. 19):
+
+Considere a densidade de folhas ao redor de uma árvore. Sugiro a hipótese
+de que as folhas estão posicionadas como se cada folha procurasse deliberadamente
+maximizar a quantidade de luz solar que recebe, dada a posição de seus
+vizinhos, como se conhecesse as leis físicas que determinam a quantidade de
+luz solar que seria recebida em várias posições e pudesse se mover
+rapidamente ou instantaneamente de qualquer posição para qualquer outra desejada
+e posição desocupada.
+
+As suposições feitas neste exemplo são suposições "como se p" onde
+p é um mecanismo análogo (veja o Foco 6.1 para mais sobre o conceito de
+analogia). Em outras palavras, p é um simulacro: algo que tem apenas a
+forma ou aparência de uma certa coisa, sem possuir sua substância ou
+qualidades adequadas; ou p é um modelo de simulação, a suposição da aparência
+de algo sem ter sua realidade. Em outras palavras, p neste
+exemplo é uma representação irrealista do mecanismo por trás da distribuição
+de folhas em uma árvore.
+
+Por causa dessa troca imprudente dos termos "realista" e
+"realismo" (veja o Foco 6.3), e ao focar no exemplo das folhas da árvore,
+o ponto de vista de Friedman poderia facilmente ser confundido com o instrumentalismo.
+
+No entanto, considerando o artigo de Friedman como uma defesa do instrumentalismo
+mas lendo todo o artigo com mais cuidado, o filósofo da ciência Alan
+Musgrave (1981) mostrou que era possível distinguir entre diferentes
+tipos de suposições no artigo de Friedman. Segundo Musgrave,
+uma posição instrumentalista decorre da falha em distinguir três outros
+tipos de suposição - negligibilidade, domínio e heurística.
+
+1. Uma suposição de negligibilidade significa que um fator que poderia ser esperado
+para afetar o fenômeno sob investigação na verdade não tem efeito detectável.
+
+2. Uma suposição de domínio significa que um fator esperado está ausente, e então
+é usado para especificar o domínio de aplicabilidade da teoria em questão.
+
+3. Uma suposição heurística é feita se um fator é considerado negligível,
+a fim de simplificar o desenvolvimento "lógico" da teoria.
+
+É possível usar a distinção de Musgrave entre diferentes tipos de suposições para mostrar que a posição de Friedman é uma crítica à necessidade de os modelos serem realistas, mas que, no entanto, não representa uma rejeição ao realismo.
+
+Considere outro exemplo que ele emprega, a saber, um experimento de queda galileana. O ponto de partida aqui é o mesmo que na "Abordagem de Probabilidade" de Haavelmo, a saber, o problema de ser incapaz de realizar experimentos controlados, e assim ser dependente apenas de observações passivas. A ideia por trás de um experimento controlado é criar um ambiente específico - um laboratório - no qual as variáveis relevantes são manipuladas para fazer medições de parâmetros específicos com o objetivo de descobrir a relação, se houver, entre as variáveis. No entanto, é impossível estabelecer condições de laboratório para investigar relações macroeconômicas. Só podemos ser observadores passivos que devem desenterrar relações semelhantes a leis, inferindo a partir dos dados fornecidos pela Natureza o "design" subjacente dos experimentos que a Natureza realiza. Esta abordagem sempre ficará aquém de um experimento controlado. Só podemos observar experimentos à medida que ocorrem ao ar livre e não somos capazes de manipular nenhum dos objetos relevantes.
+
+Infelizmente, raramente podemos testar previsões particulares nas ciências sociais por meio de experimentos explicitamente projetados para eliminar o que são consideradas as influências perturbadoras mais importantes. Geralmente, devemos confiar em evidências lançadas pelos "experimentos" que acontecem para ocorrer. A incapacidade de conduzir os chamados "experimentos controlados" não reflete, em minha opinião, uma diferença básica entre as ciências sociais e físicas, tanto porque não é peculiar às ciências sociais - testemunha a astronomia - e porque a distinção entre um experimento controlado e uma experiência descontrolada é, no melhor dos casos, uma questão de grau. Nenhum experimento pode ser completamente controlado, e toda experiência é parcialmente controlada, no sentido de que algumas influências perturbadoras são relativamente constantes no decorrer dela.
+(Friedman 1953: 10)
+
+Galileu havia projetado seus experimentos de tal maneira que, embora fossem realizados ao ar livre com objetos específicos, a lei que ele encontrou se aplicaria a todos os corpos em um vácuo. A regularidade empírica derivada por Galileu de seus experimentos de queda é muito simples:
+
+$$s \propto t^2$$
+
+significa que a distância (s) é proporcional ao quadrado do tempo (t). A partir dessa descoberta empírica, ele inferiu uma lei dos corpos em queda que afirma que a aceleração de um corpo solto no vácuo é uma constante e é independente de fatores como a massa, composição e forma do corpo, e a maneira como ele é solto.
+
+A questão a ser considerada neste ponto é: até que ponto a lei dos corpos em queda pode ser aplicada fora de um vácuo? Segundo Friedman, para responder a essa pergunta, é importante levar em conta o tipo de objeto que deve ser solto. Neste caso, a lei de Galileu funciona bem se for aplicada a bolas compactas: "A aplicação desta fórmula a uma bola compacta solta do telhado de um prédio é equivalente a dizer que uma bola assim solta se comporta como se estivesse caindo no vácuo" (p. 16). A resistência do ar é negligenciável no caso de bolas compactas caindo distâncias relativamente curtas, então elas se comportam aproximadamente da maneira descrita pela lei de Galileu. Em outras palavras, é seguro aplicar a suposição de negligibilidade no caso de bolas compactas.
+
+O problema, agora, é decidir para quais objetos a resistência do ar é negligenciável. Aparentemente, este é o caso para uma bola compacta caindo do telhado de um prédio, mas e se o objeto for uma pena, ou se o objeto for solto de um avião a uma altitude de 30.000 pés? Um dos critérios padrão para as leis é que elas não devem conter nenhuma referência essencial a objetos ou sistemas particulares (veja o Capítulo 1). Em contraste com essa visão padrão, Friedman argumenta que uma especificação do domínio de objetos e sistemas para os quais uma generalização se aplica deve ser anexada à generalização.
+
+Ao lidar com esse problema de especificação, existem duas opções possíveis:
+
+1. Usar uma teoria mais abrangente - a abordagem da Comissão Cowles - "a partir da qual a influência de alguns dos possíveis fatores perturbadores pode ser calculada e da qual a teoria simples é um caso especial" (p. 18). No entanto, a precisão adicional produzida por essa abordagem pode não justificar os custos extras envolvidos, "então a questão sob quais circunstâncias a teoria mais simples funciona 'bem o suficiente' permanece importante" (p. 18).
+
+2. Selecionar os fenômenos para os quais a teoria funciona. Ou seja, indicar o domínio para o qual a "fórmula" funciona: por exemplo, a lei dos corpos em queda (fora de um vácuo) vale para bolas compactas, mas não para penas, onde a resistência do ar se torna um fator significativo. Isso significa que se deve especificar o domínio para o qual uma fórmula se aplica, mas isso deve ser feito independentemente desta fórmula para manter a fórmula o mais simples possível. Assim, não se deve incorporar essa especificação na própria fórmula. Tendo uma fórmula simples que foi usada com sucesso para modelar e explicar certos fenômenos, é uma questão separada - empírica - qual é a gama completa de fenômenos que podem ser explicados por esta fórmula. Portanto, o objetivo não é construir modelos cada vez mais abrangentes - como o programa da Comissão Cowles visava fazer - mas manter o modelo o mais simples possível, indicando separadamente quais fenômenos pertencem ao seu domínio. A pesquisa empírica deve ser direcionada para investigar o alcance de seu domínio.
+
+O problema importante em conexão com a hipótese é especificar as circunstâncias sob as quais a fórmula funciona ou, mais precisamente, a magnitude geral do erro em suas previsões sob várias circunstâncias. De fato ... tal especificação não é uma coisa e a hipótese outra. A especificação é em si uma parte essencial da hipótese, e é uma parte que é particularmente provável de ser revisada e estendida à medida que a experiência se acumula.
+(Friedman 1953: 18)
+
+Resumindo a estratégia de Friedman para encontrar explicações, uma hipótese ou teoria deve consistir em três partes distintas:
+
+1. Um modelo contendo apenas aquelas forças que são assumidas como importantes - em outras palavras, cada modelo implica suposições de negligibilidade;
+
+2. Um conjunto de regras definindo a classe de fenômenos para os quais o modelo pode ser considerado uma representação adequada - estas são especificações de domínio (independentes);
+
+3. Especificações da correspondência entre as variáveis ou entidades no modelo e fenômenos observáveis.
+
+Portanto, Friedman não é um anti-realista. Ele se opõe apenas a qualquer abordagem que visa produzir modelos realistas como "reproduções fotográficas" da economia, uma abordagem que ele infelizmente - e enganosamente - rotula como a abordagem "o realismo das suposições". A referência a uma suposição realista aqui significa uma descrição o mais abrangente possível da realidade. A inutilidade de se esforçar por tal realismo foi ilustrada em uma hipérbole:
+
+Uma teoria completamente "realista" do mercado de trigo teria que incluir não apenas as condições diretamente subjacentes à oferta e demanda de trigo, mas também o tipo de moedas ou instrumentos de crédito usados para fazer trocas; as características pessoais dos comerciantes de trigo, como a cor do cabelo e dos olhos de cada comerciante, seus antecedentes e educação, o número de membros de sua família, suas características, antecedentes e educação, etc.; o tipo de solo em que o trigo foi cultivado, suas características físicas e químicas, o clima predominante durante a estação de crescimento; as características pessoais dos agricultores que cultivam o trigo e dos consumidores que finalmente o usarão; e assim por diante indefinidamente.
+(Friedman 1953: 32)
+
+Para Friedman, a pergunta relevante a ser feita sobre as suposições de uma teoria não é se elas são descritivamente realistas, "pois nunca são", mas se são "aproximações suficientemente boas para o propósito em questão" (p. 15).
+
+Para esclarecer a posição de Friedman dentro do quadro desenvolvido acima, uma explicação abrangente do movimento de um corpo em queda pode assim ser representada pela seguinte equação:
+
+$$\Delta y = \Delta F(x_1, x_2, \ldots) = F_1 \Delta x_1 + F_2 \Delta x_2 + \ldots$$
+
+Onde $y$ é o movimento de um corpo, $x_1$ é a gravidade, $x_2$ a pressão do ar, e $x_3$, $x_4$, ... são outras especificações das circunstâncias (como temperatura, forças magnéticas, e assim por diante).
+
+A lei dos corpos em queda afirma que, no vácuo (onde a pressão do ar, $x_2$, é igual a 0; mas a noção de "vácuo" nesta lei, na verdade, também supõe que a interferência de outras causas perturbadoras está ausente: assim $x_3$, $x_4$ e assim por diante também são iguais a 0) todos os corpos caem com a mesma aceleração, independentemente da massa, forma ou composição: assim $F_1$ é igual para todos os corpos.
+
+No entanto, ao ar livre, a forma e a substância do corpo em queda determinam quais dos fatores interferentes podem ser considerados como tendo uma influência negligenciável (ou seja, $F_i \approx 0$). Por exemplo, a resistência do ar é negligenciável para bolas compactas caindo distâncias relativamente curtas, então elas se comportam como se estivessem caindo no vácuo. No entanto, no caso de penas, a pressão do ar interfere. Da mesma forma, forças magnéticas atuarão em bolas de aço, mas não em bolas de madeira. Assim, é necessário especificar a classe de fenômenos para a qual um modelo específico é uma representação adequada.
+
+Musgrave (1981) conjecturou uma sequência no uso das suposições: "o que começou como uma suposição de negligibilidade pode ser transformado sob o impacto da crítica primeiro em uma suposição de domínio, depois em uma mera suposição heurística; e que essas mudanças importantes passarão despercebidas se os diferentes tipos não forem claramente distinguidos um do outro" (p. 386). Então, por exemplo, em um modelo simples de determinação de renda keynesiana, pode-se fazer a declaração inicial de que os governos não importam porque têm apenas um efeito negligenciável na renda. Se a pesquisa empírica parece mostrar que os governos importam, ainda se pode decidir ignorar o governo no modelo para fins de simplificação.
+
+Em contraste com essa visão, nossa leitura da metodologia de Friedman é que qualquer modelo baseado em suposições de negligibilidade deve ser mantido, e o domínio de fenômenos para o qual o modelo se aplica deve ser explorado empiricamente. Friedman, portanto, defendeu uma partição marshalliana, não com base em suposições ceteris paribus, como geralmente se assume, mas de acordo com uma combinação de suposições de negligibilidade e especificações de domínio. Por exemplo, ele afirma que empresas competitivas maximizam lucros igualando receitas marginais a custos marginais (suposição de negligibilidade), porque a falha em fazê-lo é excepcional ou equivale à falência ou à incapacidade de sobreviver (suposição de domínio).
+
+\subsubsection{\textbf{Samuelson e o debate do descriptivismo}}
+A edição de maio de 1963 do American Economic Review (AER) continha uma sessão sobre "Problemas de Metodologia", estimulada pelo ensaio de 1953 de Friedman. No entanto, o que começou como uma discussão sobre a metodologia de Friedman logo se transformou, em edições subsequentes do AER, em um debate mais amplo sobre a posição incomum de Paul A. Samuelson (laureado com o Prêmio Nobel de 1970 "pelo trabalho científico através do qual ele desenvolveu a teoria econômica estática e dinâmica e contribuiu ativamente para elevar o nível de análise na ciência econômica").
+
+Samuelson (1963) primeiro rotulou a posição de Friedman como "F-Twist", evitando assim o nome de Friedman, porque ele esperava que sua visão fosse baseada em uma "má interpretação" da intenção de Friedman. Ele descreveu essa posição da seguinte maneira: "Uma teoria é reivindicável se (algumas de) suas consequências são empiricamente válidas para um grau útil de aproximação; o (empírico) irrealismo da teoria 'em si', ou de suas 'suposições', é bastante irrelevante para sua validade e valor" (p. 232).
+
+De acordo com Samuelson, na área da teoria, o irrealismo (no sentido de imprecisão factual, mesmo para um grau tolerável de aproximação) é um demérito, ou mesmo um "pecado". Ele então criticou o "F-Twist" ao esboçar sua própria visão metodológica, que passou a ser conhecida como descriptivismo e pode ser declarada da seguinte maneira: uma teoria válida é igual ao seu conjunto completo de consequências empiricamente válidas.
+
+Para explicar sua visão, Samuelson primeiro definiu uma teoria (chamada B) como um conjunto de axiomas, postulados ou hipóteses que estipulam algo sobre a realidade observável. O conjunto completo de consequências de B é então chamado de C. O conjunto mínimo de suposições que dá origem a B é chamado de A. Assim, a seguinte relação se aplica: A ↔ B ↔ C.
+
+Antes de continuarmos com a conta de Samuelson, precisamos dar uma olhada mais de perto na lógica elementar envolvida para obter uma melhor compreensão de sua posição. O significado do símbolo lógico ↔ é que a implicação é em ambas as direções: → e ←. O significado de um símbolo lógico pode ser definido por uma tabela verdade, como a que é dada abaixo, que dá a implicação para "se P, então Q":
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+P & Q & P $\leftrightarrow$ Q \\
+\hline
+true & true & true \\
+true & false & false \\
+false & true & false \\
+false & false & true \\
+\hline
+\end{tabular}
+\end{center}
+
+Deve-se notar que a implicação lógica, conforme definida por esta tabela verdade, não se mapeia bem com noções intuitivas de implicações. Por exemplo, a definição de implicação lógica implica que qualquer afirmação com uma premissa falsa (linhas 3 e 4) é, no entanto, verdadeira! A tabela mostra que a proposição P → Q é falsa apenas quando P é verdadeiro e Q é falso (linha 2). Portanto, a verdade só pode levar à verdade (linha 1). Isso explica por que os cientistas visam suposições verdadeiras. Assim que as temos, tudo o que pode ser deduzido delas de maneira logicamente correta também é verdadeiro, e não precisamos de mais pesquisas empíricas para estabelecer sua verdade. No entanto, a tabela também mostra que uma proposição falsa pode levar a uma proposição verdadeira (linha 3). Portanto, uma "teoria" falsa pode ter consequências verdadeiras (derivadas logicamente). A verdade é irrelevante para o valor-verdade de suas consequências (as linhas 1 e 3 mostram que tanto uma "teoria" verdadeira quanto uma "teoria" falsa podem ter consequências verdadeiras). Observe que uma "teoria" falsa também pode ter consequências falsas (linha 4). O valor-verdade das consequências, então, deve ser determinado pela pesquisa empírica e não pela avaliação da "teoria". O que Samuelson rotulou como F-twist é a posição em que se considera uma "teoria" importante, mesmo que não seja verdadeira, porque suas consequências são verdadeiras.
+
+Para entender a posição de Samuelson, vamos dar uma olhada mais de perto na seguinte tabela verdade que define a relação de equivalência, ↔:
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+P & Q & P $\leftrightarrow$ Q \\
+\hline
+true & true & true \\
+true & false & false \\
+false & true & false \\
+false & false & true \\
+\hline
+\end{tabular}
+\end{center}
+
+
+Esta tabela mostra que, se o conjunto completo de consequências de uma teoria é equivalente à própria teoria, B ↔ C, para uma teoria verdadeira é necessário ter um conjunto de consequências verdadeiras (linha 1), e para uma teoria falsa é necessário ter um conjunto de consequências falsas (linha 4) - a relação de equivalência aparentemente se aproxima muito mais de nossas noções intuitivas do que a implicação.
+
+Considere agora um conjunto mais amplo de suposições que inclui A como um subconjunto próprio, de modo que implica A, mas não é totalmente implicado por A, chame este conjunto de A+. Então A+ → A e A+ ↔ B + ↔ C+.
+
+Se C é empiricamente válido, mas C+ não é válido para a parte que não está em C, então devemos descartar aquela parte de A+ que não está em A. Em outras palavras, por causa dessa equivalência de teoria e seu conjunto completo de consequências, é sempre claro onde reparar uma teoria quando se encontra uma consequência falsa.
+
+Um ano depois, Fritz Machlup (1964) reagiu a essa posição afirmando que, para Samuelson, isso nos leva a "rejeitar toda teoria" (p. 733). Segundo Machlup, uma teoria é muito mais do que simplesmente suas consequências; se não fosse o caso, nunca poderia explicar fatos observados. Além disso, usando o modelo DN de explicação (como discutido no capítulo anterior), uma explicação não é apenas uma dedução de uma teoria sozinha, é sempre uma combinação de uma ou mais relações teóricas e as condições assumidas.
+
+Porque na visão de Samuelson, as teorias são equivalentes ao conjunto completo de suas consequências cuja validade deve ser testada empiricamente, as teorias não podem fornecer explicações, mas apenas descrições. Note que para derivar explicações de acordo com o modelo DN, precisamos de leis. Mas o conjunto completo de consequências de qualquer lei é simplesmente muito grande para ser testado empiricamente, muito menos verificado. Este é o problema da indução (Capítulo 1) e significa que teorias empiricamente válidas nunca podem conter leis. Isso pode ser a razão para a afirmação de Samuelson de que
+
+De acordo com Samuelson, os cientistas nunca "explicam" qualquer comportamento, seja por teoria ou por qualquer outro meio. Toda descrição que é superada por uma "explicação mais profunda" acaba sendo substituída, após um exame cuidadoso, por outra descrição, embora possivelmente uma descrição mais útil que abrange e ilumina uma área mais ampla (Samuelson 1964: 737).
+
+Segundo Samuelson, a principal conquista de Newton foi melhorar as descrições que haviam sido dadas por Kepler:
+
+As elipses de Kepler deram descrições melhores dos planetas do que os epiciclos dos gregos. Newton mostrou que as equações diferenciais de segunda ordem relacionavam as acelerações dos corpos ao inverso do quadrado de suas distâncias dos corpos vizinhos poderiam descrever ainda melhor as observações astronômicas. Depois que Newton descreveu "como", ele não perdeu tempo na busca infrutífera de "por quê?" mas passou a administrar a Casa da Moeda e a escrever sobre religião (Samuelson 1964: 737).
+
+Essa visão das teorias não exclui a possibilidade de fazer previsões: "Uma descrição de uma regularidade empírica fornece a base da previsão, que será tão precisa ou imprecisa quanto for a regularidade descrita" (Samuelson 1965: 1167).
+
+Outro problema com a visão de Samuelson é que o que são consideradas as consequências de uma teoria não são apenas as implicações de uma teoria isolada, mas sim de uma teoria acoplada com declarações de condições iniciais, teorias auxiliares e cláusulas ceteris paribus. A falsidade de uma dessas consequências não necessariamente falsifica a teoria, mas pode implicar uma declaração falsa de, por exemplo, as condições iniciais (veja a discussão da Tese de Duhem-Quine no Foco 3.1).
+
+Outra dificuldade com a noção de descriptivismo é que a maioria dos cientistas, incluindo o próprio Samuelson em alguns de seus outros escritos, faz uso de idealizações teóricas e simplificações que contêm muitas implicações empíricas falsas - como no caso do modelo de gerações sobrepostas de Samuelson, onde ele sustenta que a vida consiste em apenas dois períodos: um período produtivo seguido por um período de aposentadoria. Quando esse aparente conflito entre as prescrições de Samuelson e a prática foi apontado no debate no AER, Samuelson fez a seguinte justificativa:
+
+Os cientistas constantemente utilizam parábolas, paradigmas, modelos polares fortes para ajudar a entender a realidade mais complicada. O grau em que estes fazem mais bem do que mal é sempre uma questão em aberto, mais como uma arte do que uma ciência (Samuelson 1964: 739).
+
+O filósofo Daniel Hausman usou o rótulo "esquizofrenia metodológica" para descrever essa contradição entre pronunciamentos metodológicos e prática. Embora ele diagnostique essa desordem no trabalho de Samuelson, ele considera que ela é característica de grande parte da economia contemporânea.
+
+Finalmente, notamos que a visão descritivista de Samuelson das teorias - sua ideia de que as teorias científicas simplesmente descrevem a evidência empírica e não vão além da evidência para explicar quaisquer causas mais profundas, subjacentes ou ocultas dos fenômenos - é a única visão empirista na economia que se aproxima do operacionalismo de Bridgman (veja o Capítulo 1). Embora Samuelson nunca tenha se referido explicitamente a Bridgman, a linguagem que ele usa sugere que ele tem ambições operacionalistas. Por exemplo, a versão original de suas Fundações da Análise Econômica levava o subtítulo "O Significado Operacional da Teoria Econômica", e a introdução das Fundações afirma explicitamente que o segundo propósito fundamental deste trabalho é a derivação de teoremas significativamente operacionais (o primeiro é uma unificação geral da teoria).
+
+\subsubsection{\textbf{Olhando para o futuro}}
+Embora tenha havido uma série de visões e desacordos com relação às metodologias de pesquisa empírica em economia desde o surgimento da econometria até o período dos debates entre Friedman e Samuelson, de maneira geral, a partir deste ponto, o empirismo se tornou uma influência dominante na forma como os economistas justificavam seu trabalho, e permaneceu central para a metodologia econômica contemporânea.
+
+Assim, vemos uma mudança na metodologia econômica do dedutivismo a priori encontrado no pensamento anterior para um compromisso geral com o empirismo: as teorias devem ser apoiadas, de uma forma ou de outra, por evidências empíricas. Este é um importante legado do movimento positivista lógico, enfatizando a parte empirista (ou positivista) do programa. Outro legado importante do positivismo lógico, no entanto, surgiu da parte logicista (formalista) de seu programa: uma ênfase nos requisitos sintáticos de uma teoria (veja o Foco 1.3). O principal requisito dessa parte sintática do programa era a axiomatização (veja o Foco 1.1). Ambos os aspectos do programa positivista lógico, formalismo e empirismo, levaram em direções opostas em relação à avaliação das teorias (uma distinção semelhante nos requisitos pode ser observada na literatura sobre modelos, veja o Foco 1.2). Portanto, os debates neste período exibiram uma ambivalência considerável em relação à natureza da teoria e à relação entre teoria e evidência.
+
+A visão sintática positivista lógica da teoria não foi amplamente adotada por aqueles economistas que se basearam na tradição empírica; no entanto, foi recebida com entusiasmo por economistas que acreditavam que as teorias só tinham fundamentos adequados quando eram axiomatizadas. O resultado mais bem-sucedido e exemplar deste programa é a Teoria do Valor de Gérard Debreu (1959): Uma Análise Axiomática do Equilíbrio Econômico (veja o Foco 1.3). Portanto, o programa positivista lógico realmente induziu uma divisão de pontos de vista sobre o status metodológico da teoria e também sobre que base ela deveria ter em evidências empíricas. Uma resposta influente veio de Karl Popper, cuja visão da metodologia econômica será discutida no próximo capítulo.
+
+
+
+\end{document}
