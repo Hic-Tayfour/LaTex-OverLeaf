@@ -1,5 +1,6 @@
 \documentclass[a4paper,12pt]{article}[abntex2]
 \bibliographystyle{abntex2-alf}
+\usepackage{amsmath} 
 \usepackage{siunitx} % Fornece suporte para a tipografia de unidades do Sistema Internacional e formatação de números
 \usepackage{booktabs} % Melhora a qualidade das tabelas
 \usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
@@ -7,8 +8,9 @@
 \usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
 \usepackage{ragged2e} % Justificação de texto melhorada
 \usepackage{setspace} % Controle do espaçamento entre linhas
-\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, rigH=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
 \usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage{multirow}
 \usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
 \usepackage{titlesec} % Personalização dos títulos de seções
 \usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização
@@ -78,21 +80,211 @@
 
 \section{\textbf{Questão 1}}
 \subsection{\textbf{Letra A}}
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Jogador 1} & \multicolumn{12}{c|}{Jogador 2} \\
+\cline{2-13}
+ & (a,A,A) & (a,A,M) & (a,A,B) & (a,B,A) & (a,B,M) & (a,B,B) & (b,A,A) & (b,A,M) & (b,A,B) & (b,B,A) & (b,B,M) & (b,B,B) \\
+\hline
+(a,A) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\
+(a,B) & (0,0,7) & (0,0,7) & (0,0,7) & (5,1,3) & (5,1,3) & (5,1,3) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\
+(m,A) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(m,B) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(b,A) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) \\
+(b,B) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) \\
+\hline
+\end{tabular}
+}
+
+\caption{Matriz do jogador 3 quando joga a}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Jogador 1} & \multicolumn{12}{c|}{Jogador 2} \\
+\cline{2-13}
+ & (a,A,A) & (a,A,M) & (a,A,B) & (a,B,A) & (a,B,M) & (a,B,B) & (b,A,A) & (b,A,M) & (b,A,B) & (b,B,A) & (b,B,M) & (b,B,B) \\
+\hline
+(a,A) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\
+(a,B) & (0,0,7) & (0,0,7) & (0,0,7) & (5,1,3) & (5,1,3) & (5,1,3) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\
+(m,A) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(m,B) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(b,A) & (5,5,5) & (8,4,0) & (3,0,6) & (5,5,5) & (8,4,0) & (3,0,6) & (5,5,5) & (8,4,0) & (3,0,6) & (5,5,5) & (8,4,0) & (3,0,6) \\
+(b,B) & (5,5,5) & (8,4,0) & (3,0,6) & (5,5,5) & (8,4,0) & (3,0,6) & (5,5,5) & (8,4,0) & (3,0,6) & (5,5,5) & (8,4,0) & (3,0,6) \\
+\hline
+\end{tabular}
+}
+\caption{Matriz do jogador 3 quando joga b}
+\end{table}
+
 \subsection{\textbf{Letra B}}
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Jogador 1} & \multicolumn{12}{c|}{Jogador 2} \\
+\cline{2-13}
+ & (a,A,A) & (a,A,M) & (a,A,B) & (a,B,A) & (a,B,M) & (a,B,B) & (b,A,A) & (b,A,M) & (b,A,B) & (b,B,A) & (b,B,M) & (b,B,B) \\
+\hline
+(a,A) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) &\textbf{ (4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} \\
+(a,B) & (0,0,7) & (0,0,7) & (0,0,7) & (5,1,3) & (5,1,3) & (5,1,3) &\textbf{ (4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} & \textbf{(4,3,6)} \\
+(m,A) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(m,B) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(b,A) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) \\
+(b,B) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) & (0,5,0) \\
+\hline
+\end{tabular}
+}
+
+\caption{Matriz do jogador 3 quando joga a}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Jogador 1}& \multicolumn{12}{c|}{Jogador 2} \\
+\cline{2-13}
+ & (a,A,A) & (a,A,M) & (a,A,B) & (a,B,A) & (a,B,M) & (a,B,B) & (b,A,A) & (b,A,M) & (b,A,B) & (b,B,A) & (b,B,M) & (b,B,B) \\
+\hline
+(a,A) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (3,2,8) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\
+(a,B) & (0,0,7) & (0,0,7) & (0,0,7) & (5,1,3) & (5,1,3) & (5,1,3) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\
+(m,A) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(m,B) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) & (2,5,6) \\
+(b,A) & \textbf{(5,5,5)} & (8,4,0) & (3,0,6) & \textbf{(5,5,5)} & (8,4,0) & (3,0,6) & \textbf{(5,5,5)} & (8,4,0) & (3,0,6) & \textbf{(5,5,5)} & (8,4,0) & (3,0,6) \\
+(b,B) &\textbf{ (5,5,5)} & (8,4,0) & (3,0,6) & \textbf{(5,5,5)} & (8,4,0) & (3,0,6) & \textbf{(5,5,5)} & (8,4,0) & (3,0,6) & \textbf{(5,5,5)} & (8,4,0) & (3,0,6) \\
+\hline
+\end{tabular}
+}
+\caption{Matriz do jogador 3 quando joga b}
+\end{table}
+
 \subsection{\textbf{Letra C}}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{Jogador 1}} & \multicolumn{6}{c|}{Jogador 2} \\ \cline{2-7} 
+\multicolumn{1}{|c|}{} & (b,A,A) & (b,A,M) & (b,A,B) & (b,B,A) & (b,B,M) & (b,B,B) \\ \hline
+(a,A) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\ \hline
+(a,B) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) & (4,3,6) \\ \hline
+\end{tabular}
+\caption{Matriz do jogador 3 quando joga a}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ & \multicolumn{4}{c|}{Jogador 2} \\ \cline{2-5} 
+Jogador 1 & (a,A,A) & (a,B,A) & (b,A,A) & (b,B,A) \\ \hline
+(b,A) & (5,5,5) & (5,5,5) & (5,5,5) & (5,5,5) \\ \hline
+(b,B) & (5,5,5) & (5,5,5) & (5,5,5) & (5,5,5) \\ \hline
+\end{tabular}
+\caption{Matriz do jogador 3 quando joga b}
+\end{table}
+
 
 \section{\textbf{Questão 2}}
 \subsection{\textbf{Letra A}}
+Nesse jogo, as firmas estão numa sequência de decisões na qual a firma 1, sendo a líder, é a primeira a escolher sua quantidade \( q_1 \). As firmas 2 e 3, as seguidoras, observam a escolha de \( q_1 \) e depois escolhem suas quantidades \( q_2 \) e \( q_3 \) simultaneamente.
+
+Num jogo dinâmico, um subjogo começa em qualquer ponto do jogo que poderia ser considerado como um novo jogo completo . Aqui, uma vez que a firma 1 escolhe \( q_1 \), começa um novo subjogo onde as firmas 2 e 3 fazem escolhem. Ou seja , cada escolha possível de \( q_1 \) pela firma 1 gera um novo subjogo.
+
+Valores positivis \( q_1 \) podem iniciar um novo subjogo. Se considerarmos que \( q_1 \) pode assumir qualquer não negativo, o número de subjogos é infinito. Isso  porque, para cada valor diferente de \( q_1 \), as firmas 2 e 3 estão em uma situação onde podem tomar  decisões com base nessa escolha conhecida de \( q_1 \). Logo, existem infinitos subjogos neste jogo dinâmico, cada um correspondendo a uma possível escolha de \( q_1 \) pela firma líder.
+
 \subsection{\textbf{Letra B}}
+Chamamos esse jogo de jogo com informação perfeita. Nesse tipo todos os jogadores conhecem todas as ações anteriores tomadas no jogo. A firma 1 escolhe sua quantidade \( q_1 \) primeiro. Depois, as firmas 2 e 3, observam a quantidade \( q_1 \) escolhida pela firma 1 antes de escolherem \( q_2 \) e \( q_3 \). 
+
+Não há dúvidas sobre escolhas de antes, já que as escolhas de \( q_1 \) são claras para as firmas 2 e 3 antes de escolherem suas quantidades. Esse conhecimento das ações passadas por todas as partes antes de tomarem suas próprias decisões é a característica definidora de jogos de informação perfeita.
+
+Já que todas as escolhas são conhecidas por todas as firmas envolvidas antes das decisões posteriores serem tomadas, e não existem decisões ocultas ou informações privadas que atrapalham decisões, este jogo é chamado de jogo de informação perfeita.
+
 \subsection{\textbf{Letra C}}
+Para as firmas 2 e 3, as funções de lucro, considerando a função de demanda inversa \(P(Q) = a - Q\) e \(Q = q_1 + q_2 + q_3\) :
+
+\[\pi_2 = q_2 \left(a - (q_1 + q_2 + q_3) - c\right)\]
+
+\[\pi_3 = q_3 \left(a - (q_1 + q_2 + q_3) - c\right)\]
+
+Para a firma 2, a CPO é:
+\[\frac{\partial \pi_2}{\partial q_2} = a - q_1 - q_2 - q_3 - c - q_2 = 0\]
+
+\[2q_2 + q_3 = a - c - q_1\]
+
+Para a firma 3, a CPO é:
+\[\frac{\partial \pi_3}{\partial q_3} = a - q_1 - q_2 - q_3 - c - q_3 = 0\]
+
+\[q_2 + 2q_3 = a - c - q_1\]
+
+As podemos resolver as CPO's da seguinte forma : 
+
+\begin{align}
+\left\{
+\begin{array}{ll}
+2q_2 + q_3 &= a - c - q_1 \\
+q_2 + 2q_3 &= a - c - q_1
+\end{array}
+\right.
+\end{align}
+
+
+\[4q_2 + 2q_3 - (q_2 + 2q_3) = 2(a - c - q_1) - (a - c - q_1)\]
+\[3q_2 = a - c - q_1\]
+\[q_2 = \frac{a - c - q_1}{3}\]
+
+Substituindo \(q_2\) na segunda equação:
+\[\frac{a - c - q_1}{3} + 2q_3 = a - c - q_1\]
+
+\[2q_3 = a - c - q_1 - \frac{a - c - q_1}{3}\]
+\[2q_3 = \frac{2(a - c - q_1)}{3}\]
+\[q_3 = \frac{a - c - q_1}{3}\]
+
+Assim, o equilíbrio perfeito em subjogos para este jogo é dado por:
+\[(q_1, q_2, q_3) = \left(\frac{a - c}{5}, \frac{2(a - c)}{15}, \frac{2(a - c)}{15}\right)\]
+
 \subsection{\textbf{Letra D}}
+Um equilíbrio de Nash que não é um equilíbrio perfeito em subjogos pode ser ilustrado por um cenário onde as firmas 2 e 3 não reagem às estratégias ótimas da firma líder (firma 1), mas sim a alguma não ótima de \( q_1 \). Por exemplo, as firmas 2 e 3 podem escolher quantidades \( q_2 \) e \( q_3 \) baseadas em uma crença incorreta ou irracional sobre \( q_1 \) que não reflete a liderança da firma 1.
+
+Se assumirmos que \( q_1 \) é escolhido fora do equilíbrio e \( q_2 \) e \( q_3 \) são escolhidos como se \( q_1 \) fosse ótimo, temos um equilíbrio de Nash porque nenhuma firma tem incentivo a desviar, mas não é um equilíbrio perfeito em subjogos, pois as escolhas de \( q_2 \) e \( q_3 \) não são as melhores respostas ao \( q_1 \) fora do equilíbrio escolhido pela firma líder.
 
 \section{\textbf{Questão 3}}
+Para encontrar os equilíbrios de Nash sequencialmente racionais, precisamos considerar as estratégias que seriam adotadas em cada estágio do jogo, levando em conta a racionalidade e a antecipação das ações do outro jogador.
+
+O jogador 1 deve antecipar a reação do jogador 2 da sua proposta. Se o jogador 1 oferecer \( x \leq 10 \) e o jogador 2 for racional, ele vai aceitar qualquer \( x > 0 \), pois ganhar qualquer quantidade é preferível a ganhar zero.
+
+O jogador 1, sabendo que o jogador 2 aceitará qualquer \( x > 0 \), poderia influenciado a oferecer o mínimo possível, \( x = 1 \), minimizando sua perda, \( 10 - x = 9 \).
+
+Porém, em um equilíbrio de Nash sequencialmente racional,  consideramos as preferências e as motivações do jogador 2. Se o jogador 2 valoriza a igualdade ou pretende "castigar" o jogador 1 por uma oferta que considera injusta, ele pode rejeitar uma oferta baixa, mesmo que isso custe um payoff positivo.
+
+Assim, o equilíbrio neste jogo depende das crenças e preferências do jogador 2 em relação à igualdade e ao castigo. Se o jogador 2 for totalmente racional em relação a maximização de seu ganho, qualquer oferta \( 1 \leq x \leq 9 \) pelo jogador 1 poderá ser aceita pelo jogador 2. O equilíbrio de Nash sequencialmente racional ocorreria com \( x = 1 \), e o jogador 2 aceitaria essa oferta.
+
+Resumindo, existe inúmeros possíveis equilíbrios de Nash sequencialmente racionais, variando de \( x = 1 \) a \( x = 9 \), dependendo do jogador 2 de aceitar ofertas desiguais. Se o jogador 2 rejeitar propostas desiguais, o equilíbrio de Nash sequencialmente racional pode exigir que o jogador 1 faça uma oferta mais generosa para garantir a aceitação.
 
 \section{\textbf{Questão 4}}
+
 \subsection{\textbf{Letra A}}
+ Sendo T = 2, o perfil de estratégias onde o jogador 1 exige todo o \textit{surplus} no 1º período e rejeita qualquer oferta no 2º, enquanto o jogador 2 aceita qualquer oferta no 1º e exige todo o \textit{surplus} no 2º, pode acabar sendo um equilíbrio de Nash. Isso porque, dados os planos de ação de cada jogador, não há incentivo para desvios.
+
+No entanto, não é um perfil considerado sequencialmente racional. No 2º período, o jogador 1 rejeitar qualquer oferta é irracional, já que deveria preferir qualquer valor acima de zero ao invés de zero. Além disso, o jogador 2 aceitar qualquer coisa no 1º período também é irracional, pois, se o jogo chegar ao 2º período, ele poderia obter todo o valor. Logo, essas ações não são as melhores respostas aos movimentos anteriores, o que é necessário para a sequencialidade racional.
+
 \subsection{\textbf{Letra B}}
+Para T = 3, o equilíbrio de Nash sequencial vem da ideia de que, no último período (T = 3), o jogador 2 estaria disposto a aceitar qualquer oferta acima de zero, pois essa seria sua última chance de obter algum coisa. No 2º período, antecipando a chance de fazer uma oferta no 3º período, o jogador 2 recusa qualquer oferta do jogador 1, a menos que fosse igual ou superior a \( 1 - \delta_2 \), o valor que ele espera obter na próxima rodada descontado pelo fator de desconto. No 1º período, o jogador 1, prevendo essa recusa, ofertaria \( 1 - \delta_2 \), que seria aceito pelo jogador 2.
+
 \subsection{\textbf{Letra C}}
+Para T = 4, a lógica se mantém. No último período, o jogador 1 aceitaria qualquer oferta acima de zero. No 3º período, o jogador 2, por sua vez, faria a oferta mínima possível \( \delta_1 \) ao jogador 1, que seria aceita. No 2º período, o jogador 1, antecipando o valor descontado que receberia na oferta do 3º período, faria a oferta \( \delta_1 \). No 1º período, o jogador 2, sabendo que só receberia \( \delta_2 \cdot \delta_1 \) no final, aceitaria uma oferta um pouco maior do que \( \delta_2 \cdot \delta_1 \) do jogador 1.
+
 \subsection{\textbf{Letra D}}
+O jogador 1 tem um payoff maior em equilíbrio quando T = 3 do que quando T = 4 porque, com um número ímpar de períodos, o jogador 1 tem a oportunidade de fazer a última oferta e capturar o valor descontado do jogador 2. Em T = 4, o jogador 1 teria que fazer uma concessão no 2º período, prevendo a capacidade de o jogador 2 fazer a última oferta no 3º período. Com uma sequência de três períodos, o jogador 1 pode se aproveitar do fato de que o jogador 2 precisa aceitar uma oferta no 2º período para garantir um payoff positivo, aumentando assim o valor que ele, jogador 1, pode capturar.
 
 \end{document}
