@@ -7,7 +7,7 @@
 \usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
 \usepackage{ragged2e} % Justificação de texto melhorada
 \usepackage{setspace} % Controle do espaçamento entre linhas
-\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, rigH=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
 \usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
 \usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
 \usepackage{titlesec} % Personalização dos títulos de seções
@@ -19,6 +19,8 @@
   inter-unit-product = \ensuremath{{}\cdot{}},
   per-mode = symbol
 }
+\setlength{\headheight}{14.49998pt}
+
 \DeclareSIUnit{\real}{R\$}
 \newcommand{\real}[1]{R\$#1}
 \usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
@@ -84,6 +86,7 @@ Cournot defende o uso da matemática na economia argumentando que ela não se de
 Segundo Fisher, a ciência econômica deve ser matemática devido à precisão e clareza que a matemática traz ao campo. Ele argumenta que o uso de símbolos e fórmulas matemáticas não se destina apenas a cálculos numéricos, mas também a encontrar relações entre grandezas que não podem ser expressas em números e entre funções cuja lei não pode ser expressa de forma algébrica. Fisher destaca que a análise matemática é empregada para entender as relações e as tendências, não apenas para calcular números, e isso é essencial na economia para lidar com variáveis e prever comportamentos econômicos de maneira mais precisa e sistemática.
 
 \subsection{\textbf{Objetivo de Aprendizagem : Apresentar problemas concretos e analisar como a ciência os soluciona e discutir as particularidades da ciência econômica. Por fim, analisar a importância da condicionalidade histórica em nossa maneira de pensar o mundo.}}
+
 A ciência econômica, assim como outras áreas do conhecimento científico, se dedica ao estudo e à solução de problemas concretos que afetam as sociedades humanas. Diferenciando-se das ciências naturais pela complexidade e pela variabilidade inerentes ao seu objeto de estudo - o comportamento humano e as interações sociais - a economia busca compreender e modelar como os indivíduos e as sociedades alocam recursos escassos para satisfazer necessidades e desejos ilimitados.
 
 Uma característica distintiva da ciência econômica é o uso de modelos teóricos e a aplicação do princípio \textit{ceteris paribus}, que permite isolar variáveis e examinar os efeitos de mudanças em um ambiente controlado, assumindo que todos os outros fatores permanecem constantes. Essa abordagem simplifica a análise de fenômenos complexos, mas também implica limitações, uma vez que a realidade econômica é influenciada por um amplo conjunto de variáveis interconectadas e em constante mudança.
@@ -110,8 +113,8 @@ Fisher, Irving. “Cournot and Mathematical Economics”. Quarterly Journal of E
 
 
 \section{\textbf{Tópico 1.2 : Motivação ao estudo da história do pensamento econômico}}
-\subsection{\textbf{Quais as implicações do declínio do pensamento histórico segundo Eric Alterman? O
-que isto eventualmente nos diz sobre áreas como história do pensamento econômico?}}
+\subsection{\textbf{Quais as implicações do declínio do pensamento histórico segundo Eric Alterman? 
+O que isto eventualmente nos diz sobre áreas como história do pensamento econômico?}}
 Alterman destaca a "desigualdade intelectual" como uma consequência do declínio do pensamento histórico, enfatizando que algumas pessoas têm os recursos para tentar entender nossa sociedade enquanto a maioria não tem. Ele observa que, recentemente, houve uma queda significativa no número de graduandos em história, especialmente fora das instituições de elite, sugerindo uma crescente desigualdade no acesso ao conhecimento histórico. Esse declínio é problemático porque estudar história ajuda a entender como chegamos ao presente, a complexidade da política, cultura e economia, e a evitar a repetição de erros passados. A falta de entendimento histórico, especialmente em tempos de desinformação, pode levar a uma sociedade mais suscetível a ser manipulada por charlatães. Sobre a História do Pensamento Econômico, essa tendência pode implicar uma compreensão menos crítica e contextualizada de como as ideias econômicas se desenvolveram e influenciaram a sociedade, possivelmente limitando a capacidade de questionar e inovar dentro do campo.
 \subsection{\textbf{Como tratar ideias do passado que se mostram problemáticas no mundo de hoje,
 conforme Julian Baggini? O que isto eventualmente nos diz sobre ideias de economistas
@@ -495,5 +498,148 @@ Frisch, Ragnar. “Editor’s Note”. Econometrica, vol. 1, n. 1, 1933.
 
 Schumpeter, Joseph. “The Common Sense of Econometrics”. Econometrica, vol. 1, n. 1,
 1933.
+
+\section{\textbf{Tópico 6.2 : Debates metodológicos iniciais: Keynes-Tinbergen sobre o método econométrico e Koopmans-Vining no debate de “mensuração sem teoria”}}
+
+\subsection{\textbf{Quais os principais pontos da crítica que Keynes fez a Jan Tinbergen?}}
+Keynes criticou a abordagem econométrica de Jan Tinbergen, destacando que a técnica de análise de correlação múltipla usada era meramente um método de medição, sem contribuir para a descoberta ou crítica de fenômenos econômicos. Ele argumentou que a abordagem dependia da suposição de que todas as causas significativas de um fenômeno eram conhecidas e incluídas no modelo, o que raramente é o caso. Além disso, Keynes estava preocupado com a linearidade assumida das relações econômicas e questionava a capacidade dos modelos de Tinbergen em predizer o futuro, dado o problema da invariância.
+
+\subsection{\textbf{Quais os principais pontos da crítica de Tjalling Koopmans à Vining?}}
+Koopmans criticou a abordagem empírica do NBER, representada por Vining, por medir ciclos econômicos sem uma teoria subjacente adequada. Ele argumentou que isso resultava em uma coleção de fatos sem uma compreensão teórica, o que limitava a utilidade dos dados para desenvolver políticas econômicas. Koopmans enfatizou a necessidade de uma abordagem teórica que pudesse explicar e prever fenômenos econômicos, não apenas descrevê-los. Ele também criticou a suposição do NBER de que as relações empíricas observadas seriam invariantes ao longo do tempo, o que é crucial para a previsão e orientação de políticas.
+
+\subsection{\textbf{Quais as respostas de Vining à Koopmans?}}
+Vining defendeu a importância do empirismo no processo científico, argumentando que a coleta de dados empíricos era uma atividade científica fundamental, mesmo sem uma teoria completa para guiá-la. Ele questionou se os métodos de Koopmans realmente levariam à descoberta de relações econômicas invariantes fundamentais. Vining também criticou a abordagem da Comissão Cowles por se concentrar excessivamente em estimações de relações teóricas postuladas, o que poderia negligenciar a descoberta de novas hipóteses econômicas importantes. Ele via a estatística como uma ferramenta para ajudar a "ver" os dados e descobrir ordem em fenômenos econômicos complexos e aparentemente caóticos.
+
+\subsection{\textbf{Objetivo de Aprendizagem : Analisar dois importantes debates metodológicos no início da econometria e que marcou desenvolvimentos posteriores. }}
+A história da econometria é marcada por debates metodológicos intensos que não apenas moldaram seu desenvolvimento inicial, mas também influenciaram profundamente suas trajetórias futuras. Dois desses debates, notavelmente com John Maynard Keynes e Tjalling Koopmans como figuras centrais, são particularmente emblemáticos e merecem uma análise cuidadosa por sua influência duradoura na disciplina.
+
+O primeiro grande debate envolveu John Maynard Keynes e Jan Tinbergen, um dos pioneiros da econometria. Na década de 1930, Tinbergen desenvolveu alguns dos primeiros modelos econométricos, tentando aplicar métodos estatísticos para testar teorias econômicas e fazer previsões. O ponto de vista de Keynes, articulado em uma crítica feroz ao trabalho de Tinbergen, destacava problemas fundamentais nessa abordagem. Keynes estava preocupado principalmente com a robustez dos métodos econométricos, questionando se as relações econômicas modeladas poderiam ser consideradas invariantes sob diferentes condições ou ao longo do tempo. Ele criticou a dependência de Tinbergen em relação a sistemas lineares e a falta de uma teoria abrangente que poderia justificar a inclusão ou exclusão de variáveis nos modelos. Esse debate destacou uma tensão entre a modelagem matemática e a complexidade da realidade econômica, uma questão que permanece relevante nas discussões sobre a validade e aplicabilidade de modelos econométricos.
+
+O segundo debate notável ocorreu entre Tjalling Koopmans, representando a Comissão Cowles, e Rutledge Vining, um crítico da abordagem altamente teórica da comissão. Nos anos posteriores à Segunda Guerra Mundial, Koopmans defendeu uma abordagem que enfatizava a importância de modelos teóricos sólidos como base para a análise econométrica. Ele argumentou que, sem um forte fundamento teórico, a pesquisa empírica corria o risco de se tornar uma mera coleta de dados sem significado. Seu artigo de 1947, "Measurement Without Theory", criticava o trabalho empírico do National Bureau of Economic Research (NBER), que ele via como desprovido de qualquer teoria econômica substantiva. Por outro lado, Vining defendia a importância do empirismo e a capacidade de observar e medir fenômenos econômicos diretamente, mesmo na ausência de modelos teóricos completos. Ele acreditava que uma abordagem puramente teórica poderia ignorar aspectos cruciais da realidade econômica que só podem ser revelados através da observação direta.
+
+Esses debates tiveram implicações duradouras para o campo da econometria. O embate entre Keynes e Tinbergen ajudou a moldar uma abordagem mais crítica e cuidadosa no uso de modelos econométricos, levando a um exame mais rigoroso das suposições subjacentes e da estabilidade das relações econômicas modeladas. O confronto entre Koopmans e Vining, por sua vez, iluminou a tensão entre teoria e empirismo, um tema que continua a influenciar o modo como os economistas pensam sobre a validade e utilidade dos métodos econométricos. Através desses debates, a econometria evoluiu para uma disciplina que valoriza tanto os rigorosos fundamentos teóricos quanto a robustez e aplicabilidade empírica dos modelos, procurando sempre um equilíbrio entre esses dois aspectos.
+
+\subsection{\textbf{Referência Bibliográficas}}
+Boumans, Marcel e Davis, John. Economic Methodology: understanding economics as a
+science. Palgrave Macmillan, 2010.
+
+
+\section{\textbf{Tópico 7.1 : As transformações científicas da segunda guerra mundial}}
+
+\subsection{\textbf{Por que a segunda guerra mundial pode ser entendida como o principal ponto de inflexão da ciência econômica no século XX?}}
+A Segunda Guerra Mundial marca um ponto de inflexão crucial na ciência econômica do século XX devido a várias transformações fundamentais que redefiniram o campo. Primeiramente, a guerra estimulou o desenvolvimento e a aplicação da pesquisa operacional e de outras técnicas quantitativas avançadas, como o uso de computadores e métodos estatísticos em planejamento econômico e militar. Essa interação entre economistas, matemáticos e estatísticos durante o esforço de guerra não só enriqueceu a econometria e a modelagem econômica, mas também solidificou a influência do pensamento matemático na economia.
+
+Além disso, a guerra fortaleceu institucionalmente a economia nos Estados Unidos, consolidando sua posição como centro global da pesquisa econômica, principalmente devido ao influxo de intelectuais europeus fugindo do conflito. Essa americanização da economia não apenas alterou a geografia intelectual da disciplina, mas também promoveu uma abordagem mais matematizada e teórica da economia, refletida no crescimento do neoclassicismo e na diminuição do pluralismo metodológico e teórico que era mais característico do período entre guerras.
+
+
+\subsubsection{\textbf{Quais as principais transformações que ocorreram desde os anos 1930 que nos ajudam a entender como a ciência econômica do período após a segunda guerra é substancialmente diferente daquela de antes da segunda guerra?}}
+Desde os anos 1930, várias transformações moldaram a ciência econômica de formas que distinguem claramente o período pós-Segunda Guerra Mundial do anterior. Primeiramente, a "Revolução Keynesiana", que emergiu nos anos 1930, desafiou a ortodoxia econômica clássica ao enfatizar o papel do governo na estabilização econômica, introduzindo conceitos como a demanda agregada e políticas fiscais e monetárias ativas. Este foi um afastamento significativo das teorias de livre mercado que dominavam antes.
+
+Adicionalmente, houve uma matematização progressiva da economia, influenciada pelo desenvolvimento da econometria e pela formalização da teoria do equilíbrio geral. Essa tendência foi reforçada pela Guerra Fria, durante a qual a demanda por rigor científico e métodos quantitativos em economia aumentou significativamente, impulsionada pela competição ideológica com a União Soviética e pela necessidade de eficiência econômica e militar. Este período também viu a expansão do ensino superior nos EUA, graças ao GI Bill, que democratizou o acesso à educação universitária e expandiu a comunidade acadêmica econômica.
+
+Essas mudanças culminaram em uma ciência econômica pós-guerra que era mais técnica, mais globalmente centrada nos Estados Unidos e mais orientada para modelos matemáticos e estatísticos do que nunca antes, marcando uma era de profissionalização e especialização que definiria o curso futuro da disciplina.
+
+
+\subsection{\textbf{Objetivo de Aprendizagem : Entender as profundas alterações na ciência econômica ocorridas com o envolvimento dos economistas no esforço de guerra, e o surgimento da grande ciência nos EUA. }}
+A participação dos economistas no esforço de guerra durante a Segunda Guerra Mundial e o surgimento subsequente da "grande ciência" nos Estados Unidos representam um período de transformação profunda para a ciência econômica. Este período não apenas ampliou o escopo e as aplicações da economia, mas também redefiniu a relação entre a ciência econômica e o estado, além de influenciar a própria metodologia e a infraestrutura acadêmica da disciplina.
+
+Durante a Segunda Guerra Mundial, economistas foram chamados a contribuir de maneira significativa para o esforço de guerra. Eles se envolveram em tarefas que iam desde a otimização da logística e do transporte até a alocação eficiente de recursos escassos, como alimentos e munições. A necessidade de soluções rápidas e eficazes para problemas complexos e dinâmicos levou ao desenvolvimento e aplicação de novas técnicas quantitativas e estatísticas. Este foi um desvio notável das abordagens tradicionalmente mais teóricas e menos aplicadas da economia.
+
+A guerra também estimulou a colaboração interdisciplinar, reunindo economistas, matemáticos, engenheiros e cientistas políticos. Essa interação promoveu uma troca de ideias e métodos, resultando em uma abordagem mais rigorosa e matemática da economia. A pesquisa operacional, por exemplo, emergiu como uma disciplina crucial, aplicando métodos analíticos avançados para resolver problemas de decisão e logística militar. Essas inovações não apenas transformaram práticas dentro de campos militares e governamentais, mas também se infiltraram na academia, influenciando profundamente o ensino e a pesquisa econômica.
+
+O período pós-guerra viu a consolidação da "grande ciência" nos Estados Unidos, um conceito que reflete a intensa e crescente dependência de grandes equipes de pesquisa, financiamento substancial e infraestrutura complexa. Na economia, isso se traduziu em um aumento significativo no financiamento para pesquisa econômica por agências governamentais e fundações privadas, como a Ford e a Rockefeller. Essas instituições buscavam aproveitar o rigor e as capacidades analíticas desenvolvidas durante a guerra para abordar problemas econômicos domésticos e internacionais em um mundo em rápida mudança e reconstrução.
+
+A expansão do ensino superior nos EUA, impulsionada pelo GI Bill, também desempenhou um papel crucial ao expandir o corpo de economistas treinados e aumentar a capacidade de pesquisa. Isso ajudou a estabelecer os Estados Unidos como um centro global de pensamento econômico, atraindo estudantes e acadêmicos de todo o mundo. Essa americanização da economia consolidou abordagens que valorizavam métodos quantitativos e fomentavam uma visão de economia como uma disciplina científica rigorosa e objetiva.
+
+Essas transformações não apenas mudaram o que significa ser um economista, mas também como a economia interage com o governo e a sociedade. A integração de métodos quantitativos avançados e o foco em políticas econômicas baseadas em evidências tornaram-se a norma. Isso redefiniu a ciência econômica de maneiras que ainda ressoam hoje, mostrando a profunda influência do envolvimento dos economistas no esforço de guerra e o nascimento da grande ciência na formação da economia moderna.
+
+\subsection{\textbf{Referência Bibliográficas}}
+Morgan, Mary e Rutherford, Malcolm. “American Economics: the character of the transformation”.
+Em: Morgan e Rutherford (eds.), From Interwar Pluralism to Postwar Neoclassicism.
+History of Political Economy, suplemento anual, págs. 1-26, 1998.
+
+Weintraub, E. Roy. “Telling the story of MIT economics in the postwar period”. History of
+Political Economy, vol. 46, suplemento anual, 2014.
+
+\section{\textbf{Tópico 7.2 : Indicadores quantitativos das mudanças da economia após a segunda guerra}}
+
+\subsection{\textbf{O que os dados das publicações nas principais revistas de economia analisadas por Backhouse (1998) nos dizem sobre o uso de matemática? E de artigos teóricos versus artigos empíricos?}}
+ De acordo com Backhouse (1998), os dados das publicações nas principais revistas de economia mostram um aumento significativo no uso da matemática, principalmente em artigos teóricos. A matemática foi predominantemente usada para desenvolver argumentos teóricos, enquanto o trabalho empírico raramente utilizava matemática além da análise estatística. O estudo também indica que, ao longo do tempo, houve um declínio nos artigos puramente empíricos e um aumento correspondente nos artigos que utilizam teoria formal, sugerindo uma formalização das técnicas tanto teóricas quanto empíricas, que permitiu uma distinção mais clara entre elas.
+
+\subsection{\textbf{E de análise de regressão?}}
+A análise de regressão começou a se estabelecer como uma ferramenta importante para pesquisa empírica na década de 1950. Embora a econometria, incluindo a análise de regressão, fosse vista como tendo começado nas décadas de 1920 e 1930, seu uso efetivo em publicações analisadas foi relativamente baixo até a década de 1950. Isso sugere que a econometria como um campo estava ainda em desenvolvimento e não foi amplamente adotada até meados do século XX.
+
+\subsection{\textbf{E da nacionalidade dos autores e suas idades?}}
+A análise revelou que um número significativo de autores nas revistas estudadas era de economistas não nascidos nos EUA, refletindo um impacto considerável de imigrantes na academia econômica americana. Além disso, observou-se uma mudança geracional, com economistas mais jovens adotando novas técnicas matemáticas e econômicas, diferentemente das gerações anteriores. A idade média dos economistas publicadores permaneceu em torno de 40 anos, mas com um aumento na proporção de economistas mais jovens usando técnicas matemáticas avançadas ao longo do tempo.
+
+\subsection{\textbf{E da filiação institucional dos autores?}}
+ A análise mostrou um domínio de poucas instituições nos artigos publicados nas principais revistas. Harvard, Columbia e outras grandes universidades eram frequentemente as mais representadas. Com o tempo, novas instituições como Berkeley, MIT e Stanford começaram a aparecer com mais frequência nas publicações, refletindo mudanças nas lideranças acadêmicas e nas abordagens econômicas predominantes. A filiação institucional também indica um movimento de concentração, onde poucas instituições de elite contribuíam com a maioria dos artigos, sugerindo uma centralização de influência na academia econômica.
+
+\subsection{\textbf{Objetivo de Aprendizagem : Estudar grandes transformações do conhecimento econômico após a segunda guerra através de indicadores bibliométricos.}}
+A utilização de indicadores bibliométricos para estudar as grandes transformações do conhecimento econômico após a Segunda Guerra Mundial revela mudanças profundas na estrutura, foco e metodologia da disciplina. Esses indicadores, que incluem análises de publicações, citações e colaborações, fornecem uma visão quantitativa da evolução da economia como ciência, destacando a expansão da pesquisa, a institucionalização de subdisciplinas e a globalização do conhecimento econômico.
+
+Inicialmente, o período após a guerra marcou um aumento significativo no volume de publicações. Esse crescimento foi impulsionado pela necessidade de abordar as complexas questões econômicas que surgiram no pós-guerra, como a reconstrução econômica, a integração europeia e a regulação do desenvolvimento econômico. Bibliometricamente, observa-se que a quantidade de artigos publicados em revistas de economia cresceu exponencialmente, refletindo não apenas um aumento na produção científica, mas também um maior interesse institucional e governamental na pesquisa econômica.
+
+Além do aumento quantitativo, os indicadores bibliométricos também apontam para uma transformação qualitativa na economia. Durante esse período, houve uma matematização crescente da economia, conforme evidenciado pelo aumento no uso de modelos matemáticos e técnicas estatísticas e econométricas nos artigos publicados. Isso coincide com a ascensão da síntese neoclássica e da macroeconomia keynesiana, que buscavam fornecer um rigor teórico e metodológico maior para a análise econômica.
+
+Os indicadores bibliométricos também revelam mudanças na geografia do conhecimento econômico. Após a Segunda Guerra Mundial, os Estados Unidos emergiram como o centro dominante da pesquisa econômica. Isso é refletido na predominância de instituições americanas entre as mais produtivas e influentes no campo da economia, como Harvard, MIT e Chicago. Este fenômeno foi amplificado pela migração de intelectuais europeus para os EUA durante e após a guerra, enriquecendo o ambiente acadêmico americano.
+
+Outra transformação importante identificada através de análises bibliométricas é a crescente colaboração internacional entre economistas. O número de artigos co-autorados por pesquisadores de diferentes países aumentou, indicativo de uma rede de conhecimento econômico mais globalizada. Este aumento na colaboração internacional pode ser visto como uma resposta à globalização das questões econômicas, necessitando de uma perspectiva mais ampla e diversificada para abordar problemas como comércio internacional, fluxos de capital e políticas econômicas comparativas.
+
+Por fim, os indicadores bibliométricos destacam a crescente especialização dentro da economia. A proliferação de subdisciplinas, como economia do desenvolvimento, finanças e economia comportamental, pode ser observada através da diversificação das áreas temáticas tratadas nas publicações econômicas. Isso reflete uma evolução da disciplina que busca abordar uma gama cada vez mais ampla de fenômenos econômicos com ferramentas teóricas e empíricas especializadas.
+
+Em resumo, os indicadores bibliométricos oferecem um meio robusto para explorar as transformações do conhecimento econômico após a Segunda Guerra Mundial, evidenciando não apenas o crescimento quantitativo da pesquisa econômica, mas também mudanças qualitativas significativas em sua orientação teórica, metodológica e geográfica.
+
+\subsection{\textbf{Referência Bibliográficas}}
+Backhouse, Roger. “The Transformation of US Economics, 1920-1960, Viewed through a
+Survey of Journal Articles”. History of Political Economy, vol. 30, suplemento anual, 1998.
+
+Claveau, François e Gingras, Yves. “Macrodynamics of Economics: A Bibliometric History”.
+History of Political Economy, vol. 48, no. 4, 2016.
+
+\section{\textbf{Tópico 8.1 : Modelos, rigor matemático e equilíbrio geral no pós-guerra}}
+
+\subsection{\textbf{Como analisar a questão da matematização da economia no século XX?}}
+A matematização da economia no século XX, caracterizada pela crescente formalização e uso de métodos matemáticos, pode ser compreendida através do contexto histórico e das influências intelectuais que moldaram a disciplina. A expansão dos modelos matemáticos e econômétricos, especialmente no pós-guerra, refletiu um esforço para tornar a economia mais rigorosa e científica, influenciada por avanços em outras ciências, como a física. Esse processo foi tanto uma resposta às necessidades de políticas econômicas mais eficazes quanto uma tentativa de elevar o status epistemológico da economia.
+
+\subsection{\textbf{O que são corpo e imagem do conhecimento, segundo Leo Corry?}}
+Segundo Leo Corry, a distinção entre "corpo" e "imagem" do conhecimento refere-se ao próprio conhecimento (o corpo) e às ideias sobre o conhecimento, como os conceitos de rigor e os padrões de prova (a imagem). Esta dicotomia ajuda a entender como as disciplinas evoluem não apenas em termos de conteúdo, mas também na forma como o conhecimento é percebido e valorizado pela comunidade acadêmica.
+
+\subsection{\textbf{O que ocorreu com a noção de rigor matemático em economia no século XX?}}
+O rigor matemático na economia aumentou significativamente ao longo do século XX, marcado por uma ênfase crescente na formalização teórica e na precisão analítica. Este movimento foi parte do esforço mais amplo para legitimar a economia como uma ciência rigorosa, similar em metodologia e rigor às ciências naturais. A adoção de técnicas rigorosas também foi impulsionada pela formação de instituições e pela profissionalização da disciplina econômica.
+
+\subsection{\textbf{Quais as origens de modelos em economia?}}
+Os modelos em economia surgiram como uma extensão da matematização da disciplina, sendo inicialmente desenvolvidos como ferramentas para a econometria entre guerras. Esses modelos foram projetados para amalgamar teorias econômicas com métodos estatísticos e matemáticos, facilitando tanto a análise teórica quanto a aplicação empírica.
+
+\subsection{\textbf{Quais as funções de modelo (em particular em economia)?}}
+Na economia, os modelos servem várias funções críticas. Eles são usados para teorizar, ajudando na construção e teste de teorias econômicas; como ferramentas de investigação, permitindo experimentos controlados e análises de cenários; e para ajustar teorias ao mundo real, facilitando a aplicação de teorias econômicas a dados empíricos. Modelos econômicos desempenham um papel fundamental na ponte entre teoria abstrata e realidades econômicas tangíveis.
+
+\subsection{\textbf{O que foi o Bourbakismo e qual sua importância para o projeto de equilíbrio geram em economia?}}
+O Bourbakismo foi um movimento na matemática que enfatizou o rigor e a pureza e teve um impacto significativo na economia, especialmente no desenvolvimento da teoria do equilíbrio geral. Influenciado por essa filosofia, economistas como Debreu aplicaram um rigor extremo na formalização dos modelos de equilíbrio geral, elevando o nível de abstração e formalismo na teoria econômica.
+
+\subsection{\textbf{Objetivo de Aprendizagem : Discutir a importância de modelos e o conceito de rigor matemático que marca a economia após a segunda guerra.}}
+Após a Segunda Guerra Mundial, a ciência econômica passou por uma transformação significativa, marcada pela crescente importância de modelos e um aprofundamento no rigor matemático. Essas mudanças refletem tanto uma evolução nas práticas quanto nas expectativas metodológicas dentro da disciplina, influenciadas por uma série de fatores contextuais e institucionais.
+
+O uso de modelos na economia após a guerra foi impulsionado pela necessidade de fornecer análises precisas e predições confiáveis que pudessem guiar a reconstrução econômica e o planejamento político em um mundo profundamente afetado por conflitos massivos. Modelos econômicos, especialmente aqueles baseados em fundamentos matemáticos rigorosos, ofereciam uma forma de simplificar a complexidade do mundo real, permitindo aos economistas isolar variáveis, testar hipóteses e simular o impacto de políticas econômicas sob condições controladas.
+
+O conceito de rigor matemático, por sua vez, tornou-se uma pedra angular na economia acadêmica, sobretudo com a influência do Bourbakismo, um movimento que enfatizava a pureza e a estruturação axiomática da matemática. Esta abordagem encontrou terreno fértil na economia, particularmente na teoria do equilíbrio geral, onde economistas como Gerard Debreu trabalharam para formular modelos que não só capturavam as interações entre diferentes mercados e agentes de maneira mais abstrata e formal, mas também se esforçavam para atender aos padrões de rigor e generalidade que eram então celebrados nas matemáticas.
+
+O aumento do rigor matemático e o uso intensivo de modelos matemáticos e econométricos também foram facilitados pelo desenvolvimento tecnológico, especialmente o avanço dos computadores, que permitiu uma manipulação mais eficiente de grandes conjuntos de dados e a realização de cálculos complexos. Isso expandiu o escopo e a escala das análises econômicas, permitindo uma exploração mais aprofundada de cenários econômicos potenciais.
+
+No entanto, a crescente matematização da economia também gerou críticas. Alguns teóricos argumentaram que a ênfase exagerada em modelos formalmente rigorosos poderia desviar a atenção das questões substantivas e da relevância prática da pesquisa econômica. Preocupações com a "realismo" dos modelos propostos levantaram questões sobre o equilíbrio entre abstração matemática e aplicabilidade prática.
+
+Em resumo, a ascensão dos modelos e o aumento do rigor matemático na economia pós-Segunda Guerra refletem tanto avanços quanto desafios na tentativa de entender e moldar políticas para complexas economias modernas. Enquanto essas ferramentas trouxeram insights profundos e ajudaram a formular políticas econômicas eficazes, elas também incentivaram debates contínuos sobre a melhor maneira de utilizar a matemática na ciência econômica.
+
+\subsection{\textbf{Referência Bibliográficas}}
+Morgan, Mary. “Models”. Em: Palgrave Macmillan (eds.), The New Palgrave Dictionary of
+Economics, 2nd. ed. Palgrave Macmillan, 2008. Disponível em: https://doi.org/10.1057/978-1-349-95121-52171-1
+
+Weintraub, E. Roy. How Economics Became a Mathematical Science. Duke University Press,
+2002.
+
+Weintraub, E. Roy; Mirowski, Philip. “The Pure and the Applied: Bourbakism Comes to
+Mathematical Economics”. Science in Context, vol. 7, n. 2, 1994.
+
+
 
 \end{document}
