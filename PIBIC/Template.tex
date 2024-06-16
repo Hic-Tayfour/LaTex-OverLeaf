@@ -1,0 +1,95 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
+\usepackage{tocloft}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+% Configurações de formatação
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0cm}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+
+% Definindo título dos capítulos e seções
+\titleformat{\chapter}[hang]{\normalfont\bfseries\LARGE}{\thechapter}{2pc}{}
+\titleformat{\section}[hang]{\normalfont\bfseries\Large}{\thesection}{1pc}{}
+\titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize}{\thesubsection}{1pc}{}
+
+% Início do documento
+\begin{document}
+
+% Capa
+\begin{titlepage}
+    \centering
+    \vspace*{5cm}
+    {\bfseries\Large Nome da Instituição}\\[0.2cm]
+    {\bfseries\Large Nome da Faculdade}\\[4cm]
+    {\bfseries\Large Nome do Aluno}\\[6cm]
+    {\bfseries\Large Título do Trabalho}\\[0.5cm]
+    {\bfseries\large Subtítulo (se houver)}\\[6cm]
+    {\bfseries\Large Cidade}\\[0.5cm]
+    {\bfseries\Large Ano}
+\end{titlepage}
+
+% Folha de Rosto
+\begin{titlepage}
+    \centering
+    \vspace*{5cm}
+    {\bfseries\Large Nome do Aluno}\\[5cm]
+    {\bfseries\Large Título do Trabalho}\\[0.5cm]
+    {\bfseries\large Subtítulo (se houver)}\\[4cm]
+    \hspace{7cm}
+    \begin{minipage}{0.5\textwidth}
+        \begin{flushright}
+            Trabalho de conclusão de curso apresentado ao curso de Graduação em Nome do Curso da Nome da Instituição, como requisito parcial para a obtenção do título de Bacharel em Nome do Curso.\\[2cm]
+            Orientador: Prof. Nome do Orientador
+        \end{flushright}
+    \end{minipage}\\[4cm]
+    {\bfseries\Large Cidade}\\[0.5cm]
+    {\bfseries\Large Ano}
+\end{titlepage}
+
+% Agradecimentos
+\chapter*{Agradecimentos}
+\begin{flushright}
+    \vspace*{5cm}
+    \textit{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.}
+\end{flushright}
+
+% Resumo
+\chapter*{Resumo}
+\addcontentsline{toc}{chapter}{Resumo}
+Apresentação concisa das principais partes do trabalho fornecendo uma visão rápida e clara do conteúdo do trabalho: tema, objetivo, metodologia e conclusão. Em parágrafo único, texto com alinhamento justificado e sem tabulação. Recomenda-se extensão de 150 a 500 palavras.
+
+Palavras-chave: termo1; termo2; termo3; termo4; termo5.
+
+% Abstract
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Versão em inglês do resumo: apresentação concisa das principais partes do trabalho fornecendo uma visão rápida e clara do conteúdo do trabalho: tema, objetivo, metodologia e conclusão. Em parágrafo único, texto com alinhamento justificado e sem tabulação. Recomenda-se extensão de 150 a 500 palavras.
+
+Keywords: keyword1; keyword2; keyword3; keyword4; keyword5.
+
+% Sumário
+\tableofcontents
+
+% Introdução
+\chapter{Introdução}
+
+% Desenvolvimento
+\chapter{Desenvolvimento}
+
+% Conclusão
+\chapter{Conclusão}
+
+% Referências
+\begin{thebibliography}{99}
+    \addcontentsline{toc}{chapter}{Referências}
+    \bibitem{referencia1} SOBRENOME, Nome. Título do livro. Edição. Local de publicação: Editora, Ano de publicação.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,273 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+\usepackage{siunitx} % Fornece suporte para a tipografia de unidades do Sistema Internacional e formatação de números
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{graphicx} % Suporte para inclusão de imagens
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{ragged2e} % Justificação de texto melhorada
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+\setlength{\headheight}{14.49998pt}
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+\onehalfspacing
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Tradução Tópico 10 - HPE}\\
+    \vspace{1.5cm}
+    Prof. Pedro Duarte\\
+    Prof. Auxiliar Guilherme Mazer\\
+    \vfill
+    \normalsize
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    4º Período - Economia B\\
+    \vfill
+    São Paulo\\
+    Maio/2024
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % This command removes the page number from the table of contents page
+\newpage
+\setcounter{page}{1} % This command sets the page number to start from this page
+\justify
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+\section{\textbf{Dequech (2008)}}
+\subsection{\textbf{Economia neoclássica, mainstream, ortodoxa e heterodoxa}}
+
+\subsubsection{\textbf{Resumo}}
+Este artigo discute os conceitos de economia neoclássica, mainstream, ortodoxa e heterodoxa, distinguindo conceitos mais gerais e mais específicos temporalmente. O conceito de economia mainstream é baseado em prestígio e influência e inclui ideias ensinadas em escolas prestigiosas. Embora a corrente principal atual (incluindo a economia neoclássica) seja claramente diversa, a comunalidade nela é mais controversa. A economia heterodoxa pode ser definida negativamente, em oposição à ortodoxia ou à corrente principal. A falta de consenso gera problemas de comunicação. Outra possibilidade seria definir a economia heterodoxa positivamente, mas o resultado no período atual pode ser um conjunto vazio.
+
+\subsubsection{\textbf{Palavras-chave}}
+
+heterodoxo, mainstream, neoclássico, ortodoxo, escolas de pensamento
+
+A economia, como outras ciências sociais, sempre foi marcada pela coexistência de diferentes escolas de pensamento (ou abordagens, etc.). Existem de fato diferenças significativas entre várias escolas, de modo que identificá-las e classificá-las é importante. Em seus exercícios de classificação, os economistas usaram uma infinidade de rótulos para designar essas escolas. Prefixos como "neo", "novo", "velho" e "pós" foram empregados. Às vezes, com ou sem esses prefixos, também foram usados adjetivos como clássico, institucionalista, e assim por diante. Outras vezes, os adjetivos escolhidos são derivados do nome de um indivíduo particular, como Ricardo, Marx, Walras, Keynes, Schumpeter, e assim por diante. Além da questão de como distinguir entre as escolas, essa última prática muitas vezes levanta a questão problemática de quão fiéis os membros de cada escola são ao pensamento de seu suposto pai fundador ou sua fonte de inspiração. Em um nível mais alto de generalidade estão rótulos como mainstream, ortodoxo e heterodoxo.
+
+Os rótulos podem ser úteis, mas também podem ser confusos. De qualquer forma, seu uso parece inevitável, dada a considerável variação entre grupos de economistas e suas ideias. O presente artigo está preocupado com alguns dos rótulos mais gerais, especialmente com mainstream, heterodoxo e ortodoxo, bem como com um dos rótulos mais específicos - a saber, neoclássico.
+
+Diferentes economistas usam esses termos de maneiras diferentes. Além disso, desenvolvimentos nas últimas duas ou três décadas tornaram a relação conceitual entre economia neoclássica e mainstream ainda mais complicada do que já era. Consequentemente, a definição de economia heterodoxa também se tornou mais problemática.
+
+Além disso, o debate sobre o significado desses termos sofreu com uma frequente falta de clareza sobre o alcance temporal de aplicação dos conceitos. Em particular, às vezes os autores propõem um conceito sem especificar o período ou períodos a que se destina a aplicar; também acontece que os autores oscilam entre um conceito mais geral temporalmente e um conceito mais específico, sem deixar isso claro.
+
+O presente artigo pretende contribuir para este debate, especificando diferentes conceitos e fazendo isso explicitando que alguns conceitos são temporalmente gerais, enquanto outros, geralmente referindo-se ao período atual, são temporalmente específicos.
+
+\subsubsection{\textbf{Economia Neoclássica}}
+
+Definir economia neoclássica não é fácil, principalmente porque o que se pode chamar de economia neoclássica mudou ao longo dos anos. Uma definição ampla se aplicaria à economia neoclássica original, fundada na década de 1870, bem como a trabalhos posteriores. Outra dificuldade é que mesmo em um dado momento, o termo não é necessariamente usado no mesmo sentido por todos.
+
+O que é chamado aqui de economia neoclássica é caracterizado pela combinação das seguintes características:
+
+1. a ênfase na racionalidade e o uso da maximização da utilidade como critério de racionalidade,
+
+2. a ênfase no equilíbrio ou equilíbrios, e
+
+3. a negligência de tipos fortes de incerteza e, particularmente, de incerteza fundamental.
+
+Como veremos na próxima seção, a aderência estrita a essa caracterização não é necessária para estabelecer uma distinção entre economia neoclássica e mainstream, mas serve como uma aproximação muito boa.
+
+\subsubsection{\textbf{Economia Mainstream}}
+
+Um conceito interessante e útil de economia mainstream foi proposto por Colander, Holt e Rosser: para eles, "a economia mainstream... é em grande parte uma categoria definida sociologicamente. Mainstream consiste nas ideias que são mantidas por indivíduos que são dominantes nas principais instituições acadêmicas, organizações e revistas em qualquer momento dado, especialmente as principais instituições de pesquisa de pós-graduação. A economia mainstream consiste em ideias que a elite da profissão considera aceitável, onde por 'elite' entendemos os principais economistas nas melhores escolas de pós-graduação" (2004, p. 490). Pelo que entendo de Colander, Holt e Rosser, eles permitem que pessoas que não são membros da elite façam parte da economia mainstream; tudo o que é necessário é compartilhar as ideias da elite.
+
+Em comparação com Colander, Holt e Rosser, eu prefiro uma variedade um pouco diferente do conceito sociológico de economia mainstream. Eu prefiro dizer que a economia mainstream é aquela que é ensinada nas universidades e faculdades mais prestigiosas, é publicada nas revistas mais prestigiosas, recebe fundos das fundações de pesquisa mais importantes e ganha os prêmios mais prestigiosos.
+
+Existem algumas pequenas, mas possivelmente relevantes, diferenças entre essa maneira de descrever a economia mainstream e a de Colander, Holt e Rosser. Usar um conceito sociológico de economia mainstream, baseado em prestígio e influência, não requer que se foque tanto nas ideias da elite ou que se defina a elite de maneira tão restritiva quanto Colander, Holt e Rosser. Como esses autores apontam em uma discussão fascinante, a difusão de novas ideias entre o que eles chamam de elite ocorrerá vários anos ou até algumas décadas antes que essas ideias possam encontrar seu caminho nos livros didáticos de graduação, cujos conteúdos são mais resistentes à mudança (ibid., p. 494). Vamos imaginar, assim, uma situação em que as ideias de uma parte substancial da elite se tornaram bastante diferentes das ideias ensinadas no nível de graduação, mesmo nas universidades e faculdades mais prestigiosas. Se as últimas ideias são ensinadas em escolas prestigiosas, na minha opinião, elas ainda devem ser consideradas como parte da economia mainstream. Como o conceito pode se aplicar tanto a ideias quanto a pessoas (algo que Colander, Holt e Rosser também aceitam, na prática), os apoiadores dessas ideias também seriam elementos do conjunto de economistas mainstream. Por sua vez, isso permitiria que professores de cursos de graduação em universidades e faculdades menos prestigiosas (que provavelmente permanecem por mais tempo sem conhecimento de novos desenvolvimentos na vanguarda da profissão) fossem mais facilmente considerados mainstreamers. Um resultado semelhante pode talvez ser obtido se o conceito de elite for amplo o suficiente para incluir professores de graduação nas universidades e faculdades mais prestigiosas (a menos que eles não acreditem mais no que ensinam no nível de graduação).
+
+Compreensivelmente, Colander, Holt e Rosser (ibid.) desejam enfatizar os aspectos dinâmicos e voltados para o futuro do conceito de economia mainstream. Eles fizeram uma importante contribuição para nossa compreensão de como as ideias amplamente aceitas mudam na economia (veja também Davis, 2006, que argumenta em linhas semelhantes, enfatizando as diferenças entre instrução e pesquisa). No entanto, a partir da perspectiva adotada aqui, o peso dos fatores de mudança dentro do mainstream pode ser menor do que esses autores parecem sugerir. Isso se deve, por exemplo, à minha inclusão de alguns ensinamentos no nível de graduação no conjunto de ideias que formam a economia mainstream. Uma vez que os conteúdos dos livros didáticos de graduação mais prestigiosos e influentes são considerados parte da economia mainstream, o mainstream ainda pode mudar, mas parte dele muda mais lentamente.
+
+De qualquer forma, definida em termos sociológicos (que não precisam ser exatamente ao longo das linhas sugeridas por Colander, Holt e Rosser ou pelo presente artigo), a economia mainstream não precisa ser internamente consistente. Em princípio, ideias que são muito contrastantes entre si podem pertencer à economia mainstream. Relacionado a isso, a economia mainstream não precisa corresponder a nenhuma escola de pensamento específica (Colander et al., 2004, p. 490), enquanto uma escola é definida por um conjunto particular de ideias e, presumivelmente (ou idealmente), é internamente consistente. Diferentes escolas de pensamento, bem como conjuntos de ideias que ainda não se desenvolveram em uma escola de pensamento, podem pertencer à economia mainstream ao mesmo tempo. Quando visto sob essa luz, o termo mainstream seria problemático se fosse levado ao pé da letra - isto é, se fosse interpretado como referindo-se a um único fluxo (no sentido de uma escola de pensamento).
+
+Definir a economia mainstream em termos sociológicos não é incompatível com a identificação de elementos compartilhados entre as ideias que formam a economia mainstream de um determinado período histórico. Um conceito sociológico do mainstream não requer que esses elementos compartilhados existam, e não impede que eles existam por algum tempo. Identificar esses elementos equivale a identificar o tipo de ideias teóricas, metodológicas ou políticas que conseguiram se tornar prestigiosas e influentes durante algum período e ver o que elas têm em comum, se houver.
+
+O conceito sociológico de economia mainstream é o mais geral de todos, no sentido de que, por definição, a economia mainstream sempre teria as características sociais de prestígio e influência, enquanto as características teóricas, metodológicas ou políticas do mainstream (aquelas que por algum tempo têm prestígio e influência) podem mudar ao longo do tempo. Identificar o conteúdo intelectual do mainstream de um determinado período é, portanto, compatível com um conceito sociológico de economia mainstream. Este último pode ser aplicado a qualquer período da história do pensamento econômico, especialmente após a criação da economia como uma disciplina acadêmica separada.
+
+Como discutido abaixo, alguns autores acreditam que é possível identificar características intelectuais compartilhadas da economia mainstream atual (pelo menos nos Estados Unidos ou na Inglaterra, eu acrescentaria). O que eles fornecem não é um conceito geral de economia mainstream, mas um conceito do mainstream de um período específico - a saber, o atual. Desde que as características identificadas tenham prestígio e influência, sua abordagem pode ser combinada com o conceito sociológico.
+
+Embora, por definição, seja sempre prestigiosa e influente, a economia mainstream muda ao longo do tempo, tornando a tarefa de identificar suas ideias centrais mais difícil. Uma razão para isso mudar é que indivíduos que foram aceitos como praticantes da economia mainstream ou mesmo como membros da elite da profissão podem mudar de ideia. Se eles fizerem isso enquanto mantêm prestígio suficiente para continuar sendo considerados parte do mainstream, o conjunto de ideias que caracterizam a economia mainstream também muda. Isso é facilitado pelo fato de que o prestígio é um atributo não apenas de ideias, mas também de pessoas. Alguns membros da elite, em particular, podem conseguir transferir parte de seu prestígio previamente acumulado para suas novas ideias.
+
+No século XX, o caso de John Maynard Keynes ilustra bem isso. Ele estudou na Universidade de Cambridge e foi criado na tradição neoclássica por Alfred Marshall e outros, conseguiu um emprego nessa universidade prestigiosa, tornou-se editor do Economic Journal e, mais tarde em sua vida, se rebelou contra as ideias dominantes de seu tempo. O prestígio que Keynes acumulou antes de publicar A Teoria Geral (1936) certamente ajudou na aceitação de algumas de suas novas ideias ou pelo menos forneceu um incentivo para aqueles que eventualmente combinaram essas ideias com a sabedoria convencional anterior.
+
+Mais recentemente, um bom exemplo poderia ser um ex-vencedor do Prêmio Nobel (na verdade, o Prêmio do Banco da Suécia em Ciências Econômicas em Memória de Alfred Nobel), a distinção mais prestigiosa que pode ser concedida a um economista desde 1969. Colander, Holt e Rosser (2004, p. 489) usam corretamente Kenneth Arrow como um exemplo de um economista de elite que não só é de mente aberta, mas também criticou teorias às quais ele havia contribuído anteriormente. Entre outros laureados com o Nobel, eu destacaria o caso de Douglass North, que tem estado na vanguarda da economia mainstream defendendo ideias que foram excluídas até recentemente. No entanto, só o tempo dirá se suas novas ideias se tornarão mais amplamente aceitas em círculos prestigiosos. Houve casos de ex-vencedores do Nobel que mudaram de ideia, mas não conseguiram convencer seus colegas dentro da corrente principal da profissão. Assim, nem sempre é fácil referir-se de forma consistente a ideias e pessoas como tendo prestígio e fazendo parte da economia mainstream. As ideias devem ser vistas como o fator principal, porque (1) um indivíduo pode simultaneamente ter algumas ideias que são aceitas em círculos prestigiosos e outras que não são, ou (2) um indivíduo pode ter prestígio devido a ideias que ele ou ela não mantém mais.
+
+De qualquer forma, os vencedores do Prêmio Nobel são um caso especial. Eles já alcançaram o ápice da profissão e, portanto, estão muito menos sujeitos a sanções. Em contraste, aqueles que ainda não ganharam o Prêmio Nobel (ou qualquer prêmio prestigioso, aliás) podem não querer arriscar suas chances percebidas ao se desviar muito da corrente principal atual da economia.
+
+\subsubsection{\textbf{Aplicando um conceito sociológico de economia mainstream ao período atual}}
+
+Houve exemplos de situações históricas em que diferentes escolas de pensamento econômico coexistiram dentro da economia mainstream. No século XX, o período entre guerras nos Estados Unidos é um exemplo de variedade ou pluralismo (veja, por exemplo, Morgan e Rutherford, 1998), o que já implica que a economia neoclássica não era sinônimo de mainstream. O período atual é outro exemplo.
+
+\textbf{Diversidade}
+
+Aplicando o conceito sociológico de economia mainstream ao período de 1990 até a presente década, mostra-se que o mainstream é um corpo diversificado de pensamento, formado por um subconjunto neoclássico, bem como outras abordagens.
+
+Embora a dominância da economia neoclássica tenha enfraquecido, essa escola ainda é uma parte importante da economia mainstream. Isso é verdade com a variedade do conceito sociológico de economia mainstream proposto por Colander, Holt e Rosser; pode-se argumentar ainda mais fortemente com a variedade que defendi acima e que permite mais espaço no mainstream para o tipo de economia que é ensinada no nível de graduação em instituições prestigiosas. Como Davis observou, "o neoclassicismo permanece solidamente incorporado no ensino de economia" (2006, p. 4). Pode-se acrescentar que isso se aplica ao ensino de pós-graduação e ainda mais ao ensino de graduação.
+
+Entre as abordagens que compõem a economia mainstream não neoclássica atualmente, a economia comportamental é um bom exemplo para começar. Herbert Simon foi agraciado com o Prêmio Nobel em 1978, mas sua influência pode ser dita ter sido bastante limitada, pelo menos até recentemente. As coisas mudaram em 2002, quando o psicólogo Daniel Kahneman ganhou o Prêmio Nobel (por trabalho feito principalmente com seu coautor Amos Tversky, que certamente teria compartilhado o prêmio se não tivesse morrido em 1996). Em 2001, o ano antes do Nobel de Kahneman, o economista comportamental Mathew Rabin ganhou a Medalha John Bates Clark (um prêmio bianual muito prestigioso concedido pela American Economic Association a economistas americanos com menos de 40 anos, muitos dos quais acabaram sendo agraciados com o Prêmio Nobel mais tarde em suas vidas). Uma parte significativa da economia comportamental ganhou reconhecimento por sua crítica à economia neoclássica, pelo menos como uma teoria descritiva centrada na maximização da utilidade.
+
+Kahneman compartilhou o Prêmio Nobel de 2002 com Vernon Smith, um expoente líder de outra abordagem - a economia experimental. Alguns dos resultados da economia experimental também se destinam a contradizer a maximização da utilidade. Nesse sentido, há uma interseção com a economia comportamental.
+
+Algumas partes da nova economia institucional rejeitam de maneira semelhante a hipótese neoclássica de maximização da utilidade e, em alguns casos, conseguem ter um bom prestígio. O nome de North já foi citado. Em parte, a versão de Oliver Williamson da economia dos custos de transação também se encaixa aqui.
+
+Outra abordagem importante que se tornou parte da economia mainstream enquanto relaxa a suposição de maximização da utilidade é a teoria dos jogos evolutiva. Ao contrário da teoria dos jogos clássica, essa variedade evolutiva assume alguma forma de racionalidade limitada e permite que os agentes cometam erros ou experimentem estratégias subótimas. Isso inclui o segmento da teoria dos jogos evolutiva que lida com instituições ou convenções e pode ser dito que se intersecta com a nova economia institucional. Um representante proeminente deste segmento é o trabalho de H. Peyton Young.
+
+Parte da teoria dos jogos evolutiva está relacionada a uma perspectiva mais ampla, baseada na aplicação da teoria da complexidade à economia, mais notavelmente em pesquisas realizadas sob os auspícios do Instituto Santa Fe. Além de Young, poderíamos mencionar W. Brian Arthur e Samuel Bowles entre os expoentes desta visão.
+
+Também vale a pena notar um conjunto de abordagens que criticam a versão padrão da teoria da utilidade esperada e propõem alguma alternativa formal de decisão teórica para ela. Algumas dessas abordagens relaxam um ou mais axiomas da versão padrão para generalizar a teoria da utilidade esperada, enquanto ainda adotam a ideia de maximização da utilidade; outras não se baseiam na maximização da utilidade. Em qualquer caso, o risco knightiano ou a noção fraca de incerteza de Savage é abandonada em favor do que muitas vezes é chamado de incerteza knightiana e deve ser chamado mais especificamente de ambiguidade, na maioria, senão em todos esses casos. Artigos ao longo dessas linhas foram publicados em revistas muito prestigiosas desde o final dos anos 1980. Curiosamente, muitos desses artigos citam, como precursores da abordagem proposta, dois autores cujas visões sobre incerteza costumavam ser mencionadas com aprovação apenas em círculos heterodoxos - Frank Knight e John Maynard Keynes.
+
+\textbf{Comunalidade}
+
+Por definição, todas as escolas de pensamento ou abordagens dentro da economia mainstream em qualquer período dado têm em comum uma grande quantidade de prestígio e influência. Para algum período específico, pode ser que esse prestígio e influência se devam a uma ou mais características compartilhadas por todas as escolas ou abordagens pertencentes ao mainstream. Isso pode não ter sido o caso do período entre guerras no século XX nos Estados Unidos, mas e quanto à economia mainstream contemporânea? Como indicado acima, alguns autores tentaram identificar características intelectuais que são responsáveis pelo prestígio e influência.
+
+Forte ênfase na formalização matemática
+
+Talvez a característica menos controversa que se possa identificar como sendo comum a todas as abordagens pertencentes à economia mainstream atual seja uma forte ênfase na formalização matemática. (Eu me refiro à formalização matemática porque "formal" - em lógica, por exemplo - não precisa significar o mesmo que "matemático", de modo que a formalização não é necessariamente a mesma coisa que a matematização.) Por essa forte ênfase, eu quero dizer, de forma muito ampla, uma aceitação da crença de que o trabalho acadêmico em economia deve empregar modelos formais, matemáticos (que muitos economistas simplesmente chamam de modelos) ou estruturas, se for rigoroso. Por sua vez, essa crença é compatível com mais de uma concepção de rigor, desde que a matemática seja usada, seja em construções teóricas abstratas ou em aplicadas, como as usadas em econometria.
+
+Essa crença sobre a formalização matemática é uma característica intelectual, mas não é explicitamente um conjunto de ideias sobre qualquer economia ou realidade econômica; é um conjunto (metodológico) de ideias sobre economia. Todo conjunto de ideias que tem muito prestígio entre os economistas faz parte da economia mainstream, por definição, mas neste caso particular, está-se referindo a ideias que, além de serem metodológicas, provavelmente foram adotadas em parte com prestígio em vista.
+
+Alguns autores rotulam essa crença como formalismo ou como uma metodologia formalista (por exemplo, Blaug, 1994, p. 131). Nesse sentido geral, o formalismo não é o mesmo que (matemática) formalização, mas uma ênfase especial na última. Mesmo à parte dessa distinção, o termo formalismo, no entanto, recebeu diferentes significados e, portanto, pode levar à confusão. Possivelmente mais importante para os economistas é a distinção entre esse sentido geral e um mais restrito, segundo o qual o formalismo é uma entre outras abordagens e concepções de rigor dentro da matemática; mais especificamente, é uma abordagem e uma concepção de rigor que exige a axiomatização da matemática. Uma forte defesa desse formalismo foi feita pelo matemático alemão David Hilbert no início do século XX. Uma versão dessa visão chegou à economia na década de 1940, como documentado por Mirowski (2002, pp. 390-394) e Weintraub (2002, cap. 2). Estes e outros autores referem-se a ele como Bourbakismo, em referência ao trabalho de um grupo de matemáticos franceses que escreveram sob o pseudônimo coletivo de Nicolas Bourbaki e que influenciaram Gérard Debreu, um dos primeiros defensores dessa abordagem na economia. O termo Bourbakismo é útil para evitar a confusão criada pelo termo formalismo - em parte devido à falta de consciência de vários economistas de seu significado mais específico na matemática do século XX, e também devido a alguma controvérsia sobre o significado exato do programa de Hilbert (sobre este último, veja ibid., p. 90). Por outro lado, um movimento separado em direção à axiomatização na economia já havia sido feito por Johan von Neumann. Como um rótulo um pouco mais geral e acessível, eu sugeriria axiomatismo, para denotar uma visão que é favorável à axiomatização e pode existir em variantes radicais ou moderadas.
+
+Em combinação com o sentido amplo ou restrito mencionado acima, o termo formalismo pode ser usado normativamente, em particular por aqueles que consideram a ênfase na formalização, ou em um tipo particular dela, como excessiva. No entanto, deve-se ter em mente que alguns autores podem distinguir entre formalismo e formalismo excessivo. Mais geralmente, outro fator complicador neste debate sobre matematização, formalismo e similares é a noção mutante de rigor na matemática ao longo do tempo, do rigor baseado na observação empírica ao rigor baseado em axiomas, segundo Weintraub (ibid., pp. 17, 71, 100). Aplicando essa distinção à economia moderna, Weintraub encontra essas duas noções diferentes de rigor na econometria (ou economia aplicada) e na economia matemática, respectivamente.
+
+Independentemente do rótulo que o designa, a ênfase na formalização matemática tem sido notada por vários autores, incluindo alguns economistas mainstream insatisfeitos. Alguns desses autores (por exemplo, Backhouse, 2000, pp. 35-39; Colander et al., 2004, p. 493) a viram como a marca distintiva da economia mainstream moderna, mas possivelmente nenhum com mais ênfase do que Lawson (2006; veja também 2003, cap. 1). Ele identifica "a inclinação para a matematização" como "uma característica distintiva essencial do projeto mainstream dos últimos cinquenta anos ou mais", e não apenas do período pós-1990 (Lawson, 2006, p. 488). Em seu sentido mais geral, isso é, na minha opinião, sinônimo de "uma insistência na modelagem matemática" (ibid., p. 495) e, se também se interpreta o formalismo no sentido geral mencionado acima, com "a visão de que métodos formalísticos são sempre e em todos os lugares apropriados" (ibid., p. 492). Vários outros autores se referem ao uso da matemática na economia dessa maneira geral. Lawson (ibid.) cita alguns economistas eminentes sobre isso, embora ele vá além desse sentido geral e muitas vezes descreva a formalização na economia mainstream de uma maneira mais restritiva do que outros, incluindo eu mesmo.
+
+A identificação de uma forte ênfase na formalização matemática - no sentido geral - como uma característica unificadora da economia mainstream não é, no entanto, completamente livre de controvérsia. Alguém pode apontar que existem alguns economistas que não desenvolveram modelos matemáticos, mas conseguiram adquirir uma grande quantidade de prestígio e influência nas últimas décadas. No entanto, as exceções, se houver, são bastante raras. Dada a sua importância, vale a pena mencionar aqui dois vencedores do Prêmio Nobel e economistas institucionais. Ronald Coase é um deles. Por outro lado, Coase teve uma ideia seminal - sobre custos de transação - que encontrou seu caminho em modelos formais, embora ele tenha se oposto à falta de realismo da teorização formal recente (veja ibid., p. 490, para uma referência). Douglass North é o outro, mas, como afirmado no comunicado de imprensa da Real Academia Sueca de Ciências, ele compartilhou o Prêmio Nobel com Robert Fogel "por ter renovado a pesquisa em história econômica, aplicando teoria econômica e métodos quantitativos para explicar a mudança econômica e institucional", ambos os autores sendo aclamados como pioneiros da cliometria (veja \href{http://nobelprize.org/nobel_prizes/economics/laureates/1993/press.html}{Nobel}). North, portanto, contribuiu para aproximar a história econômica e a economia institucional dos padrões aceitos pelos economistas mainstream. No caso de North, há uma complicação adicional: seu trabalho mais recente pode ser visto em parte como diferente não apenas da economia neoclássica (da qual ele já estava parcialmente se afastando em seu livro de 1990) mas também de abordagens formais não neoclássicas dentro do mainstream atual. Por exemplo, ele incorporou uma noção de incerteza fundamental. Como argumentado acima, no entanto, ainda é cedo para dizer se suas novas ideias se tornarão mais amplamente aceitas em círculos prestigiosos, mesmo que o prestígio do Prêmio Nobel torne menos difícil para ele defendê-las.
+
+Outro problema potencial com a ênfase na forte formalização matemática é o fato de que existem economistas heterodoxos que compartilham a mesma visão sobre o uso da matemática. Portanto, essa ênfase pode falhar em distinguir a economia mainstream da economia heterodoxa, mesmo que seja uma característica unificadora da primeira.
+
+Outras características compartilhadas?
+
+Não é nada fácil encontrar qualquer outra característica intelectual comum a todas as variedades da economia mainstream. Um possível candidato é o individualismo metodológico, mas há algumas complicações. Uma delas é a variedade de significados e versões do individualismo metodológico, apenas algumas das quais são extremas ao ponto de propor que os indivíduos sejam a única unidade básica de análise. Outra é a dificuldade de realmente praticar uma forma tão extrema de individualismo metodológico ao fazer economia: algumas instituições devem ser consideradas como dadas e temporalmente anteriores às gerações atuais de indivíduos, em vez de explicadas pelo comportamento desses indivíduos (Hodgson, 2004, cap. 2). À luz dessas complicações, a possível característica comum da economia mainstream deve ser descrita de forma mais específica como uma defesa do individualismo metodológico pelo menos no discurso ou como uma recusa em permitir que instituições, cultura e afins tenham uma influência fundamental sobre os indivíduos.
+
+Isso pode de fato ser um atributo compartilhado pela maioria das abordagens não neoclássicas que conseguiram conquistar seu lugar dentro da economia mainstream. No que diz respeito à economia comportamental, por exemplo, o sociólogo Mark Granovetter (1992, p. 4) observou, em uma avaliação perspicaz feita vários anos antes de Kahneman receber o Prêmio Nobel, que (1) alguns economistas recorreram à literatura psicológica para revisar o modelo econômico padrão de tomada de decisão ao longo de linhas mais realistas e (2) esse "revisionismo psicológico" estava tendo um certo sucesso porque permitia aos economistas mainstream manter seu tratamento atomístico dos atores econômicos.
+
+No entanto, aqui também surgem complicações: houve exceções - ou pelo menos as coisas podem estar começando a mudar. Douglass North deve ser mencionado novamente, pois ele reconheceu o papel cognitivo fundamental dos "modelos mentais compartilhados" (veja Dequech, 2006, para discussão adicional e referências). Além disso, juntamente com Jack Knight, North criticou uma abordagem individualista para a cognição e racionalidade, como exemplificado pela pesquisa psicológica padrão sobre cognição e tomada de decisão, incluindo o trabalho de Kahneman e Tversky (Knight e North, 1997, seção III). Uma postura semelhante sobre essas questões foi adotada em seu trabalho recente por um economista institucionalista novo, mas também eminente, Avner Greif (2006, pp. 130–131).
+
+Outro candidato a uma característica compartilhada da economia mainstream contemporânea é a negligência da incerteza fundamental. Essa negligência não é exclusiva da economia neoclássica, mas parece marcar as partes não neoclássicas do mainstream atual também. Embora seja uma característica negativa, ela está associada a uma certa concepção da realidade econômica. Além disso, também envolve algumas controvérsias - neste caso, em relação ao significado de complexidade, não ergodicidade, e assim por diante. Alguns defensores da abordagem da complexidade, em particular, abraçam uma noção de incerteza fundamental, mas essa não parece ser a parte dessa abordagem que foi admitida no mainstream.
+
+\subsubsection{\textbf{Economia Ortodoxa}}
+
+No caso da economia ortodoxa, basta citar o conceito fornecido por Colander, Holt e Rosser: "Em nossa visão, a ortodoxia é principalmente uma categoria intelectual [diferente de uma sociológica]. . . . Ortodoxia geralmente se refere ao que os historiadores do pensamento econômico classificaram como a 'escola de pensamento' dominante mais recente" (2004, p. 490). Embora a referência à dominação implique um aspecto sociológico, é um conjunto particular de ideias que define uma escola de pensamento.
+
+Aplicando o conceito de economia ortodoxa ao período atual
+
+Também concordo com Colander, Holt e Rosser que a ortodoxia hoje é representada pela economia neoclássica, mas admito que esta última é uma expressão mais controversa.
+
+Também deve ser reconhecido que nem todos (1) estão cientes da existência de um segmento não neoclássico da economia mainstream, (2) concordam com a tese de que existe tal coisa, ou (3) aceitam os conceitos adotados aqui. Alguns autores, portanto, usam os termos ortodoxo e mainstream de forma intercambiável.
+
+\subsubsection{\textbf{Economia Heterodoxa}}
+
+Entre os termos considerados aqui, a economia heterodoxa é possivelmente o mais difícil de definir. Uma possível abordagem seria definir a economia heterodoxa negativamente, como aquilo que ela não é - isto é, como aquilo que é diferente de algo mais. Outra abordagem seria definir a economia heterodoxa positivamente, com base em características outras que, ou além de, um conjunto de diferenças em relação a outra categoria. A heterodoxia ainda seria algo diferente da ortodoxia, mas não definida exclusivamente nesses termos; as diferenças poderiam ser vistas em parte como uma consequência da definição, em vez de serem a única base da definição.
+
+É especialmente em relação à economia mainstream que o conceito de economia heterodoxa pode se tornar complicado e controverso, se a economia mainstream não for considerada sinônimo de economia ortodoxa. A questão complicada é a seguinte: Como se classifica aquela parte da economia mainstream que se permite ser diferente da ortodoxia? Isso também faz parte da economia heterodoxa? Como resultado, parte da economia heterodoxa é mainstream?
+
+\textbf{Conceito Negativo de Economia Heterodoxa
+}
+Dentro da abordagem negativa, existem duas opções principais: definir a economia heterodoxa em contraste com a economia ortodoxa ou em contraste com a economia mainstream. Se se equipara a economia mainstream à economia ortodoxa, essas duas opções são obviamente equivalentes e, portanto, não são mutuamente exclusivas. Em contraste, se não se equipara a economia mainstream à economia ortodoxa, e se adota a abordagem negativa para conceituar a economia heterodoxa, pode-se definir consistentemente a economia heterodoxa em oposição à ortodoxia ou à economia mainstream, mas em geral não a ambas. A primeira alternativa permite que pelo menos parte da economia mainstream seja heterodoxa, e parte da economia heterodoxa seja mainstream, enquanto a segunda não.
+
+Contrastar heterodoxo e ortodoxo é defensável por razões etimológicas, pois esses dois termos compartilham uma raiz grega comum. De fato, suponho que todos familiarizados com essas palavras entendem heterodoxo como algo que não é ortodoxo. Isso não implica, no entanto, que se deva definir heterodoxo nesses termos. Para algumas pessoas, isso pode ser tudo o que significa. Para outros, como aqueles que definem a economia heterodoxa em oposição à mainstream, não é.
+
+O Conceito Negativo Intelectual: Economia Heterodoxa versus Economia Ortodoxa
+
+Se se define ortodoxo com base em critérios intelectuais (referindo-se a ideias teóricas, metodológicas ou políticas que são comuns à escola de pensamento dominante mais recente), então definir a economia heterodoxa em oposição à ortodoxia implica logicamente a adoção de critérios intelectuais também. A economia heterodoxa seria assim definida por sua divergência de pelo menos algumas das principais ideias ortodoxas. Ao contrário da economia ortodoxa, a economia heterodoxa como uma categoria intelectual não necessariamente tem características metodológicas, teóricas ou políticas compartilhadas que são aceitas por todos os dissidentes da ortodoxia em qualquer ponto específico no tempo.
+
+O Conceito Negativo Sociológico: Economia Heterodoxa versus Economia Mainstream
+
+Se se define a economia mainstream com base em critérios sociológicos, então definir a economia heterodoxa em oposição à mainstream implica logicamente a adoção de critérios sociológicos para definir a economia heterodoxa também. A economia heterodoxa, portanto, seria definida por seu menor prestígio e influência. Talvez fosse menos confuso (mas também menos elegante) chamá-la de economia não-mainstream. Como a economia mainstream, seu contraparte heterodoxa pode ou não ter características metodológicas, teóricas ou políticas compartilhadas em qualquer ponto específico no tempo. Quando existem, essas ideias compartilhadas também podem mudar ao longo do tempo, pois algumas delas podem ser incorporadas à mainstream, enquanto ideias que tiveram prestígio e influência por algum tempo podem ser expulsas do paraíso mainstream.
+
+Essa maneira de definir a economia heterodoxa implica que a economia heterodoxa e a economia ortodoxa são diferentes uma da outra. Isso é, no entanto, uma consequência de (1) o conceito sociológico negativo de economia heterodoxa, que opõe a economia heterodoxa e a economia mainstream, e (2) a inclusão da economia ortodoxa dentro da mainstream.
+
+Neste ponto, alguns comentários sobre Colander, Holt e Rosser estão em ordem, porque eles defendem uma variedade de um conceito sociológico de economia mainstream, como visto acima. Quando se trata de economia heterodoxa, eles não adotam exatamente um conceito sociológico como o considerado nos parágrafos anteriores. Colander, Holt e Rosser começam com critérios intelectuais e depois adicionam sociológicos, mas também se referem a como outras pessoas usam o rótulo heterodoxo, sem tornar seu próprio conceito totalmente explícito. Além disso, embora seu conceito sociológico de economia mainstream seja geral, sua discussão sobre economia heterodoxa não separa claramente aspectos temporalmente gerais de aspectos temporalmente específicos.
+
+Colander, Holt e Rosser começam afirmando que "o termo 'heterodoxo'... é geralmente definido em referência ao ortodoxo, significando ser 'contra o ortodoxo'" (2004, p. 491). Eles parecem concordar com este critério intelectual (geral) quando afirmam - implicitamente referindo-se ao período atual - que "além dessa rejeição da ortodoxia, não há um único elemento unificador que possamos discernir que caracteriza a economia heterodoxa" (ibid., p. 492). Colander, Holt e Rosser implicam, no entanto, que isso não é tudo o que há no conceito usado por economistas que se autodenominam heterodoxos, porque "a heterodoxia também tem um aspecto sociológico. Um economista heterodoxo autoidentificado também se definiu fora da mainstream" (ibid., p. 491). Logo depois - e novamente implicitamente referindo-se ao período atual - eles afirmam que "[já que muitos economistas mainstream também não aceitam aspectos importantes da ortodoxia, o recurso adicional que determina um economista heterodoxo é social: economistas heterodoxos se recusam a trabalhar dentro do arcabouço da economia mainstream, ou suas ideias não são bem-vindas pela mainstream" (ibid., p. 491).
+
+Um problema empírico potencial com a caracterização deles da economia heterodoxa é que ela pode falhar descritivamente, na medida em que (1) alguns economistas que se identificam como heterodoxos podem reconhecer a diversidade intelectual da economia mainstream (em parte como resultado da contribuição de Colander, Holt e Rosser) e, portanto, podem não se opor à mainstream como um todo ou (2) alguns economistas mainstream podem chamar suas ideias ou a si mesmos de heterodoxos. Definir uma palavra em termos de como as pessoas a usam é problemático quando diferentes pessoas não a usam da mesma maneira.
+
+Além disso, ao discutir a borda da economia, Colander, Holt e Rosser a descrevem como "aquela parte da economia mainstream que é crítica da ortodoxia, e aquela parte da economia heterodoxa que é levada a sério pela elite da profissão" (ibid., p. 492). Se isso não estiver em contradição com a afirmação de que toda a economia heterodoxa é rejeitada pela (ou rejeita a) mainstream, então ser levado a sério pela elite não seria suficiente para algo fazer parte da mainstream. Por sua vez, essa conclusão pode não ser fácil de conciliar com a descrição anterior dos autores da economia mainstream como as ideias que "a elite considera aceitáveis" e "vale a pena trabalhar" (ibid., p. 490).
+
+\textbf{Um Conceito Positivo de Economia Heterodoxa}
+
+Adotar a abordagem positiva depende de identificar algo que todas as vertentes da economia heterodoxa tenham em comum, além de sua oposição comum a, ou diferenças com, a ortodoxia ou a mainstream. Portanto, sob a perspectiva da abordagem positiva, a economia heterodoxa deve ser uma categoria intelectual.
+
+Alguém poderia, em princípio, sustentar que esse conceito positivo de economia heterodoxa também é geral, no sentido de ser aplicável a qualquer período da história do pensamento econômico. No entanto, o problema é que, em alguns casos, o resultado da aplicação é um conjunto vazio. Isso ocorre quando se conclui que é impossível encontrar quaisquer ideias significativas comuns a todo economista ou abordagem que não pertença à ortodoxia ou à mainstream. Nesses casos, seria forçado a adotar a abordagem puramente negativa.
+
+\subsubsection{\textbf{Aplicando o Conceito de Economia Heterodoxa ao Período Atual}}
+
+\textbf{Uma Caracterização Negativa da Economia Heterodoxa Atual}
+
+Aplicando o Conceito Negativo Intelectual: Economia Heterodoxa versus Economia Ortodoxa
+
+Qual seria o resultado se aplicássemos ao período atual o conceito negativo de economia heterodoxa que se opõe à ortodoxia (seção anterior)? Foi argumentado acima que a ortodoxia atual é a economia neoclássica. Portanto, a economia heterodoxa atual consistiria em todas as escolas de pensamento e abordagens que diferem da economia neoclássica. É assim que muitos economistas (talvez especialmente fora da mainstream) pensam na economia heterodoxa. Essa visão significaria, entre outras coisas, que alguns elementos da economia mainstream (definida sociologicamente) fazem parte da heterodoxia atual.
+
+Aplicando o Conceito Negativo Sociológico: Economia Heterodoxa versus Economia Mainstream
+
+Se se caracteriza a economia heterodoxa como sociologicamente distinta da mainstream - isto é, como tendo menos prestígio e influência (seção anterior) - o conjunto de economia heterodoxa seria menor do que no caso anterior. No período atual, não incluiria algumas abordagens não neoclássicas prestigiosas e influentes (como as mencionadas acima ao descrever a diversidade da economia mainstream atual).
+
+Curiosamente, algumas ideias e abordagens para questões econômicas que são excluídas da economia mainstream atual neste conceito sociológico, no entanto, têm uma boa dose de prestígio e influência em círculos acadêmicos, fora dos departamentos de economia. Isso provavelmente é especialmente verdadeiro do que acontece na sociologia. Desde meados da década de 1980, houve um ressurgimento de trabalhos sociológicos aplicados a questões econômicas, por meio do que tem sido chamado de nova sociologia econômica. Muita dessa pesquisa é realizada em prestigiosos departamentos de sociologia, publicada nas revistas sociológicas mais famosas e tradicionais, financiada por importantes fundações de pesquisa, e assim por diante. Uma parte significativa deste trabalho é compatível com, e às vezes abertamente simpática a, algumas economias heterodoxas, talvez mais notavelmente algumas variedades de economia institucional, como o "institucionalismo original" na tradição Veblen-Commons, a economia das convenções francesas, e a ala austríaca do novo institucionalismo. Para colocar de outra maneira, parte da economia heterodoxa é, intelectualmente, parte da sociologia (econômica) mainstream.
+
+\textbf{Caracterização Positiva da Economia Heterodoxa Atual}
+
+Foi argumentado acima que a aplicação de um conceito positivo de economia heterodoxa pode, em alguns casos, resultar em um conjunto vazio. Para muitos estudiosos com quem eu tendo a concordar, o período atual parece ser um desses casos em que não há ideias significativas comuns a todas as abordagens heterodoxas ou escolas de pensamento.
+
+No entanto, existem autores que argumentam o contrário. Uma das contribuições mais interessantes nesse sentido é a de Lawson (2006). Ele caracteriza a economia mainstream por uma inclinação à matematização, como mencionado acima, e pelo que ele vê como as bases ontológicas dessa inclinação. Por sua vez, para Lawson, a economia heterodoxa se opõe à economia mainstream, mas isso não é tudo. Lawson sustenta que as razões para essa oposição levam a alguma unidade e coerência dentro da economia heterodoxa. Ele começa argumentando que "é uma avaliação de que os métodos matemáticos são principalmente inadequados para a análise social que fundamenta a oposição heterodoxa. Em suma, . . . a essência da oposição heterodoxa é de natureza ontológica", mesmo que essa orientação ontológica seja frequentemente apenas implícita (ibid., p. 493, ênfase no original). Mais especificamente e mais fortemente, ele acredita que os economistas heterodoxos estão comprometidos com "uma ontologia subjacente de abertura, processo e internalidade-relacional" (ibid., pp. 497–498; veja pp. 495–497 para uma breve apresentação desta ontologia e Lawson 1997 e 2003 para uma elaboração e defesa). Esta ontologia presumivelmente sistematiza "as preconcepções implícitas das várias tradições heterodoxas" (Lawson, 2006, p. 497, ênfase adicionada).
+
+Lawson não apenas afirma que cada vertente heterodoxa enfatiza um aspecto de tal ontologia e, assim, se opõe à economia mainstream. Ele parece fazer a afirmação muito mais forte de que todas as vertentes heterodoxas compartilham a mesma visão da realidade social como aberta, processual e internamente relacionada, mesmo que apenas implicitamente. Isso equivale a uma caracterização positiva da economia heterodoxa atual.
+
+Se essa é uma caracterização defensável é uma questão para investigação e debate futuros. Em particular, é controverso se todas as vertentes heterodoxas realmente tratam implicitamente a realidade social como aberta no sentido de Lawson. Isso se aplica, por exemplo, ao neo-ricardianismo (ou economia sraffiana)? Stephen Pratten, membro do grupo realista crítico de Cambridge liderado por Lawson, criticou o neo-ricardianismo por sua aderência a um método que Pratten vê como baseado em uma ontologia fechada e como dedutivista, no sentido de Lawson (Pratten, 1996). Essa é a mesma espécie de crítica que Lawson dirige contra a economia mainstream (veja Pratten, 2004). Para simplificar e organizar a avaliação da coerência dentro da economia pós-keynesiana, Lawson (2003, p. 323, n. 7) não considera Sraffa, presumivelmente deixando o neo-ricardianismo para discussão futura. De acordo com Lawson, a abertura implica "incerteza fundamental" (ibid., pp. 171–172) e, portanto, a ênfase pós-keynesiana na incerteza fundamental "é facilmente explicada se a abertura é uma suposição" (2006, p. 497), mas deve-se notar que os pós-keynesianos e neo-ricardianos discordaram sobre essa questão, com vários dos primeiros acusando os últimos de negligenciar a incerteza fundamental (e, como consequência, de presumivelmente falhar em entender o papel do dinheiro nas economias capitalistas).
+
+E quanto ao marxismo? Todas as vertentes do marxismo abraçam uma visão da realidade social como aberta? Algumas fazem, mas isso não pode ser o caso de todas as vertentes, na medida em que ainda existem variedades de marxismo que adotam, por exemplo, um tratamento teleológico da evolução histórica. Tal tratamento, no qual o advento do comunismo muitas vezes aparece como um fim predeterminado do processo histórico, não parece ser baseado em uma visão ontológica da realidade social como aberta. Enquanto houver proponentes sobreviventes dessas variedades de marxismo no mundo, eles são exceções à caracterização positiva de Lawson da economia heterodoxa.
+
+Lawson ou outra pessoa pode argumentar que o neo-ricardianismo ou algumas variedades de marxismo ou ainda qualquer outra abordagem que não adote pelo menos implicitamente uma certa ontologia deve ser considerada como parte da economia mainstream, não da heterodoxia. Independentemente dos méritos desse argumento, ele não é compatível com um conceito sociológico de economia mainstream, que exclui abordagens que não são prestigiosas e influentes. Além disso, o argumento contradiria o uso atual do termo heterodoxo tanto por defensores quanto por críticos dessas abordagens.
+
+\subsubsection{\textbf{Comentários Finais}}
+
+Este artigo especificou, comparou e contrastou os conceitos de economia neoclássica, mainstream, ortodoxa e heterodoxa. Também enfatizou a importância de separar os conceitos que são temporalmente mais gerais dos mais específicos. Os conceitos mais gerais podem ser aplicados a diferentes períodos históricos. Em relação à aplicação desses conceitos gerais, o artigo se concentrou no período atual.
+
+A economia neoclássica é caracterizada pela combinação de (1) a ênfase na racionalidade na forma de maximização da utilidade, (2) a ênfase no equilíbrio ou equilíbrios, e (3) a negligência de tipos fortes de incerteza e particularmente de incerteza fundamental. O conceito de economia mainstream defendido aqui é sociológico, baseado em prestígio e influência. É semelhante ao proposto por Colander, Holt e Rosser (2004), mas mais inclusivo sobre as ideias que são ensinadas no nível de graduação em universidades e faculdades prestigiosas, bem como sobre os defensores dessas ideias nesses e em outros lugares menos prestigiosos. Em contraste, a economia ortodoxa é principalmente uma categoria intelectual, e aqui segui de perto Colander, Holt e Rosser, referindo-me à ortodoxia como a escola de pensamento dominante mais recente.
+
+O conceito sociológico de economia mainstream é muito geral temporalmente. Também é compatível com a identificação dos conteúdos intelectuais da mainstream de um determinado período. Quando este conceito sociológico é aplicado ao período atual, o resultado não se restringe à economia neoclássica, mas também inclui outras abordagens que são pelo menos parcialmente críticas a ela. Isso revela claramente a diversidade dentro da mainstream atual. Por outro lado, encontrar características comuns dentro dela é mais controverso. O melhor candidato para uma característica unificadora é uma forte ênfase na formalização matemática.
+
+A economia ortodoxa também é um conceito geral temporalmente, e esta categoria é atualmente representada pela economia neoclássica.
+
+"Economia heterodoxa" é, sem dúvida, o conceito mais controverso considerado aqui. Foram consideradas diferentes possibilidades. Pode-se definir a economia heterodoxa negativamente, em oposição à ortodoxia ou à mainstream. A primeira alternativa é baseada em critérios intelectuais (a divergência de pelo menos algumas das principais ideias ortodoxas), e a segunda em critérios sociológicos (o menor prestígio e influência). Ambas as alternativas dentro desta abordagem negativa foram escolhidas por diferentes economistas que usam o rótulo heterodoxo, resultando em problemas de comunicação que parecem inevitáveis atualmente. Outra possibilidade seria definir a economia heterodoxa positivamente, como uma categoria intelectual que não é definida exclusivamente em oposição à ortodoxa. Ao aplicar este conceito positivo historicamente, o resultado pode ser um conjunto vazio. Este pode ser o caso do período atual. Embora tenham sido desenvolvidos argumentos em contrário, eles ainda precisam de mais elaboração e debate. Encontrar elementos compartilhados entre todas as abordagens heterodoxas pode ser ainda mais difícil do que entre todos os subconjuntos da economia mainstream.
+
+\end{document}
