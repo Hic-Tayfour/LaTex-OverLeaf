@@ -1,0 +1,27 @@
+\documentclass{article}
+\begin{document}
+
+You can type R commands in your \LaTeX{} document which will be processed and their output included in the document:
+
+<<>>=
+# Create a sequence of numbers
+X = 2:10
+
+# Display basic statistical measures
+summary(X)
+
+@
+
+Mas se eu quiser de "codar" eu só paro ?
+
+<<>>=
+# Create a sequence of numbers
+X = 2:10
+
+# Display basic statistical measures
+summary(X)
+
+@
+
+
+\end{document}
