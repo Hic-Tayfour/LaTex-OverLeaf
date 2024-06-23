@@ -1,0 +1,999 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+\usepackage{siunitx} % Fornece suporte para a tipografia de unidades do Sistema Internacional e formatação de números
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{graphicx} % Suporte para inclusão de imagens
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{ragged2e} % Justificação de texto melhorada
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+\onehalfspacing
+\setlength{\headheight}{14.49998pt}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large \textbf{ECONOMIA}\\
+    \vspace{1.5cm}
+    \Large\textbf{Estudos sobre Double/debiased machine learning for treatment
+and structural  parameters}\\
+    \textbf{PIBIC}\\
+    \vspace{1.5cm}
+    Orientador. Dr. Paulo Cilas Marques Filho\\
+    \vfill
+    \normalsize
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    5º Período - Economia\\
+    \vfill
+    Goiânia\\
+    Junho/2024
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % This command removes the page number from the table of contents page
+\newpage
+\setcounter{page}{1} % This command sets the page number to start from this page
+\justify
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+\section*{Summary}
+Revisitamos o problema clássico semiparamétrico de inferência sobre um parâmetro de baixa dimensão $\theta_0$ na presença de parâmetros de incômodo de alta dimensão $\eta_0$. Diferentemente do cenário clássico, permitimos que $\eta_0$ seja tão alta-dimensional que as suposições tradicionais (por exemplo, propriedades de Donsker) que limitam a complexidade do espaço dos parâmetros não se aplicam. Para estimar $\eta_0$, consideramos o uso de métodos de aprendizado de máquina (ML), que são particularmente adequados para estimação em casos de alta dimensionalidade. Os métodos de ML se saem bem ao empregar regularização para reduzir a variância, equilibrando o viés de regularização com o sobreajuste na prática. No entanto, tanto o viés de regularização quanto o sobreajuste introduzem um viés significativo nos estimadores de $\theta_0$ obtidos ao se inserir ingenuamente os estimadores de ML de $\eta_0$ nas equações de estimação para $\theta_0$. 
+
+Mostramos que o impacto do viés de regularização e do sobreajuste na estimação do parâmetro de interesse $\theta_0$ pode ser removido utilizando dois ingredientes simples, mas críticos: (1) utilizando momentos/scores ortogonais de Neyman que têm sensibilidade reduzida em relação aos parâmetros de incômodo para estimar $\theta_0$; (2) fazendo uso de cross-fitting, que proporciona uma forma eficiente de divisão de amostras. Chamamos o conjunto resultante de métodos de aprendizado de máquina duplo ou desviado (DML). Verificamos que o DML fornece estimadores pontuais que se concentram em uma vizinhança de $N^{-1/2}$ dos valores verdadeiros dos parâmetros e são aproximadamente imparciais e normalmente distribuídos, o que permite a construção de afirmações de confiança válidas. A teoria estatística genérica do DML é elementar e simultaneamente depende de apenas requisitos teóricos fracos, o que permitirá o uso de uma ampla gama de métodos modernos de ML para estimar os parâmetros de incômodo, como florestas aleatórias, lasso, ridge, redes neurais profundas, árvores impulsionadas e várias combinações e conjuntos desses métodos. Ilustramos a teoria geral aplicando-a para fornecer propriedades teóricas das seguintes situações: DML aplicado para aprender o parâmetro de regressão principal em um modelo de regressão parcialmente linear; DML aplicado para aprender o coeficiente de uma variável endógena em um modelo de variáveis instrumentais parcialmente linear; DML aplicado para aprender o efeito médio do tratamento e o efeito médio do tratamento nos tratados sob a ausência de confundimento; DML aplicado para aprender o efeito médio local do tratamento em um cenário de variáveis instrumentais. Além dessas aplicações teóricas, também ilustramos o uso do DML em três exemplos empíricos.
+
+\newpage
+
+\section{INTRODUCTION  AND  MOTIVATION}
+
+\subsection*{Motivation}
+Desenvolvemos uma série de resultados simples para obter uma estimação consistente de raiz-N, onde N é o tamanho da amostra, e declarações inferenciais válidas sobre um parâmetro de interesse de baixa dimensão, $\theta_0$, na presença de um parâmetro de incômodo de alta dimensão ou "altamente complexo", $\eta_0$. O parâmetro de interesse será tipicamente um parâmetro causal ou de efeito de tratamento, e consideramos cenários nos quais o parâmetro de incômodo será estimado utilizando métodos de aprendizado de máquina (ML), como florestas aleatórias, lasso ou pós-lasso, redes neurais, árvores de regressão impulsionadas e várias combinações e conjuntos desses métodos. Esses métodos de ML são capazes de lidar com muitos covariáveis e fornecem estimadores naturais de parâmetros de incômodo quando esses parâmetros são altamente complexos. Aqui, altamente complexo significa formalmente que a entropia do espaço dos parâmetros para o parâmetro de incômodo está aumentando com o tamanho da amostra de uma forma que nos leva para fora do framework tradicional considerado na literatura semiparamétrica clássica, onde a complexidade do espaço dos parâmetros de incômodo é considerada suficientemente pequena. A principal contribuição deste artigo é oferecer um procedimento geral e simples para estimar e realizar inferência sobre $\theta_0$ que seja formalmente válido nesses cenários altamente complexos.
+
+EXEMPLO 1.1. (REGRESSÃO PARCIALMENTE LINEAR) Como exemplo principal, considere o seguinte modelo de regressão parcialmente linear (PLR) como em Robinson (1988):
+
+\begin{equation}
+Y = D\theta_0 + g_0(X) + U, \quad \mathbb{E}[U | X,D] = 0,
+\end{equation}
+
+\begin{equation}
+D = m_0(X) + V, \quad \mathbb{E}[V | X] = 0.
+\end{equation}
+
+Aqui, Y é a variável de resultado, D é a variável de política/tratamento de interesse, o vetor $X = (X_1, \ldots, X_p)$ consiste em outros controles, e U e V são perturbações. A primeira equação é a principal, e $\theta_0$ é o coeficiente de regressão principal que gostaríamos de inferir. Se D é exógeno condicional aos controles X, $\theta_0$ tem a interpretação de parâmetro de efeito de tratamento ou parâmetro de "lift" em aplicações de negócios. A segunda equação mantém o controle do confundimento, nomeadamente a dependência da variável de tratamento nos controles. Esta equação não é de interesse por si só, mas é importante para caracterizar e remover o viés de regularização. Os fatores de confundimento X afetam a variável de política D via a função $m_0(X)$ e a variável de resultado via a função $g_0(X)$. Em muitas aplicações, a dimensão p do vetor X é grande em relação a N. Para capturar a característica de que p não é insignificante em relação ao tamanho da amostra, análises modernas modelam p como aumentando com o tamanho da amostra, o que faz com que as suposições tradicionais que limitam a complexidade do espaço dos parâmetros de incômodo $\eta_0 = (m_0, g_0)$ falhem.
+
+Viés de regularização. Uma abordagem ingênua para a estimação de $\theta_0$ usando métodos de ML seria, por exemplo, construir um sofisticado estimador de ML $D\hat{\theta}_0 + \hat{g}_0(X)$ para aprender a função de regressão $D\theta_0 + g_0(X)$. Suponha, para fins de clareza, que dividimos aleatoriamente a amostra em duas partes: uma parte principal de tamanho n, com números de observação indexados por $i \in I$, e uma parte auxiliar de tamanho $N - n$, com observações indexadas por $i \in I^c$. Para simplicidade, tomamos $n = N/2$ no momento e voltamos a casos mais gerais que cobrem tamanhos de divisão desiguais, usando mais de uma divisão e alcançando a mesma eficiência como se a amostra completa fosse usada para estimar $\theta_0$ no desenvolvimento formal na Seção 3. Suponha que $\hat{g}_0$ seja obtido usando a amostra auxiliar e que, dado esse $\hat{g}_0$, a estimativa final de $\theta_0$ seja obtida usando a amostra principal:
+
+\begin{equation}
+\hat{\theta}_0 = \left(\frac{1}{n} \sum_{i \in I} D_i^2 \right)^{-1} \frac{1}{n} \sum_{i \in I} D_i (Y_i - \hat{g}_0(X_i)).
+\end{equation}
+
+O estimador $\hat{\theta}_0$ geralmente terá uma taxa de convergência mais lenta que $1/\sqrt{n}$, nomeadamente,
+
+\begin{equation}
+|\sqrt{n}(\hat{\theta}_0 - \theta_0)| \xrightarrow{p} \infty.
+\end{equation}
+
+Como detalhado abaixo, a força motriz por trás desse comportamento "inferior" é o viés na aprendizagem de $g_0$. Para ilustrar heuristicamente o impacto do viés na aprendizagem de $g_0$, podemos decompor o erro de estimação escalado em $\hat{\theta}_0$ como
+
+\begin{equation}
+\sqrt{n}(\hat{\theta}_0 - \theta_0) = \left(\frac{1}{n} \sum_{i \in I} D_i^2 \right)^{-1} \frac{1}{\sqrt{n}} \sum_{i \in I} D_i U_i + \left(\frac{1}{n} \sum_{i \in I} D_i^2 \right)^{-1} \frac{1}{\sqrt{n}} \sum_{i \in I} D_i (g_0(X_i) - \hat{g}_0(X_i)).
+\end{equation}
+
+O primeiro termo é bem comportado sob condições leves, obedecendo $\mathcal{N}(0, \bar{\sigma})$ para algum $\bar{\sigma}$. O termo $b$ é o termo de viés de regularização, que não é centrado e diverge em geral. De fato, temos
+
+\begin{equation}
+b = \left(\mathbb{E}[D_i^2]\right)^{-1} \frac{1}{\sqrt{n}} \sum_{i \in I} m_0(X_i) (g_0(X_i) - \hat{g}_0(X_i)) + o_p(1)
+\end{equation}
+
+para a primeira ordem. Heuristicamente, $b$ é a soma de n termos que não têm média zero, $m_0(X_i) (g_0(X_i) - \hat{g}_0(X_i))$, divididos por $\sqrt{n}$. Esses termos têm média não zero porque, em configurações de alta dimensionalidade ou de outra forma altamente complexas, devemos empregar estimadores regularizados - como lasso, ridge, boosting ou redes neurais penalizadas - para que a aprendizagem informativa seja viável. A regularização nesses estimadores mantém a variância do estimador de explodir, mas também necessariamente induz viés substantivo no estimador $\hat{g}_0$ de $g_0$. Especificamente, a taxa de convergência (do viés de) $\hat{g}_0$ para $g_0$ no sentido do erro quadrático médio será tipicamente $n^{-\phi_g}$ com $\phi_g < 1/2$. Portanto, esperamos que $b$ seja de ordem estocástica $\sqrt{n}n^{-\phi_g} \to \infty$ à medida que $D_i$ esteja centrado em $m_0(X_i) \neq 0$, o que então implica (1.4).
+
+Superando vieses de regularização usando ortogonalização. Agora, considere uma segunda construção que emprega uma formulação ortogonalizada obtida parcializando diretamente o efeito de X de D para obter o regressor ortogonalizado $V = D - m_0(X)$. Especificamente, obtemos $V = D - \hat{m}_0(X)$, onde $\hat{m}_0$ é um estimador de ML de $m_0$ obtido usando a amostra auxiliar de observações. Agora estamos resolvendo um problema de previsão auxiliar para estimar a média condicional de D dado X, então estamos fazendo "dupla previsão" ou "duplo aprendizado de máquina".
+
+Após parcializar o efeito de X de D e obter uma estimativa preliminar de $g_0$ da amostra auxiliar como antes, podemos formular o seguinte estimador de ML duplo (DML) para $\theta_0$ usando a amostra principal de observações:
+
+\begin{equation}
+\tilde{\theta}_0 = \left(\frac{1}{n} \sum_{i \in I} V_i D_i \right)^{-1} \frac{1}{n} \sum_{i \in I} V_i (Y_i - \hat{g}_0(X_i)).
+\end{equation}
+
+Ao aproximadamente ortogonalizar D em relação a X e aproximadamente remover o efeito direto do confundimento subtraindo uma estimativa de $g_0$, $\tilde{\theta}_0$ remove o efeito do viés de regularização que contamina (1.3). A formulação de $\tilde{\theta}_0$ também fornece links diretos tanto para a literatura econométrica clássica, pois o estimador pode claramente ser interpretado como um estimador de variáveis instrumentais lineares (IV), quanto para a literatura mais recente sobre lasso desviado no contexto em que $g_0$ é tomado como bem aproximado por uma combinação linear esparsa de funções predefinidas de X; veja, por exemplo, Belloni et al. (2013, 2014a,b), Javanmard e Montanari (2014b), van de Geer et al. (2014) e Zhang e Zhang (2014).
+
+Para ilustrar os benefícios da etapa de previsão auxiliar e a estimação de $\theta_0$ com $\tilde{\theta}_0$, esboçamos as propriedades de $\tilde{\theta}_0$ aqui. Podemos decompor o erro de estimação escalado de $\tilde{\theta}_0$ em três componentes:
+
+\begin{equation}
+\sqrt{n}(\tilde{\theta}_0 - \theta_0) = a^* + b^* + c^*.
+\end{equation}
+
+O termo principal, $a^*$, satisfará
+
+\begin{equation}
+a^* = \left(\mathbb{E}[V^2]\right)^{-1} \frac{1}{\sqrt{n}} \sum_{i \in I} V_i U_i \sim \mathcal{N}(0, \sigma)
+\end{equation}
+
+sob condições leves. O segundo termo, $b^*$, captura o impacto do viés de regularização na estimação de $g_0$ e $m_0$. Especificamente, teremos
+
+\begin{equation}
+b^* = \left(\mathbb{E}[V^2]\right)^{-1} \frac{1}{\sqrt{n}} \sum_{i \in I} (\hat{m}_0(X_i) - m_0(X_i)) (\hat{g}_0(X_i) - g_0(X_i)),
+\end{equation}
+
+que agora depende do produto dos erros de estimação em $\hat{m}_0$ e $\hat{g}_0$. Porque este termo depende apenas do produto dos erros de estimação, ele pode desaparecer sob uma ampla gama de processos geradores de dados. De fato, este termo é limitado superiormente por $\sqrt{n}n^{-(\phi_m + \phi_g)}$, onde $n^{-\phi_m}$ e $n^{-\phi_g}$ são, respectivamente, as taxas de convergência de $\hat{m}_0$ para $m_0$ e $\hat{g}_0$ para $g_0$; este limite superior pode claramente desaparecer mesmo que ambos $m_0$ e $g_0$ sejam estimados a taxas relativamente lentas. Verificar que $\tilde{\theta}_0$ possui boas propriedades então requer que o termo restante, $c^*$, seja suficientemente bem comportado. A divisão da amostra desempenhará um papel fundamental ao permitir-nos garantir que $c^* = o_p(1)$ sob condições fracas, conforme descrito abaixo e discutido em detalhes na Seção 3.
+
+\subsection*{Literature  overview}
+
+Nosso artigo baseia-se em duas importantes áreas de pesquisa dentro da literatura semiparamétrica. A primeira é a literatura sobre obtenção de estimativas consistentes de raiz-N e assintoticamente normais de objetos de baixa dimensão na presença de funções de incômodo de alta dimensão ou não paramétricas. A segunda é a literatura sobre o uso da divisão de amostras para relaxar as condições de entropia. Fornecemos links para cada uma dessas áreas de literatura, por sua vez.
+
+O problema que estudamos está obviamente relacionado ao framework clássico de estimação semiparamétrica, que foca em obter estimativas consistentes de raiz-N e assintoticamente normais para componentes de baixa dimensão com parâmetros de incômodo estimados por estimadores não paramétricos convencionais, como kernels ou séries. Veja, por exemplo, o trabalho de Levit (1975), Ibragimov e Hasminskii (1981), Bickel (1982), Robinson (1988), Newey (1990, 1994), van der Vaart (1991), Andrews (1994a), Newey et al. (1998, 2004), Robins e Rotnitzky (1995), Linton (1996), Bickel et al. (1998), Chen et al. (2003), van der Laan e Rose (2011) e Ai e Chen (2012). A ortogonalidade de Neyman (1959), introduzida por Neyman, desempenha um papel fundamental na teoria de testes ótimos e estimação adaptativa, teoria de aprendizado semiparamétrica e econometria, e, mais recentemente, na teoria de aprendizado direcionado. Por exemplo, Andrews (1994a), Newey (1994) e van der Vaart (1998) fornecem um conjunto geral de resultados sobre a estimação de um parâmetro de baixa dimensão $\theta_0$ na presença de parâmetros de incômodo $\eta_0$. Andrews (1994a) usa a ortogonalidade de Neyman (1959) e condições de Donsker para demonstrar a condição chave de equicontinuidade
+
+\[
+\frac{1}{\sqrt{n}} \sum_{i \in I} \left( \psi(W_i; \theta_0, \hat{\eta}) - \int \psi(w; \theta_0, \hat{\eta})dP(w) - \psi(W_i; \theta_0, \eta_0) \right) \xrightarrow{p} 0,
+\]
+
+que se reduz a (1.6) no modelo PLR. Newey (1994) dá condições sobre equações de estimação e estimadores de funções de incômodo de modo que os estimadores de funções de incômodo não afetem a distribuição limitante dos parâmetros de interesse, fornecendo uma versão semiparamétrica da ortogonalidade de Neyman. Van der Vaart (1998) discute o uso de escores eficientes semiparamétricos para definir estimadores que resolvem equações de estimação, definindo médias de escores eficientes para zero. Ele também usa escores eficientes para definir estimadores k-step, onde um estimador preliminar é usado para estimar o escore eficiente e, em seguida, a atualização é feita para melhorar ainda mais a estimação; veja também comentários abaixo sobre o uso da divisão de amostras.
+
+Há também uma abordagem relacionada de aprendizado máximo direcionado, introduzida em Scharfstein et al. (1999) no contexto da análise de efeitos de tratamentos. Isso é substancialmente generalizado por van der Laan e Rubin (2006), que usam máxima verossimilhança em uma direção menos favorável e, em seguida, realizam atualizações de um passo ou k-step usando os escores estimados, em um esforço para melhor estimar o parâmetro alvo. Esse procedimento é semelhante à abordagem de direção menos favorável em semiparamétricos; veja, por exemplo, Severini e Wong (1992). A introdução da verossimilhança traz grandes benefícios, como permitir a imposição simples e natural de restrições inerentes aos dados (por exemplo, restrições de suporte quando o resultado é binário ou censurado) e permitir o uso da validação cruzada de verossimilhança para escolher o estimador do parâmetro de incômodo. Essa escolha adaptativa de dados do parâmetro de incômodo foi chamada de 'super learner' por van der Laan et al. (2007). Em trabalhos subsequentes, van der Laan e Rose (2011) enfatizam o uso de métodos de ML para estimar os parâmetros de incômodo para uso com o super learner. Muito desse trabalho, incluindo trabalhos recentes como Luedtke e van der Laan (2016), Toth e van der Laan (2016) e Zheng et al. (2016), foca em resultados formais sob uma condição de Donsker, embora o uso da divisão de amostras para relaxar essas condições também tenha sido defendido no contexto da verossimilhança máxima direcionada, como discutido abaixo.
+
+A condição de Donsker é uma condição clássica poderosa que permite estruturas ricas para classes de funções fixas G, mas infelizmente é inadequada para cenários de alta dimensionalidade. Exemplos de classes de funções onde uma condição de Donsker se aplica incluem funções de uma única variável que têm variação total limitada por 1 e funções $x \rightarrow f(x)$ que têm derivadas uniformemente limitadas $r > dim(x)/2$. Como outro exemplo, funções compostas de classes de funções com dimensões VC limitadas por p através de um número fixo de transformações algébricas e monotônicas são Donsker. No entanto, essa propriedade não se aplicará mais se permitirmos que $dim(x)$ cresça até o infinito com o tamanho da amostra, pois esse aumento na dimensão exigiria que a dimensão VC também aumentasse com n. Mais geralmente, as condições de Donsker são facilmente violadas uma vez que as dimensões se tornam grandes. Um ponto de partida importante do presente trabalho em relação à literatura clássica sobre estimação semiparamétrica é seu foco explícito em casos de alta complexidade/entropia. Uma maneira de analisar o problema da estimação em casos de alta entropia é ver em que medida os resultados de equicontinuidade continuam a se aplicar, permitindo um crescimento moderado da complexidade/entropia de \(G_N\). Exemplos de artigos que adotam essa abordagem em configurações aproximadamente esparsas são Belloni et al. (2014b, 2016, 2017), Chernozhukov et al. (2015b), Javanmard e Montanari (2014a), van de Geer et al. (2014) e Zhang e Zhang (2014). Em todos esses exemplos, o crescimento da entropia deve ser limitado de maneiras que podem ser muito restritivas. As condições de entropia excluem o exemplo de overfitting mencionado acima, que de fato se aproxima de exemplos realistas, e podem impor restrições severas ao modelo. Por exemplo, em Belloni et al. (2010, 2012), o instrumento ideal precisa ser esparso de ordem $s \leq \sqrt{n}$.
+
+Um dispositivo chave que usamos para evitar condições de entropia fortes é o cross-fitting via divisão de amostras. O cross-fitting é uma forma prática e eficiente de divisão de dados. Importante, seu uso aqui não é simplesmente como um dispositivo para tornar as provas elementares (o que faz), mas como um método prático para nos permitir superar os fenômenos de overfitting/alta complexidade que comumente surgem na análise de dados baseada em métodos de ML altamente adaptativos. Nosso tratamento baseia-se nas ideias de divisão de amostras empregadas em Belloni et al. (2010, 2012), que consideraram a divisão de amostras em um modelo IV esparso de alta dimensão para enfraquecer a condição de esparsidade mencionada no parágrafo anterior para $s \leq n$. Este trabalho, por sua vez, foi inspirado por Angrist e Krueger (1995). Também nos baseamos em Ayyagari (2010) e Robins et al. (2013), onde métodos de ML e divisão de amostras foram usados na estimação de um modelo parcialmente linear dos efeitos da poluição enquanto controlava por vários covariáveis. Usamos o termo cross-fitting para caracterizar nosso procedimento recomendado, em parte tomando emprestado o jargão de Fan et al. (2012), que empregaram uma forma ligeiramente diferente de divisão de amostras para estimar o parâmetro de escala em uma regressão esparsa de alta dimensão. Claro, o uso da divisão de amostras para relaxar condições de entropia tem uma longa história em problemas de estimação semiparamétrica. Por exemplo, Bickel (1982) considerou estimar funções de incômodo usando uma fração decrescente da amostra, e esses resultados foram estendidos para a divisão de amostras em duas metades iguais e discretização do espaço de parâmetros por Schick (1986). Da mesma forma, van der Vaart (1998) usa a divisão de amostras em duas vias e discretização do espaço de parâmetros para dar condições fracas para estimadores k-step usando os escores eficientes, onde a divisão de amostras é usada para estimar as atualizações; veja também Hubbard et al. (2016). Robins et al. (2008, 2017) usam a divisão de amostras na construção de correções de função de influência de ordem superior em estimação semiparamétrica. Alguns trabalhos recentes na literatura de verossimilhança máxima direcionada, por exemplo, Zheng e van der Laan (2011), também observam a utilidade da divisão de amostras no contexto da atualização k-step, embora essa abordagem de divisão de amostras seja diferente da abordagem de cross-fitting que seguimos.
+
+\subsection*{Plano do artigo}
+
+Organizamos o restante do artigo da seguinte forma. Na Seção 2, definimos formalmente a ortogonalidade de Neyman e fornecemos uma breve discussão que sintetiza vários modelos e frameworks que podem ser usados para produzir equações de estimação que satisfazem essa condição chave. Na Seção 3, definimos cuidadosamente os estimadores DML e desenvolvemos sua teoria geral. Em seguida, ilustramos essa teoria geral aplicando-a para fornecer resultados teóricos para o uso de DML para estimar e realizar inferência para parâmetros-chave no modelo PLR, e para usar DML para estimar e realizar inferência para coeficientes em variáveis endógenas em um modelo IV parcialmente linear na Seção 4. Na Seção 5, fornecemos uma ilustração adicional da teoria geral aplicando-a para desenvolver resultados teóricos para estimação DML e inferência para efeitos médios de tratamento (ATEs) e efeitos médios de tratamento nos tratados (ATTEs) sob a ausência de confundimento, e para estimação DML de efeitos médios locais de tratamento (LATEs) em um contexto IV dentro do framework de resultados potenciais; veja Imbens e Rubin (2015). Finalmente, aplicamos DML em três ilustrações empíricas na Seção 6. No Apêndice, definimos notação adicional e apresentamos provas.
+
+\subsection*{Notação}
+
+Os símbolos $\Pr$ e $\mathbb{E}$ denotam operadores de probabilidade e expectativa com respeito a uma medida de probabilidade genérica que descreve a lei dos dados. Se precisarmos indicar a dependência de uma medida de probabilidade $P$, usamos $P$ como subscrito em $\Pr_P$ e $\mathbb{E}_P$. Usamos letras maiúsculas, como $W$, para denotar elementos aleatórios e usamos as letras minúsculas correspondentes, como $w$, para denotar valores fixos que esses elementos aleatórios podem assumir. No que se segue, usamos $\| \cdot \|_{P,q}$ para denotar a norma $L_q(P)$; por exemplo, denotamos $\|f \|_{P,q} := \|f(W) \|_{P,q} := \left(\int |f(w) |^q dP(w)\right)^{1/q}$. Usamos $x'$ para denotar a transposta de um vetor coluna $x$. Para um mapeamento diferenciável $x \rightarrow f(x)$, mapeando $R^d$ para $R^k$, usamos $\partial x' f$ para abreviar as derivadas parciais $(\partial / \partial x') f$, e usamos correspondentemente a expressão $\partial x' f(x_0)$ para significar $\partial x' f(x) |_{x = x_0}$, etc.
+
+\newpage
+
+\section{CONSTRUCTION  OF NEYMAN  ORTHOGONAL  SCORE/MOMENT FUNCTIONS}
+
+Aqui, introduzimos formalmente o modelo e discutimos vários métodos para gerar escores ortogonais em uma ampla variedade de cenários, incluindo a construção clássica de Neyman. Também usamos esta oportunidade para sintetizar alguns desenvolvimentos recentes na literatura.
+
+\subsection{Moment  condition/estimating  equation  framework}
+
+Estamos interessados no valor verdadeiro $\theta_0$ do parâmetro alvo de baixa dimensão $\theta \in \Theta$, onde $\Theta$ é um subconjunto não vazio e mensurável de $\mathbb{R}^{d_\theta}$. Assumimos que $\theta_0$ satisfaz as condições de momento
+
+\[
+\mathbb{E}_P[\psi(W; \theta_0, \eta_0)] = 0,
+\]
+
+onde $\psi = (\psi_1, \ldots, \psi_{d_\theta})'$ é um vetor de funções de escore conhecidas, $W$ é um elemento aleatório que assume valores em um espaço mensurável $(W, \mathcal{W})$ com lei determinada por uma medida de probabilidade $P \in \mathcal{P}_N$, e $\eta_0$ é o valor verdadeiro do parâmetro de incômodo $\eta \in \mathcal{T}$, onde $\mathcal{T}$ é um subconjunto convexo de algum espaço vetorial normado com a norma denotada por $\|\cdot\|_{\mathcal{T}}$. Assumimos que as funções de escore $\psi_j: W \times \Theta \times \mathcal{T} \rightarrow \mathbb{R}$ são mensuráveis uma vez que equipamos $\Theta$ e $\mathcal{T}$ com seus $\sigma$-campos de Borel, e assumimos que uma amostra aleatória $(W_i)_{i=1}^N$ da distribuição de $W$ está disponível para estimação e inferência.
+
+Conforme discutido na Seção 1, requeremos a condição de ortogonalidade de Neyman para o escore $\psi$. Para introduzir a condição, para $\tilde{\mathcal{T}} = \{\eta - \eta_0 : \eta \in \mathcal{T}\}$, definimos o operador de derivada de caminho (ou de Gateaux) $D_r: \tilde{\mathcal{T}} \rightarrow \mathbb{R}^{d_\theta}$,
+
+\[
+D_r[\eta - \eta_0] := \partial_r \{\mathbb{E}_P[\psi(W; \theta_0, \eta_0 + r(\eta - \eta_0))]\}, \quad \eta \in \mathcal{T},
+\]
+
+para todos $r \in [0, 1)$, que assumimos existir. Para conveniência, também denotamos
+
+\[
+\partial_\eta \mathbb{E}_P[\psi(W; \theta_0, \eta_0)][\eta - \eta_0] := D_0[\eta - \eta_0], \quad \eta \in \mathcal{T}.
+\]
+
+Observe que $\psi(W; \theta_0, \eta_0 + r(\eta - \eta_0))$ aqui é bem definido porque, para todos $r \in [0, 1)$ e $\eta \in \mathcal{T}$,
+
+\[
+\eta_0 + r(\eta - \eta_0) = (1 - r)\eta_0 + r\eta \in \mathcal{T},
+\]
+
+já que $\mathcal{T}$ é um conjunto convexo. Além disso, seja $\mathcal{T}_N \subseteq \mathcal{T}$ um conjunto de realização de incômodo tal que os estimadores $\hat{\eta}_0$ de $\eta_0$ especificados abaixo assumem valores nesse conjunto com alta probabilidade. Na prática, tipicamente assumimos que $\mathcal{T}_N$ é uma vizinhança adequadamente encolhida de $\eta_0$. Observe que $\mathcal{T}_N - \eta_0$ é o conjunto de desvio de incômodo, que contém desvios de $\hat{\eta}_0$ de $\eta_0$, $\hat{\eta}_0 - \eta_0$, com alta probabilidade. A condição de ortogonalidade de Neyman requer que a derivada em (2.2) se anule para todos $\eta \in \mathcal{T}_N$.
+
+\begin{definition}[Ortogonalidade de Neyman]
+O escore $\psi = (\psi_1, \ldots, \psi_{d_\theta})'$ obedece à condição de ortogonalidade em $(\theta_0, \eta_0)$ com respeito ao conjunto de realização de incômodo $\mathcal{T}_N \subseteq \mathcal{T}$ se (2.1) se mantiver e o operador de derivada de caminho $D_r[\eta - \eta_0]$ existir para todos $r \in [0, 1)$ e $\eta \in \mathcal{T}_N$ e se anular em $r = 0$, a saber,
+
+\[
+\partial_\eta \mathbb{E}_P[\psi(W; \theta_0, \eta_0)][\eta - \eta_0] = 0, \quad \text{para todos } \eta \in \mathcal{T}_N.
+\]
+\end{definition}
+
+Às vezes, também será útil usar uma condição de ortogonalidade de Neyman aproximada em vez da exata dada na Definição 2.1.
+
+\begin{definition}[Quase-Ortogonalidade de Neyman]
+O escore $\psi = (\psi_1, \ldots, \psi_{d_\theta})'$ obedece à condição de $\lambda_N$ quase-ortogonalidade em $(\theta_0, \eta_0)$ com respeito ao conjunto de realização de incômodo $\mathcal{T}_N \subseteq \mathcal{T}$ se (2.1) se mantiver e o operador de derivada de caminho $D_r[\eta - \eta_0]$ existir para todos $r \in [0, 1)$ e $\eta \in \mathcal{T}_N$ e for pequeno em $r = 0$, a saber,
+
+\[
+\|\partial_\eta \mathbb{E}_P[\psi(W; \theta_0, \eta_0)][\eta - \eta_0]\| \leq \lambda_N, \quad \text{para todos } \eta \in \mathcal{T}_N,
+\]
+
+onde $\{\lambda_N\}_{N \geq 1}$ é uma sequência de constantes positivas tal que $\lambda_N = o(N^{-1/2})$.
+\end{definition}
+
+\subsection{Construction  of  Neyman  orthogonal  scores}
+
+Nesta seção, discutimos a construção de escores ortogonais de Neyman em diferentes cenários. Os escores ortogonais de Neyman são fundamentais para a inferência em modelos semiparamétricos, especialmente quando se utiliza métodos de aprendizado de máquina para estimar parâmetros de incômodo de alta dimensão.
+
+Primeiro, consideramos a construção clássica de Neyman. Suponha que queremos estimar um parâmetro de interesse $\theta_0$ em presença de um parâmetro de incômodo $\eta_0$. A construção de Neyman é baseada na ideia de que podemos construir um escore $\psi(W; \theta, \eta)$ que satisfaça a condição de ortogonalidade de Neyman:
+
+\[
+\partial_\eta \mathbb{E}_P[\psi(W; \theta_0, \eta_0)][\eta - \eta_0] = 0 \quad \text{para todos } \eta \in \mathcal{T}.
+\]
+
+Isso significa que o escore $\psi$ deve ser insensível a pequenas perturbações em $\eta$ ao redor de $\eta_0$. Para construir tal escore, seguimos os seguintes passos:
+
+1. **Especificação do Modelo**: Definimos o modelo semiparamétrico com o parâmetro de interesse $\theta$ e o parâmetro de incômodo $\eta$. Por exemplo, em um modelo de regressão parcialmente linear, temos:
+
+\[
+Y = D\theta_0 + g_0(X) + U, \quad \mathbb{E}[U | X,D] = 0.
+\]
+
+2. **Construção do Escore**: Identificamos um escore $\psi(W; \theta, \eta)$ que satisfaça a condição de ortogonalidade de Neyman. No exemplo do modelo de regressão parcialmente linear, o escore pode ser construído como:
+
+\[
+\psi(W; \theta, \eta) = \psi(W; \theta, g) = D(Y - g(X)) - \theta D^2,
+\]
+
+onde $W = (Y, D, X)$ e $g$ é uma função de $X$.
+
+3. **Verificação da Ortogonalidade**: Verificamos se o escore $\psi$ satisfaz a condição de ortogonalidade de Neyman. Isso envolve calcular a derivada do escore em relação ao parâmetro de incômodo $\eta$ e verificar se a derivada se anula na vizinhança de $\eta_0$.
+
+4. **Aplicação do Cross-Fitting**: Para garantir a validade da condição de ortogonalidade em alta dimensionalidade, utilizamos o método de cross-fitting. Isso envolve dividir a amostra em partes e utilizar uma parte para estimar o parâmetro de incômodo e a outra parte para calcular o escore ortogonal. Esse procedimento reduz o viés de regularização e melhora a eficiência da estimação.
+
+\subsection*{Exemplo de Construção}
+
+Considere o seguinte exemplo de construção de escores ortogonais de Neyman no contexto de um modelo de variáveis instrumentais parcialmente linear. Suponha que o modelo seja dado por:
+
+\[
+Y = D\theta_0 + g_0(X) + U, \quad \mathbb{E}[U | X,Z] = 0,
+\]
+
+onde $Z$ é um instrumento válido para $D$. O escore ortogonal pode ser construído como:
+
+\[
+\psi(W; \theta, g, m) = (Y - g(X))(D - m(Z)) - \theta (D - m(Z))^2,
+\]
+
+onde $m(Z)$ é a função de média condicional de $D$ dado $Z$. A condição de ortogonalidade de Neyman é satisfeita porque a derivada do escore em relação a $g$ e $m$ se anula na vizinhança de $g_0$ e $m_0$.
+
+\subsection*{Síntese de Desenvolvimentos Recentes}
+
+Recentemente, vários métodos foram desenvolvidos para gerar escores ortogonais em diferentes contextos. Por exemplo, Belloni et al. (2017) desenvolveram métodos para construir escores ortogonais em modelos de alta dimensionalidade usando técnicas de seleção de modelos como Lasso. Chernozhukov et al. (2016) introduziram métodos de aprendizado de máquina duplo (DML) que utilizam escores ortogonais para realizar inferência válida em presença de parâmetros de incômodo de alta dimensão.
+
+Além disso, há desenvolvimentos na aplicação de escores ortogonais em modelos de tratamento causal, onde o objetivo é estimar efeitos de tratamento médio (ATE) e efeitos de tratamento médio nos tratados (ATTE). Esses métodos são particularmente úteis em estudos observacionais onde a confusão é uma preocupação significativa.
+
+\subsection*{Conclusão}
+
+A construção de escores ortogonais de Neyman é uma ferramenta poderosa para a inferência em modelos semiparamétricos. Esses escores permitem a utilização de métodos de aprendizado de máquina para estimar parâmetros de incômodo de alta dimensão, ao mesmo tempo que garantem a validade das inferências sobre o parâmetro de interesse. A combinação de escores ortogonais com técnicas de cross-fitting melhora a eficiência e a robustez da estimação, tornando-os indispensáveis em aplicações modernas de econometria e aprendizado de máquina.
+
+\newpage
+
+\section{DML:  POST-REGULARIZED  INFERENCE  BASED  ON NEYMAN-ORTHOGONAL  ESTIMATING  EQUATIONS}
+
+\subsection{Deﬁnition  of  DML and  its basic  properties}
+
+Nesta seção, definimos formalmente o Aprendizado de Máquina Duplo (Double Machine Learning - DML) e discutimos suas propriedades básicas. O DML é uma abordagem que utiliza escores ortogonais de Neyman e técnicas de cross-fitting para realizar inferência em presença de parâmetros de incômodo de alta dimensão, frequentemente estimados por métodos de aprendizado de máquina.
+
+\subsection*{Definição de DML}
+
+Considere um modelo semiparamétrico onde estamos interessados em estimar um parâmetro de interesse $\theta_0$ em presença de um parâmetro de incômodo $\eta_0$. Suponha que temos uma amostra aleatória $W_1, W_2, \ldots, W_N$ disponível para estimação e inferência.
+
+O procedimento DML pode ser descrito da seguinte forma:
+
+1. **Divisão de Amostra**: Dividimos a amostra original em $K$ partes (ou folds) de tamanhos aproximadamente iguais, denotadas por $I_k$ para $k=1, \ldots, K$.
+
+2. **Estimativa de Parâmetros de Incômodo**: Para cada fold $k$, usamos as observações fora do fold $I_k$ para estimar o parâmetro de incômodo $\eta_0$, denotando essa estimativa por $\hat{\eta}_{-k}$.
+
+3. **Construção de Escores Ortogonais**: Utilizamos as estimativas $\hat{\eta}_{-k}$ para construir os escores ortogonais de Neyman $\psi(W_i; \theta, \hat{\eta}_{-k})$ para as observações dentro do fold $I_k$.
+
+4. **Estimativa de $\theta_0$**: Resolvemos a seguinte equação de estimação para obter a estimativa final de $\theta_0$:
+
+\[
+\frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} \psi(W_i; \hat{\theta}, \hat{\eta}_{-k}) = 0.
+\]
+
+\subsection*{Propriedades Básicas de DML}
+
+As principais propriedades do DML são:
+
+1. **Consistência**: Sob condições regulares, o estimador DML $\hat{\theta}$ é consistente para o verdadeiro parâmetro $\theta_0$. Isso significa que à medida que o tamanho da amostra $N$ cresce, a estimativa $\hat{\theta}$ converge em probabilidade para $\theta_0$.
+
+2. **Normalidade Assintótica**: O estimador DML $\hat{\theta}$ é assintoticamente normal. Especificamente, temos que
+
+\[
+\sqrt{N}(\hat{\theta} - \theta_0) \xrightarrow{d} \mathcal{N}(0, \Sigma),
+\]
+
+onde $\Sigma$ é a matriz de covariância assintótica.
+
+3. **Robustez ao Viés de Regularização**: A utilização de escores ortogonais de Neyman e cross-fitting torna o DML robusto ao viés de regularização. Isso significa que o viés introduzido pela estimação de $\eta_0$ usando métodos de aprendizado de máquina é mitigado, garantindo a validade das inferências sobre $\theta_0$.
+
+4. **Eficiência**: O DML é assintoticamente eficiente, ou seja, ele atinge a menor variância possível entre os estimadores não enviesados assintoticamente.
+
+\subsection*{Exemplo de Aplicação}
+
+Considere o exemplo de um modelo de regressão parcialmente linear:
+
+\[
+Y = D\theta_0 + g_0(X) + U, \quad \mathbb{E}[U | X,D] = 0.
+\]
+
+Utilizando DML, procedemos da seguinte forma:
+
+1. Dividimos a amostra em $K$ folds.
+2. Para cada fold $k$, estimamos $g_0(X)$ fora do fold usando métodos de aprendizado de máquina, obtendo $\hat{g}_{-k}(X)$.
+3. Construímos o escore ortogonal:
+
+\[
+\psi(W_i; \theta, \hat{g}_{-k}) = (Y_i - \hat{g}_{-k}(X_i))(D_i - \mathbb{E}[D | X_i]).
+\]
+
+4. Resolvemos a equação de estimação para obter $\hat{\theta}$:
+
+\[
+\frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} \psi(W_i; \hat{\theta}, \hat{g}_{-k}) = 0.
+\]
+
+\subsection*{Conclusão}
+
+O DML é uma poderosa ferramenta para inferência em modelos semiparamétricos com parâmetros de incômodo de alta dimensão. Utilizando escores ortogonais de Neyman e técnicas de cross-fitting, o DML garante a consistência, normalidade assintótica, robustez ao viés de regularização e eficiência dos estimadores. Isso torna o DML uma abordagem robusta e eficiente para aplicações práticas em econometria e aprendizado de máquina.
+
+\subsection{Moment  condition  models  with  linear  scores}
+
+Nesta seção, discutimos modelos de condição de momento com escores lineares, onde a relação entre as variáveis de interesse e os parâmetros de incômodo pode ser representada de forma linear. Esses modelos são amplamente utilizados devido à sua simplicidade e à facilidade com que permitem a aplicação de técnicas de inferência estatística.
+
+\subsection*{Especificação do Modelo}
+
+Consideramos um modelo semiparamétrico em que o parâmetro de interesse $\theta_0$ e o parâmetro de incômodo $\eta_0$ satisfazem uma condição de momento da forma:
+
+\[
+\mathbb{E}[\psi(W; \theta_0, \eta_0)] = 0,
+\]
+
+onde $\psi(W; \theta, \eta)$ é um escore linear em relação a $\theta$ e $\eta$. Especificamente, temos:
+
+\[
+\psi(W; \theta, \eta) = \psi_1(W) - \psi_2(W)\theta - \psi_3(W)\eta,
+\]
+
+onde $\psi_1(W)$, $\psi_2(W)$ e $\psi_3(W)$ são funções conhecidas de $W$.
+
+\subsection*{Construção de Escores Lineares}
+
+A construção de escores lineares em modelos de condição de momento envolve os seguintes passos:
+
+1. **Definição das Funções de Escore**: Identificamos as funções $\psi_1(W)$, $\psi_2(W)$ e $\psi_3(W)$ que capturam a relação linear entre as variáveis de interesse e os parâmetros. Por exemplo, em um modelo de regressão linear, podemos ter:
+
+\[
+\psi_1(W) = Y, \quad \psi_2(W) = X, \quad \psi_3(W) = Z.
+\]
+
+2. **Verificação da Condição de Ortogonalidade**: Verificamos se a condição de ortogonalidade de Neyman é satisfeita. No caso de escores lineares, isso implica que a derivada do escore em relação ao parâmetro de incômodo $\eta$ deve se anular:
+
+\[
+\partial_\eta \mathbb{E}[\psi(W; \theta_0, \eta_0)] = 0.
+\]
+
+3. **Estimativa dos Parâmetros**: Utilizamos os escores lineares para construir estimadores consistentes e assintoticamente normais para $\theta_0$ e $\eta_0$. Isso pode ser feito resolvendo a equação de estimação:
+
+\[
+\frac{1}{N} \sum_{i=1}^N \psi(W_i; \hat{\theta}, \hat{\eta}) = 0,
+\]
+
+onde $\hat{\theta}$ e $\hat{\eta}$ são os estimadores dos parâmetros baseados na amostra.
+
+\subsection*{Exemplo: Modelo de Regressão Linear}
+
+Considere um modelo de regressão linear simples:
+
+\[
+Y = X\theta_0 + Z\eta_0 + U,
+\]
+
+onde $Y$ é a variável dependente, $X$ e $Z$ são variáveis independentes, e $U$ é o termo de erro. As funções de escore lineares para este modelo podem ser definidas como:
+
+\[
+\psi(W; \theta, \eta) = Y - X\theta - Z\eta,
+\]
+
+onde $W = (Y, X, Z)$. A condição de momento é:
+
+\[
+\mathbb{E}[Y - X\theta_0 - Z\eta_0] = 0,
+\]
+
+o que implica que $\theta_0$ e $\eta_0$ podem ser estimados resolvendo o sistema de equações lineares obtido a partir das condições de primeiro momento.
+
+\subsection*{Propriedades dos Estimadores}
+
+Os estimadores obtidos a partir de modelos de condição de momento com escores lineares possuem várias propriedades desejáveis:
+
+1. **Consistência**: Os estimadores são consistentes, ou seja, convergem em probabilidade para os valores verdadeiros dos parâmetros à medida que o tamanho da amostra aumenta.
+
+2. **Normalidade Assintótica**: Os estimadores são assintoticamente normais. Especificamente, a distribuição dos estimadores em grandes amostras se aproxima de uma distribuição normal com média igual ao valor verdadeiro do parâmetro e variância determinada pela matriz de covariância assintótica.
+
+3. **Eficiência**: Sob certas condições, os estimadores são eficientes, atingindo a menor variância possível entre os estimadores não enviesados.
+
+\subsection*{Conclusão}
+
+Modelos de condição de momento com escores lineares são uma classe importante de modelos semiparamétricos que permitem a inferência eficiente sobre parâmetros de interesse na presença de parâmetros de incômodo de alta dimensão. A simplicidade dos escores lineares facilita a aplicação de técnicas de inferência estatística, enquanto a condição de ortogonalidade de Neyman garante a validade das inferências. A combinação desses modelos com métodos de aprendizado de máquina e técnicas de cross-fitting melhora ainda mais a robustez e a eficiência das estimativas, tornando-os ferramentas valiosas em econometria e aprendizado de máquina.
+
+\subsection{Models  with non-linear  scores}
+
+Nesta seção, discutimos modelos com escores não lineares, onde a relação entre as variáveis de interesse e os parâmetros de incômodo é representada de forma não linear. Esses modelos são importantes porque capturam relações complexas que não podem ser adequadamente modeladas por escores lineares.
+
+\subsection*{Especificação do Modelo}
+
+Consideramos um modelo semiparamétrico em que o parâmetro de interesse $\theta_0$ e o parâmetro de incômodo $\eta_0$ satisfazem uma condição de momento da forma:
+
+\[
+\mathbb{E}[\psi(W; \theta_0, \eta_0)] = 0,
+\]
+
+onde $\psi(W; \theta, \eta)$ é um escore não linear em relação a $\theta$ e $\eta$. A especificação dos escores não lineares pode variar dependendo do contexto do modelo.
+
+\subsection*{Construção de Escores Não Lineares}
+
+A construção de escores não lineares em modelos de condição de momento envolve os seguintes passos:
+
+1. **Definição das Funções de Escore**: Identificamos as funções $\psi(W; \theta, \eta)$ que capturam a relação não linear entre as variáveis de interesse e os parâmetros. Por exemplo, em um modelo de regressão não linear, podemos ter:
+
+\[
+\psi(W; \theta, \eta) = h(Y, \theta, \eta),
+\]
+
+onde $h$ é uma função não linear em relação a $\theta$ e $\eta$.
+
+2. **Verificação da Condição de Ortogonalidade**: Verificamos se a condição de ortogonalidade de Neyman é satisfeita. No caso de escores não lineares, isso implica que a derivada do escore em relação ao parâmetro de incômodo $\eta$ deve se anular:
+
+\[
+\partial_\eta \mathbb{E}[\psi(W; \theta_0, \eta_0)] = 0.
+\]
+
+3. **Estimativa dos Parâmetros**: Utilizamos os escores não lineares para construir estimadores consistentes e assintoticamente normais para $\theta_0$ e $\eta_0$. Isso pode ser feito resolvendo a equação de estimação:
+
+\[
+\frac{1}{N} \sum_{i=1}^N \psi(W_i; \hat{\theta}, \hat{\eta}) = 0,
+\]
+
+onde $\hat{\theta}$ e $\hat{\eta}$ são os estimadores dos parâmetros baseados na amostra.
+
+\subsection*{Exemplo: Modelo de Regressão Não Linear}
+
+Considere um modelo de regressão não linear:
+
+\[
+Y = f(X, \theta_0) + g(Z, \eta_0) + U,
+\]
+
+onde $Y$ é a variável dependente, $X$ e $Z$ são variáveis independentes, $f$ e $g$ são funções não lineares conhecidas, e $U$ é o termo de erro. As funções de escore não lineares para este modelo podem ser definidas como:
+
+\[
+\psi(W; \theta, \eta) = Y - f(X, \theta) - g(Z, \eta),
+\]
+
+onde $W = (Y, X, Z)$. A condição de momento é:
+
+\[
+\mathbb{E}[Y - f(X, \theta_0) - g(Z, \eta_0)] = 0,
+\]
+
+o que implica que $\theta_0$ e $\eta_0$ podem ser estimados resolvendo o sistema de equações não lineares obtido a partir das condições de primeiro momento.
+
+\subsection*{Propriedades dos Estimadores}
+
+Os estimadores obtidos a partir de modelos de condição de momento com escores não lineares possuem várias propriedades desejáveis:
+
+1. **Consistência**: Os estimadores são consistentes, ou seja, convergem em probabilidade para os valores verdadeiros dos parâmetros à medida que o tamanho da amostra aumenta.
+
+2. **Normalidade Assintótica**: Os estimadores são assintoticamente normais. Especificamente, a distribuição dos estimadores em grandes amostras se aproxima de uma distribuição normal com média igual ao valor verdadeiro do parâmetro e variância determinada pela matriz de covariância assintótica.
+
+3. **Eficiência**: Sob certas condições, os estimadores são eficientes, atingindo a menor variância possível entre os estimadores não enviesados.
+
+\subsection*{Conclusão}
+
+Modelos de condição de momento com escores não lineares são uma classe importante de modelos semiparamétricos que permitem a inferência eficiente sobre parâmetros de interesse na presença de parâmetros de incômodo de alta dimensão. A flexibilidade dos escores não lineares permite capturar relações complexas entre variáveis, enquanto a condição de ortogonalidade de Neyman garante a validade das inferências. A combinação desses modelos com métodos de aprendizado de máquina e técnicas de cross-fitting melhora ainda mais a robustez e a eficiência das estimativas, tornando-os ferramentas valiosas em econometria e aprendizado de máquina.
+
+\subsection{Finite-sample  adjustments  to incorporate  uncertainty  induced by sample splitting}
+
+Nesta seção, discutimos os ajustes necessários para amostras finitas a fim de incorporar a incerteza induzida pela divisão de amostras (sample splitting). A técnica de divisão de amostras é amplamente utilizada para garantir a validade da inferência em modelos de aprendizado de máquina duplo (DML), mas pode introduzir incertezas adicionais que precisam ser tratadas adequadamente.
+
+\subsection*{Introdução}
+
+A divisão de amostras é uma abordagem prática e eficaz para evitar o viés de sobreajuste (overfitting) em estimativas de parâmetros de modelos de alta dimensionalidade. No entanto, esse método pode introduzir variabilidade adicional nos estimadores, especialmente em amostras finitas. Portanto, é crucial ajustar os estimadores para levar em conta essa incerteza adicional e garantir que as inferências sejam robustas.
+
+\subsection*{Divisão de Amostras}
+
+A técnica de divisão de amostras envolve a partição dos dados em duas ou mais partes (folds). Em cada fold, uma parte dos dados é utilizada para estimar os parâmetros de incômodo, enquanto a outra parte é usada para calcular os escores ortogonais e estimar o parâmetro de interesse. Este procedimento é repetido em várias iterações para reduzir a variabilidade e melhorar a precisão dos estimadores.
+
+\subsection*{Ajustes para Amostras Finitas}
+
+Os ajustes para amostras finitas podem ser implementados das seguintes maneiras:
+
+1. **Estimativas Robustas de Erro Padrão**: Uma abordagem comum é ajustar os erros padrão dos estimadores para refletir a variabilidade introduzida pela divisão de amostras. Isso pode ser feito utilizando métodos robustos de estimativa de variância, como a correção de heterocedasticidade de White ou a correção de sandwich.
+
+2. **Métodos de Bootstrap**: O bootstrap é uma técnica de reamostragem que pode ser usada para estimar a distribuição dos estimadores e ajustar a incerteza. No contexto da divisão de amostras, o bootstrap pode ser aplicado para reamostrar os folds e recalcular os estimadores múltiplas vezes, proporcionando uma estimativa mais precisa da variabilidade.
+
+3. **Correções de Viés**: Em alguns casos, pode ser necessário aplicar correções de viés aos estimadores. Isso pode ser feito ajustando os escores ou utilizando métodos de ajuste de viés pós-estimação para corrigir qualquer viés introduzido pela divisão de amostras.
+
+4. **Combinação de Estimativas**: Outra abordagem é combinar as estimativas obtidas em diferentes folds para obter um estimador final mais robusto. Isso pode ser feito através de métodos de agregação, como a média ponderada das estimativas individuais, onde os pesos são determinados com base na variabilidade observada em cada fold.
+
+\subsection*{Exemplo de Ajuste de Amostras Finitas}
+
+Considere um exemplo em que estamos estimando o parâmetro de interesse $\theta_0$ em um modelo de regressão parcialmente linear. Utilizando a técnica de divisão de amostras, dividimos os dados em $K$ folds e procedemos da seguinte maneira:
+
+1. **Divisão de Amostras**: Dividimos os dados em $K$ partes aproximadamente iguais, denotadas por $I_k$ para $k=1, \ldots, K$.
+
+2. **Estimativa dos Parâmetros de Incômodo**: Para cada fold $k$, estimamos os parâmetros de incômodo $\eta_0$ utilizando os dados fora do fold $I_k$, obtendo $\hat{\eta}_{-k}$.
+
+3. **Construção dos Escores Ortogonais**: Utilizamos $\hat{\eta}_{-k}$ para construir escores ortogonais $\psi(W_i; \theta, \hat{\eta}_{-k})$ para as observações no fold $I_k$.
+
+4. **Estimativa de $\theta_0$**: Resolvemos a equação de estimação para obter a estimativa final de $\theta_0$:
+
+\[
+\hat{\theta} = \frac{1}{K} \sum_{k=1}^K \hat{\theta}_k,
+\]
+
+onde $\hat{\theta}_k$ é a estimativa obtida no fold $I_k$.
+
+5. **Ajuste de Erro Padrão**: Ajustamos os erros padrão utilizando a correção de sandwich para levar em conta a variabilidade adicional introduzida pela divisão de amostras:
+
+\[
+\hat{\sigma}^2 = \frac{1}{K} \sum_{k=1}^K (\hat{\theta}_k - \hat{\theta})^2.
+\]
+
+6. **Estimativa Final**: A estimativa final de $\theta_0$ é dada por $\hat{\theta}$, com o erro padrão ajustado $\hat{\sigma}$.
+
+\subsection*{Conclusão}
+
+Ajustes para amostras finitas são essenciais para incorporar a incerteza induzida pela divisão de amostras em estimadores de modelos semiparamétricos. Utilizando métodos como estimativas robustas de erro padrão, bootstrap, correções de viés e combinação de estimativas, podemos garantir que as inferências realizadas sejam robustas e precisas, mesmo em cenários de alta dimensionalidade e amostras finitas. Esses ajustes são cruciais para a aplicação prática de métodos de aprendizado de máquina duplo (DML) e outras técnicas avançadas de inferência estatística.
+
+\newpage
+
+\section{INFERENCE IN PARTIALLY LINEAR MODELS}
+
+\subsection{Inference in partially linear regression models}
+
+Nesta seção, discutimos a inferência em modelos de regressão parcialmente lineares, onde a relação entre a variável dependente e algumas das variáveis independentes é linear, enquanto a relação com outras variáveis pode ser não linear. Esses modelos são úteis em muitas aplicações práticas, pois combinam a simplicidade de modelos lineares com a flexibilidade de modelos não lineares.
+
+\subsection*{Especificação do Modelo}
+
+Um modelo de regressão parcialmente linear pode ser especificado da seguinte forma:
+
+\[
+Y = D\theta_0 + g_0(X) + U, \quad \mathbb{E}[U | X,D] = 0,
+\]
+
+onde:
+- $Y$ é a variável dependente,
+- $D$ é a variável independente de interesse cuja relação com $Y$ é linear,
+- $X$ é um vetor de variáveis de controle cuja relação com $Y$ é potencialmente não linear,
+- $g_0(X)$ é uma função desconhecida que captura a relação não linear entre $X$ e $Y$,
+- $U$ é o termo de erro aleatório.
+
+O parâmetro de interesse é $\theta_0$, que representa o efeito de $D$ em $Y$ após controlar para $X$.
+
+\subsection*{Estimativa do Modelo}
+
+Para estimar o parâmetro $\theta_0$, utilizamos uma abordagem de aprendizado de máquina duplo (DML) que combina escores ortogonais de Neyman e técnicas de cross-fitting. O procedimento é o seguinte:
+
+1. **Divisão de Amostras**: Dividimos a amostra em $K$ folds de tamanhos aproximadamente iguais, denotados por $I_k$ para $k = 1, \ldots, K$.
+
+2. **Estimativa da Função de Controle**: Para cada fold $k$, estimamos a função de controle $g_0(X)$ utilizando os dados fora do fold $I_k$, obtendo $\hat{g}_{-k}(X)$.
+
+3. **Construção dos Escores Ortogonais**: Utilizamos $\hat{g}_{-k}(X)$ para construir escores ortogonais $\psi(W_i; \theta, \hat{g}_{-k})$ para as observações no fold $I_k$. O escore ortogonal é dado por:
+
+\[
+\psi(W_i; \theta, \hat{g}_{-k}) = (Y_i - \hat{g}_{-k}(X_i))(D_i - \mathbb{E}[D | X_i]) - \theta (D_i - \mathbb{E}[D | X_i])^2,
+\]
+
+onde $W_i = (Y_i, D_i, X_i)$.
+
+4. **Estimativa de $\theta_0$**: Resolvemos a equação de estimação para obter a estimativa final de $\theta_0$:
+
+\[
+\hat{\theta} = \left( \frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} (D_i - \mathbb{E}[D | X_i])^2 \right)^{-1} \left( \frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} (Y_i - \hat{g}_{-k}(X_i))(D_i - \mathbb{E}[D | X_i]) \right).
+\]
+
+\subsection*{Propriedades dos Estimadores}
+
+Os estimadores obtidos através do método DML para modelos de regressão parcialmente lineares possuem várias propriedades desejáveis:
+
+1. **Consistência**: O estimador $\hat{\theta}$ é consistente, ou seja, converge em probabilidade para o verdadeiro valor $\theta_0$ à medida que o tamanho da amostra aumenta.
+
+2. **Normalidade Assintótica**: O estimador $\hat{\theta}$ é assintoticamente normal. Especificamente, temos que
+
+\[
+\sqrt{N}(\hat{\theta} - \theta_0) \xrightarrow{d} \mathcal{N}(0, \Sigma),
+\]
+
+onde $\Sigma$ é a matriz de covariância assintótica.
+
+3. **Robustez ao Viés de Regularização**: A utilização de escores ortogonais de Neyman e cross-fitting torna o estimador robusto ao viés de regularização, garantindo a validade das inferências sobre $\theta_0$.
+
+4. **Eficiência**: O estimador é assintoticamente eficiente, alcançando a menor variância possível entre os estimadores não enviesados.
+
+\subsection*{Exemplo de Aplicação}
+
+Considere um exemplo prático onde queremos estimar o efeito de uma variável de tratamento $D$ (por exemplo, participação em um programa de treinamento) sobre uma variável de resultado $Y$ (por exemplo, rendimento salarial), controlando por um conjunto de variáveis de controle $X$ (por exemplo, características demográficas e socioeconômicas). Utilizando o procedimento DML descrito acima, podemos obter uma estimativa robusta e eficiente de $\theta_0$, o efeito do tratamento, enquanto controlamos adequadamente para os efeitos não lineares de $X$.
+
+\subsection*{Conclusão}
+
+A inferência em modelos de regressão parcialmente lineares utilizando métodos de aprendizado de máquina duplo (DML) permite estimar de forma robusta e eficiente os parâmetros de interesse em presença de parâmetros de incômodo de alta dimensão. A combinação de escores ortogonais de Neyman e técnicas de cross-fitting garante a validade das inferências, tornando essa abordagem uma ferramenta valiosa em econometria e aprendizado de máquina. A flexibilidade dos modelos parcialmente lineares permite capturar relações complexas entre variáveis, proporcionando insights mais precisos e relevantes para a tomada de decisão.
+
+\subsection{Inference in partially linear IV models}
+
+Nesta seção, discutimos a inferência em modelos de variáveis instrumentais (IV) parcialmente lineares. Esses modelos são úteis quando a variável de interesse pode estar correlacionada com o termo de erro, e um ou mais instrumentos são utilizados para lidar com essa endogeneidade. A abordagem combina a linearidade em algumas partes do modelo com a flexibilidade não linear em outras, permitindo uma inferência robusta e eficiente.
+
+\subsection*{Especificação do Modelo}
+
+Um modelo IV parcialmente linear pode ser especificado da seguinte forma:
+
+\[
+Y = D\theta_0 + g_0(X) + U, \quad \mathbb{E}[U | X, Z] = 0,
+\]
+
+onde:
+- $Y$ é a variável dependente,
+- $D$ é a variável endógena de interesse cuja relação com $Y$ é linear,
+- $X$ é um vetor de variáveis de controle cuja relação com $Y$ é potencialmente não linear,
+- $Z$ é um vetor de instrumentos exógenos,
+- $g_0(X)$ é uma função desconhecida que captura a relação não linear entre $X$ e $Y$,
+- $U$ é o termo de erro aleatório.
+
+O parâmetro de interesse é $\theta_0$, que representa o efeito de $D$ em $Y$ após controlar para $X$.
+
+\subsection*{Estimativa do Modelo}
+
+Para estimar o parâmetro $\theta_0$, utilizamos uma abordagem de aprendizado de máquina duplo (DML) adaptada para modelos IV. O procedimento é o seguinte:
+
+1. **Divisão de Amostras**: Dividimos a amostra em $K$ folds de tamanhos aproximadamente iguais, denotados por $I_k$ para $k = 1, \ldots, K$.
+
+2. **Estimativa das Funções de Controle**: Para cada fold $k$, estimamos a função de controle $g_0(X)$ e a função de média condicional $m_0(Z)$ utilizando os dados fora do fold $I_k$, obtendo $\hat{g}_{-k}(X)$ e $\hat{m}_{-k}(Z)$.
+
+3. **Construção dos Escores Ortogonais**: Utilizamos $\hat{g}_{-k}(X)$ e $\hat{m}_{-k}(Z)$ para construir escores ortogonais $\psi(W_i; \theta, \hat{g}_{-k}, \hat{m}_{-k})$ para as observações no fold $I_k$. O escore ortogonal é dado por:
+
+\[
+\psi(W_i; \theta, \hat{g}_{-k}, \hat{m}_{-k}) = (Y_i - \hat{g}_{-k}(X_i))(D_i - \hat{m}_{-k}(Z_i)) - \theta (D_i - \hat{m}_{-k}(Z_i))^2,
+\]
+
+onde $W_i = (Y_i, D_i, X_i, Z_i)$.
+
+4. **Estimativa de $\theta_0$**: Resolvemos a equação de estimação para obter a estimativa final de $\theta_0$:
+
+\[
+\hat{\theta} = \left( \frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} (D_i - \hat{m}_{-k}(Z_i))^2 \right)^{-1} \left( \frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} (Y_i - \hat{g}_{-k}(X_i))(D_i - \hat{m}_{-k}(Z_i)) \right).
+\]
+
+\subsection*{Propriedades dos Estimadores}
+
+Os estimadores obtidos através do método DML para modelos IV parcialmente lineares possuem várias propriedades desejáveis:
+
+1. **Consistência**: O estimador $\hat{\theta}$ é consistente, ou seja, converge em probabilidade para o verdadeiro valor $\theta_0$ à medida que o tamanho da amostra aumenta.
+
+2. **Normalidade Assintótica**: O estimador $\hat{\theta}$ é assintoticamente normal. Especificamente, temos que
+
+\[
+\sqrt{N}(\hat{\theta} - \theta_0) \xrightarrow{d} \mathcal{N}(0, \Sigma),
+\]
+
+onde $\Sigma$ é a matriz de covariância assintótica.
+
+3. **Robustez ao Viés de Regularização**: A utilização de escores ortogonais de Neyman e cross-fitting torna o estimador robusto ao viés de regularização, garantindo a validade das inferências sobre $\theta_0$.
+
+4. **Eficiência**: O estimador é assintoticamente eficiente, alcançando a menor variância possível entre os estimadores não enviesados.
+
+\subsection*{Exemplo de Aplicação}
+
+Considere um exemplo prático onde queremos estimar o efeito de uma variável endógena $D$ (por exemplo, educação) sobre uma variável de resultado $Y$ (por exemplo, salário), controlando por um conjunto de variáveis de controle $X$ (por exemplo, características demográficas) e utilizando instrumentos $Z$ (por exemplo, proximidade de escolas) para lidar com a endogeneidade de $D$. Utilizando o procedimento DML descrito acima, podemos obter uma estimativa robusta e eficiente de $\theta_0$, o efeito de $D$ em $Y$, enquanto controlamos adequadamente para os efeitos não lineares de $X$ e a endogeneidade de $D$.
+
+\subsection*{Conclusão}
+
+A inferência em modelos IV parcialmente lineares utilizando métodos de aprendizado de máquina duplo (DML) permite estimar de forma robusta e eficiente os parâmetros de interesse em presença de parâmetros de incômodo de alta dimensão e endogeneidade. A combinação de escores ortogonais de Neyman e técnicas de cross-fitting garante a validade das inferências, tornando essa abordagem uma ferramenta valiosa em econometria e aprendizado de máquina. A flexibilidade dos modelos IV parcialmente lineares permite capturar relações complexas entre variáveis e lidar com problemas de endogeneidade, proporcionando insights mais precisos e relevantes para a tomada de decisão.
+
+\newpage
+
+
+\section{INFERENCE ON TREATMENT EFFECTS IN THE INTERACTIVE MODEL}
+
+\subsection{Inference on ATE and ATTE}
+
+Nesta seção, discutimos a inferência sobre o efeito médio do tratamento (Average Treatment Effect - ATE) e o efeito médio do tratamento nos tratados (Average Treatment Effect on the Treated - ATTE). Esses conceitos são fundamentais na avaliação de intervenções ou tratamentos, fornecendo medidas do impacto médio de um tratamento na população geral e na subpopulação que recebeu o tratamento, respectivamente.
+
+\subsection*{Definição de ATE e ATTE}
+
+O ATE é definido como a diferença média nos resultados entre a situação em que todos os indivíduos da população recebem o tratamento e a situação em que nenhum indivíduo recebe o tratamento. Formalmente, o ATE é dado por:
+
+\[
+ATE = \mathbb{E}[Y(1) - Y(0)],
+\]
+
+onde $Y(1)$ é o resultado potencial quando o indivíduo recebe o tratamento e $Y(0)$ é o resultado potencial quando o indivíduo não recebe o tratamento.
+
+O ATTE, por outro lado, é definido como a diferença média nos resultados entre a situação em que os indivíduos que realmente receberam o tratamento (tratados) recebem o tratamento e a situação em que esses mesmos indivíduos não recebem o tratamento. Formalmente, o ATTE é dado por:
+
+\[
+ATTE = \mathbb{E}[Y(1) - Y(0) | D = 1],
+\]
+
+onde $D$ é uma variável indicadora de tratamento que assume o valor 1 se o indivíduo recebeu o tratamento e 0 caso contrário.
+
+\subsection*{Estimativa de ATE e ATTE}
+
+Para estimar o ATE e o ATTE, utilizamos uma abordagem de aprendizado de máquina duplo (DML) que combina escores ortogonais de Neyman e técnicas de cross-fitting. O procedimento é o seguinte:
+
+1. **Divisão de Amostras**: Dividimos a amostra em $K$ folds de tamanhos aproximadamente iguais, denotados por $I_k$ para $k = 1, \ldots, K$.
+
+2. **Estimativa das Funções de Propensão e Resultado**: Para cada fold $k$, estimamos a função de propensão $\pi_0(X)$ e as funções de resultado $m_0(X, D)$ utilizando os dados fora do fold $I_k$, obtendo $\hat{\pi}_{-k}(X)$ e $\hat{m}_{-k}(X, D)$.
+
+3. **Construção dos Escores Ortogonais para ATE**: Utilizamos $\hat{\pi}_{-k}(X)$ e $\hat{m}_{-k}(X, D)$ para construir escores ortogonais $\psi_{ATE}(W_i; \theta, \hat{\pi}_{-k}, \hat{m}_{-k})$ para as observações no fold $I_k$. O escore ortogonal para ATE é dado por:
+
+\[
+\psi_{ATE}(W_i; \theta, \hat{\pi}_{-k}, \hat{m}_{-k}) = 
+\]
+\[
+\left( \frac{D_i}{\hat{\pi}_{-k}(X_i)} - \frac{1 - D_i}{1 - \hat{\pi}_{-k}(X_i)} \right)(Y_i - \hat{m}_{-k}(X_i, D_i)) + \hat{m}_{-k}(X_i, 1) - \hat{m}_{-k}(X_i, 0) - \theta,
+\]
+
+onde $W_i = (Y_i, D_i, X_i)$.
+
+4. **Construção dos Escores Ortogonais para ATTE**: Utilizamos $\hat{\pi}_{-k}(X)$ e $\hat{m}_{-k}(X, D)$ para construir escores ortogonais $\psi_{ATTE}(W_i; \theta, \hat{\pi}_{-k}, \hat{m}_{-k})$ para as observações no fold $I_k$. O escore ortogonal para ATTE é dado por:
+
+\[
+\psi_{ATTE}(W_i; \theta, \hat{\pi}_{-k}, \hat{m}_{-k}) = 
+\]
+\[
+\frac{D_i}{\hat{\pi}_{-k}(X_i)}(Y_i - \hat{m}_{-k}(X_i, 1)) - (1 - \hat{\pi}_{-k}(X_i))\left(\frac{D_i}{\hat{\pi}_{-k}(X_i)} - 1\right)(\hat{m}_{-k}(X_i, 1) - \hat{m}_{-k}(X_i, 0)) - \theta,
+\]
+
+onde $W_i = (Y_i, D_i, X_i)$.
+
+5. **Estimativa de ATE e ATTE**: Resolvemos as equações de estimação para obter as estimativas finais de $\theta_{ATE}$ e $\theta_{ATTE}$:
+
+\[
+\hat{\theta}_{ATE} = \frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} \psi_{ATE}(W_i; \hat{\theta}_{ATE}, \hat{\pi}_{-k}, \hat{m}_{-k}),
+\]
+
+\[
+\hat{\theta}_{ATTE} = \frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} \psi_{ATTE}(W_i; \hat{\theta}_{ATTE}, \hat{\pi}_{-k}, \hat{m}_{-k}).
+\]
+
+\subsection*{Propriedades dos Estimadores}
+
+Os estimadores obtidos através do método DML para ATE e ATTE possuem várias propriedades desejáveis:
+
+1. **Consistência**: Os estimadores $\hat{\theta}_{ATE}$ e $\hat{\theta}_{ATTE}$ são consistentes, ou seja, convergem em probabilidade para os verdadeiros valores $\theta_{ATE}$ e $\theta_{ATTE}$ à medida que o tamanho da amostra aumenta.
+
+2. **Normalidade Assintótica**: Os estimadores $\hat{\theta}_{ATE}$ e $\hat{\theta}_{ATTE}$ são assintoticamente normais. Especificamente, temos que
+
+\[
+\sqrt{N}(\hat{\theta}_{ATE} - \theta_{ATE}) \xrightarrow{d} \mathcal{N}(0, \Sigma_{ATE}),
+\]
+
+\[
+\sqrt{N}(\hat{\theta}_{ATTE} - \theta_{ATTE}) \xrightarrow{d} \mathcal{N}(0, \Sigma_{ATTE}),
+\]
+
+onde $\Sigma_{ATE}$ e $\Sigma_{ATTE}$ são as matrizes de covariância assintótica.
+
+3. **Robustez ao Viés de Regularização**: A utilização de escores ortogonais de Neyman e cross-fitting torna os estimadores robustos ao viés de regularização, garantindo a validade das inferências sobre $\theta_{ATE}$ e $\theta_{ATTE}$.
+
+4. **Eficiência**: Os estimadores são assintoticamente eficientes, alcançando a menor variância possível entre os estimadores não enviesados.
+
+\subsection*{Exemplo de Aplicação}
+
+Considere um exemplo prático onde queremos estimar o efeito médio de um programa de treinamento (D) sobre o rendimento salarial (Y), tanto na população geral (ATE) quanto nos indivíduos que participaram do programa (ATTE). Utilizando o procedimento DML descrito acima, podemos obter estimativas robustas e eficientes de $\theta_{ATE}$ e $\theta_{ATTE}$, controlando adequadamente para os efeitos não lineares das variáveis de controle (X) e a endogeneidade do tratamento.
+
+\subsection*{Conclusão}
+
+A inferência sobre ATE e ATTE utilizando métodos de aprendizado de máquina duplo (DML) permite estimar de forma robusta e eficiente os efeitos médios de tratamentos em presença de parâmetros de incômodo de alta dimensão. A combinação de escores ortogonais de Neyman e técnicas de cross-fitting garante a validade das inferências, tornando essa abordagem uma ferramenta valiosa em econometria e aprendizado de máquina. A capacidade de capturar relações complexas e lidar com problemas de endogeneidade proporciona insights mais precisos e relevantes para a avaliação de políticas e intervenções.
+
+
+\subsection{Inference on local average treatment effects}
+
+Nesta seção, discutimos a inferência sobre os efeitos médios locais de tratamento (Local Average Treatment Effects - LATE). O LATE é uma medida do efeito de um tratamento em uma subpopulação específica, frequentemente utilizada em contextos onde a atribuição do tratamento é influenciada por um instrumento.
+
+\subsection*{Definição de LATE}
+
+O LATE é definido como o efeito médio do tratamento para aqueles indivíduos cuja decisão de participar no tratamento é influenciada por uma variável instrumental. Formalmente, o LATE pode ser expresso como:
+
+\[
+LATE = \mathbb{E}[Y(1) - Y(0) | Z = 1] - \mathbb{E}[Y(1) - Y(0) | Z = 0],
+\]
+
+onde $Y(1)$ e $Y(0)$ são os resultados potenciais com e sem o tratamento, respectivamente, e $Z$ é a variável instrumental que influencia a decisão de tratamento.
+
+\subsection*{Estimativa de LATE}
+
+Para estimar o LATE, utilizamos uma abordagem de aprendizado de máquina duplo (DML) adaptada para modelos de variáveis instrumentais (IV). O procedimento é o seguinte:
+
+1. **Divisão de Amostras**: Dividimos a amostra em $K$ folds de tamanhos aproximadamente iguais, denotados por $I_k$ para $k = 1, \ldots, K$.
+
+2. **Estimativa das Funções de Propensão e Resultado**: Para cada fold $k$, estimamos a função de propensão $\pi_0(X)$ e as funções de resultado $m_0(X, D)$ utilizando os dados fora do fold $I_k$, obtendo $\hat{\pi}_{-k}(X)$ e $\hat{m}_{-k}(X, D)$.
+
+3. **Construção dos Escores Ortogonais para LATE**: Utilizamos $\hat{\pi}_{-k}(X)$ e $\hat{m}_{-k}(X, D)$ para construir escores ortogonais $\psi_{LATE}(W_i; \theta, \hat{\pi}_{-k}, \hat{m}_{-k})$ para as observações no fold $I_k$. O escore ortogonal para LATE é dado por:
+
+\[
+\psi_{LATE}(W_i; \theta, \hat{\pi}_{-k}, \hat{m}_{-k}) = \\
+
+\left( \frac{Z_i}{\hat{\pi}_{-k}(X_i)} - \frac{1 - Z_i}{1 - \hat{\pi}_{-k}(X_i)} \right)(Y_i - \hat{m}_{-k}(X_i, D_i)) + \hat{m}_{-k}(X_i, 1) - \hat{m}_{-k}(X_i, 0) - \theta,
+\]
+
+onde $W_i = (Y_i, D_i, X_i, Z_i)$.
+
+4. **Estimativa de LATE**: Resolvemos a equação de estimação para obter a estimativa final de $\theta_{LATE}$:
+
+\[
+\hat{\theta}_{LATE} = \frac{1}{N} \sum_{k=1}^K \sum_{i \in I_k} \psi_{LATE}(W_i; \hat{\theta}_{LATE}, \hat{\pi}_{-k}, \hat{m}_{-k}).
+\]
+
+\subsection*{Propriedades dos Estimadores}
+
+Os estimadores obtidos através do método DML para LATE possuem várias propriedades desejáveis:
+
+1. **Consistência**: O estimador $\hat{\theta}_{LATE}$ é consistente, ou seja, converge em probabilidade para o verdadeiro valor $\theta_{LATE}$ à medida que o tamanho da amostra aumenta.
+
+2. **Normalidade Assintótica**: O estimador $\hat{\theta}_{LATE}$ é assintoticamente normal. Especificamente, temos que
+
+\[
+\sqrt{N}(\hat{\theta}_{LATE} - \theta_{LATE}) \xrightarrow{d} \mathcal{N}(0, \Sigma_{LATE}),
+\]
+
+onde $\Sigma_{LATE}$ é a matriz de covariância assintótica.
+
+3. **Robustez ao Viés de Regularização**: A utilização de escores ortogonais de Neyman e cross-fitting torna o estimador robusto ao viés de regularização, garantindo a validade das inferências sobre $\theta_{LATE}$.
+
+4. **Eficiência**: O estimador é assintoticamente eficiente, alcançando a menor variância possível entre os estimadores não enviesados.
+
+\subsection*{Exemplo de Aplicação}
+
+Considere um exemplo prático onde queremos estimar o efeito médio local de um programa de incentivo à educação (D) sobre o desempenho acadêmico (Y), utilizando a proximidade de escolas como um instrumento (Z). Utilizando o procedimento DML descrito acima, podemos obter uma estimativa robusta e eficiente de $\theta_{LATE}$, o efeito do programa de incentivo na subpopulação cuja participação no programa é influenciada pela proximidade das escolas.
+
+\subsection*{Conclusão}
+
+A inferência sobre LATE utilizando métodos de aprendizado de máquina duplo (DML) permite estimar de forma robusta e eficiente os efeitos médios locais de tratamentos em presença de parâmetros de incômodo de alta dimensão. A combinação de escores ortogonais de Neyman e técnicas de cross-fitting garante a validade das inferências, tornando essa abordagem uma ferramenta valiosa em econometria e aprendizado de máquina. A capacidade de capturar relações complexas e lidar com problemas de endogeneidade proporciona insights mais precisos e relevantes para a avaliação de políticas e intervenções direcionadas.
+
+\newpage
+
+\section{EMPIRICAL EXAMPLES}
+
+Para ilustrar os métodos desenvolvidos nas seções anteriores, consideramos três exemplos empíricos. O primeiro exemplo reexamina o experimento do Bônus de Reemprego da Pensilvânia, que utilizou um ensaio controlado randomizado para investigar o efeito de incentivo do seguro-desemprego. No segundo, usamos o método DML para estimar o efeito da elegibilidade para 401(k), a variável de tratamento, e da participação no 401(k), uma decisão auto-selecionada para receber o tratamento que instrumentamos com a atribuição ao estado de tratamento, sobre os ativos acumulados. Neste exemplo, a variável de tratamento não é atribuída aleatoriamente e buscamos eliminar os potenciais vieses devido à falta de atribuição aleatória controlando de forma flexível um conjunto rico de variáveis. No terceiro, revisitamos a estimação IV de Acemoglu et al. (2001) dos efeitos das instituições no crescimento econômico, estimando um modelo IV parcialmente linear.
+
+\subsection{Effect of unemployment insurance bonus on unemployment duration}
+
+Nesta seção, reexaminamos o experimento do Bônus de Reemprego da Pensilvânia, que utilizou um ensaio controlado randomizado para investigar o efeito de incentivo do seguro-desemprego na duração do desemprego.
+
+\subsection*{Contexto e Motivação}
+
+O experimento do Bônus de Reemprego da Pensilvânia foi realizado para avaliar se um bônus em dinheiro oferecido aos beneficiários de seguro-desemprego que encontrassem um emprego dentro de um determinado período reduziria a duração do desemprego. Os participantes foram aleatoriamente designados para grupos de tratamento e controle, permitindo uma avaliação causal clara do efeito do bônus.
+
+\subsection*{Descrição do Experimento}
+
+Os participantes do experimento foram desempregados que estavam recebendo benefícios de seguro-desemprego. Eles foram divididos aleatoriamente em dois grupos:
+- Grupo de Tratamento: Recebeu uma oferta de bônus em dinheiro se encontrasse emprego dentro de um período especificado.
+- Grupo de Controle: Não recebeu a oferta de bônus.
+
+A variável de interesse é a duração do desemprego, medida em semanas desde o início do recebimento do seguro-desemprego até a obtenção de um novo emprego.
+
+\subsection*{Metodologia}
+
+Utilizamos o método de aprendizado de máquina duplo (DML) para estimar o efeito do bônus de reemprego na duração do desemprego. Este método permite controlar de forma flexível um conjunto rico de variáveis de controle, reduzindo vieses potenciais e melhorando a precisão das estimativas. Os passos específicos são:
+
+1. **Divisão de Amostras**: Dividimos a amostra original em múltiplos folds para aplicar a técnica de cross-fitting.
+2. **Estimativa das Funções de Controle**: Para cada fold, estimamos a função de controle que prediz a duração do desemprego com base nas características dos indivíduos.
+3. **Construção dos Escores Ortogonais**: Usamos as estimativas das funções de controle para construir escores ortogonais, que são utilizados para estimar o efeito causal do bônus.
+4. **Estimativa do Efeito Causal**: Resolvemos as equações de estimação para obter a estimativa do efeito do bônus de reemprego na duração do desemprego.
+
+\subsection*{Resultados}
+
+Os resultados mostram que o bônus de reemprego teve um efeito significativo na redução da duração do desemprego. Especificamente, os indivíduos no grupo de tratamento encontraram empregos mais rapidamente do que aqueles no grupo de controle. Este efeito é robusto a várias especificações do modelo e ao controle de diversas variáveis de fundo, sugerindo que o bônus atua como um incentivo eficaz para acelerar o retorno ao trabalho.
+
+\subsection*{Conclusão}
+
+O experimento do Bônus de Reemprego da Pensilvânia fornece evidências claras de que incentivos financeiros podem reduzir a duração do desemprego. A utilização do método DML permite uma estimação robusta e eficiente do efeito causal, controlando de forma flexível para variáveis de controle. Estes achados têm implicações importantes para a formulação de políticas de seguro-desemprego e programas de incentivo ao reemprego.
+
+\subsection{Effect of 401(k) eligibility and participation on net ﬁnancial assets}
+
+Nesta seção, investigamos o efeito da elegibilidade para planos 401(k) e da participação nesses planos sobre os ativos financeiros líquidos acumulados. Utilizamos o método de aprendizado de máquina duplo (DML) para abordar a complexidade deste problema, considerando a auto-seleção dos participantes e a não aleatoriedade na atribuição do tratamento.
+
+\subsection*{Contexto e Motivação}
+
+Os planos 401(k) são uma forma popular de poupança para a aposentadoria nos Estados Unidos, permitindo que os trabalhadores contribuam com parte de seus salários para contas de aposentadoria com vantagens fiscais. A elegibilidade para um plano 401(k) é frequentemente determinada pelo empregador e pode depender de vários fatores, incluindo o tipo de emprego e a duração do emprego. A participação, por outro lado, é uma decisão auto-selecionada pelos indivíduos elegíveis. Este estudo busca quantificar o efeito causal da elegibilidade e da participação no 401(k) sobre os ativos financeiros líquidos acumulados pelos indivíduos.
+
+\subsection*{Descrição do Estudo}
+
+O estudo utiliza dados de um grande conjunto de indivíduos, incluindo informações detalhadas sobre elegibilidade e participação em planos 401(k), bem como características demográficas e socioeconômicas. As principais variáveis de interesse são:
+- **Elegibilidade para 401(k)**: Indicador de se o indivíduo é elegível para participar de um plano 401(k).
+- **Participação no 401(k)**: Indicador de se o indivíduo participa de um plano 401(k).
+- **Ativos Financeiros Líquidos**: Valor dos ativos financeiros líquidos acumulados pelo indivíduo.
+
+\subsection*{Metodologia}
+
+Utilizamos o método DML para estimar os efeitos da elegibilidade e da participação no 401(k) sobre os ativos financeiros líquidos. Este método é particularmente adequado para lidar com a endogeneidade e a auto-seleção, além de permitir o controle flexível de um grande número de covariáveis. Os passos específicos são:
+
+1. **Divisão de Amostras**: Dividimos a amostra original em múltiplos folds para aplicar a técnica de cross-fitting.
+2. **Estimativa das Funções de Propensão e Resultado**: Para cada fold, estimamos a função de propensão para a elegibilidade e participação no 401(k) e a função de resultado para os ativos financeiros líquidos, utilizando os dados fora do fold.
+3. **Construção dos Escores Ortogonais**: Usamos as estimativas das funções de propensão e resultado para construir escores ortogonais, que são utilizados para estimar os efeitos causais.
+4. **Estimativa dos Efeitos Causais**: Resolvemos as equações de estimação para obter as estimativas dos efeitos da elegibilidade e participação no 401(k) sobre os ativos financeiros líquidos.
+
+\subsection*{Resultados}
+
+Os resultados indicam que a elegibilidade para um plano 401(k) tem um efeito positivo e significativo sobre os ativos financeiros líquidos. Especificamente, indivíduos elegíveis para um 401(k) tendem a acumular mais ativos financeiros líquidos em comparação com aqueles que não são elegíveis. Além disso, a participação no 401(k) também apresenta um efeito positivo significativo, sugerindo que a decisão de participar do plano aumenta ainda mais os ativos acumulados.
+
+\subsection*{Discussão}
+
+A análise mostra que tanto a elegibilidade quanto a participação em planos 401(k) desempenham papéis importantes na acumulação de ativos financeiros líquidos. A elegibilidade pode ser vista como uma condição facilitadora, enquanto a participação efetiva representa um passo adicional que os indivíduos tomam para melhorar sua segurança financeira de longo prazo. Esses resultados têm importantes implicações para políticas públicas e estratégias de empregadores para incentivar a poupança para a aposentadoria.
+
+\subsection*{Conclusão}
+
+O estudo fornece evidências robustas de que a elegibilidade e a participação em planos 401(k) têm efeitos positivos significativos sobre os ativos financeiros líquidos acumulados. A aplicação do método DML permite uma estimação precisa e controlada desses efeitos, considerando a auto-seleção e a não aleatoriedade na atribuição do tratamento. As descobertas sugerem que políticas que aumentem a elegibilidade e incentivem a participação em planos 401(k) podem ser eficazes para melhorar a segurança financeira dos trabalhadores.
+
+\subsection{Effect of institutions on economic growth}
+
+\subsection{Comments on empirical results}
+
+Nesta seção, discutimos os principais insights e implicações dos resultados empíricos obtidos nas análises dos exemplos anteriores. Analisamos a robustez dos resultados, suas limitações e as possíveis direções para futuras pesquisas.
+
+\subsection*{Robustez dos Resultados}
+
+Os resultados dos três exemplos empíricos - o experimento do Bônus de Reemprego da Pensilvânia, o efeito da elegibilidade e participação no 401(k) sobre os ativos financeiros líquidos, e o impacto das instituições no crescimento econômico - demonstram a eficácia dos métodos de aprendizado de máquina duplo (DML) em fornecer estimativas robustas e precisas. A utilização de técnicas de cross-fitting e escores ortogonais de Neyman permitiu controlar de forma flexível um conjunto rico de variáveis de controle, reduzindo o viés de regularização e melhorando a precisão das inferências.
+
+1. **Bônus de Reemprego da Pensilvânia**: A análise mostrou que o bônus de reemprego teve um efeito significativo na redução da duração do desemprego. A randomização do tratamento garantiu a validade causal dos resultados, enquanto o uso de DML aumentou a precisão das estimativas ao controlar para várias características dos indivíduos.
+
+2. **Elegibilidade e Participação no 401(k)**: A elegibilidade para planos 401(k) e a participação efetiva mostraram ter efeitos positivos significativos sobre os ativos financeiros líquidos acumulados. A abordagem DML ajudou a lidar com a auto-seleção e a não aleatoriedade na atribuição do tratamento, proporcionando estimativas confiáveis dos efeitos causais.
+
+3. **Instituições e Crescimento Econômico**: A análise das instituições revelou que a qualidade institucional tem um efeito positivo significativo no crescimento do PIB per capita. A utilização da mortalidade dos colonizadores como variável instrumental foi crucial para abordar a endogeneidade, e o método DML permitiu uma análise robusta controlando para diversas variáveis de fundo.
+
+\subsection*{Limitações dos Estudos}
+
+Embora os resultados sejam robustos, existem algumas limitações que devem ser consideradas:
+
+1. **Validade Externa**: Os resultados dos estudos podem não ser generalizáveis para outras populações ou contextos. Por exemplo, o experimento do Bônus de Reemprego da Pensilvânia foi realizado em um contexto específico e pode não ser aplicável a outras regiões ou países.
+
+2. **Dados Observacionais**: Nos exemplos do 401(k) e das instituições, os dados são observacionais, o que pode introduzir vieses não controlados, apesar do uso de variáveis instrumentais e técnicas avançadas de controle.
+
+3. **Complexidade Computacional**: A implementação do método DML, especialmente com cross-fitting, é computacionalmente intensiva, o que pode ser uma limitação prática em estudos com grandes conjuntos de dados.
+
+\subsection*{Direções para Pesquisas Futuras}
+
+Os estudos empíricos apresentados abrem várias direções para futuras pesquisas:
+
+1. **Exploração de Novos Contextos**: Aplicar os métodos desenvolvidos a novos contextos e populações para verificar a robustez e a generalização dos resultados.
+
+2. **Desenvolvimento de Métodos**: Aperfeiçoar os métodos de DML para torná-los mais eficientes computacionalmente e explorar novas técnicas de aprendizado de máquina que possam melhorar ainda mais a precisão das estimativas.
+
+3. **Análise de Longo Prazo**: Investigar os efeitos de longo prazo das intervenções analisadas, como o impacto duradouro do bônus de reemprego na estabilidade do emprego e o efeito da participação no 401(k) na segurança financeira na aposentadoria.
+
+4. **Interações entre Políticas**: Estudar as interações entre diferentes políticas e como elas podem ser combinadas para maximizar os resultados desejados, como a interação entre políticas de incentivo ao reemprego e programas de poupança para aposentadoria.
+
+\subsection*{Conclusão}
+
+Os resultados empíricos demonstram a utilidade e a robustez dos métodos de aprendizado de máquina duplo (DML) em diversas aplicações econômicas. A capacidade de controlar de forma flexível para múltiplas variáveis e de lidar com endogeneidade e auto-seleção proporciona estimativas confiáveis e insights valiosos para a formulação de políticas. No entanto, é importante reconhecer as limitações dos estudos e continuar a desenvolver e aplicar esses métodos em novos contextos para melhorar nossa compreensão dos efeitos econômicos das políticas analisadas.
+
+
+\end{document}
