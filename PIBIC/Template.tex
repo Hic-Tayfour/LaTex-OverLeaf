@@ -1,95 +1,129 @@
-\documentclass[a4paper,12pt]{report}
-\usepackage{graphicx}
-\usepackage{indentfirst}
-\usepackage{setspace}
-\usepackage{titlesec}
-\usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
-\usepackage{tocloft}
-\usepackage{amsmath}
-\usepackage{hyperref}
+% !TEX TS-program = xelatex
+\documentclass[a4paper,12pt]{article}
+\usepackage[alf]{abntex2cite} % Estilo de citação ABNT
+\bibliographystyle{abntex2-alf}
+\usepackage{siunitx} % Para unidades do SI
+\usepackage{booktabs} % Melhor qualidade das tabelas
+\usepackage{tabularx} % Tabelas com larguras ajustáveis
+\usepackage{graphicx} % Inclusão de imagens
+\usepackage{ragged2e} % Justificação de texto
+\usepackage{setspace} % Controle de espaçamento entre linhas
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Margens do documento
+\usepackage{lipsum} % Texto dummy 'Lorem Ipsum'
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage[portuguese]{babel} % Adaptação para o português
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\usepackage{fontspec} % Usar fontes TrueType e OpenType
+\setmainfont{Arial} % Define a fonte principal como Arial
 
-% Configurações de formatação
-\setlength{\parindent}{1.25cm}
-\setlength{\parskip}{0cm}
-\renewcommand{\cftsecfont}{\normalfont}
-\renewcommand{\cftsecpagefont}{\normalfont}
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+\onehalfspacing
+\setlength{\headheight}{14.49998pt}
 
-% Definindo título dos capítulos e seções
-\titleformat{\chapter}[hang]{\normalfont\bfseries\LARGE}{\thechapter}{2pc}{}
-\titleformat{\section}[hang]{\normalfont\bfseries\Large}{\thesection}{1pc}{}
-\titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize}{\thesubsection}{1pc}{}
-
-% Início do documento
 \begin{document}
 
 % Capa
 \begin{titlepage}
-    \centering
-    \vspace*{5cm}
-    {\bfseries\Large Nome da Instituição}\\[0.2cm]
-    {\bfseries\Large Nome da Faculdade}\\[4cm]
-    {\bfseries\Large Nome do Aluno}\\[6cm]
-    {\bfseries\Large Título do Trabalho}\\[0.5cm]
-    {\bfseries\large Subtítulo (se houver)}\\[6cm]
-    {\bfseries\Large Cidade}\\[0.5cm]
-    {\bfseries\Large Ano}
+    \begin{center}
+        \vspace*{2cm}
+        
+        \Large{\textbf{Insper}}\\
+        \Large{\textbf{Economia}}\\
+        \Large{\textbf{Relatório Final de Iniciação Científica}}
+        
+        \vfill
+        
+        \large{Hicham Munir Tayfour}\\
+        \large{Orientador: Prof. Dr. Paulo Cilas Marques Filho}
+        
+        \vfill
+        
+        \Large{\textbf{Título: subtítulo}}
+        
+        \vfill
+        
+        \large{São Paulo}\\
+        \large{Ano}
+        
+    \end{center}
 \end{titlepage}
-
-% Folha de Rosto
-\begin{titlepage}
-    \centering
-    \vspace*{5cm}
-    {\bfseries\Large Nome do Aluno}\\[5cm]
-    {\bfseries\Large Título do Trabalho}\\[0.5cm]
-    {\bfseries\large Subtítulo (se houver)}\\[4cm]
-    \hspace{7cm}
-    \begin{minipage}{0.5\textwidth}
-        \begin{flushright}
-            Trabalho de conclusão de curso apresentado ao curso de Graduação em Nome do Curso da Nome da Instituição, como requisito parcial para a obtenção do título de Bacharel em Nome do Curso.\\[2cm]
-            Orientador: Prof. Nome do Orientador
-        \end{flushright}
-    \end{minipage}\\[4cm]
-    {\bfseries\Large Cidade}\\[0.5cm]
-    {\bfseries\Large Ano}
-\end{titlepage}
-
-% Agradecimentos
-\chapter*{Agradecimentos}
-\begin{flushright}
-    \vspace*{5cm}
-    \textit{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.}
-\end{flushright}
 
 % Resumo
-\chapter*{Resumo}
-\addcontentsline{toc}{chapter}{Resumo}
-Apresentação concisa das principais partes do trabalho fornecendo uma visão rápida e clara do conteúdo do trabalho: tema, objetivo, metodologia e conclusão. Em parágrafo único, texto com alinhamento justificado e sem tabulação. Recomenda-se extensão de 150 a 500 palavras.
-
-Palavras-chave: termo1; termo2; termo3; termo4; termo5.
+\begin{abstract}
+    Apresentação concisa das principais partes do trabalho fornecendo uma visão rápida e clara do conteúdo do trabalho: tema, objetivo, metodologia e conclusão. Em parágrafo único de 150 a 500 palavras.
+    
+    \textbf{Palavras-chave:} Termo1. Termo2. Termo3. Termo4. Termo5.
+\end{abstract}
+\newpage
 
 % Abstract
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
-Versão em inglês do resumo: apresentação concisa das principais partes do trabalho fornecendo uma visão rápida e clara do conteúdo do trabalho: tema, objetivo, metodologia e conclusão. Em parágrafo único, texto com alinhamento justificado e sem tabulação. Recomenda-se extensão de 150 a 500 palavras.
-
-Keywords: keyword1; keyword2; keyword3; keyword4; keyword5.
+\begin{center}
+    \textbf{Abstract}
+\end{center}
+    Tradução em inglês do resumo.
+    
+    \textbf{Keywords:} Termo1. Termo2. Termo3. Termo4. Termo5.
+\newpage
 
 % Sumário
 \tableofcontents
+\thispagestyle{empty} % Remove a numeração da página do sumário
+\newpage
+\setcounter{page}{1} % Inicia a numeração a partir desta página
+\justify
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\newpage
 
 % Introdução
-\chapter{Introdução}
+\section{Título do Capítulo}
+Substituir com texto e desenvolvimento do trabalho.
 
 % Desenvolvimento
-\chapter{Desenvolvimento}
+\section{Título do Capítulo}
+Substituir com texto e desenvolvimento do trabalho.
 
-% Conclusão
-\chapter{Conclusão}
+\subsection{Título do Subcapítulo}
+Substituir com texto e desenvolvimento do trabalho.
+
+% Considerações Finais
+\section{Considerações Finais}
+Substituir com texto e desenvolvimento do trabalho.
+\newpage
 
 % Referências
 \begin{thebibliography}{99}
-    \addcontentsline{toc}{chapter}{Referências}
-    \bibitem{referencia1} SOBRENOME, Nome. Título do livro. Edição. Local de publicação: Editora, Ano de publicação.
+    \bibitem{exemplo1} SOBRENOME, Nome. \textit{Título em negrito: subtítulo se houver}. Número da edição. Local: Editora, ano de publicação. Número de páginas.
+    \bibitem{exemplo2} SOBRENOME, Nome do autor do artigo. Título do artigo. \textit{Título da Revista com Iniciais Maiúsculas em Negrito}, local, número do volume ou ano, número do fascículo, páginas inicial e final do artigo, mês abreviado. ano.
+    \bibitem{exemplo3} SOBRENOME, Nome do autor do artigo. Título do artigo. \textit{Título da Revista com Iniciais Maiúsculas em Negrito}, local, número do volume ou ano, número do fascículo (se houver), páginas inicial e final do artigo, mês abreviado. Ano. Disponível em: <URL> acesso em: dd. Mês abrev. ano.
+    \bibitem{exemplo4} AUTOR. \textit{Título em negrito}. Local (se houver), ano, página (se houver). Disponível em: <url>. Acesso em: dia mês abreviado. Ano.
+    \bibitem{exemplo5} TÍTULO DO SITE EM MAÍUSCULAS. Local, Data de Atualização. Disponível em: <url>. Acesso em: dia mês abreviado. Ano.
 \end{thebibliography}
 
 \end{document}
