@@ -1,0 +1,94 @@
+% customizacoes.tex
+
+% Pacotes essenciais
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage[utf8]{inputenc}	
+\usepackage[portuguese]{babel}
+
+% Tema e customizações
+\usetheme{CambridgeUS}
+
+% Cores personalizadas
+\definecolor{PROFMATgreen}{RGB}{0, 138, 163}
+\definecolor{UFTgreen}{RGB}{0, 137, 124}
+\definecolor{UFTblue}{RGB}{0, 84, 132}
+\definecolor{UFTgray}{RGB}{132, 134, 136}
+
+\setbeamercolor*{palette primary}{fg=black,bg=PROFMATgreen}
+\setbeamercolor*{palette secondary}{fg=white,bg=UFTblue}
+\setbeamercolor*{palette tertiary}{fg=black,bg=UFTgreen}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{titlelike}{fg=white, bg=UFTblue}
+\setbeamercolor{frametitle}{bg=UFTgray!20,fg=UFTgreen}
+
+% Configuração de rodapé com "Grupo 07"
+\setbeamertemplate{footline}{
+    \leavevmode%
+    \hbox{
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}%
+        \usebeamerfont{author in head/foot}Grupo 07
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.5ex,dp=1ex,right]{date in head/foot}%
+        \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{1.5em}
+        \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
+
+% Background em todos os slides
+\setbeamertemplate{background}{
+    \includegraphics[width=\paperwidth,height=\paperheight]{5º Período/Microeconomia IV/Apresentação Micro IV/bakcground.png}
+}
+
+% Persolnalizado a T.O.C
+\setbeamertemplate{section in toc}[sections numbered]
+\renewcommand{\thesection}{\textcolor{PROFMATgreen}{\arabic{section}}}
+\renewcommand{\thesubsection}{\textcolor{PROFMATgreen}{\arabic{section}.\arabic{subsection}}}
+
+\setbeamersize{text margin left=0.8cm, text margin right=0.8cm}
+
+\setbeamercolor*{structure}{bg=UFTgreen,fg=black}
+
+\setbeamercolor*{palette primary}{fg=black,bg=PROFMATgreen}
+\setbeamercolor*{palette secondary}{fg=white,bg=UFTblue}
+\setbeamercolor*{palette tertiary}{fg=black,bg=UFTgreen}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=white}
+
+\setbeamercolor*{item}{fg=PROFMATgreen}
+
+\setbeamercolor{block title}{bg=UFTgreen,fg=white}
+\setbeamercolor{block body}{bg=UFTgray!10,fg=black}
+
+\setbeamercolor{titlelike}{fg=white, bg=UFTblue}
+\setbeamercolor{frametitle}{bg=UFTgray!20,fg=UFTgreen}
+
+
+
+\setbeamertemplate{background}{
+    \parbox[c][\paperheight][c]{\paperwidth}{
+        \vfill
+        \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{5º Período/Microeconomia IV/Apresentação Micro IV/bakcground.png} 
+        \vfill
+    }
+}
+
+% Remover bordas arredondadas dos blocks
+\makeatletter
+\setbeamertemplate{blocks}[default] % Isso remove o arredondamento
+\makeatother
