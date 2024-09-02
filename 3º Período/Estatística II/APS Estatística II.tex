@@ -1,0 +1,143 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+\usepackage{siunitx} % Fornece suporte para a tipografia de unidades do Sistema Internacional e formatação de números
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{graphicx} % Suporte para inclusão de imagens
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{ragged2e} % Justificação de texto melhorada
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, rigH=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+\onehalfspacing
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ADMINISTRAÇÃO/ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{ATIVIDADE PRÁTICA SUPERVISIONADA II - ESTATÍSTICA II}\\
+    \vspace{1.5cm}
+    \large Prof. Hugo Valesini Gegembauer\\
+    \vfill
+    \normalsize
+    Beatriz Emi Ueda, \href{mailto:beatrizeu@al.insper.edu.br}{beatrizeu@al.insper.edu.br}\\
+    Beatriz Fernandes da Silva, \href{mailto:beatrizfs1@al.insper.edu.br}{beatrizfs1@al.insper.edu.br}\\
+    Gabriela Abib, \href{mailto:gabrielaa6@al.insper.edu.br}{gabrielaa6@al.insper.edu.br}\\
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    Raynnara Silva de Freitas Gurgel, \href{mailto:raynnarasf@al.insper.edu.br}{raynnarasf@al.insper.edu.br}\\
+    3°A\\
+    \vfill
+    São Paulo\\
+    November/2023
+    
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % This command removes the page number from the table of contents page
+\newpage
+\setcounter{page}{1} % This command sets the page number to start from this page
+\justify
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+\section{\textbf{OBJETIVO}}
+O objetivo desta Atividade Prática Supervisionada (APS) é realizar uma análise exploratória dos dados de uma pesquisa que busca entender qual o comportamento dos consumidores perante os produtos orgânicos.  
+
+\section{\textbf{INTRODUÇÃO}}
+Para que a análise pudesse ser feita, foi necessário que a base de dados (disponibilizada no BlackBoard) passasse por alguns ajustes. Como houve um preenchimento incoerente das respostas em algumas perguntas, foi necessário que houvesse uma correção dos dados de acordo com os padrões pré-estabelecidos na proposta disponibilizada. Para isso, utilizamos a função sort(unique) para localizar uma única vez as aparições de cada tipos de resposta presente na base de dados para depois usar a função gsub do R que é responsável por substituir todas as ocorrências de um padrão por outro.  
+
+Assim, a coluna P2 se refere à pergunta: “Considero que o consumo de produtos orgânicos deveria ser incentivado na população” ficou com os parâmetros de respostas variando de 1 a 3; sendo 1 se o usuário concorda com a frase, 2 se ele é indiferente à frase e 3 se ele discorda com a frase. Para a coluna P3, foi seguido os mesmos passos realizados anteriormente, só que agora estamos interessados em saber o sexo dos respondentes, sendo 1 se o respondente for do sexo masculino, 2 se for do sexo feminino e 3 se o entrevistado prefere não informar. E por fim, a coluna P5 tinha como interesse analisar o nível de educação dos consumidores, com 1 ele possuindo ensino fundamental completo, 2 o ensino médio completo e 3 possuindo o ensino superior completo.  
+
+Desse modo, foi possível fazer o cálculo das estatísticas necessárias para fazer a análise de maneira precisa e coesa. Além disso, foram retirados valores que estavam preenchidos de maneira errônea, bem como valores muito altos comparados com os demais que interfeririam na confiabilidade da amostra. 
+
+\section{\textbf{PERFIL DA AMOSTRA}}
+Essa APS será feita com uma base de dados que foi coletada através dos formulários enviados por todas as turmas de Estatística 2, na qual busca-se entender a disposição dos consumidores a pagar por produtos orgânicos. Assim, alguns pontos são essenciais de serem abordados para entendermos a amostra. Esse subconjunto conta com 1732 respostas e todas são do tipo numérico, como a pergunta referente à idade, e se não for, é representada por uma sequência de 1 a 3 que usaremos para realizar a análise 
+
+Primeiro, é importante entender o comportamento da variável “preço” nessa amostra, que indica o quanto que as pessoas que responderam estão dispostas a pagar por um produto orgânico. Para isso, realizamos o cálculo de algumas medidas estatísticas que demostram o comportamento dessa variável de resposta. Assim, conseguimos identificar que a média da variável preços, que é o que os consumidores se mostraram disponíveis a pagar pelo produto foi de 53,11 aproximadamente, e seu desvio de 14,70. Além disso o preço máximo que os consumidores de mostraram disponíveis e oferecer foi de 170.
+
+\begin{figure}[H]
+\centering
+\caption{Tabela do Comportamento dos Preços}
+\includegraphics[width=0.5\textwidth]{Imagem.png}
+\label{fig:my_label}
+
+\footnotesize{Fonte: Elaborado pelos autores. Via RStudio}
+\end{figure}
+
+Além disso, é importante entender o perfil das pessoas que responderam ao questionário, para tanto, buscamos saber qual o sexo das pessoas que responderam à pesquisa e os resultados encontrados foi que, mais de 50\% eram do sexo feminino, com 51.1\% de representatividade, seguido do sexo masculino com 44.05\% e os que optaram por não declarar representam 1.39\% da amostra.  
+
+\begin{figure}[H]
+\centering
+\caption{Tabela do Sexo dos Respondentes}
+\includegraphics[width=0.5\textwidth]{Imagem.png}
+\label{fig:my_label}
+
+\footnotesize{Fonte: Elaborado pelos autores. Via RStudio}
+\end{figure}
+
+Além do sexo, traçamos o comportamento da variável “idade” dessas pessoas. Encontramos que a idade média é de 33 anos, sua mediana é de 22 anos e seu desvio padrão é de 17.12 aproximadamente.  
+
+\begin{figure}[H]
+\centering
+\caption{Tabela das Idades dos Respondentes}
+\includegraphics[width=0.5\textwidth]{Imagem.png}
+\label{fig:my_label}
+
+\footnotesize{Fonte: Elaborado pelos autores. Via RStudio}
+\end{figure}
+
+Também, foi buscado entender o nível de escolaridade dessa amostra, a fim de entender como essa variável se comporta. Com isso, encontramos que a maioria dos respondentes possuem ensino superior completo, representando cerca de 46.13\%, seguido de ensino médio completo com 45.79\% e por último o ensino fundamental completo com 4.\62\%.
+
+\begin{figure}[H]
+\centering
+\caption{Tabela dos Nível de Escolaridade dos Respondentes}
+\includegraphics[width=0.5\textwidth]{Imagem.png}
+\label{fig:my_label}
+
+\footnotesize{Fonte: Elaborado pelos autores. Via RStudio}
+\end{figure}
+
+Com esses dados, pudemos identificar o perfil da nossa amostra. Nota-se que o preço médio que os consumidores estão dispostos a pagar pelos produtos orgânicos é de R\$53,11 aproximadamente. Além disso, fomos capazes de identificar que a idade média dos respondentes é de 33 anos, possuem ensino médio superior e sua maioria são mulheres. 
+
+\section{\textbf{ANÁLISE EXPLORATÓRIA DOS DADOS}}
+\subsection{\textbf{ANÁLISE DO PREÇO DISPOSTO A PAGAR}}
+Após essa análise inicial do perfil da amostra, iniciaremos com uma análise comparativa entre as respostas colhidas e os textos. O texto 1 refere-se as características dos produtos orgânicos e quais são os procedimentos necessários para a plantação e precauções com a produção dos vegetais e carnes de forma orgânica, além de explicitar que esses cuidados devem respeitar a sazonalidade dos vegetais e os ciclos naturais. Já o texto 2 explicita o uso de defensivos agrícolas como forma de prevenção na redução da lucratividade e perda total da lavoura, visto que a agricultura enfrenta desafios com o aumento da população sem o aumento proporcional de áreas plantadas. 
+
+Após a realização da pesquisa, a primeira pergunta questionava sobre o valor que o entrevistado estava disposto a pagar visto que a média de preço era R\$48,00. Os resultados colhidos comparando os textos está descrito na tabela e boxplot abaixo. 
+
+\end{document}
