@@ -1,0 +1,365 @@
+\documentclass[aspectratio=169, xcolor={dvipsnames}, 10pt, brazil]{beamer}
+\input{customizacoes} % Carrega as configurações do arquivo customizacoes.tex
+
+% Informações do documento
+\title[Apresentação Artigo 2B]{Apresentação do Artigo}
+\subtitle{Gender wage gaps and risky vs. secure employment: An experimental analysis}
+\author{Participantes: Arthur Di Croce Wohnrath Bettamio Guimarães, Érika Kaori Fuzisaka, Hicham Munir Tayfour, Lucas Batista Ferreira, Sarah de Araújo Nascimento Silva}
+\institute[Insper]{Instituto de Ensino e Pesquisa}
+\date{6 set. 2024}
+
+\begin{document}
+
+% Slide de título (Capa)
+\begin{frame}
+    \vfill % Espaço flexível para centralização vertical
+    \centering
+    % Caixa do título e subtítulo centralizada
+    \vspace*{1.5cm}
+    \begin{beamercolorbox}[sep=12pt,center,shadow=true,rounded=false]{title}
+        \usebeamerfont{title}\inserttitle\par%
+        \ifx\insertsubtitle\@empty%
+        \else%
+            \vskip1em % Espaçamento entre título e subtítulo
+            {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+        \fi%
+    \end{beamercolorbox}%
+    \vskip3em % Espaço entre o subtítulo e as informações adicionais
+
+    \begin{minipage}{0.45\linewidth}
+        \raggedright
+        \scriptsize % Reduz o tamanho da fonte para os nomes dos participantes
+        \textbf{Alunos:}\\
+        Arthur Di Croce Wohnrath \\
+        Erik Hund Bettamio Guimarães\\
+        Érika Kaori Fuzisaka\\
+        Hicham Munir Tayfour\\
+        Lucas Batista Ferreira\\
+        Sarah de Araújo Nascimento Silva
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\linewidth}
+        \raggedleft
+        \scriptsize % Reduz o tamanho da fonte para os nomes dos professores
+        \textbf{Professores:}\\
+        Prof. Adriano Dutra Teixeira\\
+        Prof. Luiz Felipe Campos Fontes\\
+        Prof. Auxiliar. Pedro Picchetti
+    \end{minipage}
+    
+    \vskip2em % Espaço entre as colunas e as informações de local e data
+
+    \begin{center}
+        \scriptsize
+        \insertinstitute\\[0.5em]
+        \insertdate
+    \end{center}
+    \vfill % Espaço flexível para centralização vertical
+\end{frame}
+
+% Slide de Sumário
+\begin{frame}[t]
+    \frametitle{Sumário}
+    \scriptsize
+    \tableofcontents
+\end{frame}
+
+% Slide de Motivação 1
+\section{Motivação}
+\begin{frame}{Motivação}
+    \begin{itemize}
+        \item \textbf{Desigualdade de gênero} no mercado de trabalho é um problema persistente.
+        \item \textbf{Diferenças nas preferências por risco} podem explicar parte significativa dessa desigualdade.
+        \item Estudos mostram que \textbf{mulheres tendem a evitar empregos arriscados}, optando por segurança em detrimento de potencial salarial.
+    \end{itemize}
+\end{frame}
+
+% Slide de Motivação 2
+\begin{frame}{Pergunta Central}
+    \textbf{Pergunta Central}: Será que a escolha por segurança pode ser um dos principais motores da disparidade salarial de gênero?
+
+    \vspace{0.5cm}
+
+    Este estudo visa investigar a relação entre as preferências por risco e as escolhas ocupacionais, especialmente como essa relação pode influenciar as disparidades salariais de gênero.
+
+    \vspace{0.5cm}
+
+    O experimento é desenhado para isolar o impacto das preferências por risco nas decisões de emprego, proporcionando uma análise mais clara sobre a origem das diferenças salariais entre homens e mulheres.
+\end{frame}
+
+% Slide de Revisão da Literatura - Teórica
+\section{Revisão da Literatura}
+\begin{frame}{Revisão da Literatura: Teórica}
+    \begin{block}{Teoria dos Diferenciais Compensatórios}
+        A literatura econômica, desde Adam Smith, reconhece que salários podem ser determinados por características dos empregos, como o risco. A teoria dos diferenciais compensatórios sugere que trabalhadores avessos ao risco preferem empregos mais seguros, sendo compensados com salários mais baixos.
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{block}{Desigualdade de Gênero e Risco}
+        A teoria sugere que diferenças de gênero nas atitudes em relação ao risco podem influenciar a escolha ocupacional, resultando em disparidades salariais, onde as mulheres, mais avessas ao risco, acabam em empregos mais seguros e com menor remuneração.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Base Conceitual}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \begin{block}{Base Conceitual}
+            Essas teorias estabelecem a base para entender como as preferências individuais por risco se traduzem em diferenças salariais de gênero, apoiando a hipótese de que as mulheres optam por segurança em detrimento de um maior potencial de remuneração.
+        \end{block}
+    \end{columns}
+\end{frame}
+
+% Slide de Revisão da Literatura - Empírica
+\begin{frame}{Revisão da Literatura: Empírica}
+    \begin{block}{Estudos Recorrentes}
+        Pesquisas como as de Murphy et al. (1987) e Pfeifer (2011) demonstram que setores com maior risco de desemprego oferecem salários mais altos. Estes estudos mostram que trabalhadores mais avessos ao risco tendem a escolher empregos no setor público, enquanto aqueles mais dispostos a correr riscos optam por empregos no setor privado com prêmios de risco mais elevados.
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{block}{Diferenças de Gênero}
+        Estudos experimentais, como os de Croson e Gneezy (2009) e Niederle e Vesterlund (2007), indicam que as mulheres tendem a ser mais avessas ao risco do que os homens, o que contribui para a escolha de empregos mais seguros e, consequentemente, menores salários.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Relevância do Estudo}
+    \begin{block}{Relevância do Estudo}
+        Este estudo contribui para a literatura empírica ao isolar o efeito das preferências por risco nas disparidades salariais de gênero, utilizando um experimento controlado que elimina outros fatores de confusão presentes em dados de campo.
+    \end{block}
+\end{frame}
+
+% Slide da Teoria Microeconômica 1
+\section{Teoria Microeconômica}
+\begin{frame}{Teoria Microeconômica}
+    \begin{block}{Modelo Conceitual}
+        O modelo proposto se baseia na teoria dos diferenciais compensatórios, onde os trabalhadores escolhem entre empregos seguros e arriscados com base em suas preferências por risco.
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{itemize}
+        \item \textbf{Emprego Seguro}: Remuneração linear, sem risco de desemprego, calculada como $W_s = \gamma_s P$.
+        \item \textbf{Emprego Arriscado}: Inclui risco de desemprego, com a remuneração dada por $W_r = \gamma_r P$ e uma probabilidade de desemprego $\phi$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Prêmio de Risco}
+    \begin{block}{Prêmio de Risco}
+        O prêmio de risco é calculado para compensar o risco adicional associado ao emprego arriscado. Ele é definido como:
+        \[
+        r_{ri} - \gamma_s = \left( \frac{\phi}{1-\phi} \right)\left(\gamma_s - \frac{w_u}{\psi_i}\right)
+        \]
+        Este prêmio de risco reflete a compensação necessária para que o emprego arriscado seja tão atraente quanto o seguro.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Conexões com a Literatura}
+    \begin{block}{Conexões com a Literatura}
+        Este modelo é profundamente enraizado na literatura de diferenciais compensatórios (Murphy et al., 1987; Pfeifer, 2011) e estudos sobre aversão ao risco (Croson e Gneezy, 2009). Ele permite explorar como as preferências por risco influenciam não apenas as escolhas ocupacionais, mas também a distribuição de salários, contribuindo para as disparidades de gênero observadas no mercado de trabalho.
+    \end{block}
+\end{frame}
+
+% Slide da Hipótese Econômica
+\section{Hipótese Econômica}
+\begin{frame}{Hipótese Econômica}
+    \begin{block}{Contexto do Problema}
+        As disparidades salariais de gênero, amplamente documentadas na literatura, podem ser parcialmente explicadas pelas diferenças nas preferências por risco entre homens e mulheres. Este estudo explora como essas preferências afetam as escolhas ocupacionais e, por conseguinte, a remuneração.
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{block}{Hipótese Central}
+        \textbf{Hipótese:} As mulheres são mais propensas a escolher empregos seguros em comparação com os homens, que preferem empregos arriscados. Essa escolha resulta em uma diferença salarial de gênero, com as mulheres recebendo salários mais baixos devido à sua aversão ao risco.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Implementação da Hipótese}
+    \begin{block}{Profundidade e Implementação}
+        Esta hipótese é testável através de um experimento controlado, onde participantes escolhem entre empregos seguros e arriscados. A análise econométrica subsequente, utilizando modelos de seleção, permitirá quantificar o impacto das preferências por risco na diferença salarial observada entre gêneros, oferecendo uma base sólida para intervenções políticas que visem reduzir essas disparidades.
+    \end{block}
+\end{frame}
+
+% Slide da Base de Dados 1
+\section{Base de Dados}
+\begin{frame}{Descrição da Base de Dados}
+    \begin{block}{Principais Variáveis}
+        \begin{itemize}
+            \item \textbf{Escolha de Emprego (Binária):} Indica se o participante escolheu um emprego seguro (0) ou arriscado (1).
+            \item \textbf{Gênero (Categórica):} Identifica o gênero do participante (Homem, Mulher).
+            \item \textbf{Produtividade (Contínua):} Número de blocos de letras digitados corretamente durante o experimento.
+            \item \textbf{Aversão ao Risco (Escala Holt-Laury):} Mede a propensão ao risco com base em escolhas de loteria.
+            \item \textbf{Salário Recebido (Contínua):} Valor em euros recebido pelo participante, baseado na escolha do emprego e desempenho.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Plano e Período Amostral}
+    \begin{block}{Plano e Período Amostral}
+        \begin{itemize}
+            \item \textbf{Unidade Amostral:} Indivíduos (participantes do experimento).
+            \item \textbf{Plano Amostral:} Experimento controlado com aleatorização de tratamento.
+            \item \textbf{Período Amostral:} Conduzido em 2024 durante um semestre acadêmico.
+            \item \textbf{Tamanho Amostral:} 192 participantes (97 homens e 95 mulheres).
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Fontes das Variáveis}
+        \begin{itemize}
+            \item \textbf{Escolha de Emprego e Salário:} Dados coletados diretamente durante o experimento.
+            \item \textbf{Gênero e Produtividade:} Informações registradas na entrada do experimento e durante a realização das tarefas.
+            \item \textbf{Aversão ao Risco:} Baseada em questionário aplicado pós-experimento, utilizando o método Holt-Laury.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% Slide da Análise Descritiva
+\section{Análise Descritiva}
+\begin{frame}{Análise Descritiva}
+    \begin{block}{Resumo das Estatísticas Descritivas}
+        \begin{itemize}
+            \item \textbf{Escolha de Emprego:} 75\% dos homens escolheram o emprego arriscado, comparado a 60\% das mulheres.
+            \item \textbf{Produtividade:} Homens apresentaram uma produtividade média de 23,54 blocos digitados corretamente, enquanto as mulheres tiveram uma média de 22,89 blocos.
+            \item \textbf{Aversão ao Risco:} As mulheres apresentaram um índice médio de aversão ao risco de 6,08 na escala Holt-Laury, superior aos 6,17 dos homens.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Complexidade e Novos Elementos}
+    \begin{block}{Complexidade do Modelo}
+        A análise descritiva revela que, além das escolhas de emprego e da produtividade, a aversão ao risco desempenha um papel crucial na determinação dos salários. Homens, ao assumirem mais riscos, obtiveram salários significativamente mais altos, validando a hipótese do prêmio de risco.
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{block}{Novos Elementos}
+        Ao relacionar a produtividade com as escolhas ocupacionais, identificamos que a diferença de gênero na aversão ao risco é um fator determinante. A inclusão dessa variável no modelo adiciona profundidade à análise, sugerindo que intervenções direcionadas à educação sobre riscos podem mitigar disparidades salariais.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Implicações para o Modelo}
+    \begin{block}{Implicações para o Modelo}
+        A análise sugere que a inclusão de medidas de aversão ao risco e produtividade não apenas explica as disparidades salariais, mas também redefine o modelo de escolha ocupacional, integrando aspectos comportamentais que até então não haviam sido considerados.
+    \end{block}
+\end{frame}
+
+% Slide da Metodologia Econométrica 1
+\section{Metodologia Econométrica}
+\begin{frame}{Metodologia Econométrica}
+    \begin{block}{Modelo Econométrico Proposto}
+        Utilizamos um modelo Probit para analisar a escolha ocupacional (emprego seguro vs. emprego arriscado) em função das características dos indivíduos, como gênero, aversão ao risco, e produtividade.
+        \[
+        Y_i = \alpha + \beta_1 \text{Mulher}_i + \beta_2 \text{Idade}_i + \beta_3 \text{Aversão ao Risco}_i + \beta_4 \text{Produtividade}_i + \epsilon_i
+        \]
+        Onde \( Y_i \) é a variável dependente, representando a escolha do tipo de emprego (1 para arriscado, 0 para seguro).
+    \end{block}
+\end{frame}
+
+\begin{frame}{Complexidade Teórica e Hipóteses}
+    \begin{block}{Complexidade Teórica}
+        O modelo econométrico captura a complexidade da teoria dos diferenciais compensatórios e das preferências por risco, permitindo testar como essas variáveis influenciam a decisão ocupacional. A inclusão de variáveis como produtividade e aversão ao risco permite avaliar não apenas a escolha ocupacional, mas também os fatores subjacentes que contribuem para essa escolha.
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{block}{Hipóteses de Identificação}
+        A identificação do modelo se baseia na suposição de que a aversão ao risco é exógena em relação à escolha ocupacional. A variável de gênero serve como um indicador crucial para entender as diferenças nas preferências por risco, enquanto a produtividade é usada para ajustar as estimativas, garantindo que as diferenças salariais sejam atribuídas às escolhas ocupacionais e não a outras variáveis omitidas.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Contexto do Problema}
+    \begin{block}{Contexto do Problema}
+        Este modelo econométrico é especialmente adequado para investigar como as preferências por risco e outras características individuais influenciam as disparidades salariais de gênero. A metodologia permite isolar o efeito de cada variável, fornecendo uma análise robusta e compreensiva das escolhas ocupacionais no contexto do mercado de trabalho.
+    \end{block}
+\end{frame}
+
+% Slide de Resultados e Discussão 1
+\section{Resultados e Discussão}
+\begin{frame}{Resultados e Discussão}
+    \begin{block}{Resultados Principais}
+        \begin{itemize}
+            \item \textbf{Diferença nas Escolhas Ocupacionais}: 75\% dos homens optaram pelo emprego arriscado, enquanto apenas 60\% das mulheres fizeram essa escolha.
+            \item \textbf{Impacto no Salário}: Os homens, ao escolherem empregos arriscados, receberam em média 20\% mais do que as mulheres, que preferiram empregos seguros.
+            \item \textbf{Correlação com Aversão ao Risco}: A aversão ao risco mostrou uma correlação negativa significativa com a escolha de empregos arriscados, especialmente entre as mulheres.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Discussão dos Resultados}
+    \begin{block}{Discussão dos Resultados}
+        \begin{itemize}
+            \item \textbf{Confirmação da Hipótese}: Os resultados confirmam a hipótese de que a aversão ao risco é um fator chave na decisão ocupacional, explicando uma parte significativa da disparidade salarial de gênero.
+            \item \textbf{Implicações para Políticas Públicas}: Sugerem a necessidade de políticas que incentivem a participação feminina em empregos mais arriscados e melhor remunerados, possivelmente através de programas de educação financeira e de risco.
+        \end{itemize}
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{block}{Conclusões e Novos Elementos}
+        A análise revela que as preferências por risco não apenas afetam as escolhas ocupacionais, mas também amplificam as desigualdades salariais. Esses resultados fornecem uma base sólida para futuras pesquisas que explorem intervenções capazes de mitigar essas disparidades, incluindo a possibilidade de ajustar os prêmios de risco para reduzir o viés de gênero nas escolhas de emprego.
+    \end{block}
+\end{frame}
+
+% Slide de Testes e Verificação das Hipóteses 1
+\section{Testes e Verificação das Hipóteses}
+\begin{frame}{Testes Econométricos e Interpretação dos Resultados}
+    \begin{block}{Testes Econométricos Realizados}
+        \begin{itemize}
+            \item \textbf{Teste de Significância dos Coeficientes:} Verificou-se que os coeficientes para gênero e aversão ao risco no modelo Probit são estatisticamente significativos (p < 0,05), confirmando a relevância dessas variáveis na escolha ocupacional.
+            \item \textbf{Teste de Heterogeneidade:} Foi conduzido para verificar se a relação entre aversão ao risco e escolha ocupacional varia entre homens e mulheres. Resultados indicaram uma heterogeneidade significativa, com a aversão ao risco impactando mais fortemente as decisões das mulheres.
+            \item \textbf{Teste de Robustez:} Utilizou-se uma análise de sensibilidade para verificar a robustez dos resultados em diferentes especificações do modelo, incluindo variáveis de controle adicionais, como educação e experiência laboral.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Interpretação dos Resultados}
+    \begin{block}{Interpretação dos Resultados}
+        \begin{itemize}
+            \item \textbf{Consistência com a Teoria Econômica:} Os resultados dos testes suportam a teoria dos diferenciais compensatórios, onde a aversão ao risco influencia significativamente as escolhas ocupacionais, especialmente entre mulheres.
+            \item \textbf{Refutação da Hipótese Nula:} A hipótese nula de que gênero e aversão ao risco não afetam a escolha ocupacional foi refutada, confirmando que essas variáveis são determinantes na formação das disparidades salariais.
+        \end{itemize}
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{block}{Conclusões Derivadas dos Testes}
+        \begin{itemize}
+            \item \textbf{Implicações para Políticas Públicas:} Dado que a aversão ao risco afeta desproporcionalmente as mulheres, políticas que busquem equalizar a aversão ao risco, como educação em finanças pessoais e incentivos para assumir mais riscos, podem ser eficazes para reduzir as disparidades salariais de gênero.
+            \item \textbf{Validade do Modelo Proposto:} A robustez dos resultados confirma a adequação do modelo econométrico utilizado, reforçando sua capacidade de capturar os fatores críticos que influenciam as escolhas ocupacionais.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% Slide de Conclusões e Futuros Desdobramentos 1
+\section{Conclusões e Futuros Desdobramentos}
+\begin{frame}{Conclusões, Limitações e Futuros Desdobramentos}
+    \begin{block}{Conclusões Principais}
+        \begin{itemize}
+            \item \textbf{Confirmação da Teoria Econômica:} Os resultados confirmam a teoria dos diferenciais compensatórios, mostrando que as diferenças nas preferências por risco entre homens e mulheres explicam uma parte significativa das disparidades salariais de gênero.
+            \item \textbf{Impacto das Preferências por Risco:} Mulheres, ao evitarem empregos arriscados devido à aversão ao risco, acabam em posições com menor remuneração, o que acentua as desigualdades salariais.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Limitações e Futuros Desdobramentos}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{block}{Limitações do Estudo}
+            \begin{itemize}
+                \item \textbf{Generalização dos Resultados:} A análise é baseada em um experimento controlado, o que pode limitar a generalização dos resultados para o mercado de trabalho real.
+                \item \textbf{Complexidade da Modelagem:} O modelo econométrico utilizado simplifica alguns aspectos do comportamento humano, como a variação individual nas atitudes em relação ao risco ao longo do tempo.
+            \end{itemize}
+        \end{block}
+        
+        \column{0.5\textwidth}
+        \begin{block}{Futuros Desdobramentos}
+            \begin{itemize}
+                \item \textbf{Exploração de Outros Fatores:} Estudos futuros poderiam incluir variáveis adicionais, como ambiente social e influências culturais, que podem afetar as preferências por risco e as escolhas ocupacionais.
+                \item \textbf{Análises Longitudinais:} Implementar estudos que acompanhem os indivíduos ao longo do tempo para observar como as mudanças nas circunstâncias pessoais e econômicas influenciam as preferências por risco e as escolhas de emprego.
+            \end{itemize}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+
+\end{document}
