@@ -1,0 +1,605 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+\usepackage{siunitx} % Fornece suporte para a tipografia de unidades do Sistema Internacional e formatação de números
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{graphicx} % Suporte para inclusão de imagens
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{ragged2e} % Justificação de texto melhorada
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+\onehalfspacing
+\setlength{\headheight}{14.49998pt}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large \textbf{ECONOMIA}\\
+    \vspace{1.5cm}
+    \Large\textbf{Estudos sobre Mastering Metrics}\\
+    \textbf{PIBIC}\\
+    \vspace{1.5cm}
+    Orientador. Dr. Paulo Cilas Marques Filho\\
+    \vfill
+    \normalsize
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    5º Período - Economia\\
+    \vfill
+    Goiânia\\
+    Junho/2024
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % This command removes the page number from the table of contents page
+\newpage
+\setcounter{page}{1} % This command sets the page number to start from this page
+\justify
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+\section{Capítulo 1: Experimentos Randomizados}
+
+\subsection*{Our Path}
+
+\subsection*{Estrutura para Questões Causais}
+A atribuição aleatória experimental é apresentada como uma base essencial para explorar questões causais. Serve como um referencial para avaliar os resultados de outros métodos.
+
+\subsection*{Ilustração da Alocação Aleatória}
+A exemplificação do poder da alocação aleatória é feita através de duas avaliações dos efeitos do seguro de saúde. Essas avaliações demonstram os benefícios e a clareza proporcionados pela atribuição aleatória em experimentos.
+
+\subsection*{Apêndice do Capítulo}
+O apêndice do capítulo revisa os conceitos e métodos de inferência estatística utilizando a estrutura experimental. Ele oferece uma base sólida para entender e aplicar a inferência estatística no contexto de experimentos aleatórios.
+
+\subsection*{Pontos Principais}
+\begin{itemize}
+    \item \textbf{Atribuição Aleatória Experimental:} Fundamental para questões causais.
+    \item \textbf{Referencial:} Base para julgar outros métodos.
+    \item \textbf{Efeitos do Seguro de Saúde:} Exemplos concretos mostrando o poder da alocação aleatória.
+    \item \textbf{Inferência Estatística:} Revisão no apêndice, conectada à estrutura experimental.
+\end{itemize}
+
+
+\subsection{Em Doença e em Saúde (Seguro)}
+
+O \textit{Affordable Care Act} (ACA) é uma inovação política controversa que exige que os americanos comprem seguro de saúde, impondo uma penalidade fiscal para aqueles que não o fazem voluntariamente. A questão do papel do governo no mercado de saúde é complexa e inclui o efeito causal dos planos de saúde sobre a saúde. Embora os Estados Unidos gastem uma grande parte de seu PIB em saúde, os americanos são menos saudáveis do que outras nações desenvolvidas, com maior probabilidade de estar acima do peso e morrer mais cedo do que, por exemplo, os canadenses.
+
+Nos Estados Unidos, os idosos são cobertos pelo Medicare e alguns pobres pelo Medicaid. No entanto, muitos pobres em idade avançada e outros americanos sem seguro optam por não participar de planos de seguro fornecidos pelo empregador, recorrendo aos prontos-socorros para suas necessidades de saúde. Esses serviços, entretanto, não são ideais para tratamentos de longo prazo ou gerenciamento de condições crônicas, como diabetes e hipertensão. Portanto, o seguro de saúde exigido pelo governo pode trazer benefícios à saúde, justificando a pressão por um seguro universal subsidiado.
+
+A questão \textit{ceteris paribus} neste contexto contrasta a saúde de alguém com seguro e sem seguro, ressaltando que não podemos observar as pessoas em ambas as condições ao mesmo tempo. No poema "The Road Not Taken", Robert Frost usa a metáfora de uma encruzilhada para descrever os efeitos das escolhas pessoais, destacando que não podemos saber o resultado do caminho não percorrido.
+
+Evidências podem ser coletadas para investigar essas questões. O \textit{National Health Interview Survey} (NHIS) fornece dados detalhados sobre saúde e seguro de saúde nos EUA. Utilizando uma amostra de respondentes casados do NHIS de 2009, foi criado um índice de saúde que varia de 1 (saúde ruim) a 5 (saúde excelente). A relação causal de interesse é determinada pela cobertura de planos de saúde privados, com aqueles segurados sendo o grupo de tratamento e os não segurados o grupo de controle.
+
+A análise mostra que aqueles com plano de saúde são mais saudáveis do que aqueles sem, com diferenças significativas no índice de saúde. Essas diferenças podem indicar os benefícios de saúde proporcionados pelo seguro de saúde.
+
+
+\subsubsection*{Comparações Infrutíferas e Frutíferas}
+
+Comparações simples entre pessoas com e sem seguro podem ser enganadoras devido ao viés de seleção. Pessoas com seguro tendem a ser diferentes em muitos aspectos das que não têm, como renda, educação e hábitos de saúde. Para abordar esse problema, ensaios randomizados são usados para criar grupos comparáveis. A randomização assegura que qualquer diferença observada nos resultados entre os grupos de tratamento e controle possa ser atribuída ao efeito do tratamento.
+
+\subsubsection*{Resultados Randomizados}
+
+Os autores descrevem os resultados dos experimentos randomizados, que mostraram que pessoas com seguro de saúde tendem a utilizar mais serviços de saúde e reportar melhores condições de saúde. Por exemplo, o Experimento de Seguro de Saúde do Oregon (Oregon Health Insurance Experiment) encontrou que aqueles que ganharam acesso ao seguro de saúde tinham maior probabilidade de ir ao médico, usar medicamentos prescritos, e relatar melhor saúde física e mental.
+
+\subsection{A Trilha do Oregon}
+
+Este tópico analisa o experimento natural do Oregon Health Insurance (OHP), onde participantes foram selecionados aleatoriamente para receber seguro de saúde, permitindo uma análise robusta dos efeitos do seguro na saúde e no uso de serviços médicos.
+
+\subsubsection*{Resultados do Experimento}
+
+O experimento revelou que os segurados tinham maior probabilidade de utilizar serviços de saúde e relatar melhores indicadores de saúde. Além disso, houve uma redução significativa em dívidas médicas entre os participantes segurados. Este experimento é um exemplo clássico de como a randomização pode ser usada para estudar questões de políticas públicas de maneira rigorosa.
+
+\subsection*{Masters of 'Metrics: De Daniel a R.A. Fisher}
+
+Esta seção oferece uma visão histórica dos principais desenvolvimentos em econometria e estatística, destacando contribuições de figuras como R.A. Fisher, que desenvolveu a teoria dos experimentos randomizados.
+
+\subsubsection*{Contribuições de R.A. Fisher}
+
+R.A. Fisher foi pioneiro na aplicação de métodos estatísticos em experimentos agrícolas, desenvolvendo técnicas como o desenho experimental e a análise de variância (ANOVA). Fisher introduziu conceitos fundamentais como a randomização e o controle, que são pilares dos experimentos modernos.
+
+\subsubsection*{Importância dos Experimentos Randomizados}
+
+Os experimentos randomizados eliminam o viés de seleção, permitindo uma comparação justa entre grupos de tratamento e controle. Fisher argumentou que a randomização elimina a possibilidade de que fatores não observados confundam os resultados do experimento, garantindo assim a validade interna do estudo.
+
+\subsection*{Apêndice: Mastering Inference}
+
+\subsubsection*{Um Mundo sem Viés}
+
+Os autores explicam como os ensaios randomizados ajudam a criar um mundo sem viés, onde a causalidade pode ser inferida de maneira mais precisa, eliminando a influência de fatores confusos. A randomização assegura que quaisquer diferenças nos resultados entre os grupos podem ser atribuídas ao tratamento, não a fatores externos.
+
+\subsubsection*{Medindo a Variabilidade}
+
+A variabilidade é uma medida crucial na inferência estatística, permitindo aos pesquisadores entender a dispersão dos dados e a incerteza nas estimativas. A variância é frequentemente usada para medir essa dispersão:
+
+\begin{equation}
+    \sigma^2 = \frac{1}{N-1} \sum_{i=1}^{N} (X_i - \bar{X})^2
+\end{equation}
+
+\subsubsection*{O t-Estatístico e o Teorema Central do Limite}
+
+O t-Estatístico é usado para testar hipóteses sobre médias de populações, baseando-se no Teorema Central do Limite (TCL) que afirma que a distribuição de amostras se aproxima de uma distribuição normal conforme o tamanho da amostra aumenta. O t-Estatístico é calculado como:
+
+\begin{equation}
+    t = \frac{\bar{X} - \mu}{s / \sqrt{n}}
+\end{equation}
+
+Onde \(\bar{X}\) é a média da amostra, \(\mu\) é a média populacional hipotética, \(s\) é o desvio padrão da amostra, e \(n\) é o tamanho da amostra.
+
+\subsubsection*{Pareamento}
+
+O pareamento é uma técnica utilizada para comparar unidades tratadas e de controle que são similares em características observáveis, ajudando a isolar o efeito do tratamento. Esta técnica é especialmente útil quando a randomização não é possível. O objetivo é criar pares de unidades comparáveis, minimizando as diferenças entre elas, exceto pelo tratamento.
+
+\newpage
+
+\section{Capítulo 2: Regressão}
+
+\subsection*{Our Path}
+
+O capítulo descreve a importância da regressão linear como uma ferramenta para entender relações causais. Os autores enfatizam que a regressão permite controlar múltiplas variáveis ao mesmo tempo, isolando o efeito específico de uma variável de interesse. A regressão linear é um método estatístico que ajusta uma linha reta (ou plano, em múltiplas dimensões) através de um conjunto de pontos de dados, minimizando a soma dos quadrados das distâncias verticais dos pontos à linha.
+
+\subsection{Uma História de Dois Colégios}
+
+\subsubsection*{Matchmaker, Matchmaker}
+
+Este tópico explora a comparação entre dois colégios para entender o efeito causal da educação em diferentes tipos de instituições no sucesso dos estudantes. Técnicas de pareamento são usadas para criar grupos comparáveis de alunos de colégios públicos e privados. A ideia central é comparar alunos que são similares em características observáveis, mas que frequentam diferentes tipos de escolas.
+
+\subsubsection*{Public-Private Face-Off}
+
+A comparação inicial entre colégios públicos e privados revela diferenças significativas em termos de desempenho dos estudantes, taxas de aceitação e outros fatores importantes.
+
+\begin{itemize}
+    \item Taxa de aceitação
+    \item Desempenho acadêmico
+    \item Recursos disponíveis
+\end{itemize}
+
+\subsubsection*{Regressions Run}
+
+Utilizando a regressão, os autores isolam o efeito do tipo de colégio no desempenho dos alunos, controlando por variáveis como background familiar e nível socioeconômico. A regressão linear é expressa como:
+
+\begin{equation}
+    Y_i = \beta_0 + \beta_1 \text{Private}_i + \beta_2 \text{Controls}_i + \epsilon_i
+\end{equation}
+
+Onde \(Y_i\) é o resultado de interesse (por exemplo, rendimento), \(\text{Private}_i\) é uma variável indicadora de frequentar um colégio privado, \(\text{Controls}_i\) são variáveis de controle como SAT scores, renda familiar, etc., e \(\epsilon_i\) é o termo de erro.
+
+\subsection{Faça-me um Par, Execute-me uma Regressão}
+
+\subsubsection*{Public-Private Face-Off}
+
+A comparação detalhada entre colégios públicos e privados continua, agora utilizando técnicas avançadas de pareamento e regressão para garantir comparabilidade entre os grupos.
+
+\subsubsection*{Regressions Run}
+
+A regressão linear é utilizada para entender a relação entre o tipo de colégio e os resultados acadêmicos, ajustando para diversas covariáveis.
+
+\begin{equation}
+    Y_i = \alpha + \beta_1 \text{Private}_i + \gamma X_i + \epsilon_i
+\end{equation}
+
+\subsubsection*{Exemplo: Comparação entre colégios públicos e privados}
+
+Suponha que estamos interessados em estimar o efeito de frequentar um colégio privado nos rendimentos futuros dos alunos. A regressão pode ser usada para controlar fatores como a pontuação no SAT, a renda familiar e a seletividade das escolas às quais os alunos se candidataram e foram admitidos. A equação da regressão pode ser escrita como:
+
+\begin{equation}
+    \ln(\text{Earnings}_i) = \alpha + \beta \text{Private}_i + \gamma_1 \text{SAT}_i + \gamma_2 \text{Income}_i + \gamma_3 \text{Selectivity}_i + \epsilon_i
+\end{equation}
+
+Onde \(\ln(\text{Earnings}_i)\) é o logaritmo dos rendimentos, \(\text{Private}_i\) é uma variável indicadora de frequentar um colégio privado, \(\text{SAT}_i\) é a pontuação no SAT, \(\text{Income}_i\) é a renda familiar, \(\text{Selectivity}_i\) é a seletividade da escola, e \(\epsilon_i\) é o termo de erro.
+
+\subsection{Ceteris Paribus?}
+
+\subsubsection*{Regression Sensitivity Analysis}
+
+Análise de sensibilidade é realizada para testar a robustez dos resultados da regressão. Diferentes especificações do modelo são comparadas para verificar a estabilidade dos coeficientes estimados. A análise de sensibilidade ajuda a entender como as mudanças nas variáveis de controle afetam as estimativas do coeficiente de interesse.
+
+\begin{equation}
+    Y_i = \beta_0 + \beta_1 X_i + \beta_2 Z_i + \epsilon_i
+\end{equation}
+
+A inclusão de variáveis adicionais no modelo permite verificar se os coeficientes das variáveis de interesse permanecem estáveis. Se as estimativas mudarem significativamente com a inclusão de novas variáveis, isso pode indicar a presença de viés de variável omitida.
+
+\subsection*{Masters of 'Metrics: Galton e Yule}
+
+Esta seção oferece uma visão histórica das contribuições de Francis Galton e Udny Yule para a estatística e econometria.
+
+\subsubsection*{Francis Galton}
+
+Galton foi um pioneiro na aplicação de métodos estatísticos para a biologia e ciências sociais, introduzindo conceitos como correlação e regressão à média. Ele descobriu que a altura dos filhos tendia a regredir à média da altura da população, um fenômeno que chamou de "regressão à mediocridade".
+
+\subsubsection*{Udny Yule}
+
+Yule fez contribuições significativas para a teoria da regressão e a análise de séries temporais, desenvolvendo métodos que ainda são amplamente utilizados hoje. Ele introduziu o conceito de "variáveis espúrias", mostrando que duas séries temporais podem parecer correlacionadas mesmo quando não há relação causal entre elas.
+
+\subsection*{Apêndice: Teoria da Regressão}
+
+\subsubsection*{Funções de Expectativa Condicional (CEF)}
+
+A função de expectativa condicional descreve o valor esperado de \(Y\) dado \(X\). Formalmente, a CEF é definida como:
+
+\begin{equation}
+    E(Y|X) = \alpha + \beta X
+\end{equation}
+
+A CEF representa a média da variável dependente \(Y\) para cada valor da variável independente \(X\).
+
+\subsubsection*{Regressão e a CEF}
+
+A regressão linear é usada para estimar a função de expectativa condicional, fornecendo uma aproximação linear da relação entre \(Y\) e \(X\). A regressão minimiza a soma dos quadrados dos resíduos, garantindo que a linha ajustada esteja o mais próxima possível dos pontos de dados observados.
+
+\subsubsection*{Regressão Bivariada e Covariância}
+
+A relação entre duas variáveis pode ser expressa em termos de sua covariância:
+
+\begin{equation}
+    \text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)]
+\end{equation}
+
+A covariância mede o grau em que duas variáveis variam juntas. A regressão bivariada utiliza a covariância para estimar a inclinação da linha de regressão.
+
+\subsubsection*{Ajustes e Resíduos}
+
+Os ajustes (fits) da regressão são as estimativas dos valores de \(Y\) com base nos valores de \(X\), e os resíduos são as diferenças entre os valores observados e ajustados.
+
+\begin{equation}
+    \hat{Y} = \alpha + \beta X
+\end{equation}
+
+\subsubsection*{Regressão para Iniciantes}
+
+A regressão linear simples é uma ferramenta fundamental para entender relações causais, permitindo estimar o efeito de uma variável sobre outra.
+
+\subsubsection*{Anatomia da Regressão e a Fórmula de OVB}
+
+A decomposição da regressão ajuda a entender como variáveis omitidas podem introduzir viés nas estimativas de regressão (OVB: Omitted Variable Bias).
+
+\begin{equation}
+    \beta_{1} = \beta_{1}^* + \rho \frac{\sigma_{u}}{\sigma_{X}}
+\end{equation}
+
+\subsubsection*{Construção de Modelos com Logs}
+
+Modelos de regressão log-linear são úteis para transformar relações não lineares em lineares:
+
+\begin{equation}
+    \ln(Y) = \alpha + \beta \ln(X) + \epsilon
+\end{equation}
+
+A transformação logarítmica permite interpretar os coeficientes de regressão como elasticidades, ou seja, a mudança percentual em \(Y\) para uma mudança percentual em \(X\).
+
+\subsubsection*{Erros Padrão de Regressão e Intervalos de Confiança}
+
+Erros padrão fornecem uma medida da precisão das estimativas de regressão, e intervalos de confiança indicam a faixa de valores dentro da qual o parâmetro verdadeiro é esperado estar com uma certa probabilidade.
+
+\begin{equation}
+    \hat{\beta} \pm t_{\alpha/2} \cdot SE(\hat{\beta})
+\end{equation}
+
+Os erros padrão robustos permitem ajustar a heterocedasticidade, melhorando a precisão das inferências estatísticas.
+
+\newpage
+
+\section{Capítulo 3: Variáveis Instrumentais}
+
+\subsection*{Our Path}
+
+O método das variáveis instrumentais (IV) é uma técnica poderosa para estimar efeitos causais quando o controle estatístico através da regressão pode falhar. As IVs são usadas quando há correlação entre as variáveis explicativas e o termo de erro, causando viés nas estimativas. A ideia central é encontrar uma variável (o instrumento) que esteja correlacionada com a variável endógena (aquela cujo efeito estamos interessados em medir) mas não com o termo de erro.
+
+\subsection{O Enigma das Charter Schools}
+
+\subsubsection*{Playing the Lottery}
+
+O documentário "Waiting for Superman" destaca a controvérsia em torno das charter schools nos EUA. As charter schools são escolas públicas com maior autonomia em comparação com as escolas públicas tradicionais. Elas podem estruturar seus currículos e ambientes escolares de forma independente, muitas vezes resultando em jornadas escolares mais longas e anos letivos estendidos.
+
+A análise IV aproveita os sorteios de admissão dessas escolas para criar uma situação de randomização natural. Os sorteios determinam aleatoriamente quais estudantes são oferecidos vagas nas charter schools, criando grupos comparáveis de alunos que foram e não foram aceitos.
+
+\subsubsection*{LATE for Charter School}
+
+O efeito médio do tratamento local (LATE) é a métrica usada para avaliar o impacto das charter schools. No caso do estudo das KIPP schools, o LATE é calculado como a diferença nos escores de matemática entre os estudantes que ganharam e perderam a loteria, dividido pela diferença nas taxas de matrícula entre os vencedores e perdedores da loteria.
+
+\begin{equation}
+    \text{LATE} = \frac{\text{Diferença nos escores de matemática}}{\text{Diferença nas taxas de matrícula}}
+\end{equation}
+
+\subsection{Combatendo o Abuso}
+
+\subsubsection*{When LATE Is the Effect on the Treated}
+
+O uso de variáveis instrumentais para estudar intervenções em casos de violência doméstica é exemplificado pelo Minneapolis Domestic Violence Experiment. Este experimento aleatorizou a resposta policial a incidentes de violência doméstica, permitindo a análise dos efeitos das diferentes respostas.
+
+A abordagem IV permite estimar o efeito causal da intervenção, focando nos "compliers" - aqueles cuja decisão de tratar é influenciada pelo instrumento. O LATE, neste contexto, refere-se ao efeito da intervenção nos indivíduos que são tratados devido à randomização.
+
+\subsection{A Bomba Populacional}
+
+Este tópico explora o uso de IV para analisar o impacto do tamanho da família nos resultados socioeconômicos. A variação instrumental é obtida através da comparação entre famílias com gêmeos e famílias com filhos únicos.
+
+\subsubsection*{One-Stop Shopping with Two-Stage Least Squares}
+
+A técnica de dois estágios de mínimos quadrados (2SLS) é uma extensão do método IV, onde o primeiro estágio envolve a regressão da variável endógena no instrumento e covariáveis, e o segundo estágio usa os valores ajustados do primeiro estágio para estimar o efeito causal.
+
+\begin{equation}
+    \text{Primeiro Estágio:} \quad D_i = \pi_0 + \pi_1 Z_i + \pi_2 X_i + v_i
+\end{equation}
+\begin{equation}
+    \text{Segundo Estágio:} \quad Y_i = \alpha + \beta \hat{D}_i + \gamma X_i + \epsilon_i
+\end{equation}
+
+\subsection*{Masters of 'Metrics: The Remarkable Wrights}
+
+Os irmãos Wright foram pioneiros no uso de variáveis instrumentais na econometria. Eles aplicaram esses métodos para resolver problemas de endogeneidade em modelos econômicos. A abordagem deles demonstrou como as IVs podem fornecer estimativas causais confiáveis mesmo em situações onde a randomização não é possível.
+
+\subsection*{Apêndice: Teoria de IV}
+
+\subsubsection*{IV, LATE, e 2SLS}
+
+A teoria por trás das IVs envolve a decomposição da variância total em componentes atribuíveis ao instrumento e ao termo de erro. O LATE é calculado como a razão entre a forma reduzida e a primeira etapa. O 2SLS estende isso para múltiplos instrumentos e covariáveis.
+
+\begin{equation}
+    \text{LATE} = \frac{\text{Cov}(Y, Z)}{\text{Cov}(D, Z)}
+\end{equation}
+
+\subsubsection*{Erros Padrão do 2SLS}
+
+Os erros padrão para estimativas do 2SLS são ajustados para refletir a variabilidade da estimativa instrumental. A fórmula para os erros padrão do 2SLS leva em conta a variância dos resíduos do primeiro estágio.
+
+\begin{equation}
+    \text{SE}(\hat{\beta}) = \sqrt{\frac{\sigma_\eta^2}{\sum (\hat{D}_i - \bar{D})^2}}
+\end{equation}
+
+\subsubsection*{Viés do 2SLS}
+
+Embora o 2SLS seja consistente, ele pode ser tendencioso em amostras pequenas, especialmente quando os instrumentos são fracos. O viés do 2SLS diminui conforme o tamanho da amostra aumenta, mas pode ser significativo em situações onde a correlação entre o instrumento e a variável endógena é baixa.
+
+\subsubsection*{Estimadores de Wald}
+
+O estimador de Wald é um caso especial de IV que utiliza um único instrumento binário para estimar um modelo com um regressor endógeno e sem covariáveis. A fórmula do estimador de Wald é:
+
+\begin{equation}
+    \hat{\rho} = \frac{E[Y|Z=1] - E[Y|Z=0]}{E[D|Z=1] - E[D|Z=0]}
+\end{equation}
+
+\subsubsection*{Grupo de Dados e 2SLS}
+
+O estimador de Wald é a base para o 2SLS, que pode ser entendido como uma combinação linear de estimadores de Wald para diferentes pares de médias. Quando os instrumentos são agrupados, o 2SLS pode ser visto como uma aplicação do GLS (Generalized Least Squares) a um conjunto de médias de grupo.
+
+\subsubsection*{F-Estatística e Diagnósticos de IV}
+
+Para avaliar a força dos instrumentos, a F-estatística do primeiro estágio é crucial. Valores altos da F-estatística (acima de 10) indicam instrumentos fortes. Além disso, a utilização de estimativas just-identificadas e o método LIML (Limited Information Maximum Likelihood) podem fornecer diagnósticos adicionais sobre a robustez das estimativas de IV.
+
+\newpage
+
+\section{Capítulo 4: Designs de Descontinuidade em Regressão}
+
+\subsection*{Our Path}
+
+Designs de Descontinuidade em Regressão (RDD) exploram regras rígidas que determinam o tratamento para identificar efeitos causais. A ideia central é que em um mundo altamente baseado em regras, algumas dessas regras são arbitrárias e, portanto, proporcionam bons experimentos naturais. O RDD é particularmente útil quando a alocação do tratamento é baseada em uma variável contínua que possui um ponto de corte, criando uma descontinuidade no tratamento.
+
+\subsection{Birthdays and Funerals}
+
+\subsubsection*{Sharp RD}
+
+O Sharp RDD é usado quando o status do tratamento é uma função determinística e descontínua de uma covariável. Por exemplo, a idade mínima legal para consumo de álcool (MLDA) nos EUA cria uma descontinuidade nítida na legalidade de consumir álcool ao atingir 21 anos. 
+
+O gráfico 4.1 do livro mostra a relação entre aniversários e funerais, evidenciando um aumento nas mortes logo após o 21º aniversário, ilustrando o efeito causal do MLDA.
+
+Para aplicar o RDD, é crucial que a relação entre a variável de execução (running variable) e o resultado seja contínua, exceto no ponto de corte. No exemplo do MLDA, a taxa de mortalidade é uma função contínua da idade, exceto no ponto de corte de 21 anos, onde ocorre um salto na legalidade do consumo de álcool.
+
+\begin{equation}
+    Y_i = \alpha + \beta D_i + \gamma X_i + \epsilon_i
+\end{equation}
+
+Onde \(Y_i\) é a taxa de mortalidade, \(D_i\) é um indicador de se a idade \(X_i\) é maior ou igual a 21, e \(\epsilon_i\) é o termo de erro.
+
+\subsubsection*{RD Specifics}
+
+A metodologia RDD é fundamentada na ideia de que, perto do ponto de corte, as unidades de tratamento e controle são semelhantes em todos os aspectos, exceto pelo tratamento recebido. No caso do MLDA, isso significa que indivíduos logo abaixo e logo acima de 21 anos são comparáveis, exceto pela legalidade do consumo de álcool.
+
+Para validar a abordagem RDD, é importante garantir que outras variáveis não mudem de forma descontínua no ponto de corte. A especificidade do RD requer modelar possíveis não linearidades na relação entre a variável de execução e o resultado, utilizando funções polinomiais ou segmentadas para garantir que a descontinuidade observada seja devida ao tratamento e não a outros fatores.
+
+\subsection{The Elite Illusion}
+
+\subsubsection*{Fuzzy RD}
+
+O Fuzzy RDD é usado quando a probabilidade de receber o tratamento, ao invés do próprio tratamento, muda de forma descontínua na covariável. Por exemplo, a admissão em escolas de elite muitas vezes depende de um corte em uma pontuação de teste, mas nem todos os alunos que pontuam acima do corte são admitidos. Nesse caso, a pontuação de corte funciona como uma variável instrumental (IV) para a admissão.
+
+\subsubsection*{Fuzzy RD Is IV}
+
+O Fuzzy RDD pode ser analisado usando métodos de variáveis instrumentais (IV). A probabilidade de tratamento (\(P(D_i = 1 | X_i)\)) muda de forma descontínua na covariável \(X_i\), criando um instrumento natural. A análise IV estima o efeito causal local nos "compliers" - aqueles cuja probabilidade de tratamento muda devido à descontinuidade.
+
+\begin{equation}
+    E[Y_i | X_i = c] = \alpha + \tau D_i + f(X_i) + \epsilon_i
+\end{equation}
+
+Onde \(c\) é o ponto de corte, \(\tau\) é o efeito causal local, e \(f(X_i)\) é uma função suave da covariável.
+
+\subsection*{Masters of 'Metrics: Donald Campbell}
+
+Donald Campbell foi um dos pioneiros do RDD, utilizando-o pela primeira vez em 1960 para avaliar o impacto dos prêmios do National Merit Scholarship nos EUA. Campbell e Thistlethwaite usaram o RDD para explorar os efeitos de ser reconhecido como finalista do National Merit no planejamento de carreira dos estudantes, encontrando que a simples obtenção de reconhecimento público tinha pouco efeito nas escolhas de carreira dos alunos.
+
+Campbell também é conhecido por seu trabalho seminal em desenhos experimentais e quase-experimentais, que continua a influenciar a metodologia de pesquisa até hoje.
+
+\subsection*{Apêndice: Teoria de RD}
+
+\subsubsection*{Modelos Não Paramétricos e Paramétricos}
+
+Em RD, os modelos não paramétricos utilizam uma janela estreita em torno do ponto de corte para reduzir o viés causado por tendências não lineares na relação entre a variável de execução e o resultado. A largura da janela (bandwidth) deve ser escolhida de forma a equilibrar o viés e a variância das estimativas.
+
+\begin{equation}
+    \hat{\tau} = \frac{E[Y|X=c^+] - E[Y|X=c^-]}{E[D|X=c^+] - E[D|X=c^-]}
+\end{equation}
+
+A abordagem paramétrica envolve a inclusão de termos polinomiais na variável de execução para modelar a relação entre a variável de execução e o resultado de forma mais flexível.
+
+\subsubsection*{Estimativas Não Paramétricas}
+
+As estimativas não paramétricas focam em uma janela estreita ao redor do ponto de corte, minimizando o impacto de possíveis não linearidades. Esta abordagem é útil para fornecer estimativas robustas dos efeitos causais em torno do ponto de corte, onde a suposição de continuidade é mais plausível.
+
+\begin{equation}
+    \hat{\tau} = \lim_{\Delta \to 0} \left[ E[Y | X = c + \Delta] - E[Y | X = c - \Delta] \right]
+\end{equation}
+
+\subsubsection*{Escolha da Largura da Janela}
+
+A escolha da largura da janela é crítica em análises de RD. Uma janela muito larga pode introduzir viés devido a tendências não lineares, enquanto uma janela muito estreita pode resultar em estimativas imprecisas devido ao pequeno número de observações. Métodos de seleção de largura de banda baseados em critérios de otimização balanceiam essas considerações.
+
+\newpage
+\section{Capítulo 5: Diferenças-em-Diferenças}
+
+\subsection*{Our Path}
+
+O método de Diferenças-em-Diferenças (Differences-in-Differences, DD) é uma ferramenta poderosa para identificar efeitos causais em situações onde a randomização não é possível. A técnica DD compara as mudanças nos resultados ao longo do tempo entre um grupo tratado e um grupo de controle, assumindo que, na ausência de tratamento, as tendências dos dois grupos seriam paralelas. Esta abordagem é particularmente útil para avaliar políticas e intervenções ao longo do tempo  .
+
+\subsection{A Mississippi Experiment}
+
+\subsubsection*{One Mississippi, Two Mississippi}
+
+Este tópico explora o impacto das políticas monetárias no colapso bancário durante a Grande Depressão. Em novembro de 1930, a queda do império bancário Caldwell causou uma série de falências bancárias no sul dos EUA, incluindo Mississippi. Este evento é utilizado como um experimento natural para analisar como diferentes respostas políticas afetaram a sobrevivência dos bancos .
+
+\subsubsection*{Parallel Worlds}
+
+O conceito de mundos paralelos é crucial para a validade das estimativas DD. A suposição de tendências paralelas significa que, na ausência de intervenção, as trajetórias dos grupos de tratamento e controle seriam semelhantes ao longo do tempo. No experimento do Mississippi, essa suposição é testada comparando as taxas de falência bancária em dois distritos do Federal Reserve antes e depois da intervenção política .
+
+\subsubsection*{Just DDo It: A Depression Regression}
+
+A regressão DD é uma extensão da simples comparação de diferenças que permite controlar múltiplas variáveis e considerar várias unidades e períodos de tempo. A fórmula básica da regressão DD é:
+
+\begin{equation}
+    Y_{it} = \alpha + \beta \text{TREAT}_i + \gamma \text{POST}_t + \delta (\text{TREAT}_i \times \text{POST}_t) + \epsilon_{it}
+\end{equation}
+
+Onde \(Y_{it}\) é o resultado de interesse, \(\text{TREAT}_i\) é uma variável indicadora para o grupo de tratamento, \(\text{POST}_t\) é uma variável indicadora para o período pós-tratamento, e \(\delta\) é o coeficiente de interesse que captura o efeito causal .
+
+\subsubsection*{Let’s Get Real}
+
+Este segmento enfatiza a importância de realizar análises de sensibilidade e robustez para confirmar os resultados da DD. Ao utilizar diferentes especificações de modelos e conjuntos de dados, os pesquisadores podem verificar a estabilidade das estimativas e garantir que os resultados não são conduzidos por fatores específicos do modelo .
+
+\subsection{Drink, Drank, …}
+
+\subsubsection*{Patterns from Patchwork}
+
+Este tópico examina o impacto das mudanças na idade mínima legal para consumo de álcool (MLDA) nas taxas de mortalidade. Utilizando dados de diferentes estados americanos, os autores aplicam a técnica DD para comparar as mudanças nas taxas de mortalidade de jovens antes e depois das alterações na MLDA .
+
+\subsubsection*{Probing DD Assumptions}
+
+A verificação das suposições de DD é crucial para a validade dos resultados. Os autores discutem métodos para testar a suposição de tendências paralelas, incluindo gráficos de pré-tratamento e testes formais de interrupção  .
+
+\subsubsection*{What Are You Weighting For?}
+
+Este segmento aborda a importância de ponderar corretamente as observações na análise DD. A ponderação pode ajudar a corrigir problemas de heterocedasticidade e garantir que as estimativas sejam representativas da população de interesse .
+
+\subsection*{Masters of 'Metrics: John Snow}
+
+John Snow, um dos pais da epidemiologia moderna, utilizou uma abordagem semelhante à DD para identificar a fonte de um surto de cólera em Londres em 1854. Snow comparou as mudanças nas taxas de mortalidade em diferentes distritos fornecidos por duas companhias de água, uma das quais mudou para uma fonte de água mais limpa. Esta análise pioneira estabeleceu a base para a técnica DD moderna  .
+
+\subsection*{Apêndice: Erros Padrão para Regressão DD}
+
+A regressão DD com dados de painel enfrenta desafios especiais devido à correlação serial nos dados. A fórmula apropriada para erros padrão ajustados para clusters é mais complexa do que a fórmula para erros padrão robustos convencionais. Clustering permite ajustar para a correlação dentro dos clusters definidos pelo pesquisador, garantindo inferências estatísticas mais precisas  .
+
+\begin{equation}
+    SE(\hat{\delta}) = \sqrt{\frac{1}{n} \sum_{i=1}^n (\epsilon_i - \bar{\epsilon})^2}
+\end{equation}
+
+\newpage
+\section{Capítulo 6: Os Salários da Educação}
+
+\subsection*{Masters at Work}
+
+Este capítulo completa nossa exploração dos caminhos do efeito causal da educação sobre os salários. A pergunta central é se a educação realmente aumenta os rendimentos. Essa questão é fundamental tanto do ponto de vista individual quanto para políticas públicas, dado que governos em todo o mundo subsidiam a educação superior, considerando-a crucial para o sucesso econômico.
+
+\subsection{Schooling, Experience, and Earnings}
+
+A história de Bertie Gladwin, um veterano da Segunda Guerra Mundial que voltou aos estudos na terceira idade, exemplifica a relação entre educação e ganhos econômicos. Economistas chamam o efeito causal da educação nos rendimentos de "retornos da escolaridade". Jacob Mincer foi pioneiro na quantificação desses retornos usando regressão.
+
+\begin{equation}
+    \ln(Y_i) = \alpha + \rho S_i + \beta X_i + \epsilon_i
+\end{equation}
+
+Onde \(Y_i\) é o rendimento anual, \(S_i\) é a escolaridade (anos de estudo), e \(X_i\) é a experiência de trabalho. Mincer descobriu que, controlando pela experiência potencial, os rendimentos aumentam cerca de 11\% para cada ano adicional de escolaridade  .
+
+\subsubsection*{Of Singers, Fencers, and PhDs: Ability Bias}
+
+Um problema chave na estimativa dos retornos da escolaridade é o viés de habilidade. Pessoas com maior habilidade (e potencial de rendimento) tendem a buscar mais educação, o que pode inflar as estimativas de retorno escolar. Zvi Griliches tentou corrigir isso controlando o QI, mas encontrou que mesmo com esse controle, a escolaridade ainda mostrava um efeito positivo significativo nos rendimentos.
+
+\subsubsection*{The Measure of Men: Controlling Ability}
+
+Controles de habilidade são difíceis de implementar perfeitamente. Griliches usou QI como uma medida de habilidade, mas características como carisma ou perseverança, que também influenciam os rendimentos, são difíceis de medir. Além disso, erros de medição na escolaridade podem introduzir viés de atenuação, reduzindo a estimativa dos retornos da escolaridade  .
+
+\subsubsection*{Beware Bad Control}
+
+Controles inadequados podem introduzir viés nas estimativas de regressão. Por exemplo, controlar por ocupação ao estimar os retornos da escolaridade pode eliminar parte do efeito da educação nos rendimentos, já que a ocupação pode ser um resultado da escolaridade.
+
+\subsection{Twins Double the Fun}
+
+Estudos com gêmeos oferecem uma maneira de controlar o viés de habilidade, assumindo que gêmeos idênticos compartilham as mesmas habilidades inatas. Comparar os rendimentos de gêmeos com diferentes níveis de escolaridade pode fornecer uma estimativa mais precisa dos retornos da escolaridade.
+
+\subsubsection*{Twin Reports from Twinsburg}
+
+Orley Ashenfelter e Alan Krueger utilizaram dados de gêmeos idênticos para estimar os retornos da escolaridade. Eles descobriram que os retornos eram aproximadamente 12\%, mesmo quando controlavam por habilidades não observadas compartilhadas entre gêmeos  .
+
+\subsection{Econometricians Are Known by Their Instruments}
+
+\subsubsection*{It’s the Law}
+
+Leis de escolaridade compulsória servem como instrumentos naturais para a escolaridade. Estas leis forçam certos grupos a permanecer na escola por mais tempo, proporcionando uma variação exógena que pode ser usada para estimar os retornos da escolaridade .
+
+\subsubsection*{To Everything There Is a Season (of Birth)}
+
+Joshua Angrist e Alan Krueger utilizaram a estação de nascimento como um instrumento para a escolaridade, explorando como as leis de escolaridade compulsória afetam diferentes coortes. Eles encontraram que a escolaridade adicional aumentava significativamente os rendimentos, com estimativas robustas tanto no modelo OLS quanto no 2SLS  .
+
+\subsection{Rustling Sheepskin in the Lone Star State}
+
+Clark e Martorell utilizaram um design de RD para estudar os efeitos dos diplomas no Texas, onde a obtenção de um diploma de ensino médio depende de passar em um exame final. Eles descobriram que obter o diploma resultava em ganhos salariais significativos, confirmando a hipótese dos efeitos "sheepskin"  .
+
+\subsection*{Appendix: Bias from Measurement Error}
+
+Erros de medição na escolaridade podem introduzir viés de atenuação nas estimativas. Utilizar variáveis instrumentais pode corrigir esse problema, desde que os instrumentos estejam correlacionados com a variável endógena (escolaridade) e não com o erro de medição .
+
+\subsubsection*{Adding Covariates}
+
+Adicionar covariáveis pode ajudar a controlar por fatores confundidores, mas deve ser feito com cuidado para evitar introduzir viés adicional.
+
+\subsubsection*{IV Clears Our Path}
+
+As variáveis instrumentais (IV) podem eliminar o viés devido a erros de medição e variáveis omitidas, proporcionando estimativas mais precisas dos retornos da escolaridade.
+
+\begin{equation}
+    \hat{\rho}_{IV} = \frac{\text{Cov}(Y, Z)}{\text{Cov}(S, Z)}
+\end{equation}
+
+Onde \(Z\) é a variável instrumental.
+
+\end{document}
