@@ -1,0 +1,467 @@
+\documentclass{sciposter}
+\usepackage{lipsum}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{graphicx,url}
+\usepackage[portuges, brazil]{babel}   
+\usepackage[utf8]{inputenc}
+
+\newtheorem{Def}{Definição}
+
+\title{Modelo de Consulta de Econometria Avançada}
+% Título do projeto
+
+\institute 
+{Bacharelado em Economia\\
+Insper - Instituto de Ensino e Pesquisa\\
+São Paulo, Brasil}
+% Nome e endereço da Instituição
+
+\rightlogo[1]{logo-insper.png}  % Substitua pelo logo do Insper
+
+\begin{document}
+
+\conference{{\bf Econometria Avançada}, Curso de Economia - Insper, 2024, São Paulo, Brasil}
+
+\maketitle
+
+%%% Início do ambiente Multicolunas
+\begin{multicols}{3}
+
+%%% Resumo
+\begin{abstract}
+Este documento fornece um modelo de consulta para a matéria Econometria Avançada. Ele organiza os principais conceitos e tópicos relevantes para facilitar a revisão do curso.
+\end{abstract}
+
+\section{\textbf{Introdução às Séries Temporais}}
+
+\subsection{Definição de Série Temporal}
+
+Uma série temporal é definida como um conjunto de observações ordenadas ao longo do tempo, espaço, volume ou algum outro parâmetro físico. Exemplos comuns incluem o IPCA mensal, a taxa de câmbio diária (R$/US$), o PIB trimestral e o número de transações financeiras por minuto.
+
+\subsection{Notação}
+Denotamos a observação de uma variável aleatória $Y$ na data $t$ como $y_t$. Assim:
+\begin{itemize}
+    \item Para $t = 1$, temos $y_1$, que é o valor da variável $Y$ na primeira observação.
+    \item Para $t = T$, temos $y_T$, que é o valor da variável $Y$ na última observação.
+\end{itemize}
+Portanto, temos $t = 1, 2, ..., T$, onde $T$ representa o número total de observações. 
+
+Outras notações importantes incluem:
+\begin{itemize}
+    \item $y_{t-1}$: valor observado na data $t-1$ (defasagem de 1 período).
+    \item $y_{t+1}$: valor observado na data $t+1$ (um período à frente).
+\end{itemize}
+
+O intervalo entre duas observações consecutivas é considerado uma unidade de tempo, que pode variar (por exemplo, 1 dia, 1 mês, etc.).
+
+\subsection{Primeira Diferença}
+A variação absoluta entre duas observações consecutivas é denotada por:
+\[
+\Delta y_t = y_t - y_{t-1}
+\]
+Essa variação é conhecida como a primeira diferença da série. Na econometria de séries temporais, o operador $\Delta$ é chamado de operador diferença.
+
+\subsection{Exemplo: IPCA e Inflação}
+Partindo do exemplo do Índice Nacional de Preços ao Consumidor Amplo (IPCA), o valor do índice no mês $t$ é representado por $ipc_t$. A inflação mensal pode ser calculada da seguinte forma:
+\[
+\pi_t = \frac{ipc_t - ipc_{t-1}}{ipc_{t-1}} = \frac{ipc_t}{ipc_{t-1}} - 1
+\]
+Multiplicando por 100, obtemos a inflação em termos percentuais.
+
+\subsection{Uso do Logaritmo}
+Muitas séries econômicas utilizam transformações logarítmicas, pois:
+\begin{itemize}
+    \item Séries com crescimento exponencial tornam-se aproximadamente lineares em seus logaritmos.
+    \item O desvio padrão de muitas séries é proporcional ao seu nível, sendo reduzido ao usar logaritmos.
+\end{itemize}
+
+Por exemplo, podemos calcular a inflação utilizando a diferença logarítmica:
+\[
+x_t = \Delta \ln(ipc_t) = \ln(ipc_t) - \ln(ipc_{t-1}) = \ln\left(\frac{ipc_t}{ipc_{t-1}}\right)
+\]
+Este método proporciona uma aproximação de $\pi_t$ em pequenas variações.
+
+\subsection{Alguns Resultados Matemáticos}
+Para séries temporais, as seguintes fórmulas são importantes:
+\begin{itemize}
+    \item Variação absoluta: $\Delta z = z_1 - z_0$
+    \item Variação relativa: $\frac{\Delta z}{z_0}$
+    \item Variação relativa percentual: $100 \times \frac{\Delta z}{z_0} = \% \Delta z$
+    \item Aproximação logarítmica: para pequenas variações em $z$, $100 \Delta \ln(z) \approx \% \Delta z$
+\end{itemize}
+
+Assim, a inflação pode ser aproximada pela expressão:
+\[
+\pi_t \approx \Delta \ln(ipc_t)
+\]
+
+\section{\textbf{Introdução aos Processos Estocásticos}}
+
+\subsection{Definição de Processo Estocástico}
+Os modelos usados para descrever séries temporais são baseados em processos estocásticos, que são controlados por leis probabilísticas. Um processo estocástico é um mecanismo que gera observações $x_t$ ao longo do tempo $t = 1, 2, \ldots, T$. 
+
+De forma mais geral, um processo estocástico é uma família de variáveis aleatórias $\{ X_t, t \in T \}$, onde cada $X_t$ é uma variável aleatória associada a um instante de tempo $t$. O conjunto $T$ pode ser tomado como $\mathbb{Z}$ (inteiros) ou $\mathbb{R}$ (reais), dependendo do processo.
+
+\subsection{Realizações e Trajetórias}
+O processo estocástico pode gerar um conjunto infinito de trajetórias ao longo do tempo. Cada conjunto individual de observações é chamado de realização do processo.
+
+\subsection{Distribuição Conjunta}
+Como as variáveis $X_t$ são aleatórias, é de interesse obter a distribuição de probabilidades conjunta de um conjunto de variáveis $X_{t_1}, X_{t_2}, \dots, X_{t_k}$. No entanto, na prática, os econometristas só conseguem observar uma única realização do processo.
+
+Para obter a distribuição conjunta de $X_{t_1}, \dots, X_{t_k}$, restrições são impostas à heterogeneidade temporal e à memória do processo.
+
+\subsection{Restrições à Heterogeneidade Temporal}
+Assumimos que a distribuição conjunta de $X_{t_1}, X_{t_2}, \dots, X_{t_k}$ é invariante por translações temporais. Ou seja, para qualquer inteiro $\tau \geq 1$, a distribuição conjunta de $X_{t_1+\tau}, X_{t_2+\tau}, \dots, X_{t_k+\tau}$ é a mesma que a de $X_{t_1}, X_{t_2}, \dots, X_{t_k}$. Isso implica que a média e a variância do processo são invariantes no tempo.
+
+\subsection{Restrições à Memória do Processo}
+Inicialmente, pode-se admitir que o processo não tem memória, ou seja, as variáveis são não correlacionadas ou independentes. Contudo, essa suposição é geralmente muito forte e irrealista, especialmente em séries econômicas que tendem a exibir alguma dependência temporal.
+
+Uma forma de abrandar essa restrição é admitir que, para instantes de tempo suficientemente afastados, não haja correlação significativa. Isso nos permite modelar processos com memória que decai conforme o tempo.
+
+\subsection{Espaço de Estados}
+O conjunto de valores $\{ X_t, t \in T \}$ é chamado de espaço de estados $S$ do processo estocástico. Cada valor $X_t$ é denominado um estado. O espaço de estados pode ser discreto ou contínuo:
+\begin{itemize}
+    \item No caso discreto, $X_t$ pode representar uma contagem, como o número de transações de uma ação por dia.
+    \item No caso contínuo, $X_t$ pode representar uma medida que varia continuamente, como o retorno mensal de um ativo financeiro.
+\end{itemize}
+
+\subsection{Conjunto dos Índices}
+O conjunto dos índices $T$ pode ser discreto ou contínuo:
+\begin{itemize}
+    \item Se $T$ for finito ou enumerável, como $\mathbb{Z}$, temos um processo com parâmetro discreto.
+    \item Se $T$ for um intervalo de $\mathbb{R}$, o processo terá parâmetro contínuo.
+\end{itemize}
+
+\section{\textbf{Processos Estacionários e suas Características}}
+
+\subsection{Definição de Processos Estacionários}
+Na análise de séries temporais, uma suposição comum é que o processo estocástico gerador dos dados seja estacionário. De forma geral, um processo é considerado estacionário se oscila em torno de uma média constante e possui variância constante ao longo do tempo.
+
+Existem duas formas de estacionariedade:
+\begin{itemize}
+    \item \textbf{Estacionariedade forte}: todas as propriedades estatísticas da série (média, variância, covariância, etc.) são invariantes ao longo do tempo.
+    \item \textbf{Estacionariedade fraca} ou \textbf{em covariância}: apenas a média, a variância e a covariância são constantes ao longo do tempo.
+\end{itemize}
+
+\subsection{Processo Estacionário em Covariância}
+Um processo estocástico discreto $X_t$ é chamado de fracamente estacionário ou estacionário em covariância se:
+\begin{enumerate}
+    \item $\mathbb{E}(X_t) = \mu_X$, constante para todo $t$.
+    \item $\text{Var}(X_t) = \sigma_X^2 = \gamma_0$, constante para todo $t$.
+    \item $\text{Cov}(X_t, X_{t-\tau}) = \gamma_\tau$, onde $\tau$ é a defasagem, e a covariância depende apenas de $\tau$, não de $t$.
+\end{enumerate}
+
+\subsection{Função de Autocovariância (FACV)}
+A função de autocovariância $\gamma_\tau$ é dada por:
+\[
+\gamma_\tau = \text{Cov}(X_t, X_{t-\tau}) = \mathbb{E}\left[(X_t - \mu_X)(X_{t-\tau} - \mu_X)\right].
+\]
+Essa função mede a relação linear entre as observações em diferentes pontos no tempo, separadas por $\tau$ períodos.
+
+\subsection{Função de Autocorrelação (FAC)}
+A função de autocorrelação, denotada por $\rho_\tau$, é a função de autocovariância normalizada pela variância, dada por:
+\[
+\rho_\tau = \frac{\gamma_\tau}{\gamma_0}.
+\]
+Ela representa a força da correlação entre valores da série temporal defasados por $\tau$ períodos.
+
+\subsection{Correlograma}
+Após calcular as autocorrelações $\rho_\tau$, é comum representar essas correlações graficamente em um gráfico de barras, conhecido como \textit{correlograma}. Ele ajuda a identificar padrões de dependência temporal em séries temporais.
+
+\subsection{Ruído Branco}
+Um processo é chamado de ruído branco se as variáveis aleatórias $X_t$ forem não correlacionadas, isto é, $\text{Cov}(X_t, X_{t-\tau}) = 0$ para todo $\tau \neq 0$. Se as variáveis forem independente, o processo é chamado de \textit{ruído branco forte}.
+
+\subsection{Estacionariedade e Previsão}
+Se uma série temporal for estacionária, é possível estimar parâmetros como a média, a variância e a autocovariância a partir de uma única realização do processo estocástico. Isso permite a aplicação de testes de hipóteses, intervalos de confiança e previsões confiáveis.
+
+\subsection{Tendência Estocástica vs. Tendência Determinística}
+Séries temporais podem apresentar dois tipos de tendência:
+\begin{itemize}
+    \item \textbf{Tendência determinística}: é uma função não aleatória do tempo, como uma reta.
+    \item \textbf{Tendência estocástica}: é aleatória e varia ao longo do tempo.
+\end{itemize}
+Processos com tendência determinística podem ser estacionários em torno da tendência, enquanto processos com tendência estocástica são não-estacionários.
+
+\section{\textbf{Introdução aos Modelos de Decomposição}}
+
+\subsection{Componentes de uma Série Temporal}
+Uma série temporal $x_t$ é comumente formada pela junção de três componentes não observáveis:
+\begin{itemize}
+    \item $T_t$: componente de tendência no período $t$.
+    \item $S_t$: componente sazonal no período $t$.
+    \item $u_t$: componente aleatória, com $\mathbb{E}(u_t) = 0$ e $\text{Var}(u_t) = \sigma_u^2$.
+\end{itemize}
+
+Se $u_t$ for um ruído branco, então $\text{Cov}(u_t, u_{t-\tau}) = 0$ para $\tau \neq 0$. No entanto, essa suposição pode ser relaxada, e $u_t$ pode ser visto como um processo estacionário.
+
+\subsection{Modelos de Decomposição Aditivo e Multiplicativo}
+A função exata que descreve a junção dessas componentes depende do método de decomposição:
+\begin{itemize}
+    \item \textbf{Modelo Aditivo}: 
+    \[
+    x_t = T_t + S_t + u_t
+    \]
+    Este modelo é adequado quando as componentes não interagem, como quando as amplitudes sazonais não variam com a tendência.
+    \item \textbf{Modelo Multiplicativo}: 
+    \[
+    x_t = T_t \times S_t \times u_t
+    \]
+    Este modelo é apropriado quando há interação entre as componentes, como quando as amplitudes sazonais variam com a tendência. Este modelo é muitas vezes adequado para séries econômicas que apresentam crescimento exponencial.
+\end{itemize}
+
+\subsection{Uso de Logaritmos e Taxas de Crescimento}
+Séries econômicas frequentemente são analisadas após o cálculo de seus logaritmos ou das variações em seus logaritmos. Isso ocorre por dois motivos principais:
+\begin{enumerate}
+    \item Muitas séries econômicas apresentam crescimento exponencial. Neste caso, o logaritmo da série crescerá de forma aproximadamente linear.
+    \item O desvio padrão de muitas séries temporais econômicas é aproximadamente proporcional ao nível da série. O uso do logaritmo transforma o desvio padrão em aproximadamente constante.
+\end{enumerate}
+
+\subsection{Modelos sem Tendência e Sazonalidade}
+Quando as componentes de tendência e sazonalidade não estão presentes, o modelo de decomposição pode ser simplificado para:
+\[
+x_t = \mu + u_t
+\]
+onde $u_t$ é um processo estacionário.
+
+\section{\textbf{Modelos Estocásticos}}
+
+\subsection{Processo Autorregressivo de Ordem 1 (AR(1))}
+Um processo $x_t$ é dito autorregressivo de ordem 1, AR(1), quando:
+\[
+x_t = \phi_0 + \phi_1 x_{t-1} + a_t
+\]
+onde $a_t \sim \mathcal{RB}(0, \sigma_a^2)$, isto é, um processo ruído branco.
+
+\subsection{Processo de Médias Móveis de Ordem 1 (MA(1))}
+Um processo $x_t$ é dito de médias móveis de ordem 1, MA(1), quando:
+\[
+x_t = \theta_0 - \theta_1 a_{t-1} + a_t
+\]
+onde $a_t \sim \mathcal{RB}(0, \sigma_a^2)$.
+
+\subsection{Processo ARMA(1,1)}
+Um processo ARMA(1,1) combina características de processos autorregressivos e de médias móveis, sendo dado por:
+\[
+x_t = \alpha + \phi_1 x_{t-1} - \theta_1 a_{t-1} + a_t
+\]
+onde $a_t \sim \mathcal{RB}(0, \sigma_a^2)$.
+
+\section{\textbf{Especificação de Processos para Séries Temporais}}
+A especificação de um modelo para uma série temporal $x_t$ depende do estudo de:
+\begin{itemize}
+    \item FACV (Função de Autocovariância);
+    \item FAC (Função de Autocorrelação);
+    \item FACP (Função de Autocorrelação Parcial).
+\end{itemize}
+
+A partir do comportamento dessas funções, é possível determinar um modelo adequado para a série temporal de interesse.
+
+\section{\textbf{Características dos Processos Autorregressivos (AR)}}
+
+\subsection{Introdução}
+O objetivo ao estudar processos autorregressivos (AR) é ser capaz de especificar, identificar, estimar e validar esses modelos para uma série temporal. Para isso, é necessário entender conceitos como o operador defasagem, o polinômio autorregressivo, as raízes do polinômio, além de calcular e analisar a função de autocorrelação parcial (FACP).
+
+\subsection{Processo AR(p)}
+Um processo autorregressivo de ordem $p$, AR(p), é descrito pela equação:
+\[
+x_t = \phi_0 + \phi_1 x_{t-1} + \phi_2 x_{t-2} + \dots + \phi_p x_{t-p} + a_t
+\]
+onde $a_t$ é um termo de erro com distribuição de ruído branco $RB(0, \sigma_a^2)$. A análise desse processo envolve o uso do operador defasagem $L$, onde $L x_t = x_{t-1}$, facilitando a manipulação de expressões autorregressivas.
+
+\subsection{Condição de Estacionariedade}
+Um processo AR(p) é dito estacionário se todas as raízes da equação característica $\phi(L) = 0$ estiverem fora do círculo unitário, ou seja, se suas magnitudes forem maiores que 1. Para o caso de um AR(1), o processo será estacionário se $|\phi_1| < 1$.
+
+\subsection{Características do Processo AR(1)}
+Considere um processo AR(1) estacionário:
+\[
+x_t = \phi_0 + \phi_1 x_{t-1} + a_t
+\]
+Algumas de suas principais características são:
+\begin{itemize}
+    \item \textbf{Média}: $\mu_x = \frac{\phi_0}{1 - \phi_1}$.
+    \item \textbf{Variância}: $\gamma_0 = \frac{\sigma_a^2}{1 - \phi_1^2}$.
+    \item \textbf{Autocovariância}: $\gamma_\tau = \phi_1 \gamma_{\tau-1}$.
+    \item \textbf{Autocorrelação}: $\rho_\tau = \phi_1^\tau$, ou seja, a função de autocorrelação (FAC) decai exponencialmente.
+\end{itemize}
+
+\subsection{Processo AR(2)}
+Para um processo AR(2), a condição de estacionariedade depende de três desigualdades:
+\[
+\phi_1 + \phi_2 < 1, \quad \phi_2 - \phi_1 < 1, \quad -1 < \phi_2 < 1
+\]
+A função de autocovariância (FACV) é dada por:
+\[
+\gamma_\tau = \phi_1 \gamma_{\tau-1} + \phi_2 \gamma_{\tau-2}, \quad \tau > 0
+\]
+A função de autocorrelação (FAC) também decai, mas de maneira amortecida.
+
+\subsection{Função de Autocorrelação Parcial (FACP)}
+A FACP é uma ferramenta importante para distinguir entre processos AR de diferentes ordens. Ela mede a correlação entre $x_t$ e $x_{t-\tau}$, removendo os efeitos das observações intermediárias. Para um processo AR(p), a FACP trunca após a ordem $p$, ou seja, será aproximadamente zero para todas as defasagens superiores a $p$.
+
+\subsection{Especificação de Modelos AR}
+A especificação da ordem de um modelo AR pode ser feita com base no comportamento das funções de autocorrelação (FAC) e autocorrelação parcial (FACP):
+\begin{itemize}
+    \item A FAC de um AR(p) decai de forma exponencial ou amortecida.
+    \item A FACP trunca após a defasagem $p$.
+\end{itemize}
+
+\subsection{Estimação dos Parâmetros}
+A estimação dos parâmetros de um modelo AR(p) pode ser feita por métodos como mínimos quadrados ordinários (MQO) ou máxima verossimilhança. As equações de Yule-Walker também podem ser utilizadas para obter estimativas consistentes dos parâmetros.
+
+\section{\textbf{Características dos Processos de Médias Móveis (MA)}}
+
+\subsection{Processo MA(1)}
+Um processo $x_t$ é dito de médias móveis de primeira ordem, MA(1), se ele for descrito pela seguinte equação:
+\[
+x_t = \theta_0 - \theta_1 a_{t-1} + a_t
+\]
+onde $a_t \sim \mathcal{RB}(0, \sigma_a^2)$, ou seja, $a_t$ é um ruído branco. As principais características desse processo incluem:
+\begin{itemize}
+    \item \textbf{Esperança}: $\mathbb{E}(x_t) = \theta_0$, constante ao longo do tempo.
+    \item \textbf{Variância}: $\gamma_0 = \sigma_a^2(1 + \theta_1^2)$, invariante no tempo.
+    \item \textbf{Função de Autocovariância (FACV)}: $\gamma_\tau$ é dada por:
+    \[
+    \gamma_\tau =
+    \begin{cases}
+        \sigma_a^2(1 + \theta_1^2), & \text{se } \tau = 0 \\
+        -\theta_1 \sigma_a^2, & \text{se } \tau = 1 \\
+        0, & \text{se } \tau \geq 2
+    \end{cases}
+    \]
+    \item \textbf{Função de Autocorrelação (FAC)}: A FAC trunca após o lag 1, com $\rho_1 = \frac{-\theta_1}{1 + \theta_1^2}$.
+\end{itemize}
+
+\subsection{Processo MA(q)}
+Um processo $x_t$ é dito de médias móveis de ordem $q$, MA(q), se ele for descrito pela equação:
+\[
+x_t = \theta_0 - \theta_1 a_{t-1} - \dots - \theta_q a_{t-q} + a_t
+\]
+onde $a_t \sim \mathcal{RB}(0, \sigma_a^2)$. As características principais são:
+\begin{itemize}
+    \item \textbf{Esperança}: $\mathbb{E}(x_t) = \theta_0$, constante ao longo do tempo.
+    \item \textbf{Variância}: $\gamma_0 = \sigma_a^2(1 + \theta_1^2 + \dots + \theta_q^2)$.
+    \item \textbf{Função de Autocovariância (FACV)}: $\gamma_\tau$ para $\tau = 1, \dots, q$ pode ser calculada por:
+    \[
+    \gamma_\tau = \sigma_a^2 \left(-\theta_\tau + \sum_{i=1}^{q-\tau} \theta_i \theta_{i+\tau} \right)
+    \]
+    e $\gamma_\tau = 0$ para $\tau > q$.
+    \item \textbf{Função de Autocorrelação (FAC)}: A FAC trunca após o lag $q$, isto é, $\rho_\tau = 0$ para $\tau > q$.
+\end{itemize}
+
+\subsection{Invertibilidade de Processos MA}
+Um processo MA(1) é considerado invertível se $\theta_1$ estiver dentro do intervalo $(-1, 1)$. De forma mais geral, um processo MA(q) é invertível se as raízes do polinômio característico $\theta(L) = 0$ forem, em módulo, maiores que 1. Essa condição garante que o processo pode ser representado como um processo autorregressivo (AR) de ordem infinita.
+
+\subsection{Estimação dos Parâmetros}
+A estimação dos parâmetros de um modelo MA pode ser feita utilizando métodos como máxima verossimilhança. Após a identificação da ordem do modelo, os parâmetros $\theta_1, \dots, \theta_q$ podem ser estimados para ajustar o modelo à série temporal observada.
+
+\section{\textbf{Características dos Processos ARMA}}
+
+\subsection{Definição de Processos ARMA}
+Um processo misto autorregressivo e de médias móveis (ARMA) pode ser representado pela equação:
+\[
+x_t = \alpha_0 + \phi_1 x_{t-1} + \dots + \phi_p x_{t-p} - \theta_1 a_{t-1} - \dots - \theta_q a_{t-q} + a_t
+\]
+em que $a_t \sim RB(0, \sigma_a^2)$, representando um termo de erro de ruído branco. A notação usual é $x_t \sim ARMA(p, q)$, onde $p$ é a ordem do processo autorregressivo e $q$ a ordem do processo de médias móveis.
+
+\subsection{Condições de Estacionariedade e Invertibilidade}
+Para que o processo ARMA seja estacionário, as raízes do polinômio autorregressivo $\phi(L) = 0$ devem estar fora do círculo unitário, ou seja, ter módulo maior que 1. Já a invertibilidade do processo exige que as raízes do polinômio de médias móveis $\theta(L) = 0$ também estejam fora do círculo unitário.
+
+\subsection{Operadores Autorregressivo e de Médias Móveis}
+O processo ARMA pode ser representado usando o operador defasagem $L$. Para um ARMA(p, q), temos:
+\[
+(1 - \phi_1 L - \dots - \phi_p L^p) x_t = \alpha_0 + (1 - \theta_1 L - \dots - \theta_q L^q) a_t
+\]
+onde $\phi(L)$ é o operador autorregressivo e $\theta(L)$ é o operador de médias móveis.
+
+\subsection{Processo ARMA(1,1)}
+Considere o processo ARMA(1,1) dado por:
+\[
+x_t = \alpha_0 + \phi_1 x_{t-1} - \theta_1 a_{t-1} + a_t
+\]
+Neste caso, se $\phi_1 < 1$, o processo será estacionário, e se $\theta_1 < 1$, o processo será invertível. A esperança condicional do processo pode ser dada por:
+\[
+\mu_x = \frac{\alpha_0}{1 - \phi_1}
+\]
+e a variância condicional é constante:
+\[
+\gamma_0 = \frac{\sigma_a^2 (1 - 2 \phi_1 \theta_1 + \theta_1^2)}{1 - \phi_1^2}.
+\]
+
+\subsection{Função de Autocovariância (FACV) e Autocorrelação (FAC)}
+A função de autocovariância de um processo ARMA(1,1) estacionário é dada por:
+\[
+\gamma_1 = \frac{\phi_1 - \theta_1 (1 - \phi_1 \theta_1)}{1 - \phi_1^2} \sigma_a^2
+\]
+para $\tau > 1$, temos:
+\[
+\gamma_\tau = \phi_1 \gamma_{\tau-1}.
+\]
+A função de autocorrelação para $\tau = 1$ é:
+\[
+\rho_1 = \frac{\phi_1 - \theta_1}{1 - 2 \phi_1 \theta_1 + \theta_1^2},
+\]
+e para $\tau > 1$, $\rho_\tau$ decresce exponencialmente.
+
+\subsection{Especificação de Processos ARMA}
+A escolha da ordem do modelo ARMA para uma série temporal é baseada no comportamento da função de autocorrelação (FAC) e da função de autocorrelação parcial (FACP). Os padrões de correlação podem ser descritos da seguinte forma:
+\begin{itemize}
+    \item \textbf{Processo AR(p)}: FAC infinita, decaindo exponencialmente; FACP finita, truncando após $p$.
+    \item \textbf{Processo MA(q)}: FAC finita, truncando após $q$; FACP infinita, decaindo exponencialmente.
+    \item \textbf{Processo ARMA(p,q)}: Tanto a FAC quanto a FACP são infinitas e decaem exponencialmente.
+\end{itemize}
+
+\section{\textbf{Metodologia Box e Jenkins}}
+
+\subsection{Objetivo}
+A metodologia Box e Jenkins é amplamente utilizada para a construção de modelos paramétricos de séries temporais univariadas. O principal objetivo é especificar, identificar, estimar e validar modelos da classe ARMA(p,q), a fim de realizar previsões de séries temporais.
+
+\subsection{Etapas do Processo Box e Jenkins}
+A construção de um modelo ARMA(p,q) segue um ciclo iterativo, que consiste nas seguintes etapas principais:
+
+\subsubsection{Especificação}
+Nesta etapa, a função de autocorrelação (FAC) e a função de autocorrelação parcial (FACP) são usadas para propor um modelo adequado para a série temporal. A FAC nos ajuda a identificar processos de médias móveis (MA), enquanto a FACP é usada para identificar processos autorregressivos (AR).
+
+\subsubsection{Identificação}
+O objetivo da identificação é determinar os valores de $p$ e $q$ do processo ARMA(p,q). Além da análise da FAC e FACP, os Critérios de Informação, como o AIC (Akaike Information Criterion), SIC (Schwarz Information Criterion) e HQIC (Hannan-Quinn Information Criterion), podem ser usados para auxiliar na escolha dos melhores valores para $p$ e $q$.
+
+\subsubsection{Estimação}
+Depois de especificado o modelo preliminar, os parâmetros são estimados, geralmente utilizando o método da máxima verossimilhança (ML). A estimação dos parâmetros do modelo é fundamental para garantir que o modelo proposto seja adequado para a série temporal observada.
+
+\subsubsection{Diagnóstico/Validação}
+Após a estimação dos parâmetros, verifica-se se o modelo ajustado representa adequadamente a série temporal, através de uma análise dos resíduos. Espera-se que os resíduos do modelo tenham média zero, variância constante e sejam não autocorrelacionados (ruído branco).
+
+Se o modelo for adequado, os resíduos deverão se comportar como um ruído branco, o que pode ser verificado pela função de autocorrelação dos resíduos e pelo Teste Q de Ljung-Box.
+
+\subsection{Critérios de Informação}
+Os critérios de informação ajudam na escolha de modelos que melhor se ajustam aos dados, minimizando a penalização por complexidade. Os critérios mais utilizados são:
+
+\begin{itemize}
+    \item \textbf{Critério de Informação de Akaike (AIC)}: 
+    \[
+    AIC = -2 \frac{l}{T} + \frac{2k}{T}
+    \]
+    onde $l$ é a log-verossimilhança, $T$ o número de observações e $k$ o número de parâmetros estimados.
+    
+    \item \textbf{Critério de Informação de Schwarz (SIC)}: 
+    \[
+    SIC = -2 \frac{l}{T} + \frac{k \log T}{T}
+    \]
+    
+    \item \textbf{Critério de Informação de Hannan-Quinn (HQIC)}: 
+    \[
+    HQIC = -2 \frac{l}{T} + \frac{2k \log \log T}{T}
+    \]
+\end{itemize}
+
+\subsection{Diagnóstico e Análise de Resíduos}
+Para validar o modelo, é realizada uma análise dos resíduos com base na autocorrelação residual. Se o modelo estiver bem ajustado, os resíduos devem se comportar como ruído branco. Além disso, o Teste de Ljung-Box é utilizado para verificar a hipótese nula de que não há autocorrelação significativa entre os resíduos.
+
+\subsection{Normalidade dos Resíduos}
+A normalidade dos resíduos pode ser verificada por meio de testes como o Teste de Jarque-Bera, que testa se a assimetria e a curtose dos resíduos correspondem às da distribuição normal.
+
+
+\end{multicols}
+\end{document}

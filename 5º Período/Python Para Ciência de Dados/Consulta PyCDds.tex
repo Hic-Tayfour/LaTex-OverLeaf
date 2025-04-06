@@ -1,0 +1,368 @@
+\documentclass{sciposter}
+\usepackage{lipsum}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{graphicx,url}
+\usepackage[portuges, brazil]{babel}   
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+
+\newtheorem{Def}{Definição}
+
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.25,0.5,0.75}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},
+    commentstyle=\color{codegray},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codeblue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{Modelo de Consulta de Python para Ciência de Dados}
+% Título do projeto
+
+\institute 
+{Bacharelado em Economia\\
+Insper - Instituto de Ensino e Pesquisa\\
+São Paulo, Brasil}
+% Nome e endereço da Instituição
+
+\rightlogo[1]{logo-insper.png}  % Substitua pelo logo do Insper
+
+\begin{document}
+
+\conference{{\bf Python para Ciência de Dados}, Curso de Economia - Insper, 2024, São Paulo, Brasil}
+
+\maketitle
+
+%%% Início do ambiente Multicolunas
+\begin{multicols}{3}
+
+%%% Resumo
+\begin{abstract}
+Este documento fornece um modelo de consulta para a eletiva Python para Ciência de Dados. Ele organiza os principais conceitos e tópicos relevantes para facilitar a revisão do curso.
+\end{abstract}
+
+\section{Aula 01}
+
+\subsection{Tipos de Dados Fundamentais}
+
+\subsubsection{Integer}
+Os números inteiros são representados pelo tipo \texttt{int}. Útil para contagens e cálculos sem frações.
+
+\subsubsection{Float}
+Os números decimais são representados por \texttt{float}. Usado em cálculos que envolvem frações ou números contínuos.
+
+\subsubsection{String}
+Strings são sequências de caracteres e podem ser manipuladas de várias formas. Usadas para textos e concatenações.
+
+\subsubsection{Boolean}
+Valores lógicos, podendo ser \texttt{True} ou \texttt{False}, muito utilizados em condicionais e comparações.
+
+\subsection{Coerção de Tipos}
+Conversão entre tipos de dados, como de string para número ou vice-versa. É útil quando precisamos realizar operações entre diferentes tipos.
+
+\subsection{Manipulação de Strings}
+As strings podem ser manipuladas com métodos como:
+- \texttt{.upper()}: Converte a string para letras maiúsculas.
+- \texttt{.replace()}: Substitui uma substring por outra.
+- Formatação com f-strings: Permite a inserção de variáveis dentro de strings.
+
+\subsection{Função para Verificar Palíndromos}
+Uma função que verifica se uma frase ou palavra é um palíndromo (ou seja, pode ser lida da mesma forma de trás para frente, ignorando espaços e maiúsculas/minúsculas).
+
+\subsection{Listas e Tuplas}
+
+\subsubsection{Listas}
+Listas são coleções mutáveis de itens. Isso significa que podemos alterar, adicionar ou remover elementos de uma lista após sua criação.
+Funções comuns para manipular listas:
+- \texttt{.append()}: Adiciona um item ao final da lista.
+- \texttt{.remove()}: Remove um item específico.
+- \texttt{.pop()}: Remove e retorna o último item da lista.
+
+\subsubsection{Tuplas}
+Tuplas são coleções imutáveis, ou seja, após criadas, seus elementos não podem ser alterados. Útil para armazenar dados que não precisam ser modificados, como coordenadas.
+
+\subsection{Índices em Listas}
+Cada elemento em uma lista possui um índice, que começa em 0. Acessar elementos pelo índice é uma operação comum:
+- O primeiro elemento da lista pode ser acessado por \texttt{lista[0]}.
+- O último elemento pode ser acessado por \texttt{lista[-1]}.
+- Podemos também acessar fatias da lista, como \texttt{lista[1:4]}, que retorna os elementos do índice 1 até o 3 (o último índice não é incluído).
+
+\subsection{Quando Usar e Quando Evitar}
+
+\subsubsection{Integer e Float}
+Usar quando for necessário realizar cálculos numéricos. Use \texttt{int} para contagens e \texttt{float} para valores com frações. Evitar se o dado não for numérico.
+
+\subsubsection{String}
+Usar para armazenar e manipular textos. Útil para concatenações e exibição de informações textuais. Evitar se precisar realizar cálculos numéricos diretamente.
+
+\subsubsection{Boolean}
+Usar para tomadas de decisão, comparações e estruturas de controle (condicionais). Evitar para armazenar dados não binários.
+
+\subsubsection{Listas}
+Usar para armazenar coleções de dados que precisam ser manipuladas, como adicionar ou remover elementos. Evitar se os dados forem imutáveis.
+
+\subsubsection{Tuplas}
+Usar para armazenar dados que não devem ser alterados durante a execução do programa. Evitar se precisar alterar ou reorganizar os elementos.
+
+\section{Aula 02}
+
+\subsection{Objetos Básicos: Dicionários e Conjuntos}
+
+\subsubsection{Dicionários}
+Dicionários são coleções de pares \texttt{chave:valor}. São úteis para armazenar dados que precisam ser acessados por meio de uma chave, em vez de uma posição numérica.
+- Chaves podem ser usadas para buscar valores rapidamente.
+- Métodos úteis incluem:
+  - \texttt{.keys()}: Retorna as chaves do dicionário.
+  - \texttt{.values()}: Retorna os valores.
+  - \texttt{.items()}: Retorna uma lista de pares \texttt{chave:valor}.
+- Usos: Dicionários são ideais para armazenar informações como registros de dados, onde é importante referenciar o valor por uma chave descritiva.
+
+\subsubsection{Conjuntos}
+Conjuntos são coleções não ordenadas de elementos únicos. Eles são usados para realizar operações matemáticas como interseção, união e diferença de conjuntos.
+- Operações comuns:
+  - \texttt{.intersection()}: Retorna a interseção de dois conjuntos.
+  - \texttt{.union()}: Retorna a união de dois conjuntos.
+  - \texttt{.difference()}: Retorna os elementos que estão em um conjunto, mas não no outro.
+- Usos: Conjuntos são ideais para cenários onde a presença única de itens é importante, como em operações de comparação e filtragem de duplicatas.
+
+\subsection{Condicionais e Estruturas Repetitivas}
+
+\subsubsection{Condicionais}
+As estruturas condicionais em Python permitem a execução de blocos de código com base em condições específicas.
+- A instrução \texttt{if} executa um bloco de código se a condição for verdadeira.
+- A instrução \texttt{else} executa um bloco de código se a condição for falsa.
+- O Python permite verificações concisas com \texttt{if} aninhado, como \texttt{0 <= x <= 1}.
+
+\subsubsection{Estruturas Repetitivas}
+Estruturas como o \texttt{for} e \texttt{while} são usadas para repetir blocos de código.
+- O \texttt{for} é frequentemente usado para iterar sobre listas, dicionários e outras coleções.
+- O \texttt{while} continua executando enquanto uma condição for verdadeira.
+- O \texttt{continue} interrompe a iteração atual e vai para a próxima.
+- O \texttt{break} termina o loop completamente.
+
+\subsection{Funções Lambda}
+Funções lambda são funções anônimas em Python, definidas usando a palavra-chave \texttt{lambda}. Elas são úteis para operações curtas e rápidas, especialmente quando você não precisa definir uma função completa.
+- A sintaxe básica é: \texttt{lambda argumentos: expressão}.
+- Funções lambda são frequentemente usadas em conjunto com funções como \texttt{map()} e \texttt{filter()}, que aplicam a função a todos os elementos de uma lista ou conjunto.
+- Usos: Lambdas são úteis em funções de ordem superior e operações que exigem uma transformação rápida de dados sem a necessidade de uma função nomeada.
+
+\subsection{List Comprehensions}
+São uma forma concisa de criar listas em Python. Elas permitem aplicar uma operação a cada item de uma sequência e criar uma nova lista baseada no resultado.
+- Exemplo: \texttt{[x**2 for x in range(10)]} cria uma lista dos quadrados dos números de 0 a 9.
+- Usos: List comprehensions são úteis para manipulação de listas e filtragem de dados de forma concisa e eficiente.
+
+\section{Aula 03}
+
+\subsection{Sequência de Fibonacci}
+A sequência de Fibonacci é definida recursivamente com \(a_0 = a_1 = 1\) e \(a_n = a_{n-2} + a_{n-1}\) para \(n \geq 2\). À medida que \(n\) aumenta, a razão entre números consecutivos da sequência converge para o número de ouro \(\phi = \frac{1 + \sqrt{5}}{2}\).
+
+\subsection{NumPy e Matrizes}
+O **NumPy** é uma biblioteca poderosa para computação numérica em Python. Ele permite a criação e manipulação de arrays e matrizes, além de oferecer uma ampla gama de funções matemáticas e estatísticas.
+
+- **Arrays**: Estruturas de dados semelhantes a listas, porém mais eficientes para operações numéricas. Arrays podem ser multidimensionais.
+- **Operações vetorizadas**: No NumPy, operações matemáticas em arrays podem ser feitas de forma vetorizada, o que significa que operações em todos os elementos de um array são realizadas de uma vez, sem necessidade de loops.
+- **Matrizes**: Arrays bidimensionais (ou mais), úteis para representar dados tabulares ou realizar cálculos matemáticos.
+
+Exemplo de criação de uma matriz e suas operações:
+- **Criação de matriz**: \texttt{np.array([[1, 2], [3, 4]])}
+- **Soma de matrizes**: \texttt{A + B}
+- **Multiplicação de matrizes**: \texttt{np.dot(A, B)}
+
+\subsection{Classes e Objetos}
+Classes são a base da programação orientada a objetos. Uma classe define a estrutura e o comportamento dos objetos que podem ser criados a partir dela.
+- **Método de classe:** Funções associadas a uma classe que podem acessar ou modificar atributos de classe (compartilhados por todos os objetos da classe).
+- **Método de instância:** Funções que operam sobre objetos específicos da classe, usando atributos e métodos do objeto.
+- **Atributos:** Características de uma classe ou de um objeto. Atributos de classe são compartilhados por todos os objetos, enquanto atributos de instância são únicos para cada objeto.
+
+\subsection{Exceções}
+Exceções permitem capturar erros que ocorrem durante a execução do programa e tratá-los de forma apropriada, sem interromper o fluxo do código.
+- A palavra-chave \texttt{try} tenta executar um bloco de código.
+- A palavra-chave \texttt{except} captura exceções e executa um bloco de código alternativo quando um erro é detectado.
+
+\subsection{Lei dos Grandes Números}
+Essa lei estatística afirma que, à medida que o tamanho da amostra aumenta, a média das amostras se aproxima da média esperada da população.
+
+\subsection{Teorema Central do Limite}
+Esse teorema afirma que, para um número suficientemente grande de amostras independentes e identicamente distribuídas, a distribuição das médias dessas amostras tende a ser normal, independentemente da distribuição original.
+
+\section{Aula 01}
+
+\subsection{Tipos de Dados Fundamentais}
+
+\subsubsection{Integer}
+Os números inteiros são representados pelo tipo \texttt{int}. Exemplo de operação com inteiros:
+\begin{lstlisting}[language=Python]
+x = 10
+y = 3
+print(x // y)  # Divisão inteira: 3
+\end{lstlisting}
+
+\subsubsection{Float}
+Os números decimais são representados por \texttt{float}. Exemplo de cálculo com decimais:
+\begin{lstlisting}[language=Python]
+a = 3.5
+b = 2.0
+print(a * b)  # Resultado: 7.0
+\end{lstlisting}
+
+\subsubsection{String}
+Strings são sequências de caracteres. Aqui está um exemplo de manipulação de string com f-string:
+\begin{lstlisting}[language=Python]
+name = "Alice"
+age = 30
+print(f"{name} tem {age} anos.")  # Alice tem 30 anos.
+\end{lstlisting}
+
+\subsubsection{Boolean}
+Valores booleanos são usados em comparações. Exemplo de condicional simples:
+\begin{lstlisting}[language=Python]
+x = 10
+print(x > 5)  # Retorna: True
+\end{lstlisting}
+
+\subsection{Coerção de Tipos}
+A coerção de tipos converte um tipo de dado em outro. Exemplo de conversão de string para inteiro:
+\begin{lstlisting}[language=Python]
+num_str = "123"
+num = int(num_str)
+print(type(num))  # Saída: <class 'int'>
+\end{lstlisting}
+
+\subsection{Manipulação de Strings}
+As strings podem ser manipuladas de várias formas, como alterar para maiúsculas ou substituir caracteres:
+\begin{lstlisting}[language=Python]
+text = "insper"
+print(text.upper())  # INSper
+print(text.replace("i", "I"))  # Insper
+\end{lstlisting}
+
+\subsection{Listas e Tuplas}
+\subsubsection{Listas}
+Listas são coleções mutáveis. Exemplo de adição e remoção de elementos:
+\begin{lstlisting}[language=Python]
+fruits = ["apple", "banana", "cherry"]
+fruits.append("orange")  # Adiciona "orange" à lista
+print(fruits)
+fruits.remove("banana")  # Remove "banana"
+print(fruits)
+\end{lstlisting}
+
+\subsubsection{Tuplas}
+Tuplas são coleções imutáveis. Exemplo de uso de tuplas:
+\begin{lstlisting}[language=Python]
+coordinates = (10, 20)
+print(coordinates[0])  # Acessa o primeiro item da tupla
+\end{lstlisting}
+
+\section{Aula 02}
+
+\subsection{Dicionários e Conjuntos}
+\subsubsection{Dicionários}
+Dicionários armazenam pares chave-valor. Exemplo de como acessar valores em um dicionário:
+\begin{lstlisting}[language=Python]
+student = {"name": "Alice", "age": 25}
+print(student["name"])  # Saída: Alice
+\end{lstlisting}
+
+\subsubsection{Conjuntos}
+Conjuntos armazenam elementos únicos. Exemplo de operação de união entre conjuntos:
+\begin{lstlisting}[language=Python]
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+print(set_a.union(set_b))  # {1, 2, 3, 4, 5}
+\end{lstlisting}
+
+\subsection{Condicionais}
+Exemplo de estrutura condicional:
+\begin{lstlisting}[language=Python]
+x = 10
+if x > 5:
+    print("Maior que 5")
+else:
+    print("Menor ou igual a 5")
+\end{lstlisting}
+
+\subsection{Estruturas Repetitivas}
+Exemplo de loop \texttt{for} para iterar em uma lista:
+\begin{lstlisting}[language=Python]
+numbers = [1, 2, 3, 4, 5]
+for num in numbers:
+    print(num)
+\end{lstlisting}
+
+\subsection{Funções Lambda}
+Funções lambda permitem definir funções anônimas rapidamente. Exemplo com \texttt{filter} para filtrar números pares:
+\begin{lstlisting}[language=Python]
+numbers = [1, 2, 3, 4, 5]
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print(even_numbers)  # Saída: [2, 4]
+\end{lstlisting}
+
+\subsection{List Comprehensions}
+Exemplo de list comprehension para criar uma lista de quadrados:
+\begin{lstlisting}[language=Python]
+squares = [x**2 for x in range(10)]
+print(squares)  # Saída: [0, 1, 4, ..., 81]
+\end{lstlisting}
+
+\section{Aula 03}
+
+\subsection{NumPy e Matrizes}
+NumPy facilita o trabalho com arrays e matrizes. Exemplo de criação de uma matriz e soma de elementos:
+\begin{lstlisting}[language=Python]
+import numpy as np
+matrix = np.array([[1, 2], [3, 4]])
+print(matrix.sum())  # Saída: 10
+\end{lstlisting}
+
+\subsection{Classes e Objetos}
+Exemplo de criação de uma classe e instanciamento de um objeto:
+\begin{lstlisting}[language=Python]
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def bark(self):
+        print(f"{self.name} is barking")
+
+my_dog = Dog("Rex")
+my_dog.bark()  # Rex is barking
+\end{lstlisting}
+
+\subsection{Exceções}
+Tratamento de exceções usando \texttt{try} e \texttt{except}:
+\begin{lstlisting}[language=Python]
+try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Divisão por zero!")
+\end{lstlisting}
+
+\subsection{Lei dos Grandes Números e Teorema Central do Limite}
+Estes conceitos são demonstrados frequentemente usando simulações de Monte Carlo e análise estatística. No contexto de Python, você pode usar bibliotecas como NumPy e matplotlib para realizar experimentos como simulações de médias e convergência para distribuições normais.
+
+
+
+\end{multicols}
+
+\end{document}

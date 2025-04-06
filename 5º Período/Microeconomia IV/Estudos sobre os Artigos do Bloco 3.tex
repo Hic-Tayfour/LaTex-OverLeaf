@@ -1,0 +1,408 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+\usepackage{siunitx} % Fornece suporte para a tipografia de unidades do Sistema Internacional e formatação de números
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{graphicx} % Suporte para inclusão de imagens
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{ragged2e} % Justificação de texto melhorada
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\setlength{\headheight}{14.49998pt}
+
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+\onehalfspacing
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Tradução do Artigo : Gender wage gaps and risky vs. secure employment: An experimental analysis}\\
+    \vspace{1.5cm}
+    Prof. Adriano Dutra Teixeira\\
+    Prof. Luiz Felipe Campos Fontes\\
+    Prof. Auxiliar Pedro Picchetti\\
+    \vfill
+    \normalsize
+    Arthur Di Croce Wohnrath, \href{mailto:arthurcw1@al.insper.edu.br}{arthurcw1@al.insper.edu.br}\\
+Erik Hund Bettamio Guimarães, \href{mailto:erikhbg@al.insper.edu.br}{erikhbg@al.insper.edu.br}\\
+Érika Kaori Fuzisaka, \href{mailto:erikakf1@al.insper.edu.br}{erikakf1@al.insper.edu.br}\\
+Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+Lucas Batista Ferreira, \href{mailto:lucasbf1@al.insper.edu.br}{lucasbf1@al.insper.edu.br}\\
+Sarah de Araújo Nascimento Silva, \href{mailto:sarahans@al.insper.edu.br}{sarahans@al.insper.edu.br}
+
+    5º Período - Economia A\\
+    \vfill
+    São Paulo\\
+    Agosto/2024
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % This command removes the page number from the table of contents page
+\newpage
+\setcounter{page}{1} % This command sets the page number to start from this page
+\justify
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+\section{\textbf{Artigo 3A : Experimental evidence  of  the  effect  of head start on mothers’ labor supply and human capital investments}}
+\subsection{\textbf{Resumo do Artigo}}
+O artigo explora o impacto do programa Head Start sobre o emprego das mães e investimentos em capital humano, utilizando dados do \textit{Head Start Impact Study} (HSIS) entre 2002 e 2008. O estudo é baseado em um ensaio de controle randomizado, no qual as mães foram divididas entre as que tinham filhos elegíveis para participar do programa Head Start e aquelas cujos filhos não foram selecionados.
+
+\begin{itemize}
+    \item \textbf{Uso de Cuidados Infantis}: A disponibilidade do Head Start aumentou significativamente o uso de cuidados não-parentais, mas não teve um efeito substancial sobre a probabilidade de emprego das mães no geral.
+    \item \textbf{Emprego em Tempo Integral}: Mães que inscreveram seus filhos no Head Start aos três anos de idade tiveram um aumento de 4,7 pontos percentuais na probabilidade de emprego em tempo integral, enquanto a probabilidade de trabalho em tempo parcial diminuiu em 21\%. Esse efeito foi mais significativo entre mães casadas e aquelas com menor nível de escolaridade.
+    \item \textbf{Educação Materna}: O programa aumentou em 35\% a probabilidade de essas mães se matricularem em cursos educacionais.
+    \item \textbf{Impactos Limitados}: Para mães que inscreveram seus filhos no programa aos quatro anos de idade, o Head Start teve impactos limitados sobre o emprego e a educação.
+\end{itemize}
+\subsection{\textbf{Objetivo do Artigo}}
+O objetivo do artigo é investigar o impacto do programa \textit{Head Start} sobre o mercado de trabalho das mães e seus investimentos em capital humano. Utilizando dados do \textit{Head Start Impact Study} (HSIS) entre 2002 e 2008, o estudo busca entender se a participação das crianças no programa afeta a oferta de trabalho das mães, sua escolaridade, a renda familiar e a participação em programas de assistência social. O artigo também explora a persistência desses efeitos ao longo do tempo e as diferenças no impacto dependendo da idade da criança no momento da inscrição no programa.
+\subsection{\textbf{Fundamentação Microeconômica do Artigo}}
+
+A fundamentação microeconômica do artigo baseia-se na teoria de oferta de trabalho e de custo de oportunidade. O programa \textit{Head Start} atua como um subsídio de cuidados infantis, reduzindo os custos de oportunidade que as mães enfrentam ao escolher entre trabalho e cuidados com os filhos. Isso, por sua vez, afeta o salário líquido das mães após os custos com cuidados infantis.
+
+A análise microeconômica considera o efeito substituição e o efeito renda. O efeito substituição sugere que, ao reduzir os custos de cuidados infantis, as mães podem ser incentivadas a aumentar sua oferta de trabalho (substituição de lazer por trabalho). Por outro lado, o efeito renda, decorrente do subsídio, pode reduzir a necessidade de trabalho adicional, pois as mães têm acesso a serviços que facilitam seu orçamento familiar.
+
+O artigo também faz uso de uma combinação de abordagens teóricas e empíricas. Teoricamente, é baseado em modelos de microeconomia do trabalho que explicam como subsídios podem alterar a oferta de trabalho e os investimentos em capital humano. Empiricamente, o autor utiliza dados do \textit{Head Start Impact Study} (HSIS), um ensaio de controle randomizado realizado entre 2002 e 2008, para estimar os impactos causais do programa sobre o comportamento das mães. O artigo revisa e discute evidências empíricas anteriores sobre o impacto de programas de cuidados infantis e pré-escola em diversas economias.
+\subsection{\textbf{Hipótese Econômica}}
+A hipótese econômica do artigo, baseada na teoria microeconômica da oferta de trabalho, é que a participação no programa \textit{Head Start} reduz os custos de cuidados infantis, aumentando assim a oferta de trabalho das mães. Isso ocorre porque o subsídio de cuidados infantis altera o custo de oportunidade do tempo das mães, incentivando-as a alocar mais tempo ao trabalho remunerado em vez de atividades não remuneradas, como o cuidado dos filhos.
+\subsection{\textbf{Desenho Experimental do Artigo / Base de Dados}}
+
+O artigo utiliza um desenho experimental baseado no \textit{Head Start Impact Study} (HSIS), que foi um ensaio de controle randomizado conduzido entre 2002 e 2008. Nesse estudo, o acesso ao programa \textit{Head Start} foi randomizado entre famílias de baixa renda elegíveis, criando dois grupos: o grupo de tratamento, que recebeu a oferta de vagas no programa, e o grupo de controle, que não teve acesso ao \textit{Head Start}. A randomização dentro de cada centro \textit{Head Start} garante a validade causal dos resultados, uma vez que a atribuição de tratamento não foi influenciada por características individuais das mães ou das famílias.
+
+\subsubsection*{Base de Dados}
+
+A base de dados utilizada no estudo contém informações detalhadas sobre as famílias e as mães participantes, incluindo as seguintes variáveis-chave:
+
+\begin{itemize}
+    \item \textbf{Emprego Materno}: Inclui informações sobre se a mãe está empregada, se trabalha em tempo integral (35 horas ou mais por semana) ou parcial, e se está à procura de trabalho. Essas informações foram coletadas em várias rodadas de entrevistas com as mães ao longo do período de estudo.
+    
+    \item \textbf{Educação Materna}: O estudo também coleta dados sobre a inscrição das mães em cursos educacionais, como faculdade ou treinamento técnico. As mães foram perguntadas se estavam matriculadas ou frequentando algum curso desde o início do programa.
+    
+    \item \textbf{Renda Familiar}: A renda familiar é relatada mensalmente, abrangendo todas as fontes de renda da família antes de impostos e deduções. Para famílias que não conseguiram fornecer um valor exato, a renda foi reportada em intervalos (menos de \$500, \$501-\$1000, \$1001-\$1500, etc.). Isso permite a análise de como a participação no \textit{Head Start} impacta a renda das famílias.
+    
+    \item \textbf{Participação em Programas de Assistência Social}: Inclui dados sobre a participação das famílias em programas de assistência como \textit{Supplemental Security Income} (SSI), \textit{Temporary Assistance for Needy Families} (TANF), \textit{Women, Infants, and Children} (WIC) e cupons de alimentação. Essas variáveis permitem avaliar se o acesso ao \textit{Head Start} influenciou a dependência das mães em relação à assistência social.
+    
+    \item \textbf{Cuidados Não Parentais}: A base de dados também detalha as várias formas de cuidados infantis utilizados pelas famílias, incluindo creches, cuidadores domiciliares e o próprio programa \textit{Head Start}. Esse conjunto de dados permite analisar como o programa influenciou o uso de cuidados não parentais e como isso se relaciona com as decisões de trabalho e educação das mães.
+\end{itemize}
+
+\subsubsection*{Coletas de Dados}
+
+Os dados foram coletados em várias ondas ao longo de seis anos, permitindo uma análise de curto e médio prazo dos efeitos do \textit{Head Start}. As coletas ocorreram nos seguintes períodos:
+\begin{itemize}
+    \item \textbf{2002-2003}: Dados iniciais, logo após a randomização, para identificar características basais das famílias e seu estado inicial de emprego, educação e renda.
+    \item \textbf{2003-2004}: Segunda onda de coleta, para observar os primeiros impactos do \textit{Head Start} nas mães e suas famílias após um ano de participação no programa.
+    \item \textbf{2004-2008}: Coletas subsequentes que acompanharam as famílias até que as crianças atingissem o terceiro ano escolar, permitindo uma análise dos impactos de longo prazo do programa.
+\end{itemize}
+
+A coleta longitudinal de dados permite uma análise robusta dos impactos do \textit{Head Start} ao longo do tempo, observando como as mudanças no emprego e educação das mães se desenvolveram conforme as crianças envelheceram e deixaram o programa.
+\subsection{\textbf{Modelo Econométrico do Artigo}}
+
+O artigo utiliza um modelo econométrico baseado na técnica de \textit{Intenção de Tratamento} (\textit{Intent-to-Treat}, ITT) e no \textit{Efeito do Tratamento sobre os Tratados} (\textit{Treatment on the Treated}, TOT) para estimar o impacto causal da participação no programa \textit{Head Start} sobre as variáveis de interesse, como a oferta de trabalho das mães e seus investimentos em educação. A estrutura básica do modelo pode ser expressa da seguinte forma:
+
+\begin{equation}
+Y_{ic} = \beta_0 + \beta_1 \text{Tratamento}_{ic} + \gamma X_{ic} + \theta_c + \delta_m + \epsilon_{ic}
+\end{equation}
+
+Onde:
+\begin{itemize}
+    \item \( Y_{ic} \) representa o resultado de interesse (ex.: emprego em tempo integral, matrícula em cursos, renda familiar) para a mãe \( i \) no centro \( c \);
+    \item \( \text{Tratamento}_{ic} \) é uma variável indicadora que assume valor 1 se a mãe foi designada ao grupo de tratamento (participação no \textit{Head Start}) e 0 se foi designada ao grupo de controle;
+    \item \( X_{ic} \) representa um vetor de características observáveis das mães e famílias (ex.: idade, raça, escolaridade);
+    \item \( \theta_c \) são os efeitos fixos do centro \textit{Head Start} onde a mãe foi inscrita, controlando por variações que podem existir entre centros;
+    \item \( \delta_m \) são variáveis indicadoras para o mês da entrevista, ajustando por possíveis sazonalidades no emprego;
+    \item \( \epsilon_{ic} \) é o termo de erro, que captura variações não observadas.
+\end{itemize}
+
+O modelo é estimado usando regressão linear (\textit{OLS}), e os erros padrão são ajustados para permitir correlação entre mães do mesmo centro, utilizando a técnica de agrupamento (\textit{clustered standard errors}).
+
+Além do modelo de ITT, o artigo também utiliza uma abordagem de variáveis instrumentais (\textit{Instrumental Variables}, IV) para estimar o \textit{Efeito do Tratamento sobre os Tratados} (TOT). O modelo IV utiliza a designação aleatória ao grupo de tratamento como um instrumento para a participação real no \textit{Head Start}, devido à não conformidade perfeita no experimento (nem todas as mães designadas ao tratamento efetivamente participam do programa).
+
+O segundo estágio do modelo IV é especificado da seguinte forma:
+
+\begin{equation}
+Y_{ic} = \pi_0 + \pi_1 \hat{\text{Participação}_{ic}} + \rho X_{ic} + \theta_c + \delta_m + \mu_{ic}
+\end{equation}
+
+Onde \( \hat{\text{Participação}_{ic}} \) é a participação prevista no \textit{Head Start}, obtida a partir do primeiro estágio da regressão, em que a designação aleatória ao grupo de tratamento é usada como instrumento.
+
+O uso desses dois modelos permite que o autor estime os efeitos médios do programa (\textit{ITT}) e os efeitos sobre as mães que realmente participaram do \textit{Head Start} (\textit{TOT}), corrigindo possíveis vieses de seleção que podem ocorrer devido à não conformidade no experimento.
+
+\subsection{\textbf{Problemas/Limitações do Modelo}}
+Embora o modelo econométrico utilizado no artigo seja robusto, com a aplicação de um ensaio de controle randomizado (RCT) e o uso de variáveis instrumentais para estimar o \textit{Efeito do Tratamento sobre os Tratados} (TOT), ele apresenta algumas limitações que podem afetar a interpretação dos resultados:
+
+\begin{itemize}
+    \item \textbf{Não conformidade no tratamento}: Nem todas as mães designadas ao grupo de tratamento realmente participaram do programa \textit{Head Start}. Isso gera a necessidade de usar um modelo de variáveis instrumentais (IV) para estimar o TOT, o que depende da suposição de que a designação ao tratamento é um bom instrumento para a participação no programa. A validade dessa suposição pode ser comprometida se houver fatores não observados que afetam tanto a designação quanto a participação.
+    
+    \item \textbf{Amostra limitada a certas regiões}: O \textit{Head Start Impact Study} (HSIS) foi realizado em 378 centros \textit{Head Start} em 23 estados dos EUA, mas não incluiu todas as regiões do país. Isso pode limitar a generalização dos resultados, especialmente em regiões com características socioeconômicas diferentes ou políticas locais de assistência social variadas.
+    
+    \item \textbf{Resultados de curto e médio prazo}: Embora o estudo acompanhe as mães e suas famílias por um período de até seis anos, os resultados não capturam totalmente os efeitos de longo prazo do \textit{Head Start} sobre o mercado de trabalho das mães e o bem-estar das famílias. Mudanças econômicas e sociais que ocorrem após esse período podem não ser adequadamente refletidas nos resultados.
+    
+    \item \textbf{Autorreporte de dados}: Muitas das variáveis dependem de dados autoreportados pelas mães, como emprego, renda e participação em programas de assistência. Isso pode introduzir vieses de relato, seja por erro de memória ou por desejo de apresentar uma imagem mais positiva da própria situação financeira.
+    
+    \item \textbf{Falta de dados sobre qualidade dos cuidados infantis alternativos}: Embora o estudo controle pelo uso de cuidados não parentais, não há informações detalhadas sobre a qualidade desses serviços. A qualidade dos cuidados alternativos pode influenciar as decisões de trabalho e educação das mães, o que não é capturado diretamente no modelo.
+    
+    \item \textbf{Mudanças nas políticas de assistência social}: Durante o período do estudo (2002–2008), algumas políticas sociais e econômicas nos Estados Unidos mudaram, o que pode ter impactado as condições de trabalho das mães e suas decisões de participar do programa. O modelo pode não capturar completamente essas variações externas.
+\end{itemize}
+
+Essas limitações sugerem que os resultados devem ser interpretados com cautela, especialmente ao tentar generalizar os efeitos do \textit{Head Start} para outras populações ou contextos temporais.
+
+\subsection{\textbf{Resultados obtidos}}
+Os resultados do estudo indicam efeitos variados do programa \textit{Head Start} sobre o mercado de trabalho das mães e seus investimentos em capital humano. Esses resultados foram obtidos utilizando tanto a abordagem de \textit{Intenção de Tratamento} (ITT) quanto o \textit{Efeito do Tratamento sobre os Tratados} (TOT). A seguir, são destacados os principais achados:
+\begin{itemize}
+    \item \textbf{Aumento no emprego em tempo integral}: Para mães que inscreveram seus filhos no \textit{Head Start} quando tinham três anos de idade, houve um aumento de 4,7 pontos percentuais (14,7\%) na probabilidade de emprego em tempo integral. Esse efeito foi mais pronunciado entre mães casadas e com menor nível de escolaridade.
+    
+    \item \textbf{Redução no emprego em tempo parcial}: Entre essas mesmas mães, o programa levou a uma redução de 4 pontos percentuais (21\%) na probabilidade de trabalho em tempo parcial, indicando uma transição de empregos de meio período para empregos de tempo integral.
+    
+    \item \textbf{Aumento na matrícula em cursos educacionais}: O programa também resultou em um aumento de 6,7 pontos percentuais (35\%) na probabilidade de as mães se matricularem em cursos de educação formal, como faculdades ou programas de treinamento técnico, sugerindo um impacto positivo no investimento em capital humano.
+    
+    \item \textbf{Impactos limitados para mães de crianças de quatro anos}: Para mães que inscreveram seus filhos no programa aos quatro anos de idade, os efeitos sobre o emprego e a educação foram insignificantes. Isso sugere que o impacto do \textit{Head Start} pode depender da idade da criança no momento da inscrição, com os efeitos sendo mais fortes quando o programa é iniciado mais cedo.
+    
+    \item \textbf{Impactos sobre renda familiar e assistência social}: O estudo não encontrou evidências significativas de que a participação no \textit{Head Start} afetou a renda familiar ou a dependência de programas de assistência social, como \textit{TANF}, \textit{SSI}, cupons de alimentação ou \textit{WIC}. No entanto, a precisão dessas estimativas é menor, sugerindo que efeitos mais sutis podem ter sido difíceis de detectar.
+    
+    \item \textbf{Persistência dos efeitos no longo prazo}: Para as mães que se beneficiaram do programa quando seus filhos tinham três anos, há evidências sugestivas de que os aumentos na participação em empregos em tempo integral persistem até os primeiros anos escolares (primeiro e terceiro ano) das crianças.
+\end{itemize}
+
+Esses resultados fornecem evidências de que o \textit{Head Start} pode ter impactos significativos no comportamento de trabalho e nos investimentos educacionais das mães, especialmente quando o programa é iniciado em uma fase inicial da vida da criança. No entanto, os efeitos sobre a renda familiar e a assistência social foram menos pronunciados, sugerindo que o programa pode não influenciar diretamente essas variáveis no curto prazo.
+
+\newpage
+
+\section{\textbf{Artigo 3B : Public childcare beneﬁts children and mothers: Evidence from anationwide experiment in a developing country}}
+\subsection{\textbf{Resumo do Artigo}}
+O artigo explora o impacto do \textit{Programa Urbano}, um programa público de cuidados infantis em áreas urbanas pobres da Nicarágua, sobre o desenvolvimento socioemocional das crianças e a oferta de trabalho das mães. Utilizando um ensaio de controle randomizado (RCT), o estudo avalia se o acesso a cuidados infantis subsidiados pode melhorar as condições das crianças e aumentar a participação das mães no mercado de trabalho.
+
+\begin{itemize}
+    \item \textbf{Desenvolvimento Infantil}: O programa resultou em um aumento de 0,38 desvios-padrão nas habilidades socioemocionais das crianças, mostrando melhorias significativas no desenvolvimento das crianças que participaram das creches.
+    \item \textbf{Participação no Mercado de Trabalho}: O acesso ao \textit{Programa Urbano} aumentou em 12 pontos percentuais a probabilidade de as mães trabalharem fora de casa, especialmente em tempo integral.
+    \item \textbf{Qualidade dos Cuidados Infantis}: O estudo também destaca que a qualidade dos centros de cuidados infantis influenciou positivamente os resultados tanto para as crianças quanto para as mães.
+    \item \textbf{Análise Custo-Benefício}: A análise sugere que os benefícios gerados pelo aumento da participação das mães no mercado de trabalho são suficientes para justificar o custo do programa, sem considerar os ganhos adicionais do desenvolvimento infantil.
+\end{itemize}
+
+\subsection{\textbf{Objetivo do Artigo}}
+O objetivo do artigo é avaliar o impacto de um programa público de cuidados infantis em larga escala na Nicarágua, o \textit{Programa Urbano}, sobre dois aspectos principais: o desenvolvimento socioemocional das crianças e a participação das mães no mercado de trabalho. O estudo visa entender se o acesso a creches subsidiadas melhora as habilidades das crianças e aumenta a oferta de trabalho das mães. Além disso, o artigo busca examinar se a qualidade dos cuidados infantis influencia esses resultados e realizar uma análise custo-benefício para determinar a viabilidade econômica do programa.
+\subsection{\textbf{Fundamentação Microeconômica do Artigo}}
+
+A fundamentação microeconômica do artigo baseia-se na teoria da oferta de trabalho e no conceito de custo de oportunidade. O \textit{Programa Urbano} atua como um subsídio de cuidados infantis, reduzindo os custos de oportunidade que as mães enfrentam ao escolher entre o trabalho remunerado e o cuidado dos filhos em casa. Isso, por sua vez, diminui o custo marginal de trabalhar fora, incentivando as mães a aumentar sua participação no mercado de trabalho.
+
+A análise microeconômica do artigo considera o efeito substituição e o efeito renda. O efeito substituição sugere que, ao reduzir os custos de cuidados infantis, as mães estão mais inclinadas a substituir o tempo gasto em atividades não remuneradas por trabalho remunerado. O efeito renda, por outro lado, implica que, ao ter acesso a cuidados subsidiados, as mães podem necessitar de menos trabalho para manter o mesmo nível de renda, potencialmente diminuindo a necessidade de trabalho adicional.
+
+O artigo também utiliza uma combinação de abordagens teóricas e empíricas. Teoricamente, baseia-se em modelos de microeconomia que explicam como a redução dos custos com cuidados infantis altera as decisões de oferta de trabalho das famílias. Empiricamente, o estudo utiliza dados de um ensaio de controle randomizado para estimar os efeitos causais do programa sobre o comportamento das mães e o desenvolvimento das crianças. O artigo também revisa estudos anteriores sobre os impactos de subsídios para cuidados infantis em diferentes contextos econômicos.
+
+\subsection{\textbf{Hipótese Econômica}}
+
+A hipótese econômica do artigo, baseada na teoria microeconômica da oferta de trabalho, é que a participação no \textit{Programa Urbano} de cuidados infantis reduz os custos de oportunidade enfrentados pelas mães, resultando em um aumento na oferta de trabalho dessas mulheres. Isso ocorre porque o acesso subsidiado a creches diminui o custo de cuidar dos filhos, permitindo que as mães alocem mais tempo para o trabalho remunerado em vez de se dedicarem exclusivamente às atividades de cuidado familiar. Além disso, a qualidade dos cuidados infantis oferecidos também pode influenciar o desenvolvimento socioemocional das crianças, o que impacta as decisões de alocação de tempo das mães no longo prazo.
+\subsection{\textbf{Desenho Experimental do Artigo / Base de Dados}}
+
+O artigo utiliza um desenho experimental baseado em um ensaio de controle randomizado (RCT) realizado em áreas urbanas pobres da Nicarágua. O acesso ao programa \textit{Programa Urbano} foi aleatoriamente distribuído entre as famílias elegíveis, dividindo-as em dois grupos: o grupo de tratamento, que recebeu vagas nos centros comunitários de cuidados infantis (CICOs), e o grupo de controle, que não teve acesso ao programa durante o período de estudo. A randomização foi conduzida em nível de bairro, garantindo a validade causal dos resultados ao evitar que características individuais das famílias afetassem a atribuição ao tratamento.
+
+\subsubsection*{Base de Dados}
+
+A base de dados utilizada no estudo contém informações detalhadas sobre as famílias e as crianças participantes, coletadas em duas rodadas principais de levantamento. As variáveis-chave incluem:
+
+\begin{itemize}
+    \item \textbf{Desenvolvimento Infantil}: Dados sobre as habilidades socioemocionais e de linguagem das crianças foram coletados usando o \textit{Denver II Developmental Screening Test}, permitindo avaliar o impacto do programa sobre o desenvolvimento infantil.
+    
+    \item \textbf{Emprego Materno}: Informações sobre o status de emprego das mães, incluindo se elas estavam empregadas, o número de horas trabalhadas por semana, e se o emprego era formal ou informal.
+    
+    \item \textbf{Renda Familiar}: A renda familiar foi reportada em categorias, permitindo analisar a variação na renda das famílias em resposta ao programa de cuidados infantis.
+    
+    \item \textbf{Participação em Programas de Assistência Social}: O estudo também coletou dados sobre a dependência das famílias em programas de assistência, como transferências de renda, para avaliar se o programa influenciou a necessidade de assistência pública.
+    
+    \item \textbf{Uso de Cuidados Não Parentais}: A base de dados também contém informações sobre o uso de outras formas de cuidados infantis (não-parentais), como creches privadas e cuidadores domiciliares, permitindo analisar como o programa afetou o uso de alternativas de cuidados infantis.
+\end{itemize}
+
+\subsubsection*{Coletas de Dados}
+
+Os dados foram coletados em várias fases, permitindo uma análise de curto e médio prazo dos impactos do \textit{Programa Urbano}. As coletas ocorreram nos seguintes períodos:
+
+\begin{itemize}
+    \item \textbf{2013}: Primeira rodada de coleta, logo após a implementação do programa, com o objetivo de capturar as condições iniciais das crianças e das mães antes do impacto do programa.
+    \item \textbf{2015}: Segunda rodada de coleta, dois anos após a implementação, para medir os impactos de médio prazo do programa sobre o desenvolvimento das crianças e o comportamento laboral das mães.
+\end{itemize}
+
+Essa abordagem longitudinal permitiu a análise do impacto do programa ao longo do tempo, observando tanto os efeitos imediatos quanto os de médio prazo.
+\subsection{\textbf{Modelo Econométrico do Artigo}}
+
+O artigo utiliza um modelo econométrico baseado na técnica de \textit{Intenção de Tratamento} (\textit{Intent-to-Treat}, ITT) para estimar o impacto causal da participação no \textit{Programa Urbano} sobre o desenvolvimento das crianças e a oferta de trabalho das mães. A estrutura básica do modelo pode ser expressa da seguinte forma:
+
+\begin{equation}
+Y_{ib} = \beta_0 + \beta_1 \text{Tratamento}_{ib} + \gamma X_{ib} + \theta_b + \epsilon_{ib}
+\end{equation}
+
+Onde:
+\begin{itemize}
+    \item \( Y_{ib} \) representa o resultado de interesse (ex.: desenvolvimento infantil ou emprego materno) para a criança \( i \) ou sua mãe no bairro \( b \);
+    \item \( \text{Tratamento}_{ib} \) é uma variável indicadora que assume valor 1 se a criança/mãe foi designada ao grupo de tratamento (participação no \textit{Programa Urbano}) e 0 se foi designada ao grupo de controle;
+    \item \( X_{ib} \) representa um vetor de características observáveis das crianças e famílias (ex.: idade, gênero da criança, escolaridade da mãe, etc.);
+    \item \( \theta_b \) são os efeitos fixos do bairro, controlando por variações específicas entre bairros onde o programa foi implementado;
+    \item \( \epsilon_{ib} \) é o termo de erro, que captura variações não observadas.
+\end{itemize}
+
+O modelo é estimado utilizando regressão linear (\textit{OLS}), e os erros padrão são ajustados para permitir correlação dentro dos bairros, utilizando a técnica de agrupamento (\textit{clustered standard errors}).
+
+Além do modelo de ITT, o artigo também utiliza um modelo de \textit{Efeito do Tratamento sobre os Tratados} (\textit{Treatment on the Treated}, TOT) para estimar o efeito da participação real no programa. Para lidar com a não conformidade (algumas famílias designadas ao tratamento não participaram do programa), o artigo utiliza uma abordagem de variáveis instrumentais (\textit{Instrumental Variables}, IV), onde a designação ao grupo de tratamento é usada como instrumento para a participação real no \textit{Programa Urbano}.
+
+O segundo estágio do modelo IV é especificado da seguinte forma:
+
+\begin{equation}
+Y_{ib} = \pi_0 + \pi_1 \hat{\text{Participação}_{ib}} + \rho X_{ib} + \theta_b + \mu_{ib}
+\end{equation}
+
+Onde \( \hat{\text{Participação}_{ib}} \) é a participação prevista no \textit{Programa Urbano}, obtida a partir do primeiro estágio da regressão IV, em que a designação aleatória ao grupo de tratamento é utilizada como instrumento.
+
+A combinação desses dois modelos permite estimar tanto os efeitos médios do programa sobre toda a população elegível (\textit{ITT}) quanto os efeitos sobre aqueles que efetivamente participaram do programa (\textit{TOT}), corrigindo possíveis vieses de seleção decorrentes da não conformidade com o tratamento.
+\subsection{\textbf{Problemas/Limitações do Modelo}}
+
+Embora o modelo econométrico utilizado no artigo seja robusto, com a aplicação de um ensaio de controle randomizado (RCT) e o uso de variáveis instrumentais (IV) para estimar o \textit{Efeito do Tratamento sobre os Tratados} (TOT), ele apresenta algumas limitações que podem afetar a interpretação dos resultados:
+
+\begin{itemize}
+    \item \textbf{Não conformidade no tratamento}: Nem todas as famílias designadas ao grupo de tratamento realmente participaram do \textit{Programa Urbano}. Isso levou à necessidade de usar um modelo de variáveis instrumentais (IV) para estimar o TOT. No entanto, a validade do IV depende da suposição de que a designação ao tratamento é um bom instrumento para a participação real no programa, o que pode ser comprometido se houver fatores não observados que influenciem tanto a designação quanto a participação.
+    
+    \item \textbf{Amostra geograficamente limitada}: O estudo foi conduzido em bairros urbanos pobres na Nicarágua, o que pode limitar a generalização dos resultados para outras regiões, especialmente áreas rurais ou países com diferentes contextos econômicos e sociais. Além disso, as características socioeconômicas específicas da amostra podem não ser representativas de toda a população.
+    
+    \item \textbf{Resultados de médio prazo}: O estudo acompanha as famílias por um período de dois anos, o que fornece informações sobre os impactos de médio prazo do programa. No entanto, os efeitos de longo prazo, tanto sobre o desenvolvimento infantil quanto sobre a participação das mães no mercado de trabalho, não são capturados. Mudanças que ocorram após esse período podem não ser refletidas nos resultados.
+    
+    \item \textbf{Autorreporte de dados}: Muitas variáveis, como o emprego das mães e o uso de cuidados infantis, dependem de dados autoreportados pelas famílias. Isso pode introduzir viés de relato, já que os participantes podem omitir informações ou reportar de maneira ineficaz devido à memória limitada ou desejo de dar respostas socialmente desejáveis.
+    
+    \item \textbf{Falta de dados detalhados sobre a qualidade dos cuidados infantis}: Embora o estudo controle pelo acesso ao \textit{Programa Urbano}, ele não possui dados detalhados sobre a qualidade dos serviços de cuidados infantis oferecidos em diferentes centros. A qualidade pode ser um fator determinante no desenvolvimento infantil, o que limita a compreensão dos mecanismos que afetam os resultados observados.
+    
+    \item \textbf{Variações políticas e econômicas}: Durante o período de implementação do programa, mudanças políticas e econômicas na Nicarágua podem ter influenciado as condições de trabalho das mães e o acesso a serviços públicos, o que pode impactar os resultados e não ser devidamente capturado pelo modelo.
+\end{itemize}
+
+Essas limitações sugerem que os resultados devem ser interpretados com cautela, principalmente ao tentar generalizar os efeitos do \textit{Programa Urbano} para outras populações e contextos.
+\subsection{\textbf{Resultados}}
+
+Os resultados do estudo indicam que o \textit{Programa Urbano} teve impactos significativos tanto sobre o desenvolvimento das crianças quanto sobre a participação das mães no mercado de trabalho. Os resultados foram obtidos utilizando as abordagens de \textit{Intenção de Tratamento} (ITT) e \textit{Efeito do Tratamento sobre os Tratados} (TOT). A seguir, são destacados os principais achados:
+
+\begin{itemize}
+    \item \textbf{Melhorias no desenvolvimento socioemocional das crianças}: O programa gerou um aumento de 0,38 desvios-padrão nas habilidades socioemocionais das crianças. Esse efeito foi mais pronunciado em crianças mais jovens e naquelas que frequentaram centros de cuidados infantis de maior qualidade.
+    
+    \item \textbf{Aumento na participação no mercado de trabalho}: O acesso ao \textit{Programa Urbano} aumentou em 12 pontos percentuais a probabilidade de as mães trabalharem fora de casa, especialmente em empregos de tempo integral. Esse aumento foi particularmente observado entre mães que não estavam empregadas antes do início do programa.
+    
+    \item \textbf{Impactos desiguais por qualidade do centro}: Os efeitos do programa sobre o desenvolvimento das crianças e o emprego das mães foram mais fortes nos centros de cuidados infantis que apresentavam melhor infraestrutura e qualidade de atendimento. Isso sugere que a qualidade do cuidado desempenha um papel importante nos resultados observados.
+    
+    \item \textbf{Impactos limitados sobre renda familiar}: O estudo não encontrou evidências significativas de que a participação no \textit{Programa Urbano} afetou a renda familiar no curto prazo. No entanto, os autores sugerem que aumentos na renda podem se manifestar no longo prazo, à medida que as mães aumentam sua participação no mercado de trabalho.
+    
+    \item \textbf{Persistência dos efeitos no médio prazo}: Para as mães que se beneficiaram do programa, há evidências de que os efeitos positivos sobre o emprego persistem dois anos após o início do programa. Os dados indicam que a maioria das mães continua empregada, sugerindo um impacto sustentável no mercado de trabalho.
+    
+    \item \textbf{Ausência de impacto em programas de assistência social}: O estudo não encontrou efeitos significativos do programa sobre a participação em programas de assistência social. No entanto, isso pode estar relacionado ao curto período de acompanhamento, que pode não ser suficiente para capturar mudanças na dependência de assistência social.
+\end{itemize}
+
+Esses resultados fornecem evidências de que o \textit{Programa Urbano} teve impactos positivos tanto no desenvolvimento das crianças quanto na participação das mães no mercado de trabalho, especialmente quando a qualidade dos cuidados infantis era alta. No entanto, os efeitos sobre a renda familiar e a dependência de programas sociais ainda precisam ser analisados em estudos de longo prazo.
+
+\newpage
+\section{\textbf{Artigo 3C: Teacher experience and the class size effect — Experimental evidence}}
+
+\subsection{\textbf{Resumo do Artigo}}
+O artigo investiga como a experiência dos professores influencia o efeito da redução do tamanho das turmas no desempenho acadêmico dos alunos. Utilizando dados do experimento Tennessee STAR, que atribuiu aleatoriamente professores e alunos a turmas de diferentes tamanhos, o estudo explora como a qualidade do ensino mediada pela experiência do professor pode maximizar os ganhos obtidos em classes menores. O estudo também aborda as implicações de políticas de redução do tamanho das turmas em termos de eficiência de custos.
+
+\begin{itemize}
+    \item \textbf{Desempenho dos Alunos}: A redução do tamanho da turma está associada a um aumento significativo no desempenho dos alunos, particularmente em turmas com professores mais experientes.
+    \item \textbf{Efeito da Experiência do Professor}: Professores com mais de três anos de experiência geram maiores ganhos de aprendizado em turmas menores, enquanto professores iniciantes não aproveitam a redução do tamanho da mesma forma.
+    \item \textbf{Efeito Moderador da Qualidade do Ensino}: A maior eficácia dos professores experientes em turmas menores é atribuída à sua capacidade de gerenciar melhor o tempo de instrução e oferecer ensino mais personalizado.
+\end{itemize}
+
+\subsection{\textbf{Objetivo do Artigo}}
+O objetivo do artigo é avaliar se a experiência dos professores modera os efeitos da redução do tamanho da turma no desempenho dos alunos e determinar quais condições são mais favoráveis para maximizar os benefícios dessa política. Considerando os altos custos associados à redução de turmas, o estudo busca fornecer evidências para otimizar a relação custo-benefício dessas intervenções, concentrando-se em como a experiência docente pode potencializar os resultados.
+
+\subsection{\textbf{Fundamentação Microeconômica do Artigo}}
+A fundamentação microeconômica do artigo baseia-se no modelo de produção educacional, onde o desempenho dos alunos é visto como um produto de insumos, como o tamanho da turma e a qualidade do professor. O tamanho da turma é considerado um insumo que afeta a capacidade do professor de alocar tempo e atenção individualizada. Professores mais experientes têm maior capacidade de se adaptar a turmas menores, otimizando o uso desse insumo e melhorando o desempenho dos alunos.
+
+A análise microeconômica considera os efeitos substituição e complementares dos insumos. A redução do tamanho da turma pode ter um efeito substitutivo, onde a eficiência do ensino aumenta com menos alunos, enquanto a experiência do professor atua como um insumo complementar que amplifica os benefícios da redução. O modelo também explora os trade-offs de custo, já que reduzir o tamanho da turma é caro, e os benefícios podem depender fortemente da qualidade do professor.
+
+\subsection{\textbf{Hipótese Econômica}}
+A hipótese econômica do artigo é que professores com mais experiência são capazes de aproveitar melhor o ambiente de turmas menores, resultando em um maior impacto positivo no desempenho dos alunos. Professores mais experientes podem gerenciar melhor as turmas, alocar recursos pedagógicos de maneira mais eficaz e adaptar-se a diferentes necessidades dos alunos, maximizando os benefícios da redução do tamanho da turma.
+
+\subsection{\textbf{Desenho Experimental do Artigo / Base de Dados}}
+
+O artigo se baseia nos dados do experimento Tennessee STAR, um dos maiores e mais amplamente reconhecidos experimentos em educação, realizado entre 1985 e 1989. O Tennessee STAR designou aleatoriamente alunos e professores a turmas de tamanhos diferentes, o que permitiu identificar efeitos causais da redução do tamanho da turma sobre o desempenho dos alunos.
+
+\subsubsection*{Base de Dados}
+A base de dados utilizada inclui informações detalhadas sobre as características dos alunos (gênero, raça, status socioeconômico) e dos professores (experiência, qualificação). O desempenho acadêmico foi medido por meio de testes padronizados de leitura e matemática, aplicados em diferentes momentos ao longo do experimento.
+
+\subsubsection*{Coletas de Dados}
+As coletas de dados ocorreram em diversas ondas ao longo dos quatro anos do experimento, permitindo uma análise robusta dos efeitos de curto e médio prazo. Além disso, o estudo também acompanhou a progressão dos alunos e professores ao longo do tempo, permitindo uma análise longitudinal dos impactos.
+
+\subsection{\textbf{Modelo Econométrico do Artigo}}
+
+O artigo utiliza um modelo de regressão linear (\textit{OLS}) com erros padrão agrupados por escola para estimar os efeitos da redução do tamanho da turma e da experiência dos professores no desempenho dos alunos. O modelo também controla para características observáveis dos alunos e professores, bem como efeitos fixos da escola, conforme a seguinte especificação:
+
+\begin{equation}
+Y_{icgs} = \beta_0 + \beta_1 \text{SMALL}_{cgs} + \beta_2 \text{ROOKIE}_{cgs} + \beta_3 (\text{SMALL}_{cgs} \times \text{ROOKIE}_{cgs}) + \gamma X_{icgs} + \alpha_s + \epsilon_{icgs}
+\end{equation}
+
+Onde:
+\begin{itemize}
+    \item \( Y_{icgs} \) é o resultado de desempenho do aluno \(i\) na classe \(c\), grau \(g\) e escola \(s\);
+    \item \( \text{SMALL}_{cgs} \) é uma variável indicadora de turmas pequenas;
+    \item \( \text{ROOKIE}_{cgs} \) é uma variável indicadora de professores com menos de três anos de experiência;
+    \item \( X_{icgs} \) representa características dos alunos (ex.: gênero, raça, nível socioeconômico);
+    \item \( \alpha_s \) são efeitos fixos de escola;
+    \item \( \epsilon_{icgs} \) é o termo de erro.
+\end{itemize}
+
+O modelo também inclui interações entre as variáveis de tratamento para capturar os efeitos moderadores da experiência dos professores em diferentes tamanhos de turma.
+
+\subsection{\textbf{Problemas / Limitações do Modelo}}
+
+Apesar de ser um experimento robusto, o artigo enfrenta algumas limitações que podem afetar a generalização dos resultados:
+
+\begin{itemize}
+    \item \textbf{Não conformidade no tratamento}: Nem todos os professores designados aleatoriamente permaneceram nas turmas atribuídas, o que pode comprometer a validade interna do experimento.
+    \item \textbf{Falta de dados sobre práticas pedagógicas}: O estudo não contém dados detalhados sobre as práticas de ensino usadas pelos professores em sala de aula, o que dificulta a avaliação dos mecanismos exatos pelos quais a experiência do professor afeta os resultados.
+    \item \textbf{Efeitos de longo prazo}: O estudo se concentra nos efeitos de curto e médio prazo, e não há informações suficientes sobre os impactos de longo prazo da redução do tamanho da turma no desempenho acadêmico ou no futuro educacional dos alunos.
+    \item \textbf{Autocorrelação}: Como alunos e professores são observados repetidamente, há o risco de autocorrelação nos erros, o que pode levar a subestimação dos erros padrão e superestimação dos coeficientes.
+\end{itemize}
+
+\subsection{\textbf{Resultados}}
+
+Os resultados indicam que a redução do tamanho da turma tem efeitos significativos no desempenho acadêmico, mas esses efeitos são fortemente influenciados pela experiência dos professores. Professores mais experientes conseguem gerar ganhos substanciais no aprendizado em turmas menores, enquanto professores iniciantes não obtêm o mesmo impacto.
+
+\begin{itemize}
+    \item \textbf{Aumento no desempenho dos alunos}: Alunos em turmas menores com professores experientes apresentaram melhorias significativas em leitura e matemática, com os ganhos mais pronunciados em alunos de desempenho intermediário e alto.
+    \item \textbf{Impacto limitado entre professores iniciantes}: Professores com menos de três anos de experiência não conseguiram maximizar os benefícios de turmas menores, sugerindo que a simples redução do tamanho da turma não é suficiente sem a complementação de experiência docente.
+    \item \textbf{Efeito moderado por qualidade de ensino}: O estudo sugere que a qualidade do ensino, medida pela experiência do professor, é o principal mecanismo que explica por que turmas menores resultam em melhores resultados em algumas condições e não em outras.
+    \item \textbf{Persistência dos efeitos}: Embora o estudo se concentre em efeitos de curto e médio prazo, os ganhos de aprendizado para alunos com professores experientes em turmas menores foram duradouros ao longo do experimento.
+\end{itemize}
+
+Esses resultados indicam que políticas de redução do tamanho da turma podem ser mais eficazes quando combinadas com a experiência dos professores, maximizando os ganhos de desempenho com melhor custo-benefício.
+
+
+
+
+\end{document}

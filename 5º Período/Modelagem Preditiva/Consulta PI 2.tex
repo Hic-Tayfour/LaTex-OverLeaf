@@ -1,0 +1,301 @@
+\documentclass{sciposter}
+\usepackage{lipsum}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{graphicx,url}
+\usepackage[portuges, brazil]{babel}   
+\usepackage[utf8]{inputenc}
+
+\newtheorem{Def}{Definição}
+
+\title{Modelo de Consulta de Modelagem Preditiva}
+% Título do projeto
+
+\institute 
+{Bacharelado em Economia\\
+Insper - Instituto de Ensino e Pesquisa\\
+São Paulo, Brasil}
+% Nome e endereço da Instituição
+
+\rightlogo[1]{logo-insper.png}  % Substitua pelo logo do Insper
+
+\begin{document}
+
+\conference{{\bf Modelagem Preditiva}, Curso de Economia - Insper, 2024, São Paulo, Brasil}
+
+\maketitle
+
+%%% Início do ambiente Multicolunas
+\begin{multicols}{3}
+
+%%% Resumo
+\begin{abstract}
+Este documento fornece um modelo de consulta para a eletiva Modelagem Preditiva. Ele organiza os principais conceitos e tópicos relevantes para facilitar a revisão do curso.
+\end{abstract}
+
+%%% Começa aqui
+
+
+\section{Erros de Treinamento e Teste em Classificação}
+
+Em problemas de classificação, distinguimos entre o erro de treinamento e o erro de teste:
+
+\begin{itemize}
+    \item \textbf{Erro de treinamento:} Refere-se à taxa de erro do modelo ao classificar os exemplos do conjunto de treinamento, ou seja, aqueles dados que foram utilizados para treinar o modelo. Um erro de treinamento muito baixo pode indicar que o modelo ajustou-se bem aos dados de treinamento, mas corre o risco de estar superajustado (overfitting), o que significa que pode não generalizar bem para novos dados.
+    
+    \item \textbf{Erro de teste:} É a taxa de erro ao classificar exemplos em um conjunto de dados que o modelo não viu durante o treinamento. Este erro é uma medida mais confiável da capacidade de generalização do modelo.
+\end{itemize}
+
+Abaixo estão as formas de cálculo desses erros para diferentes modelos de classificação:
+
+\subsection{k-Vizinhos Mais Próximos (k-NN)}
+\begin{itemize}
+    \item O erro de treinamento tende a ser baixo, especialmente para valores pequenos de \(k\), como \(k=1\), porque o modelo ajusta-se perfeitamente aos exemplos do conjunto de treinamento.
+    \item O erro de teste, geralmente obtido por validação cruzada ou por um conjunto de dados de teste separado, aumenta conforme \(k\) cresce, tornando o modelo mais robusto e menos sensível a ruídos.
+\end{itemize}
+
+\subsection{Regressão Logística}
+\begin{itemize}
+    \item O erro de treinamento é calculado como a proporção de exemplos mal classificados no conjunto de treinamento. Em modelos lineares como a regressão logística, o erro de treinamento pode ser mais elevado do que em modelos mais complexos, mas isso geralmente resulta em melhor capacidade de generalização.
+    \item O erro de teste é calculado de maneira semelhante ao erro de treinamento, utilizando um conjunto de dados de teste.
+\end{itemize}
+
+\subsection{Árvores de Classificação}
+\begin{itemize}
+    \item O erro de treinamento em árvores de classificação tende a ser baixo, pois as árvores ajustam-se bem aos dados de treinamento, podendo se tornar muito profundas.
+    \item O erro de teste é geralmente estimado por validação cruzada ou separação em conjuntos de treinamento e teste. Podar a árvore é uma técnica comum para reduzir o sobreajuste e melhorar a generalização.
+\end{itemize}
+
+\subsection{Árvores de Regressão}
+\begin{itemize}
+    \item Semelhante às árvores de classificação, o erro de treinamento é normalmente baixo em árvores de regressão que crescem de forma profunda.
+    \item O erro de teste é calculado da mesma maneira, com poda sendo usada para melhorar a capacidade preditiva e reduzir o erro de teste.
+\end{itemize}
+
+\section{k-NN para Classificação}
+
+O algoritmo k-Nearest Neighbors (k-NN) é um método simples de classificação que não requer um modelo ajustado. Ele funciona da seguinte maneira:
+
+\begin{itemize}
+    \item Para um ponto de consulta \(x_0\), localizam-se os \(k\) pontos de treinamento mais próximos, de acordo com uma métrica de distância pré-definida (por exemplo, distância Euclidiana).
+    \item A classe atribuída ao ponto \(x_0\) é determinada pelo voto da maioria das classes dos \(k\) vizinhos mais próximos.
+\end{itemize}
+
+\subsection{Processo de Cálculo}
+O algoritmo k-NN depende de uma função de distância para encontrar os \(k\) vizinhos mais próximos. Algumas métricas comuns incluem:
+
+\begin{itemize}
+    \item \textbf{Distância Euclidiana}: Para variáveis contínuas, essa métrica é amplamente utilizada.
+    \item \textbf{Distância de Mahalanobis}: Usada quando as preditoras possuem diferentes escalas ou estão correlacionadas.
+\end{itemize}
+
+\subsection{Escolha do Valor de \(k\)}
+A escolha de \(k\) tem um impacto significativo na performance do classificador:
+\begin{itemize}
+    \item Se \(k = 1\), o classificador ajusta-se perfeitamente aos dados de treinamento, resultando em um erro de treinamento igual a zero, o que pode causar sobreajuste (overfitting).
+    \item À medida que \(k\) aumenta, o classificador se torna mais robusto e menos sensível a ruídos, mas pode ter um aumento no erro de classificação.
+\end{itemize}
+
+A seleção do valor ideal de \(k\) é frequentemente feita utilizando métodos de validação cruzada.
+
+\subsection{Maldição da Dimensionalidade}
+Quando o número de preditoras \(p\) é muito grande, o classificador k-NN sofre com a "maldição da dimensionalidade". Em espaços de alta dimensão, todos os pontos de treinamento estão aproximadamente à mesma distância uns dos outros, o que torna o método menos eficaz.
+
+\section{Regressão Logística}
+
+A regressão logística é um método utilizado para resolver problemas de classificação binária, onde a variável resposta \(Y\) assume dois valores: \(Y \in \{0, 1\}\). O objetivo é modelar a probabilidade de \(Y = 1\), dado um conjunto de variáveis preditoras \(X = (X_1, X_2, \dots, X_p)\).
+
+\subsection{Definição do Modelo}
+O modelo de regressão logística assume que a log-odds da probabilidade de \(Y = 1\) é uma função linear das variáveis preditoras:
+\[
+\log\left(\frac{P(Y = 1|X)}{P(Y = 0|X)}\right) = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
+\]
+Ou seja, a função logística transforma a combinação linear das variáveis em uma probabilidade:
+\[
+P(Y = 1|X) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p))}
+\]
+
+\subsection{Treinamento do Modelo}
+O treinamento da regressão logística envolve a estimação dos parâmetros \(\beta_0, \beta_1, \dots, \beta_p\), utilizando o método de máxima verossimilhança. O objetivo é encontrar os valores dos parâmetros que maximizam a probabilidade dos dados observados.
+
+Para isso, utilizamos uma função de verossimilhança \(L(\beta)\), que expressa a probabilidade de observar o conjunto de dados dado os parâmetros \(\beta\):
+\[
+L(\beta) = \prod_{i=1}^{n} P(Y_i|X_i)
+\]
+A função de log-verossimilhança é mais frequentemente utilizada:
+\[
+\log L(\beta) = \sum_{i=1}^{n} \left( Y_i \log(P(Y_i|X_i)) + (1 - Y_i) \log(1 - P(Y_i|X_i)) \right)
+\]
+A maximização dessa função em relação aos parâmetros \(\beta\) é feita utilizando algoritmos de otimização, como o gradiente descendente ou o método de Newton-Raphson.
+
+\subsection{Interpretação dos Coeficientes}
+Os coeficientes estimados \(\beta_j\) indicam a mudança na log-odds da probabilidade de \(Y = 1\) para uma mudança unitária na preditora \(X_j\). Por exemplo, se \(\beta_j = 0.5\), um aumento de uma unidade em \(X_j\) aumenta a log-odds em 0.5.
+    
+\section{Previsão no Modelo de Regressão Logística}
+
+A previsão no modelo de regressão logística envolve estimar a probabilidade de uma observação pertencer a uma classe. No caso de um problema de classificação binária, o objetivo é prever a probabilidade de \(Y = 1\) dado um vetor de preditores \(X = (X_1, X_2, \dots, X_p)\).
+
+O modelo de regressão logística define essa probabilidade como:
+\[
+P(Y = 1 | X) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p))}
+\]
+onde \(\beta_0, \beta_1, \dots, \beta_p\) são os coeficientes estimados durante o treinamento do modelo.
+
+\subsection{Decisão de Classificação}
+Para transformar a previsão de probabilidade em uma classe, utilizamos um limiar. A regra mais comum é:
+\[
+\hat{Y} = 
+\begin{cases} 
+1 & \text{se } P(Y = 1 | X) \geq 0.5 \\
+0 & \text{se } P(Y = 1 | X) < 0.5
+\end{cases}
+\]
+Esse limiar pode ser ajustado dependendo do problema específico, como em casos onde há diferentes custos para falsos positivos e falsos negativos.
+
+\subsection{Interpretação dos Resultados}
+A previsão produzida pelo modelo não é apenas uma classificação, mas também fornece a probabilidade associada à classe. Isso permite que o modelo não só classifique, mas também quantifique a incerteza da predição.
+
+\section{Estabelecendo um Ponto de Corte (Threshold) para Classificação}
+
+Em muitos métodos de classificação, como a regressão logística, o modelo fornece uma probabilidade de uma observação pertencer a uma determinada classe. Para transformar essa probabilidade em uma decisão de classe (0 ou 1, por exemplo), é necessário estabelecer um ponto de corte ou threshold.
+
+\subsection{Definindo o Threshold}
+O threshold \( t \) é um valor entre 0 e 1 que determina como as probabilidades serão interpretadas para a decisão final de classificação. A regra geral é:
+
+\[
+\hat{Y} = 
+\begin{cases} 
+1 & \text{se } P(Y = 1 | X) \geq t \\
+0 & \text{se } P(Y = 1 | X) < t
+\end{cases}
+\]
+
+\subsection{Ajuste do Threshold}
+O valor padrão do threshold em muitos casos é \( t = 0.5 \), o que significa que, se a probabilidade de \( Y = 1 \) for maior ou igual a 0.5, o modelo classifica a observação como pertencente à classe \( Y = 1 \). No entanto, o threshold pode ser ajustado dependendo da aplicação. Por exemplo:
+
+\begin{itemize}
+    \item Em problemas onde é mais importante evitar falsos negativos, pode ser útil reduzir o threshold para um valor menor que 0.5, o que aumentaria a sensibilidade (recall).
+    \item Em problemas onde é mais importante evitar falsos positivos, pode-se aumentar o threshold para um valor maior que 0.5, o que aumentaria a precisão (precision).
+\end{itemize}
+
+\subsection{Análise de Curvas ROC}
+Uma forma comum de determinar o melhor threshold é através da análise da curva ROC (Receiver Operating Characteristic). A curva ROC mostra a relação entre a taxa de verdadeiros positivos (sensibilidade) e a taxa de falsos positivos para diferentes valores de threshold. O ponto ideal na curva ROC é aquele que maximiza a sensibilidade e minimiza os falsos positivos, fornecendo uma base sólida para selecionar o melhor threshold para o problema.
+
+\section{Matriz de Confusão}
+
+A matriz de confusão é uma ferramenta usada para avaliar o desempenho de um modelo de classificação. Ela é composta pelas seguintes quantidades:
+
+\begin{itemize}
+    \item \textbf{Verdadeiro Positivo (TP)}: Número de instâncias corretamente classificadas como positivas.
+    \item \textbf{Falso Positivo (FP)}: Número de instâncias incorretamente classificadas como positivas.
+    \item \textbf{Verdadeiro Negativo (TN)}: Número de instâncias corretamente classificadas como negativas.
+    \item \textbf{Falso Negativo (FN)}: Número de instâncias incorretamente classificadas como negativas.
+\end{itemize}
+
+A matriz de confusão é organizada da seguinte forma:
+
+\[
+\begin{array}{|c|c|c|}
+\hline
+ & \text{Predito Positivo} & \text{Predito Negativo} \\
+\hline
+\text{Verdadeiro Positivo (TP)} & TP & FN \\
+\text{Verdadeiro Negativo (TN)} & FP & TN \\
+\hline
+\end{array}
+\]
+
+\section{Sensibilidade e Especificidade}
+
+\begin{itemize}
+    \item \textbf{Sensibilidade (ou Recall)}: Medida da capacidade do modelo de identificar corretamente as instâncias positivas. Calculada como:
+    \[
+    \text{Sensibilidade} = \frac{TP}{TP + FN}
+    \]
+    
+    \item \textbf{Especificidade}: Medida da capacidade do modelo de identificar corretamente as instâncias negativas. Calculada como:
+    \[
+    \text{Especificidade} = \frac{TN}{TN + FP}
+    \]
+\end{itemize}
+
+\section{Curva ROC e AUC}
+
+A curva ROC (Receiver Operating Characteristic) é uma representação gráfica da relação entre a taxa de verdadeiros positivos (sensibilidade) e a taxa de falsos positivos (1 - especificidade) para diferentes valores de threshold (ponto de corte). A curva ROC é usada para avaliar o desempenho de um classificador ao longo de todos os possíveis thresholds.
+
+\begin{itemize}
+    \item \textbf{Interpretação da Curva ROC}: Uma curva ROC que se aproxima do canto superior esquerdo indica um bom desempenho do classificador, com alta sensibilidade e baixa taxa de falsos positivos. A linha diagonal indica o desempenho de um classificador aleatório.
+    
+    \item \textbf{AUC (Area Under the Curve)}: A AUC é a área sob a curva ROC e fornece um valor que resume o desempenho do classificador. O valor de AUC varia de 0 a 1, sendo que um valor de 1 indica um classificador perfeito e um valor de 0.5 indica um classificador equivalente a uma classificação aleatória.
+\end{itemize}
+
+\section{Interpretação de uma Árvore de Classificação ou Regressão}
+
+A interpretação de uma árvore de classificação ou regressão segue uma estrutura lógica que permite uma análise clara de como as decisões ou predições são feitas. Aqui estão os principais pontos:
+
+\subsection{Nós e Folhas}
+Uma árvore de decisão é composta por:
+\begin{itemize}
+    \item \textbf{Raiz}: O nó inicial, onde a primeira divisão (split) ocorre.
+    \item \textbf{Nós Internos}: Representam as divisões nas variáveis preditoras.
+    \item \textbf{Folhas}: Os nós terminais da árvore, que indicam a classe prevista (no caso de classificação) ou o valor previsto (no caso de regressão).
+\end{itemize}
+
+Cada divisão é baseada em uma regra simples do tipo "se" condicional, como \( X_j \leq t \), onde \(X_j\) é uma variável preditora e \(t\) é o valor de corte escolhido.
+
+\subsection{Interpretação de Classificação}
+Para interpretar uma árvore de classificação, você deve seguir o caminho da raiz até uma folha, verificando as condições em cada nó. A classe associada à folha é a previsão para qualquer nova observação que siga esse caminho. Por exemplo:
+
+\begin{itemize}
+    \item A variável \(X_1 \leq 5\) pode levar a um nó onde se decide entre outra divisão em \(X_2\), e assim por diante.
+    \item A classe atribuída à folha é determinada pela classe mais comum nas observações de treinamento que caíram naquela região.
+\end{itemize}
+
+\subsection{Interpretação de Regressão}
+No caso de árvores de regressão, o processo é semelhante, mas em vez de classes, as folhas contêm valores numéricos. Cada folha armazena a média dos valores da variável resposta das observações que caem naquela região.
+
+\subsection{Importância das Variáveis}
+Ao observar a árvore, as variáveis preditoras que aparecem mais próximas da raiz são geralmente as mais importantes, pois afetam a maior parte das previsões. Isso pode ser útil para entender quais variáveis têm maior impacto no modelo.
+
+\subsection{Profundidade e Complexidade}
+A profundidade da árvore refere-se ao número de níveis de divisão. Árvores muito profundas podem sofrer de sobreajuste (overfitting), capturando o ruído do conjunto de dados de treinamento, enquanto árvores muito rasas podem não capturar adequadamente as relações entre as variáveis.
+
+\section{Erro Quadrático Médio (EQM) de Treinamento e Teste em Regressão}
+
+Em um problema de regressão, o erro quadrático médio (EQM) é uma métrica que avalia a performance de um modelo de previsão. Ele mede a média das diferenças ao quadrado entre os valores reais e os valores previstos pelo modelo. O EQM é calculado tanto para o conjunto de treinamento quanto para o conjunto de teste.
+
+\subsection{Erro Quadrático Médio de Treinamento}
+O erro quadrático médio de treinamento é definido como:
+
+\[
+EQM_{train} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]
+
+Onde:
+\begin{itemize}
+    \item \( n \) é o número de observações no conjunto de treinamento,
+    \item \( y_i \) é o valor real da variável resposta para a \(i\)-ésima observação,
+    \item \( \hat{y}_i \) é o valor previsto pelo modelo para a \(i\)-ésima observação.
+\end{itemize}
+
+\subsection{Erro Quadrático Médio de Teste}
+O erro quadrático médio de teste é calculado de maneira semelhante ao de treinamento, mas utilizando o conjunto de teste. A fórmula é:
+
+\[
+EQM_{test} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2
+\]
+
+Onde:
+\begin{itemize}
+    \item \( m \) é o número de observações no conjunto de teste,
+    \item \( y_i \) é o valor real da variável resposta para a \(i\)-ésima observação do conjunto de teste,
+    \item \( \hat{y}_i \) é o valor previsto pelo modelo para a \(i\)-ésima observação do conjunto de teste.
+\end{itemize}
+
+O EQM de teste fornece uma medida da capacidade do modelo de generalizar para novos dados, enquanto o EQM de treinamento avalia o ajuste do modelo aos dados com os quais foi treinado.
+
+\end{multicols}
+
+\end{document}
