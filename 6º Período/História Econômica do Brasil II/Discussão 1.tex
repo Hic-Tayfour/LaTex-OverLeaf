@@ -1,0 +1,428 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+
+
+% Definições de layout e formatação
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\onehalfspacing % Espaçamento entre linhas de 1,5
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage{ragged2e} % Melhor controle de justificação do texto
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização)
+
+% Pacotes de cabeçalho, rodapé e títulos
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\setlength{\headheight}{14.49998pt} % Altura do cabeçalho
+\pagestyle{fancy}
+\fancyhf{} % Limpa cabeçalho e rodapé
+\rhead{\thepage} % Página no canto direito do cabeçalho
+
+% Pacotes para tabelas
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+
+% Pacotes para gráficos e imagens
+\usepackage{graphicx} % Suporte para inclusão de imagens
+
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+
+\lstset{
+    language=R,                      
+    basicstyle=\ttfamily\scalefont{1.0},
+    keywordstyle=\color{blue},       
+    stringstyle=\color{red},         
+    commentstyle=\color{green},      
+    numbers=left,                    
+    numberstyle=\tiny\color{gray},   
+    stepnumber=1,                    
+    numbersep=5pt,                   
+    backgroundcolor=\color{lightgray!10}, 
+    frame=single,                    
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,          
+    showtabs=false,                  
+    tabsize=2,
+     literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {Ú}{{\'U}}1
+             {â}{{\^a}}1
+             {ê}{{\^e}}1
+             {î}{{\^i}}1
+             {ô}{{\^o}}1
+             {û}{{\^u}}1
+             {ã}{{\~a}}1
+             {õ}{{\~o}}1
+             {ç}{{\c{c}}}1,
+}
+
+
+% Pacotes para unidades e formatação numérica
+\usepackage{siunitx} % Tipografia de unidades do Sistema Internacional e formatação de números
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+
+% Pacotes para hiperlinks e referências
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+
+% Pacotes para texto e outros
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Discussão 1}\\
+    \textbf{História Econômica do Brasil II}\\
+    \vspace{1.5cm}
+    Prof. Heleno Piazentini Vieira \\
+    Prof. Auxiliar  \\
+    \vfill
+    \normalsize
+    Andreas Azambuja Barbisan, \href{mailto:andreasab@al.insper.edu.br}{andreasab@al.insper.edu.br}\\
+    Bruno Frasao Brazil Leiros, \href{mailto:brunofbl@al.insper.edu.br}{brunofbl@al.insper.edu.br}\\
+    Érika Kaori Fuzisaka, \href{mailto:erikakf1@al.insper.edu.br}{erikakf1@al.insper.edu.br}\\
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    Kimberly Silva de Assis, \href{mailto:kimberlysa@al.insper.edu.br}{kimberlysa@al.insper.edu.br}\\
+    Lorena Liz Giusti e Santos,\href{mailto:lorenalgs@al.insper.edu.br}{lorenalgs@al.insper.edu.br}\\
+    Nicolas Pedro Diniz Brito, \href{mailto:nicolasb2@al.insper.edu.br}{nicolasb2@al.insper.edu.br}\\
+    Sarah de Araújo Nascimento Silva, \href{mailto:sarahans@al.insper.edu.br}{sarahans@al.insper.edu.br}\\
+
+
+    \vfill
+    São Paulo\\
+    Fevereiro/2025
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % Esse comando remove a numeração de pagina da tabela de conteúdo
+
+\newpage
+\setcounter{page}{1} % Inicia a contagem de páginas a partir desta página
+\justify
+\onehalfspacing
+
+\section{\textbf{Programa de Ação Econômica do Governo - PAEG}}
+
+O \textbf{Programa de Ação Econômica do Governo (PAEG)}, implementado entre \textbf{1964 e 1966}, foi uma resposta à grave crise econômica enfrentada pelo Brasil no início do regime militar. O país vivia um cenário de \textbf{estagflação}, caracterizado pela combinação de \textbf{baixo crescimento econômico e alta inflação}. Entre 1957 e 1962, a economia brasileira cresceu a uma média de \textbf{8,8\% ao ano}, mas em \textbf{1963} registrou um crescimento de apenas \textbf{0,6\%}, enquanto a inflação disparou para \textbf{79,9\% ao ano}. Diante desse contexto, o governo Castello Branco, sob a liderança do ministro da Fazenda \textbf{Roberto Campos}, elaborou um conjunto de medidas para estabilizar a economia e criar as bases para o crescimento sustentável.
+
+O PAEG adotou uma abordagem gradualista para reduzir a inflação e restabelecer a confiança dos agentes econômicos. O programa reconhecia que a inflação no Brasil não era apenas um fenômeno monetário, mas também resultado de pressões distributivas entre governo, empresas e trabalhadores. Assim, além das \textbf{políticas de austeridade fiscal e monetária}, o PAEG implementou \textbf{reformas institucionais profundas}, com destaque para as reformas \textbf{tributária, financeira e do mercado de trabalho}.
+
+No âmbito da \textbf{política fiscal}, o PAEG buscou reduzir o déficit público por meio do aumento da arrecadação e do corte de gastos governamentais. Foram estabelecidas metas rigorosas de controle das despesas e criados novos mecanismos de arrecadação. Além disso, o governo adotou uma \textbf{política monetária restritiva}, limitando a expansão do crédito e reduzindo a oferta de moeda na economia. Essas medidas visavam conter a demanda agregada e reduzir as pressões inflacionárias.
+
+A \textbf{reforma do mercado de trabalho} foi um dos pilares do programa, com a criação do \textbf{Fundo de Garantia por Tempo de Serviço (FGTS)}. Esse fundo substituiu o antigo sistema de estabilidade no emprego, que garantia ao trabalhador estabilidade após dez anos na mesma empresa. O FGTS permitiu que os empregadores demitissem funcionários sem a obrigação de mantê-los por tempo indeterminado, desde que realizassem depósitos mensais de \textbf{8\% do salário} em contas vinculadas. Essa mudança visava flexibilizar o mercado de trabalho e incentivar novas contratações.
+
+A \textbf{reforma tributária} promovida pelo PAEG teve como objetivo \textbf{aumentar a arrecadação e racionalizar o sistema tributário}. O governo simplificou a estrutura de impostos, extinguiu tributos pouco eficientes e criou novos mecanismos para garantir maior arrecadação. Entre as principais mudanças, destacam-se a criação do \textbf{Imposto sobre Circulação de Mercadorias (ICM)} e do \textbf{Imposto Sobre Serviços (ISS)}, além da ampliação da base de incidência do \textbf{Imposto de Renda}. A carga tributária subiu de \textbf{16\% para 21\% do PIB} entre 1963 e 1967, concentrando-se em impostos indiretos, que afetavam desproporcionalmente as classes de menor renda.
+
+A \textbf{reforma financeira} foi outro pilar essencial do PAEG, modernizando o sistema bancário e criando condições para o financiamento de longo prazo. A principal mudança foi a criação do \textbf{Banco Central do Brasil (Bacen)} e do \textbf{Conselho Monetário Nacional (CMN)}, que passaram a regular e controlar a política monetária. Além disso, o governo incentivou a \textbf{expansão do crédito de longo prazo}, regulamentando bancos de investimento e promovendo a criação do \textbf{Sistema Financeiro da Habitação (SFH)}. Também foi introduzida a \textbf{correção monetária}, por meio das \textbf{Obrigações Reajustáveis do Tesouro Nacional (ORTN)}, que ajustavam os títulos públicos de acordo com a inflação, garantindo previsibilidade aos investidores.
+
+Apesar de suas medidas rigorosas, o PAEG não adotou um choque de estabilização abrupto, optando por uma estratégia de ajuste gradual da economia. As metas de inflação foram \textbf{70\% em 1964, 25\% em 1965 e 10\% em 1966}, evidenciando uma transição progressiva para a estabilidade de preços. Além disso, o programa foi estruturado de forma a garantir que as medidas de combate à inflação não comprometessem a retomada do crescimento econômico.
+
+O PAEG lançou as bases para a \textbf{recuperação econômica e o ``Milagre Econômico''} da década seguinte. No entanto, suas reformas também trouxeram impactos negativos, como a \textbf{queda do poder de compra dos trabalhadores}, o \textbf{aumento da carga tributária sobre as classes mais pobres} e a \textbf{dependência de financiamento externo}. Além disso, a implementação dessas medidas foi facilitada pelo regime autoritário, que impôs as mudanças sem resistência política significativa.
+
+Em retrospectiva, o PAEG foi um programa econômico fundamental para reorganizar a economia brasileira, estabilizar a inflação e modernizar as instituições econômicas. Seu legado pode ser visto nas reformas estruturais que permanecem até os dias atuais, bem como nos desafios decorrentes de suas políticas, que influenciaram o desenvolvimento econômico do Brasil ao longo das décadas seguintes.
+
+\newpage
+\section{\textbf{Resumo dos Textos da 1º Discussão}}
+\subsection{\textbf{Ordem e Progresso, Cap. 10, item: Além da ortodoxia simplista}}
+
+O PAEG (Programa de Ação Econômica do Governo) não pode ser classificado como um programa de estabilização totalmente ortodoxo. A ortodoxia econômica tradicional atribui a inflação à excessiva expansão monetária e propõe medidas restritivas de política monetária e fiscal para combatê-la. No entanto, o PAEG reconheceu que a inflação no Brasil também resultava de pressões distributivas entre governo, empresas e trabalhadores, o que demandava uma estratégia gradualista.
+
+A ortodoxia econômica preconiza que o déficit orçamentário do governo é a principal fonte de excesso monetário e, consequentemente, da inflação. Para corrigir esse problema, defende-se a adoção de uma política fiscal rigorosa, redução dos gastos governamentais e uma política monetária contracionista. Além disso, argumenta que dificuldades no balanço de pagamentos decorrem de políticas tarifárias protecionistas e de uma taxa cambial sobrevalorizada, sendo necessário adotar um câmbio realista, reduzir barreiras comerciais e promover maior inserção no mercado internacional.
+
+Entretanto, o PAEG foi além desse receituário ortodoxo. O programa implementou reformas institucionais significativas em três áreas: o sistema tributário, o mercado financeiro e o setor externo. No âmbito tributário, promoveu a racionalização do sistema, eliminando impostos em cascata e introduzindo a correção monetária. Isso possibilitou a modernização do sistema fiscal, garantindo maior previsibilidade para os agentes econômicos e reduzindo distorções na arrecadação. No setor financeiro, criou o Banco Central, reorganizou a estrutura bancária e possibilitou a captação de poupança privada por meio da introdução de títulos financeiros indexados, permitindo um melhor funcionamento do mercado de capitais e facilitando o financiamento do investimento privado e do próprio Tesouro. No comércio exterior, simplificou o sistema cambial, modernizou agências ligadas ao setor externo e ampliou o acesso a créditos internacionais, contribuindo para uma maior estabilidade no balanço de pagamentos e para o financiamento de importações estratégicas.
+
+Outro pilar fundamental do PAEG foi a política salarial, que substituiu a negociação coletiva por um reajuste oficial baseado em fórmula governamental. Essa estratégia resultou na redução dos salários reais de forma sistemática entre 1965 e 1974. O mecanismo utilizado possibilitou uma redução gradual da parcela salarial na renda nacional, evitando, assim, uma desaceleração brusca da economia. Diferentemente da abordagem ortodoxa, que recorre à recessão e ao desemprego como meio de conter a inflação, o PAEG utilizou seu poder autoritário para intervir diretamente na formação dos salários e controlar as pressões inflacionárias de custo.
+
+Apesar disso, o PAEG ainda incorporou medidas ortodoxas, como a restrição monetária e fiscal. A adoção dessas políticas, além de gerar custos sociais elevados – como a deterioração da distribuição de renda e a elevação do desemprego –, visava conquistar a confiança das instituições financeiras internacionais, garantindo influxos de capital e a estabilidade do balanço de pagamentos. A confiança dos investidores externos e das agências de crédito internacionais foi um fator determinante para viabilizar o financiamento externo, essencial para equilibrar as contas externas do país naquele momento.
+
+A opção pela ortodoxia, portanto, não foi apenas um imperativo econômico, mas também uma necessidade estratégica para restaurar a credibilidade da política econômica brasileira no cenário internacional. O diferencial do PAEG em relação a programas anteriores foi a possibilidade de intervir diretamente na política salarial devido ao contexto político autoritário do período, o que facilitou a implementação de suas diretrizes e reduziu a resistência a reformas impopulares.
+
+Em síntese, o PAEG combinou elementos ortodoxos e intervencionistas, estruturando reformas que viabilizaram a estabilidade econômica e lançaram as bases para o crescimento acelerado da economia brasileira a partir de 1968. Ao mesmo tempo em que adotou um arcabouço macroeconômico austero, realizou mudanças institucionais que modernizaram a economia, tornando-a mais preparada para enfrentar desafios futuros e atrair investimentos estrangeiros.
+
+\subsection{\textbf{Economia Brasileira Contemporânea, cap. 3; O Paeg (1964-66): Diagnóstico e Estratégia de estabilização}}
+
+O PAEG (Programa de Ação Econômica do Governo) foi uma resposta à grave crise econômica enfrentada pelo Brasil no início do governo Castello Branco. A economia brasileira operava em um cenário de "estagflação", caracterizado pela estagnação econômica e uma crescente inflação. Entre 1957 e 1962, o PIB crescia a uma média de 8,8\% ao ano, mas em 1963, o crescimento despencou para 0,6\%, enquanto a inflação (medida pelo IGP) saltou para 79,9\%.
+
+O diagnóstico do governo, formulado pelo ministro Roberto Campos, identificava o déficit fiscal e a pressão salarial como as principais causas da inflação. A expansão dos meios de pagamento era sustentada por déficits governamentais, o que por sua vez alimentava reajustes salariais sucessivos. Para enfrentar essa crise, o PAEG estruturou um conjunto de medidas:\begin{enumerate}
+    \item Ajuste Fiscal: Implementação de um programa rigoroso de aumento da arrecadação, incluindo reajustes nas tarifas públicas e reforma tributária. Paralelamente, foi promovida a contenção de gastos governamentais, com cortes orçamentários expressivos em 1964, a fim de reduzir o déficit público e equilibrar as contas do governo.
+    \item Política Monetária Restritiva: Controle rigoroso da expansão dos meios de pagamento, adotando metas decrescentes para a emissão de moeda. Esse controle visava interromper a espiral inflacionária e restaurar a confiança na política econômica.
+    \item Controle do Crédito: Restrição do crédito ao setor privado, garantindo que a expansão do crédito estivesse alinhada às metas monetárias, impedindo assim o crescimento descontrolado da demanda agregada e novas pressões inflacionárias.
+    \item Reforma Salarial: Introdução de um mecanismo de correção salarial que vinculava reajustes à produtividade e à inflação passada. Inicialmente aplicado ao setor público, esse modelo foi estendido ao setor privado em 1966, evitando reajustes salariais automáticos e reduzindo a inércia inflacionária.
+\end{enumerate}
+
+Com base nessas medidas, o PAEG estabeleceu metas decrescentes de inflação: 70\% em 1964, 25\% em 1965 e 10\% em 1966. O plano adotou uma abordagem gradualista, evitando um choque desinflacionário abrupto que poderia resultar em uma crise econômica ainda mais severa. Além disso, a correção de distorções nos preços relativos – como tarifas públicas e câmbio – foi considerada essencial para reequilibrar a economia e restaurar a competitividade externa do país.
+
+A opção pelo gradualismo também teve motivações políticas. O governo militar precisava demonstrar competência na gestão econômica sem comprometer a estabilidade social e a confiança da classe empresarial e dos investidores internacionais. Dessa forma, o PAEG conciliou medidas ortodoxas – como austeridade fiscal e monetária – com reformas estruturais que buscavam modernizar a economia brasileira, incluindo a criação do Banco Central, a reestruturação do sistema financeiro e a reformulação da política cambial.
+
+Além disso, o PAEG preparou o terreno para novas políticas de desenvolvimento econômico, estabelecendo condições para a retomada do crescimento sustentado nos anos seguintes. No entanto, a política de controle salarial resultou em perdas significativas para os trabalhadores, contribuindo para a ampliação da desigualdade de renda e a redução do poder aquisitivo da classe trabalhadora. A correção monetária, inicialmente concebida como um mecanismo de ajuste para a estabilização, acabou perpetuando a inflação, tornando-se um problema crônico que persistiria por décadas na economia brasileira.
+
+Em retrospectiva, o PAEG foi uma iniciativa fundamental para reorganizar as bases da economia brasileira, promovendo um modelo de estabilização que combinava elementos de austeridade com planejamento estratégico. Apesar dos impactos sociais adversos, suas reformas estruturais tiveram um papel central na criação das condições que levaram ao chamado "Milagre Econômico" na década seguinte.
+
+\subsection{\textbf{Economia Brasileira Contemporânea, cap. 3: As reformas estruturais de 1964-67}}
+
+As reformas estruturais implementadas entre 1964 e 1967 foram essenciais para modernizar a economia brasileira e estabilizar o cenário econômico pós-1964. Elas abrangeram três grandes áreas: 			\textbf{reforma do mercado de trabalho}, 			\textbf{reforma tributária} e 			\textbf{reforma financeira}. A seguir, detalham-se as principais medidas adotadas.
+
+\textbf{Reforma do Mercado de Trabalho – Criação do FGTS}
+
+Uma das mudanças mais significativas desse período foi a criação do 			\textbf{Fundo de Garantia por Tempo de Serviço (FGTS)}, instituído para substituir o regime de estabilidade no emprego. O sistema anterior garantia estabilidade ao trabalhador após dez anos na mesma empresa, o que dificultava demissões e aumentava os custos trabalhistas dos empregadores. Com a criação do FGTS, estabeleceu-se um mecanismo pelo qual o empregador passou a depositar mensalmente 			\textbf{8\% do salário do trabalhador} em uma conta vinculada, permitindo que os funcionários demitidos sem justa causa tivessem acesso a esses recursos.
+
+O objetivo da mudança foi flexibilizar o mercado de trabalho, reduzindo os custos de contratação e incentivando novos empregos. Além disso, o FGTS permitiu o uso desses recursos em situações específicas, como na aquisição da casa própria. Contudo, devido à ausência de dados históricos comparativos antes e depois da implementação, não há evidências quantitativas conclusivas sobre o impacto da medida na geração de empregos.
+
+\textbf{Reforma Tributária}
+
+A reforma tributária promovida no período tinha dois objetivos principais: 			\textbf{aumentar a arrecadação do governo} e 			\textbf{racionalizar o sistema tributário}. As principais medidas incluíram:
+
+\begin{itemize}
+    \item 			\textbf{Modernização da arrecadação}: Introdução da arrecadação de impostos por meio da rede bancária, simplificando o processo e reduzindo custos administrativos.
+    \item 			\textbf{Eliminação de tributos de baixa arrecadação}: Extinção de impostos como o selo (federal), sobre profissões e diversões públicas (municipais).
+    \item 			\textbf{Criação de novos impostos}: Instituição do \textbf{Imposto Sobre Serviços (ISS)}, de competência municipal.
+    \item \textbf{Substituição de tributos estaduais}: O antigo imposto sobre vendas foi substituído pelo \textbf{Imposto sobre Circulação de Mercadorias (ICM)}, que incidia apenas sobre o valor adicionado.
+    \item \textbf{Ampliação da base do Imposto de Renda}: Aumento da abrangência do imposto sobre a renda de pessoas físicas, elevando a arrecadação.
+    \item \textbf{Criação de incentivos fiscais}: Isenções e benefícios para aplicações financeiras e investimentos em setores considerados estratégicos pelo governo.
+    \item \textbf{Fundo de Participação dos Estados e Municípios (FPEM)}: Redistribuição da arrecadação federal para estados e municípios, embora com controle centralizado pela União.
+\end{itemize}
+
+Os impactos da reforma tributária foram significativos. A carga tributária aumentou de 			extbf{16\% do PIB em 1963 para 21\% em 1967}. Contudo, a estrutura dos novos tributos favorecia os detentores de maior renda, pois ampliava a incidência de impostos indiretos, que penalizam proporcionalmente mais as classes de menor poder aquisitivo. Além disso, a reforma teve um caráter centralizador, reduzindo a autonomia tributária de estados e municípios e concentrando o poder fiscal na União.
+
+\textbf{Reforma Financeira}
+
+O sistema financeiro brasileiro até meados da década de 1960 era limitado e pouco eficiente, composto basicamente por bancos comerciais, caixas econômicas e algumas instituições públicas. O objetivo central da reforma financeira foi dotar o país de um 			\textbf{mercado financeiro mais estruturado e capaz de oferecer crédito de longo prazo}. As principais mudanças foram:
+
+\begin{itemize}
+    \item \textbf{Criação do Banco Central do Brasil (Bacen)}: Responsável pela formulação e execução da política monetária, substituindo a Superintendência da Moeda e do Crédito (SUMOC).
+    \item \textbf{Criação do Conselho Monetário Nacional (CMN)}: Instituição reguladora do sistema financeiro, estabelecendo diretrizes para o crédito e o setor bancário.
+    \item \textbf{Expansão do crédito de longo prazo}: Regulamentação dos bancos de investimento, permitindo maior captação de recursos e fomento ao desenvolvimento industrial.
+    \item \textbf{Criação do Sistema Financeiro da Habitação (SFH)}: Com o Banco Nacional da Habitação (BNH) como instituição central, o SFH visava financiar projetos habitacionais e fomentar o crédito imobiliário.
+    \item \textbf{Correção Monetária}: Introdução da \textbf{ORTN (Obrigações Reajustáveis do Tesouro Nacional)}, permitindo que títulos públicos fossem ajustados pela inflação, garantindo maior previsibilidade aos investidores.
+    \item \textbf{Abertura ao capital externo}: Flexibilização da legislação para permitir maior entrada de investimentos estrangeiros e captação de empréstimos externos.
+\end{itemize}
+
+A reforma financeira permitiu a modernização do setor bancário e a ampliação das opções de financiamento para empresas e projetos de infraestrutura. Além disso, a implementação da correção monetária reduziu os riscos associados à inflação elevada, incentivando a poupança e o investimento de longo prazo.
+
+\textbf{Conclusão}
+
+As reformas estruturais de 1964-67 foram fundamentais para a reorganização econômica do Brasil, preparando o país para um crescimento mais acelerado nos anos subsequentes. O FGTS modernizou as relações trabalhistas, a reforma tributária ampliou a arrecadação e centralizou o controle fiscal na União, enquanto a reforma financeira criou um sistema bancário mais robusto e incentivou a captação de investimentos. Apesar desses avanços, essas mudanças também geraram impactos negativos, como o aumento da carga tributária sobre as camadas mais pobres e a dependência do financiamento externo. O regime autoritário vigente facilitou a implementação dessas reformas sem resistência social significativa, permitindo que fossem conduzidas de forma centralizada e sem oposição política relevante.
+
+\newpage
+\section{\textbf{Respondendo as perguntas da discussão}}
+\subsection{\textbf{Sobre o Paeg: A reforma tributária buscou atuar sobre o problema inflacionário, mas não interferiu sobre a desigualdade de renda. A reforma no sistema financeiro estava preocupada com o desempenho econômico brasileiro, procurando atuar sobre a inflação e sobre o crescimento econômico. Vocês concordam? Expliquem.}}
+
+A afirmação de que a reforma tributária do \textbf{Programa de Ação Econômica do Governo (PAEG)} não interferiu na desigualdade de renda não é totalmente correta. Embora seu principal objetivo tenha sido o combate à inflação, essa reforma teve consequências distributivas significativas, impactando negativamente as camadas de menor renda.
+
+\noindent \textbf{Impacto da Reforma Tributária:}  
+A reforma buscou aumentar a arrecadação do governo e modernizar o sistema tributário. Entre as principais medidas adotadas, destacam-se:
+\begin{itemize}
+    \item Criação do \textbf{ICM (Imposto sobre Circulação de Mercadorias)}, que substituiu tributos estaduais sobre vendas.
+    \item Instituição do \textbf{ISS (Imposto Sobre Serviços)}, arrecadado pelos municípios.
+    \item Ampliação da base de incidência do \textbf{Imposto de Renda}, aumentando a arrecadação sobre pessoas físicas.
+    \item Extinção de impostos obsoletos e de baixa arrecadação, como o imposto do selo.
+    \item Implementação do \textbf{Fundo de Participação dos Estados e Municípios (FPEM)}, redistribuindo parte da arrecadação federal.
+\end{itemize}
+
+Embora essas mudanças tenham sido eficazes para melhorar a arrecadação e combater o déficit público, a forma como foram estruturadas tornou a reforma regressiva. O aumento da carga tributária concentrou-se nos impostos indiretos, que afetam proporcionalmente mais as classes de menor renda. Enquanto isso, setores de maior poder aquisitivo foram beneficiados por isenções fiscais e incentivos ao investimento. Dessa forma, apesar de ter sido eficaz no combate à inflação, a reforma tributária \textbf{ampliou a desigualdade de renda}, contrariando a afirmação inicial.
+
+\noindent \textbf{Impacto da Reforma Financeira:}  
+Já a reforma financeira, de fato, teve uma preocupação dupla: reduzir a inflação e fomentar o crescimento econômico. Entre as medidas adotadas, destacam-se:
+\begin{itemize}
+    \item Criação do \textbf{Banco Central do Brasil (Bacen)}, permitindo maior controle sobre a política monetária.
+    \item Estabelecimento do \textbf{Conselho Monetário Nacional (CMN)}, responsável pela regulação do sistema financeiro.
+    \item Regulamentação dos bancos de investimento e incentivo ao desenvolvimento do mercado de capitais.
+    \item Criação do \textbf{Sistema Financeiro da Habitação (SFH)}, ampliando o financiamento imobiliário.
+    \item Introdução da \textbf{correção monetária} nos títulos públicos, garantindo previsibilidade aos investidores.
+    \item Maior abertura ao capital externo, facilitando a captação de investimentos estrangeiros e empréstimos internacionais.
+\end{itemize}
+
+Essas reformas foram fundamentais para a modernização do sistema financeiro e para a recuperação da economia. O fortalecimento da política monetária ajudou no combate à inflação, enquanto a ampliação das opções de financiamento viabilizou investimentos produtivos de longo prazo, contribuindo para o crescimento econômico.
+
+\noindent \textbf{Conclusão:}  
+- A reforma tributária teve um papel importante no controle da inflação, mas impactou negativamente a distribuição de renda, tornando-se regressiva. Portanto, a afirmação de que ela não interferiu na desigualdade de renda é incorreta.
+- Já a reforma financeira realmente teve um \textbf{duplo propósito}: controlar a inflação e estimular o crescimento econômico. Dessa forma, a segunda afirmação é válida.
+
+Dessa forma, concordamos apenas parcialmente com as afirmações apresentadas, pois a reforma tributária, além de atuar na inflação, também contribuiu para a piora na desigualdade de renda.
+
+\subsection{\textbf{A reforma trabalhista trouxe melhorias para o mercado de trabalho e todos os agentes envolvidos. Já a política salarial proposta pelo PAEG foi, praticamente, ineficaz quando consideramos seus objetivos. O maior grau de abertura da economia implementada tenderia a trazer duas restrições: do setor externo; e do financiamento para projetos dos setores privado e público. Vocês concordam? Expliquem.}}
+
+O \textbf{Programa de Ação Econômica do Governo (PAEG)}, implementado entre 1964 e 1966, promoveu uma série de reformas estruturais voltadas para a estabilização econômica e a modernização das instituições brasileiras. No entanto, os efeitos dessas reformas sobre o mercado de trabalho, a política salarial e a abertura da economia foram distintos, beneficiando alguns setores e prejudicando outros.
+
+\subsubsection{Reforma Trabalhista: avanços e impactos desiguais}
+A principal mudança trabalhista promovida pelo PAEG foi a \textbf{criação do Fundo de Garantia por Tempo de Serviço (FGTS)}, que substituiu o regime de estabilidade no emprego. O sistema anterior previa que, após dez anos de serviço contínuo em uma empresa, o trabalhador adquiria estabilidade, tornando sua demissão mais difícil e onerosa para o empregador. A nova legislação, ao flexibilizar essa relação, trouxe impactos diversos para os agentes envolvidos:
+
+\begin{itemize}
+    \item \textbf{Para os empregadores}: a reforma reduziu os custos com demissões e incentivou uma maior rotatividade da mão de obra. Isso permitiu que as empresas ajustassem melhor seus quadros de funcionários de acordo com as necessidades do mercado.
+    \item \textbf{Para os trabalhadores}: a substituição da estabilidade pelo FGTS significou a perda de uma proteção importante, aumentando a insegurança no emprego. Os depósitos mensais de 8\% sobre os salários visavam compensar essa perda, mas, na prática, a mudança favoreceu mais os empregadores do que os trabalhadores.
+    \item \textbf{Para o governo}: o FGTS se tornou uma importante fonte de financiamento de políticas habitacionais e infraestrutura, aumentando a capacidade do Estado de fomentar investimentos estratégicos.
+\end{itemize}
+
+Se por um lado a reforma modernizou as relações trabalhistas e tornou o mercado de trabalho mais flexível, por outro, não há evidências conclusivas de que tenha gerado um aumento sustentável no emprego. A falta de um mecanismo de transição adequado e o enfraquecimento do poder de barganha dos trabalhadores acabaram agravando a desigualdade de renda.
+
+Portanto, a afirmação de que a reforma trabalhista trouxe melhorias para todos os agentes envolvidos \textbf{não é totalmente correta}. Embora tenha beneficiado o setor produtivo e permitido maior eficiência no mercado de trabalho, os trabalhadores enfrentaram perdas significativas em termos de estabilidade e segurança empregatícia.
+
+\subsubsection{Política Salarial: eficácia limitada e impactos adversos}
+A política salarial implementada pelo PAEG tinha como objetivo conter a inflação sem recorrer a um choque recessivo severo. Para isso, o governo instituiu um sistema de reajuste salarial baseado na média dos salários dos dois anos anteriores, acrescido de uma parcela correspondente ao aumento da produtividade.
+
+Apesar de essa estratégia ter conseguido conter o crescimento dos salários nominais e, consequentemente, reduzir as pressões inflacionárias, seus efeitos colaterais foram consideráveis:
+
+\begin{itemize}
+    \item \textbf{Redução dos salários reais}: Entre 1965 e 1974, o salário mínimo caiu anualmente, e o salário médio industrial sofreu uma redução entre 10\% e 15\%.
+    \item \textbf{Impacto na distribuição de renda}: O controle rígido sobre os reajustes salariais resultou em uma queda da participação da renda do trabalho no total da economia, agravando a desigualdade social.
+    \item \textbf{Enfraquecimento do poder de negociação dos trabalhadores}: A imposição de um reajuste salarial oficial limitou a capacidade dos sindicatos de negociar aumentos salariais, contribuindo para uma maior precarização das condições de trabalho.
+    \item \textbf{Efeitos sobre a demanda agregada}: A redução do poder de compra da população limitou o crescimento do consumo interno, afetando negativamente o dinamismo da economia.
+\end{itemize}
+
+Dessa forma, embora a política salarial tenha tido um papel importante no controle da inflação, isso ocorreu às custas de um sacrifício desproporcional dos trabalhadores. Ao invés de promover um equilíbrio entre os interesses dos diversos setores da sociedade, o PAEG utilizou o poder coercitivo do governo para reduzir a parcela salarial na economia. Portanto, a afirmação de que a política salarial foi "praticamente ineficaz" deve ser relativizada. Ela foi eficaz no controle inflacionário, mas falhou em promover uma distribuição mais equitativa dos custos do ajuste econômico.
+
+\subsubsection{Abertura Econômica: desafios e restrições ao setor externo e ao financiamento}
+Outro pilar importante do PAEG foi o processo de maior abertura da economia, que envolveu medidas como:
+
+\begin{itemize}
+    \item \textbf{Simplificação e unificação do sistema cambial}, reduzindo a intervenção estatal e buscando tornar o câmbio mais previsível.
+    \item \textbf{Maior integração ao sistema financeiro internacional}, facilitando o acesso a empréstimos e investimentos externos.
+    \item \textbf{Redução de barreiras comerciais}, incentivando a modernização da indústria nacional e sua inserção no mercado global.
+\end{itemize}
+
+Apesar de esses esforços terem fortalecido a capacidade do país de atrair capitais externos e estabilizar o balanço de pagamentos, a maior abertura também trouxe desafios importantes, especialmente em duas áreas:
+
+\begin{enumerate}
+    \item \textbf{Restrições do setor externo}  
+    A liberalização da economia ocorreu em um contexto em que a indústria nacional ainda dependia de importações para obter insumos, bens intermediários e de capital. Como resultado:
+    \begin{itemize}
+        \item O déficit comercial permaneceu elevado, pois as exportações de produtos primários não foram suficientes para compensar o aumento das importações.
+        \item A sobrevalorização cambial adotada para conter a inflação prejudicou a competitividade das exportações, dificultando a diversificação da pauta exportadora.
+        \item A concorrência externa expôs as fragilidades da indústria nacional, que enfrentava dificuldades para competir com produtos importados.
+    \end{itemize}
+
+    \item \textbf{Restrições ao financiamento de projetos públicos e privados}  
+    Embora a maior abertura tenha facilitado o acesso a capitais externos, os recursos disponíveis não foram distribuídos de maneira homogênea:
+    \begin{itemize}
+        \item \textbf{Grandes empresas}, especialmente estatais e multinacionais, tiveram acesso privilegiado ao crédito externo.
+        \item \textbf{Pequenas e médias empresas} enfrentaram dificuldades para obter financiamento, pois a modernização do sistema financeiro beneficiou principalmente os grandes agentes econômicos.
+        \item A dependência de capitais externos tornou a economia brasileira mais vulnerável às oscilações do mercado internacional, aumentando a exposição a crises externas.
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Conclusão}
+- A \textbf{reforma trabalhista} trouxe eficiência para o mercado de trabalho e facilitou a gestão da força de trabalho pelas empresas, mas impôs perdas significativas aos trabalhadores, que perderam a estabilidade no emprego e viram seu poder de negociação reduzido.
+- A \textbf{política salarial} do PAEG conseguiu controlar a inflação, mas gerou efeitos adversos sobre a distribuição de renda e o consumo, prejudicando o crescimento econômico no médio prazo.
+- A \textbf{abertura econômica} trouxe benefícios em termos de estabilidade financeira e atração de capitais, mas também gerou novas restrições, tanto no setor externo quanto no financiamento de empresas menores.
+
+Portanto, concordamos parcialmente com as afirmações apresentadas, pois cada uma das reformas teve efeitos mistos, beneficiando alguns agentes econômicos enquanto impunha custos significativos a outros.
+
+\subsection{\textbf{Por que para André Lara Resende, o PAEG deve ser considerado um plano cuja mentalidade deve ser caracterizada como “além da ortodoxia simplista”? Vocês concordam? Expliquem.}}
+
+O economista \textbf{André Lara Resende} argumenta que o \textbf{Programa de Ação Econômica do Governo (PAEG)} foi um programa econômico que transcendeu a ortodoxia monetarista convencional, ao reconhecer que a inflação no Brasil não era apenas um fenômeno monetário, mas também resultado de conflitos distributivos e de desequilíbrios estruturais da economia. A abordagem tradicional da ortodoxia simplista, fundamentada em um diagnóstico estritamente monetarista, considera que a inflação decorre exclusivamente da expansão excessiva da moeda e do crédito, e que sua solução deve ser encontrada apenas na adoção de políticas fiscais e monetárias rigorosas.
+
+Entretanto, o PAEG incorporou elementos inovadores que demonstram uma abordagem mais abrangente e diferenciada, indo além do receituário ortodoxo padrão. A seguir, analisamos os principais aspectos que justificam essa visão.
+
+\subsubsection{1. Diagnóstico ampliado das causas da inflação}
+Enquanto a ortodoxia monetarista tradicional considera a inflação um fenômeno exclusivamente monetário, o PAEG adotou um diagnóstico mais sofisticado, reconhecendo que:
+\begin{itemize}
+    \item A inflação no Brasil era impulsionada não apenas pela expansão monetária, mas também por \textbf{pressões distributivas}, onde governo, empresas e trabalhadores competiam por recursos limitados.
+    \item Os déficits governamentais e a expansão do crédito apenas sancionavam um processo inflacionário já existente, originado de disputas sobre a participação na renda nacional.
+    \item As restrições estruturais da economia, como o subdesenvolvimento do mercado financeiro e a baixa capacidade de financiamento de longo prazo, também contribuíam para a inflação de custos.
+\end{itemize}
+
+Essa abordagem mais ampla contrastava com a ortodoxia simplista, que tendia a desconsiderar esses fatores estruturais e se concentrava apenas na contenção da oferta monetária.
+
+\subsubsection{2. Implementação de reformas institucionais estruturantes}
+O PAEG não se limitou a medidas conjunturais de contenção da inflação. Ele promoveu uma série de reformas institucionais que visavam corrigir problemas estruturais da economia, demonstrando uma visão mais ampla do que a ortodoxia tradicional. As principais reformas foram:
+
+\paragraph{2.1 Reforma Tributária}
+\begin{itemize}
+    \item Modernização do sistema tributário, eliminando impostos em cascata e tornando a arrecadação mais eficiente.
+    \item Introdução da \textbf{correção monetária} nos tributos para evitar distorções causadas pela inflação elevada.
+    \item Criação do \textbf{Imposto sobre Circulação de Mercadorias (ICM)} e do \textbf{Imposto sobre Serviços (ISS)}, estabelecendo uma base tributária mais sólida.
+\end{itemize}
+
+\paragraph{2.2 Reforma do Sistema Financeiro}
+\begin{itemize}
+    \item Criação do \textbf{Banco Central do Brasil (Bacen)} e do \textbf{Conselho Monetário Nacional (CMN)}, para garantir maior controle da política monetária e melhorar a regulamentação do setor financeiro.
+    \item Regulamentação do mercado de capitais, permitindo a captação de recursos para investimentos de longo prazo.
+    \item Introdução das \textbf{Obrigações Reajustáveis do Tesouro Nacional (ORTN)}, mecanismo que permitia a correção monetária dos títulos públicos, reduzindo os impactos da inflação e garantindo maior previsibilidade aos investidores.
+\end{itemize}
+
+\paragraph{2.3 Reforma do Mercado de Trabalho}
+\begin{itemize}
+    \item Substituição do regime de estabilidade pelo \textbf{Fundo de Garantia por Tempo de Serviço (FGTS)}, aumentando a flexibilidade do mercado de trabalho.
+    \item Criação de um sistema mais dinâmico de relações trabalhistas, permitindo maior mobilidade no emprego e facilitando ajustes na força de trabalho.
+\end{itemize}
+
+A implementação dessas reformas demonstra que o PAEG não se restringiu a uma política ortodoxa convencional, pois buscou resolver entraves estruturais e modernizar a economia brasileira.
+
+\subsubsection{3. Estratégia gradualista de estabilização}
+Diferente de programas ortodoxos que aplicavam \textbf{choques} para conter a inflação, o PAEG adotou um \textbf{gradualismo} no combate inflacionário, buscando equilibrar o ajuste econômico com a necessidade de manter o crescimento da economia. As metas para a redução da inflação foram estabelecidas de forma progressiva:
+\begin{itemize}
+    \item 70\% em 1964,
+    \item 25\% em 1965,
+    \item 10\% em 1966.
+\end{itemize}
+
+Essa abordagem gradualista contrastava com a ortodoxia simplista, que pregava uma redução abrupta da inflação via recessão e cortes severos na demanda agregada. O PAEG, por sua vez, buscou evitar uma crise de estabilização profunda que pudesse comprometer a atividade econômica.
+
+\subsubsection{4. Política salarial controlada}
+Outro elemento que diferenciou o PAEG foi a adoção de um \textbf{mecanismo de controle salarial}, baseado em uma fórmula governamental que vinculava os reajustes salariais à produtividade e à inflação passada. Isso evitou uma escalada inflacionária decorrente de reajustes automáticos e descontrolados.
+
+Enquanto a visão ortodoxa tradicional considerava o mercado de trabalho um setor autorregulado, o PAEG reconheceu a necessidade de intervenção para impedir que os salários se tornassem um fator autônomo de inflação. No entanto, essa política resultou na redução dos salários reais e no aumento da desigualdade de renda, o que pode ser visto como um efeito colateral negativo.
+
+\subsubsection{5. Relacionamento com o financiamento externo}
+Além da estabilização interna, o PAEG também buscou melhorar a credibilidade do Brasil no cenário internacional. Para isso, adotou elementos ortodoxos, como disciplina fiscal e monetária, visando:
+\begin{itemize}
+    \item Restaurar a confiança dos credores internacionais.
+    \item Facilitar a captação de financiamento externo para equilibrar o balanço de pagamentos.
+    \item Atrair investimentos estrangeiros para impulsionar o crescimento econômico.
+\end{itemize}
+
+Entretanto, diferentemente de programas puramente ortodoxos, o PAEG combinou essa estratégia com reformas estruturais que fortaleceram a economia no longo prazo.
+
+\subsubsection{Conclusão}
+Diante dessas evidências, pode-se afirmar que o PAEG foi um programa que \textbf{combinou elementos ortodoxos e heterodoxos}, estruturando uma abordagem mais ampla e sofisticada da política econômica. Os principais fatores que justificam a visão de André Lara Resende de que o PAEG foi "além da ortodoxia simplista" incluem:
+\begin{itemize}
+    \item Um diagnóstico mais abrangente da inflação, que reconhecia conflitos distributivos e fatores estruturais como causas inflacionárias.
+    \item A implementação de reformas institucionais nos setores tributário, financeiro e trabalhista, que buscavam modernizar a economia.
+    \item A adoção de uma estratégia gradualista de estabilização, evitando um choque recessivo severo.
+    \item A criação de um mecanismo de controle salarial, demonstrando uma visão mais intervencionista em relação ao mercado de trabalho.
+    \item A combinação de disciplina fiscal e monetária com estratégias para atrair investimentos externos e fortalecer a estrutura econômica do país.
+\end{itemize}
+
+\noindent Dessa forma, \textbf{concordamos com essa visão, pois o PAEG não se limitou a um receituário ortodoxo rígido, mas combinou políticas de estabilização com reformas estruturais que tiveram impactos de longo prazo na economia brasileira}. Embora tenha adotado medidas restritivas, o programa foi além do simples controle da inflação, preparando o país para um período de crescimento sustentado na década seguinte.
+
+\newpage
+\section{\textbf{Respondendo a pergunta para entregar}}
+
+\textbf{Sobre o Paeg: A reformas do sistema financeiro foi mais impactante para a economia brasileira do que a do sistema tributário. Vocês concordam? Expliquem.}
+
+
+\end{document}

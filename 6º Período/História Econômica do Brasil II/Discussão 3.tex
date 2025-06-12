@@ -1,0 +1,317 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+
+
+% Definições de layout e formatação
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\onehalfspacing % Espaçamento entre linhas de 1,5
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage{ragged2e} % Melhor controle de justificação do texto
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização)
+
+% Pacotes de cabeçalho, rodapé e títulos
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\setlength{\headheight}{14.49998pt} % Altura do cabeçalho
+\pagestyle{fancy}
+\fancyhf{} % Limpa cabeçalho e rodapé
+\rhead{\thepage} % Página no canto direito do cabeçalho
+
+% Pacotes para tabelas
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+
+% Pacotes para gráficos e imagens
+\usepackage{graphicx} % Suporte para inclusão de imagens
+
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+
+\lstset{
+    language=R,                      
+    basicstyle=\ttfamily\scalefont{1.0},
+    keywordstyle=\color{blue},       
+    stringstyle=\color{red},         
+    commentstyle=\color{green},      
+    numbers=left,                    
+    numberstyle=\tiny\color{gray},   
+    stepnumber=1,                    
+    numbersep=5pt,                   
+    backgroundcolor=\color{lightgray!10}, 
+    frame=single,                    
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,          
+    showtabs=false,                  
+    tabsize=2,
+     literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {Ú}{{\'U}}1
+             {â}{{\^a}}1
+             {ê}{{\^e}}1
+             {î}{{\^i}}1
+             {ô}{{\^o}}1
+             {û}{{\^u}}1
+             {ã}{{\~a}}1
+             {õ}{{\~o}}1
+             {ç}{{\c{c}}}1,
+}
+
+
+% Pacotes para unidades e formatação numérica
+\usepackage{siunitx} % Tipografia de unidades do Sistema Internacional e formatação de números
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+
+% Pacotes para hiperlinks e referências
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+
+% Pacotes para texto e outros
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Discussão 3}\\
+    \textbf{História Econômica do Brasil II}\\
+    \vspace{1.5cm}
+    Prof. Heleno Piazentini Vieira \\
+    Prof. Auxiliar  \\
+    \vfill
+    \normalsize
+    Andreas Azambuja Barbisan, \href{mailto:andreasab@al.insper.edu.br}{andreasab@al.insper.edu.br}\\
+    Bruno Frasao Brazil Leiros, \href{mailto:brunofbl@al.insper.edu.br}{brunofbl@al.insper.edu.br}\\
+    Érika Kaori Fuzisaka, \href{mailto:erikakf1@al.insper.edu.br}{erikakf1@al.insper.edu.br}\\
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    Lorena Liz Giusti e Santos,\href{mailto:lorenalgs@al.insper.edu.br}{lorenalgs@al.insper.edu.br}\\
+    Nicolas Pedro Diniz Brito, \href{mailto:nicolasb2@al.insper.edu.br}{nicolasb2@al.insper.edu.br}\\
+    Sarah de Araújo Nascimento Silva, \href{mailto:sarahans@al.insper.edu.br}{sarahans@al.insper.edu.br}\\
+
+
+    \vfill
+    São Paulo\\
+    Março/2025
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % Esse comando remove a numeração de pagina da tabela de conteúdo
+
+\newpage
+\setcounter{page}{1} % Inicia a contagem de páginas a partir desta página
+\justify
+\onehalfspacing
+\section{\textbf{Plano Cruzado}}
+
+O Plano Cruzado, lançado pelo governo brasileiro em 28 de fevereiro de 1986, surgiu como resposta à grave crise inflacionária vivenciada pelo país, especialmente intensa no período que o antecedeu, com taxas de inflação média anualizadas em torno de 450\%. Essa inflação elevada vinha acompanhada de um contexto econômico paradoxalmente positivo em termos de crescimento, com taxas de expansão do PIB de 5,4\% em 1984 e de 7,8\% em 1985, mas simultaneamente marcado por sérios desequilíbrios fiscais e uma significativa expansão da dívida externa pública.
+
+Como principal medida, o Plano Cruzado promoveu uma reforma monetária, substituindo o cruzeiro pelo cruzado, a uma taxa fixa de conversão de mil cruzeiros por um cruzado. O objetivo inicial era realizar um "choque neutro", ou seja, preservar os níveis de renda e riqueza existentes anteriormente, sem grandes redistribuições. Para isso, os salários foram convertidos com base no poder de compra médio dos seis meses anteriores, acrescidos de um abono político geral de 8\%, além de um abono maior de 16\% no salário mínimo, visando especialmente as classes mais baixas. Paralelamente, preços ao consumidor foram congelados indefinidamente aos níveis vigentes em 27 de fevereiro de 1986, excetuando-se apenas um reajuste inicial de 20\% nas tarifas industriais de energia elétrica.
+
+Nos primeiros meses, o Plano Cruzado alcançou grande sucesso aparente, com a inflação caindo significativamente, alcançando uma taxa máxima de apenas 1,4\% em maio de 1986. Este período foi acompanhado de forte apoio popular, estimulado pelo governo que encorajava a população a fiscalizar o congelamento de preços como um dever cívico. No entanto, sinais precoces de excesso de demanda começaram a se manifestar claramente, especialmente nos setores de automóveis, carne e leite. Esse excesso foi resultado do aumento do poder de compra dos salários, redução das taxas de juros nominais, despoupança voluntária e o consumo represado anteriormente pela recessão econômica.
+
+Diante dessa crescente pressão, o governo implementou um conjunto limitado de ajustes fiscais entre julho e outubro de 1986, conhecido popularmente como "Cruzadinho". Essas medidas envolviam principalmente empréstimos compulsórios sobre gasolina e automóveis (com devolução após três anos), novos impostos sobre viagens internacionais e manipulação do IPC para evitar reajustes salariais automáticos (gatilhos). Essas medidas, contudo, revelaram-se insuficientes para conter o forte aumento do consumo, agravando ainda mais a escassez generalizada e a deterioração das contas externas, refletida em forte queda das exportações e alta especulativa do câmbio paralelo.
+
+O fracasso definitivo do Plano Cruzado veio com a implementação do pacote fiscal "Cruzado II", em novembro de 1986, imediatamente após as eleições vencidas pelo governo. O novo pacote incluía aumentos substanciais de preços públicos e impostos indiretos, desencadeando uma violenta aceleração inflacionária. A reintrodução da indexação financeira e cambial através de minidesvalorizações diárias, junto a tentativas fracassadas de pactos sociais entre empresários e trabalhadores, também caracterizaram esse período.
+
+A situação agravou-se ainda mais com a declaração unilateral da moratória da dívida externa em fevereiro de 1987, visando conter a deterioração das reservas internacionais e recuperar apoio popular. Entretanto, essa decisão resultou em ainda mais incertezas econômicas e políticas, culminando numa inflação mensal superior a 20\%. Ao completar um ano, o Plano Cruzado foi abandonado com a liberação abrupta dos preços, o retorno da correção monetária mensal e a economia brasileira ainda mais indexada e vulnerável do que antes da sua implementação. Esse desfecho evidenciou o fracasso das estratégias adotadas e expôs os limites das medidas baseadas na interpretação inercialista da inflação adotadas pelo Plano.
+
+\newpage
+\section{\textbf{Resumo dos Textos da 3º Discussão}}
+\subsection{\textbf{Ordem e Progresso, Cap. 14, item: Plano Cruzado: principais ingredientes}}
+
+O Plano Cruzado, implementado em 28 de fevereiro de 1986, estabeleceu o cruzado (Cz\$) como novo padrão monetário brasileiro, substituindo o cruzeiro a uma taxa fixa de conversão de mil cruzeiros por cruzado. O objetivo central era promover um "choque neutro", mantendo os padrões anteriores de renda e riqueza, evitando assim redistribuições indesejadas.
+
+Entre os principais pontos detalhados destacam-se:
+
+\begin{itemize}
+    \item \textbf{Conversão dos salários:} Realizada tomando como base o poder de compra médio dos últimos seis meses (setembro de 1985 a fevereiro de 1986), considerando os valores correntes de fevereiro. Foi estabelecido ainda um abono geral de 8\% para favorecer politicamente a aceitação da mudança pelos trabalhadores. O salário mínimo teve reajuste superior (16\%), beneficiando especificamente as classes mais baixas.
+
+    \item \textbf{Reajuste salarial:} Não houve congelamento salarial. Foi restaurado o sistema anual de dissídios coletivos, interrompido desde 1979, com reajustes automáticos correspondentes a 60\% da inflação acumulada no período anterior. Instituiu-se também uma correção salarial automática (escala móvel), acionada sempre que a inflação acumulada atingisse um "gatilho" de 20\%.
+
+    \item \textbf{Congelamento de preços:} Os preços ao consumidor foram congelados por tempo indeterminado, com base nos valores vigentes em 27 de fevereiro de 1986. Não houve compensação por perdas passadas devido à inflação ou futuras durante o período de congelamento. A única exceção foram as tarifas industriais de energia elétrica, reajustadas em 20\%.
+
+    \item \textbf{Índice de preços:} Houve a criação do Índice de Preços ao Consumidor (IPC), com nova base estabelecida em 28 de fevereiro de 1986, mantendo as mesmas ponderações do IPCA anterior. Essa alteração buscava evitar a contabilização de uma inflação aparente no mês inicial do congelamento.
+
+    \item \textbf{Política Cambial:} A taxa de câmbio foi mantida fixa no patamar de 27 de fevereiro de 1986, aproveitando a situação externa confortável do Brasil e a recente desvalorização do dólar americano frente a outras moedas importantes, sem necessidade de ajustes defensivos.
+
+    \item \textbf{Regulamentação dos aluguéis:} Foram definidas relações média-pico para conversão de valores dos aluguéis residenciais com ajustes semestrais e anuais. Para aluguéis comerciais, foram estabelecidos coeficientes multiplicativos que reproduziam os valores reais médios anteriores, dependendo da frequência contratual e da data do último reajuste.
+
+    \item \textbf{Contratos financeiros:} A indexação monetária foi proibida para contratos inferiores a um ano, exceto para cadernetas de poupança, cujo reajuste passou a ser trimestral. A Obrigação Reajustável do Tesouro Nacional (ORTN) foi substituída pela Obrigação do Tesouro Nacional (OTN), congelada nominalmente por um ano. Para contratos prefixados, foi adotada uma taxa diária arbitrária de desvalorização do cruzeiro em 0,45\%, baseada na média diária da inflação entre dezembro de 1985 e fevereiro de 1986.
+
+    \item \textbf{Política monetária e fiscal:} O plano não especificou regras claras para essas políticas, deixando suas diretrizes ao critério das autoridades econômicas. Inicialmente, buscou-se acomodar a demanda crescente por moeda estável. A administração das taxas de juros revelou-se complexa devido aos riscos associados: juros altos poderiam afetar negativamente investimentos e ampliar o peso da dívida pública interna; juros baixos poderiam estimular a especulação com estoques e moedas estrangeiras, ameaçando a estabilização econômica. O pacote fiscal anunciado em dezembro de 1985, visando eliminar a necessidade de financiamento público, não se concretizou integralmente devido à queda inesperada da inflação e consequente perda do "imposto inflacionário".
+\end{itemize}
+
+\subsection{\textbf{Ordem e Progresso, Cap. 14, item: Plano Cruzado: principais resultados}}
+
+A análise dos resultados do Plano Cruzado pode ser organizada em três fases distintas, cada uma revelando diferentes aspectos e desafios enfrentados pelo programa:
+
+\subsubsection{\textbf{Março a Junho de 1986}}
+
+Este período inicial foi marcado por forte aceitação popular e significativa redução da inflação, com a maior taxa mensal registrada sendo de 1,4\% em maio, conforme medição pelo novo IPC. Os aspectos mais importantes deste período incluem:
+
+\begin{itemize}
+    \item \textbf{Entusiasmo popular:} Incentivado pelo apelo presidencial, a população participou ativamente da fiscalização do congelamento de preços, percebido como um dever cívico.
+    \item \textbf{Queda inicial da inflação:} As taxas mensais de inflação caíram drasticamente, alimentando expectativas positivas sobre a eficácia do congelamento de preços.
+    \item \textbf{Sinais iniciais de excesso de demanda:} Surgiram desde cedo, particularmente nos mercados de vestuário e automóveis usados, cujos preços subiram entre 4\% a 5\% ao mês devido à dificuldade em seu controle efetivo.
+    \item \textbf{Explosão do consumo:} Resultante do aumento do poder de compra, redução das taxas de juros, despoupança voluntária, queda na arrecadação do imposto de renda e consumo reprimido anterior.
+    \item \textbf{Escassez localizada de produtos:} Especialmente leite, carne e automóveis, o que levou a filas e aumentos de preços não oficiais.
+    \item \textbf{Expansão monetária excessiva:} Provocou liquidez excessiva e juros reais negativos, elevando preços de ativos reais e ações e gerando aumento significativo no ágio do dólar paralelo.
+    \item \textbf{Déficit público crescente:} Agravou-se significativamente, chegando a cerca de 2,5\% do PIB, muito acima do esperado, devido ao aumento das despesas públicas com subsídios e salários, entre outros.
+\end{itemize}
+
+\subsubsection{\textbf{Julho a Outubro de 1986 (Cruzadinho)}}
+
+Neste segundo período, o governo lançou um ajuste fiscal moderado conhecido como "Cruzadinho", com as seguintes medidas principais:
+
+\begin{itemize}
+    \item \textbf{Empréstimos compulsórios:} Sobre gasolina e automóveis, restituíveis após três anos.
+    \item \textbf{Novos impostos indiretos não restituíveis:} Sobre compra de moeda estrangeira para viagem e passagens aéreas internacionais.
+    \item \textbf{Plano de Metas:} Financiado com a arrecadação dos novos impostos, prometendo crescimento anual do PIB de 7\%.
+    \item \textbf{Manipulação do IPC:} Exclusão artificial de alguns aumentos de preços para evitar o acionamento do "gatilho salarial".
+    \item \textbf{Paralisia política e econômica:} Com o foco nas eleições estaduais e para a Assembleia Constituinte, o governo não conseguiu controlar o aumento do consumo e o consequente agravamento do desabastecimento geral.
+    \item \textbf{Deterioração das contas externas:} Forte queda das receitas de exportação e alta no ágio do dólar, culminando numa leve desvalorização cambial de 1,8\%.
+\end{itemize}
+
+\subsubsection{\textbf{Novembro de 1986 a Junho de 1987 (Cruzado II)}}
+
+Este último período revelou o fracasso definitivo do plano, após medidas mais drásticas no chamado "Cruzado II":
+
+\begin{itemize}
+    \item \textbf{Pacote fiscal agressivo:} Aumento substancial dos preços públicos (gasolina, energia, telefone, correios) e impostos indiretos (automóveis, cigarros e bebidas), provocando uma forte onda inflacionária imediata.
+    \item \textbf{Tentativa frustrada de controle inflacionário:} Manipulação das ponderações do IPC para retardar o "gatilho salarial", enfrentando forte resistência popular e política.
+    \item \textbf{Reintrodução da indexação financeira e cambial:} Retomada das minidesvalorizações diárias do câmbio e reintrodução da indexação em contratos financeiros através das Letras do Banco Central (LBCs) e Certificados de Depósitos Bancários (CDBs).
+    \item \textbf{Fracasso na tentativa de pacto social:} Negociações entre trabalhadores e empresários falharam em promover um acordo de contenção salarial e preços.
+    \item \textbf{Moratória da dívida externa:} Decidida em fevereiro de 1987 devido ao esgotamento das reservas cambiais e visando recuperar apoio político interno.
+    \item \textbf{Alta inflação e recessão econômica:} Com taxas mensais de inflação acima de 20\%, queda nos salários reais, aumento nas taxas de juros e desorganização nos mercados internos pela liberação abrupta dos preços.
+    \item \textbf{Fim do ciclo político e econômico:} Renúncia do ministro Dílson Funaro em abril de 1987, substituído por Bresser Pereira, que iniciou uma política econômica mais ortodoxa, anunciando redução da meta de crescimento do PIB e promovendo novas desvalorizações cambiais.
+\end{itemize}
+
+Esses acontecimentos consolidaram a percepção do Plano Cruzado como uma tentativa falha de estabilização econômica, culminando em uma economia ainda mais indexada e instável do que antes de sua implementação.
+
+\subsection{\textbf{Economia Brasileira Contemporânea, Cap. 5, item: A Economia às Vésperas do Plano Cruzado}}
+
+O período imediatamente anterior ao Plano Cruzado (1984-1985) foi marcado por uma recuperação econômica após uma severa recessão entre 1981 e 1983. O cenário econômico nesse momento específico pode ser detalhado pelos seguintes elementos fundamentais:
+
+\begin{itemize}
+
+    \item \textbf{Recuperação econômica expressiva:}
+    \begin{itemize}
+        \item O PIB brasileiro apresentou crescimento significativo, com taxas de 5,4\% em 1984 e 7,8\% em 1985.
+        \item A utilização da capacidade produtiva recuperou-se ao nível de 1981 (78\%), embora ainda abaixo da média histórica registrada na década anterior (86\%).
+    \end{itemize}
+
+    \item \textbf{Melhoria nas contas externas:}
+    \begin{itemize}
+        \item Houve uma inversão na balança comercial, de um déficit de US\$ 2,8 bilhões em 1980 para um superávit notável de US\$ 13,1 bilhões em 1984.
+        \item As reservas internacionais aumentaram substancialmente, passando de US\$ 4,6 bilhões em 1983 para US\$ 11,6 bilhões em 1985, mais que dobrando nesse período.
+        \item Essa melhoria foi impulsionada por quatro fatores principais: amadurecimento dos investimentos do II Plano Nacional de Desenvolvimento (II PND), a maxidesvalorização cambial de 1983, a recessão prévia que reduziu as importações e a recuperação econômica dos Estados Unidos.
+    \end{itemize}
+
+    \item \textbf{Ambiente internacional favorável:}
+    \begin{itemize}
+        \item O preço do petróleo, principal item importado pelo Brasil, estava em queda no mercado internacional, favorecendo o balanço comercial brasileiro.
+        \item O dólar norte-americano também passava por uma desvalorização em relação às moedas europeias e ao iene, o que contribuiu positivamente para as contas externas do Brasil.
+    \end{itemize}
+
+    \item \textbf{Situação fiscal e dinâmica da dívida pública:}
+    \begin{itemize}
+        \item Inicialmente, houve uma redução expressiva no déficit operacional do setor público, passando de 6,3\% do PIB em 1981 para 3,0\% em 1984; porém, em 1985, o déficit voltou a subir, chegando a 4,7\% do PIB.
+        \item A dívida externa pública aumentou significativamente, saltando de 14,9\% do PIB em 1981 para 33,2\% em 1984, devido aos altos juros internacionais, à estatização da dívida externa privada e às maxidesvalorizações cambiais realizadas.
+        \item A dificuldade de financiamento do déficit aumentou consideravelmente devido à redução da base monetária de 3,0\% do PIB em 1981 para 1,9\% em 1984, exigindo uma inflação mais alta para manter o mesmo nível de arrecadação por meio do imposto inflacionário.
+    \end{itemize}
+
+    \item \textbf{Persistente e acelerada inflação:}
+    \begin{itemize}
+        \item A inflação persistiu mesmo durante períodos de baixo crescimento econômico, superando 100\% anuais já em 1980 e mantendo-se alta nos anos subsequentes.
+        \item Após a maxidesvalorização de 1983, houve uma aceleração substancial da inflação, chegando a 224\% em 1984 e agravando-se ainda mais para 235\% em 1985.
+        \item No período imediatamente anterior ao Plano Cruzado (agosto de 1985 a fevereiro de 1986), a taxa média mensal de inflação anualizada atingiu níveis alarmantes, cerca de 450\%, indicando um forte movimento aceleracionista.
+    \end{itemize}
+
+\end{itemize}
+
+Esse contexto econômico complexo, marcado pelo crescimento econômico acompanhado por desequilíbrios fiscais e alta inflação, constituiu a base sobre a qual o Plano Cruzado foi implementado, adotando uma abordagem inercialista para tentar estabilizar a economia.
+
+\newpage
+\section{\textbf{Respondendo as perguntas da discussão}}
+\subsection{\textbf{Medidas do Cruzado: No geral, as medidas introduzidas com o Plano Cruzado mostravam um viés do pensamento econômico ortodoxo da época; promoviam congelamento, excluindo preços públicos, câmbio e os salários; contaram com amplo apoio da população, pois não esteve presente uma estratégia recessiva. Vocês concordam? Expliquem a resposta.}}
+
+Não concordamos integralmente com a afirmação apresentada, e esclarecemos detalhadamente os motivos.
+
+Inicialmente, as medidas introduzidas pelo Plano Cruzado não demonstraram um viés ortodoxo claro. Ao contrário, a abordagem do plano foi predominantemente heterodoxa, baseada explicitamente na interpretação inercialista da inflação. Essa interpretação defendia que o congelamento amplo e imediato de preços e salários interromperia o processo inflacionário, estabilizando a economia sem causar recessão ou desemprego elevado, diferentemente das abordagens ortodoxas tradicionais que usualmente incluem medidas restritivas, como cortes significativos na demanda agregada e elevação das taxas de juros.
+
+Sobre o congelamento, é importante notar que ele efetivamente incluiu praticamente todos os preços ao consumidor, inclusive preços públicos e administrados, excetuando-se apenas o caso específico das tarifas industriais de energia elétrica, reajustadas inicialmente em 20\%. Portanto, ao contrário do que afirma a questão, os preços públicos em geral foram, sim, congelados desde o início.
+
+Em relação ao câmbio, este também foi congelado no nível vigente em 27 de fevereiro de 1986. Apenas mais tarde, frente à deterioração acentuada das contas externas, a política cambial foi revista, adotando-se pequenas desvalorizações periódicas. Logo, a afirmação de que o câmbio não foi congelado inicialmente não procede inteiramente, pois o congelamento cambial ocorreu desde o início do plano.
+
+Os salários também não foram congelados; pelo contrário, houve uma política específica de conversão salarial com base no poder de compra médio dos últimos seis meses, acrescida de um abono político de 8\% geral e um reajuste maior (16\%) no salário mínimo. Além disso, foram previstos reajustes automáticos tanto anuais quanto por meio de "gatilhos" salariais sempre que a inflação acumulada atingisse 20\%. Dessa forma, não houve congelamento salarial, mas sim uma estratégia de aumento real inicial e reajustes automáticos posteriores.
+
+O amplo apoio popular inicial é explicado pela queda substancial e imediata da inflação, aumento significativo do poder de compra dos salários e pela sensação geral de recuperação econômica, sem estratégias recessivas explícitas como desemprego elevado ou forte retração da demanda. Esse entusiasmo popular foi incentivado pelo próprio governo ao convocar a população a fiscalizar o congelamento de preços, criando uma mobilização cívica importante. No entanto, esse apoio rapidamente diminuiu à medida que surgiram problemas significativos, como escassez generalizada de bens essenciais e pressões inflacionárias reprimidas.
+
+Em resumo, o Plano Cruzado não teve um viés ortodoxo; ao contrário, foi predominantemente heterodoxo e inercialista, efetivamente promoveu um congelamento amplo que incluiu preços públicos e o câmbio inicialmente, e não adotou uma estratégia recessiva clara. Portanto, embora o amplo apoio popular tenha existido inicialmente, as dificuldades estruturais e a incapacidade de resolver problemas econômicos profundos resultaram em seu fracasso posterior.
+
+\subsection{\textbf{Política econômica no Cruzado: Sobre a condução da política econômica no contexto da implementação do Plano Cruzado: as políticas monetária e fiscal foram passivas e pouco impactaram o ambiente macroeconômico; contabilizando somente os primeiros efeitos (4 meses iniciais), a partir da implementação, o cenário gerado era 100\% positivo, isto é, o congelamento tinha sido eficaz. Vocês concordam? Expliquem a resposta.}}
+
+Não concordamos integralmente com a afirmação, pois a análise das políticas monetária e fiscal adotadas no Plano Cruzado revela que sua condução foi passiva em alguns aspectos, mas com impactos significativos no ambiente macroeconômico. Além disso, embora os primeiros meses tenham sido marcados por uma redução expressiva da inflação, já nesse período surgiram distorções econômicas que comprometiam a sustentabilidade do plano.
+
+No que se refere à política monetária, inicialmente não foram estabelecidas diretrizes claras para controle da oferta de moeda, sendo adotada uma postura de acomodação ao aumento da demanda por cruzados, o que resultou em uma expansão monetária excessiva. Esse crescimento da liquidez foi além do necessário para suprir a demanda por moeda estável, levando a taxas de juros reais negativas, valorização acelerada de ativos financeiros e um forte aumento do ágio do dólar no mercado paralelo, que subiu de 26\% para 50\% entre março e junho de 1986. Esse excesso de liquidez estimulou ainda mais o consumo e a especulação financeira, agravando os desequilíbrios econômicos.
+
+Em relação à política fiscal, embora um "pacote fiscal" tenha sido anunciado em dezembro de 1985 com o objetivo de eliminar a necessidade de financiamento do setor público, ele não se mostrou eficaz. A arrecadação do governo foi impactada negativamente pela queda da inflação, uma vez que a redução da inércia inflacionária limitou a capacidade do governo de captar recursos por meio do chamado "imposto inflacionário". Ao mesmo tempo, houve um aumento significativo dos gastos públicos, incluindo a elevação dos salários do funcionalismo, concessão de subsídios e repasses para estados, municípios e empresas estatais. Como resultado, o déficit público que inicialmente era projetado para 0,5\% do PIB acabou atingindo 2,5\% do PIB em 1986, demonstrando que a política fiscal não permaneceu inerte, mas foi descontrolada.
+
+Nos primeiros quatro meses do Plano Cruzado, a inflação caiu drasticamente, com um pico máximo de apenas 1,4\% registrado em maio de 1986. Esse resultado inicial, aliado à ausência de medidas recessivas severas, levou a um forte otimismo da população e ampliou a aceitação do plano. Contudo, apesar desse cenário positivo aparente, já nesse período começaram a surgir sinais preocupantes de desajuste econômico. O aumento do poder de compra real dos salários e a redução dos juros nominais impulsionaram o consumo de maneira desproporcional à capacidade produtiva da economia, resultando em escassez de produtos essenciais como leite, carne e automóveis. A resposta do governo a esses desequilíbrios foi insuficiente: no caso da carne, optou-se por importações tardias e insuficientes, enquanto no mercado de automóveis os estoques se esgotaram, levando os preços dos carros usados a ultrapassarem os dos modelos novos.
+
+Portanto, a análise dos quatro meses iniciais do Plano Cruzado não pode ser considerada 100\% positiva. Apesar da queda da inflação e da popularidade inicial, os problemas estruturais começaram a emergir rapidamente, evidenciando que o congelamento de preços não era sustentável a longo prazo. A ausência de um controle adequado da oferta monetária, os desequilíbrios gerados pela expansão fiscal e o surgimento da escassez de produtos indicavam que os desafios para a manutenção do plano eram significativos. Assim, a afirmação de que o congelamento foi completamente eficaz nos primeiros meses não se sustenta diante dos fatos.
+
+\subsection{\textbf{O fracasso do Cruzado: O congelamento de preços trouxe consequências graves no curto e médio prazos. Outra falha do plano foi a equipe econômica não ter proposto nenhum ajuste nas medidas para mitigar efeitos adversos que foram observados ao longo de 1986. Vocês concordam? Expliquem a resposta.}}
+
+Concordamos parcialmente com a afirmação, pois, embora o congelamento de preços tenha gerado consequências graves no curto e médio prazos, a equipe econômica promoveu algumas tentativas de ajuste ao longo de 1986. No entanto, essas medidas foram insuficientes para mitigar os efeitos adversos que surgiram, e muitas delas foram tardias, comprometendo a sustentabilidade do plano.
+
+O congelamento de preços, implementado em 28 de fevereiro de 1986, foi uma das bases do Plano Cruzado. Nos primeiros meses, a medida gerou um efeito positivo na redução da inflação, que caiu drasticamente, com um pico máximo de apenas 1,4\% em maio. Contudo, essa política começou a apresentar falhas rapidamente, pois os preços permaneceram artificialmente baixos em relação aos custos de produção, resultando em escassez progressiva de produtos essenciais. Entre março e junho de 1986, a demanda aumentou consideravelmente, impulsionada pela elevação real dos salários e pela redução das taxas de juros nominais, levando a um crescimento de 22,8\% nas vendas em relação ao mesmo período do ano anterior. A produção de bens de consumo duráveis aumentou 33,2\% nos 12 meses anteriores, enquanto a taxa de desemprego caiu de 4,4\% em março para 3,8\%.
+
+A escassez de produtos foi um dos problemas mais evidentes do congelamento. Setores como o de carne, leite e automóveis sofreram especialmente. No caso do leite, o governo precisou subsidiar os produtores para garantir a oferta. Em relação à carne, optou-se por importações, que se mostraram tardias e insuficientes, levando a mercados paralelos. Já no setor automotivo, a falta de estoques fez com que os preços dos carros usados superassem os dos novos, uma clara distorção econômica. Além disso, a valorização dos ativos financeiros e a ampliação do ágio do dólar paralelo (que passou de 26\% para 50\% entre março e junho de 1986) indicavam um desajuste crescente no ambiente macroeconômico.
+
+Diante desses problemas, a equipe econômica resistiu a modificar a política de congelamento por um longo período. Somente em 24 de julho de 1986, com o anúncio do "Cruzadinho", o governo tentou conter o consumo excessivo por meio da introdução de empréstimos compulsórios sobre gasolina e automóveis, além da criação de impostos sobre compra de moedas estrangeiras e passagens aéreas internacionais. Contudo, essas medidas foram limitadas e ineficazes para conter a demanda crescente, já que o consumo seguiu em alta e a produção industrial atingiu um pico em setembro, com uma taxa de crescimento acumulada de 12,2\% em 12 meses.
+
+No segundo semestre de 1986, o agravamento da situação econômica tornou-se evidente. A especulação sobre uma possível desvalorização cambial levou o ágio no mercado paralelo de dólares para 90\%. As exportações, que vinham mantendo superávits elevados, caíram drasticamente, de US\$ 2,1 bilhões em agosto para US\$ 1,3 bilhão em outubro. Somente após as eleições de novembro, o governo anunciou o "Cruzado II", um pacote fiscal agressivo que trouxe aumentos expressivos nos preços públicos (como energia elétrica, gasolina e tarifas postais) e impostos indiretos (automóveis, cigarros e bebidas), gerando um choque inflacionário imediato. O índice de preços ao consumidor foi manipulado para postergar os reajustes salariais, mas a reação da população e a pressão política forçaram o governo a recuar.
+
+Com o fracasso do "Cruzado II", o governo reintroduziu a indexação econômica e as minidesvalorizações cambiais. No início de 1987, a inflação disparou, atingindo 16,8\% em janeiro, e o governo perdeu o controle da situação. Em fevereiro, uma moratória foi decretada sobre os pagamentos da dívida externa aos bancos privados, marcando o colapso definitivo do plano. Ao completar um ano, o Plano Cruzado foi abandonado, e a economia voltou a ser completamente indexada, resultando em uma inflação ainda maior do que antes de sua implementação.
+
+Portanto, o congelamento de preços teve, sim, efeitos muito graves no curto e médio prazos, contribuindo para distorções e escassez de produtos. No entanto, não é correto afirmar que a equipe econômica não tentou ajustes, pois medidas como o "Cruzadinho" e o "Cruzado II" foram implementadas. O principal problema foi que essas medidas foram tardias, insuficientes e politicamente motivadas, o que impediu que o plano se sustentasse a longo prazo, culminando em seu fracasso definitivo.
+
+\newpage
+\section{\textbf{Respondendo a pergunta para entregar}}
+\textbf{Acerca do Plano Cruzado: O congelamento de preços teria sido um instrumento muito eficaz, caso as políticas monetária e fiscal tivessem sido ativas e contracionistas em 1986. Vocês concordam? Expliquem a resposta.}
+
+
+\end{document}

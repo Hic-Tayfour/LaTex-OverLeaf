@@ -1,0 +1,459 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+
+
+% Definições de layout e formatação
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\onehalfspacing % Espaçamento entre linhas de 1,5
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage{ragged2e} % Melhor controle de justificação do texto
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização)
+
+% Pacotes de cabeçalho, rodapé e títulos
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\setlength{\headheight}{14.49998pt} % Altura do cabeçalho
+\pagestyle{fancy}
+\fancyhf{} % Limpa cabeçalho e rodapé
+\rhead{\thepage} % Página no canto direito do cabeçalho
+
+% Pacotes para tabelas
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+
+% Pacotes para gráficos e imagens
+\usepackage{graphicx} % Suporte para inclusão de imagens
+
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+
+\lstset{
+    language=R,                      
+    basicstyle=\ttfamily\scalefont{1.0},
+    keywordstyle=\color{blue},       
+    stringstyle=\color{red},         
+    commentstyle=\color{green},      
+    numbers=left,                    
+    numberstyle=\tiny\color{gray},   
+    stepnumber=1,                    
+    numbersep=5pt,                   
+    backgroundcolor=\color{lightgray!10}, 
+    frame=single,                    
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,          
+    showtabs=false,                  
+    tabsize=2,
+     literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {Ú}{{\'U}}1
+             {â}{{\^a}}1
+             {ê}{{\^e}}1
+             {î}{{\^i}}1
+             {ô}{{\^o}}1
+             {û}{{\^u}}1
+             {ã}{{\~a}}1
+             {õ}{{\~o}}1
+             {ç}{{\c{c}}}1,
+}
+
+
+% Pacotes para unidades e formatação numérica
+\usepackage{siunitx} % Tipografia de unidades do Sistema Internacional e formatação de números
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+
+% Pacotes para hiperlinks e referências
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+
+% Pacotes para texto e outros
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Discussão 4}\\
+    \textbf{História Econômica do Brasil II}\\
+    \vspace{1.5cm}
+    Prof. Heleno Piazentini Vieira \\
+    Prof. Auxiliar  \\
+    \vfill
+    \normalsize
+    Andreas Azambuja Barbisan, \href{mailto:andreasab@al.insper.edu.br}{andreasab@al.insper.edu.br}\\
+    Bruno Frasao Brazil Leiros, \href{mailto:brunofbl@al.insper.edu.br}{brunofbl@al.insper.edu.br}\\
+    Érika Kaori Fuzisaka, \href{mailto:erikakf1@al.insper.edu.br}{erikakf1@al.insper.edu.br}\\
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    Lorena Liz Giusti e Santos,\href{mailto:lorenalgs@al.insper.edu.br}{lorenalgs@al.insper.edu.br}\\
+    Nicolas Pedro Diniz Brito, \href{mailto:nicolasb2@al.insper.edu.br}{nicolasb2@al.insper.edu.br}\\
+    Sarah de Araújo Nascimento Silva, \href{mailto:sarahans@al.insper.edu.br}{sarahans@al.insper.edu.br}\\
+
+
+    \vfill
+    São Paulo\\
+    Abril/2025
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % Esse comando remove a numeração de pagina da tabela de conteúdo
+
+\newpage
+\setcounter{page}{1} % Inicia a contagem de páginas a partir desta página
+\justify
+\onehalfspacing
+
+\section{\textbf{Plano Real}}
+
+O Plano Real foi concebido e implementado em 1994 como uma resposta estruturada e inovadora ao regime crônico de inflação que dominava a economia brasileira desde o final dos anos 1970. Com base em lições aprendidas ao longo de sucessivas tentativas fracassadas de estabilização, o plano representou uma ruptura com a lógica dos choques heterodoxos e das intervenções abruptas, ao apostar em uma estratégia gradual, técnica, transparente e articulada em torno da confiança dos agentes econômicos. Seu sucesso decorreu de um arranjo institucional cuidadosamente desenhado e do equilíbrio entre medidas ortodoxas de política econômica e soluções heterodoxas de transição monetária.
+
+O contexto político da implementação foi extremamente delicado. O presidente Itamar Franco assumiu o governo após o impeachment de Fernando Collor e acumulava desgaste por sucessivas trocas de ministros da Fazenda. A nomeação de Fernando Henrique Cardoso, em maio de 1993, trouxe estabilidade à condução da política econômica e permitiu a formação de uma equipe técnica de alto nível, que operou sob autonomia relativa e regras internas de deliberação técnica, sem interferência hierárquica. O grupo, liderado por Cardoso, concebeu um plano dividido em três fases: ajuste fiscal, desindexação via Unidade Real de Valor (URV) e introdução de nova moeda com ancoragem nominal.
+
+Na primeira fase, o objetivo era sinalizar responsabilidade fiscal. Com base na análise de Edmar Bacha, diagnosticou-se a existência de um “déficit potencial” — um desequilíbrio oculto que não aparecia nas estatísticas por conta da indexação das receitas e da corrosão inflacionária das despesas públicas. Essa lógica ficou conhecida como o “efeito Tanzi às avessas”. Para enfrentá-lo, o governo lançou o Programa de Ação Imediata (PAI) e aprovou o Fundo Social de Emergência (FSE), que permitia a desvinculação de receitas obrigatórias. Embora essas medidas tenham gerado superávits primários relevantes — 2,6\% do PIB em 1993 e 5,1\% em 1994 —, os textos analisados apontam que sua eficácia estrutural foi limitada. Reformas mais amplas, como a da Previdência e do sistema tributário, foram reconhecidas como necessárias, mas não avançaram.
+
+A segunda fase do Plano Real foi a criação da URV, uma unidade de conta indexada, inspirada na proposta “Larida” de 1984, formulada por Persio Arida e André Lara Resende. A proposta original previa a convivência entre a nova unidade e a moeda antiga, com adesão voluntária e transição gradual. No entanto, o Plano Real introduziu inovações importantes: a URV não circulava como moeda, mas como indexador; sua cotação diária era definida com base em três índices de preços; e os pagamentos continuaram sendo feitos em cruzeiros reais até o lançamento oficial do real. Além disso, a política monetária adotada foi ativa — e não passiva como na proposta original —, com elevação dos juros e do recolhimento compulsório para conter o consumo pós-estabilização. A separação funcional entre a URV (unidade de conta) e o cruzeiro real (meio de pagamento) permitiu preservar os preços relativos e evitou o colapso da moeda antiga, como ocorrera na experiência húngara de 1945.
+
+A terceira fase iniciou-se em 1º de julho de 1994, com a conversão da URV em real (R\$1,00 = US\$1,00 = 2.750 cruzeiros reais). Nesse momento, o plano passou a operar com três âncoras: fiscal, cambial e monetária. A âncora cambial fixava o valor do real em relação ao dólar dentro de uma banda assimétrica, com livre valorização e teto fixo para desvalorização. A âncora monetária previa metas para a base monetária e controle da liquidez. Posteriormente, com o abandono dessas metas, os juros reais elevados tornaram-se a principal âncora de contenção da inflação. A âncora fiscal baseava-se na arrecadação ampliada via FSE, embora sem reformas estruturais profundas.
+
+O resultado foi uma queda vertiginosa da inflação: de mais de 40\% ao mês no primeiro semestre de 1994 para menos de 1\% ao mês no final do ano. A URV teve papel central ao desindexar a economia sem necessidade de congelamentos ou tabelamentos. A estratégia do Plano Real se diferenciou nitidamente do Plano Cruzado (1986), que havia adotado medidas autoritárias, como congelamento de preços e salários. O Real respeitou os contratos, operou com adesão voluntária dos agentes econômicos e apostou em comunicação clara e antecipada com a sociedade, desarmando expectativas defensivas e movimentos especulativos antecipatórios.
+
+Contudo, os custos da estratégia adotada não foram desprezíveis. A combinação entre câmbio valorizado e juros elevados teve impactos negativos sobre a competitividade da economia brasileira, contribuiu para a deterioração das contas externas e pressionou o setor produtivo nacional. O saldo comercial caiu de US\$ 13,3 bilhões (1993) para US\$ 10,5 bilhões (1994), e a dependência de capitais externos aumentou. A âncora dos juros, mantida por todo o período 1994–1998, acabou contribuindo para a ampliação do déficit público e o crescimento da dívida, especialmente na ausência de reformas estruturais. Ainda assim, o sucesso do Plano Real foi inegável ao conseguir quebrar a inércia inflacionária e encerrar o ciclo de alta inflação que havia marcado o Brasil nas décadas anteriores.
+
+
+\newpage
+\section{\textbf{Resumo dos Textos da 4º Discussão}}
+\subsection{\textbf{Economia Brasileira Contemporânea, Cap. 6, item: O Plano Real: concepção e prática}}
+
+O Plano Real (1994) foi concebido como uma estratégia gradual de estabilização monetária, estruturada em três fases: ajuste fiscal, desindexação via URV e estabilização com nova moeda e âncora nominal. Sua originalidade e eficácia residiram na ruptura com as experiências anteriores, especialmente na forma de tratar a inflação inercial. A seguir, os elementos fundamentais da concepção e implementação do Plano Real:
+
+\begin{itemize}
+
+    \item \textbf{Diagnóstico e concepção inicial:}
+    \begin{itemize}
+        \item A inflação era atribuída ao desequilíbrio fiscal estrutural, com ênfase em um “déficit potencial”, apesar do déficit operacional aparentemente baixo.
+        \item Propôs-se um programa em três fases: ajuste fiscal (PAI e FSE), criação da URV e lançamento do real com medidas de sustentação monetária e cambial.
+        \item A URV surgiu como alternativa à indexação e congelamentos anteriores, buscando a eliminação da memória inflacionária sem choques abruptos.
+    \end{itemize}
+
+    \item \textbf{Fase I — Ajuste Fiscal:}
+    \begin{itemize}
+        \item O PAI (1993) visava a redefinição da relação da União com os Estados e combate à sonegação.
+        \item O FSE (1994) permitiu a desvinculação de receitas, flexibilizando os gastos públicos sob rigidez da Constituição de 1988.
+        \item Edmar Bacha propôs o “Efeito Tanzi às avessas”, em que a inflação ajudava a disfarçar desequilíbrios fiscais, ao corroer despesas não indexadas mais rapidamente que as receitas.
+        \item Apesar da aprovação do FSE, o equilíbrio fiscal não foi alcançado em 1995 e reformas estruturais previstas não foram aprovadas.
+        \item A inflação caiu mesmo sem ajuste fiscal duradouro, questionando a centralidade da política fiscal no controle da inflação.
+    \end{itemize}
+
+    \item \textbf{Fase II — Desindexação com a URV:}
+    \begin{itemize}
+        \item A URV (Unidade Real de Valor) foi lançada em março de 1994 como unidade de conta paralela, mantendo o cruzeiro real como meio de pagamento.
+        \item Inspirada na proposta “Larida” (1984), introduziu uma quase-moeda estável, com adesão voluntária dos agentes econômicos.
+        \item A URV teve cotação diária baseada em três índices (IGP-M, IPCA-E, IPC-Fipe), garantindo maior neutralidade setorial.
+        \item Preços e salários foram convertidos gradualmente, com correção diária dos salários em URV (pagamento pela URV do dia).
+        \item Medidas prudenciais evitaram hiperinflação: preços obrigatoriamente cotados em cruzeiros, política monetária contracionista (juros altos e compulsórios elevados) e pagamento em regime de caixa.
+        \item A desindexação teve sucesso ao eliminar a memória inflacionária sem provocar explosão de preços, ao contrário da experiência húngara de 1945.
+    \end{itemize}
+
+    \item \textbf{Fase III — Lançamento do Real e âncora nominal:}
+    \begin{itemize}
+        \item Em julho de 1994, a URV foi convertida no real (R\$), nova moeda nacional.
+        \item A Medida Provisória 542 introduziu:
+        \begin{itemize}
+            \item Lastreamento da base monetária em reservas cambiais (1 R\$ = 1 US\$);
+            \item Metas para base monetária;
+            \item Propostas de maior autonomia ao Banco Central.
+        \end{itemize}
+        \item Adotou-se banda cambial assimétrica: câmbio livre para valorização e fixo para desvalorização.
+        \item Forte aperto monetário: compulsórios sobre depósitos à vista atingiram 100\%.
+        \item Juros reais elevados (média de 21\% ao ano entre 1994–1998) tornaram-se nova âncora de preços, substituindo o câmbio.
+    \end{itemize}
+
+    \item \textbf{Impactos macroeconômicos do Plano Real:}
+    \begin{itemize}
+        \item \textbf{Inflação:} queda contínua da inflação até 1999, mesmo sem ajuste fiscal robusto.
+        \item \textbf{Atividade econômica:} boom inicial com expansão do consumo e crédito, especialmente de bens duráveis.
+        \item \textbf{Salários reais:} ganhos no início do plano, corroídos parcialmente até novo reajuste com o lançamento do real.
+        \item \textbf{Contas externas:} rápida deterioração da conta-corrente, financiada por entrada de capitais, seguida por crises (México, Ásia, Rússia).
+        \item \textbf{Déficit público:} aumento do déficit operacional devido aos altos juros; o ajuste fiscal esperado não se concretizou.
+        \item \textbf{Juros:} permaneceram elevados e voláteis, tornando-se o principal instrumento de combate à inflação, diferente da experiência internacional com âncora cambial.
+    \end{itemize}
+
+    \item \textbf{Conclusão:}
+    \begin{itemize}
+        \item O Plano Real rompeu com o padrão de estabilização via choques e congelamentos.
+        \item A URV foi o principal instrumento técnico para conter a inflação inercial.
+        \item A âncora cambial inicial foi substituída pela âncora dos juros, com impacto significativo sobre crescimento e dívida pública.
+        \item Apesar dos altos custos macroeconômicos, o plano obteve êxito em estabilizar preços e encerrar um ciclo prolongado de inflação crônica.
+    \end{itemize}
+
+\end{itemize}
+
+\subsection{\textbf{Ordem e Progresso, Cap. 15, item: Concepção e implementação do Plano Real}}
+
+A concepção e implementação do Plano Real ocorreu em um contexto de descrédito político, instabilidade econômica e sucessivos fracassos de planos anteriores. O novo plano precisou ser cuidadosamente arquitetado para romper com o passado, obter apoio institucional e conquistar a confiança da sociedade. A seguir, destacam-se os principais elementos dessa trajetória:
+
+\begin{itemize}
+
+    \item \textbf{Contexto político-institucional instável:}
+    \begin{itemize}
+        \item O presidente Itamar Franco assumiu em meio à crise gerada pelo impeachment de Collor, sendo instável na condução da política econômica, nomeando quatro ministros da Fazenda em sete meses.
+        \item A escolha de Fernando Henrique Cardoso para o Ministério da Fazenda, em maio de 1993, marcou a virada na estratégia de estabilização.
+    \end{itemize}
+
+    \item \textbf{Desafios à formulação de um novo plano:}
+    \begin{itemize}
+        \item A inflação ultrapassava 30\% ao mês, e o mandato de Itamar tinha apenas 19 meses restantes.
+        \item O histórico de fracassos (cinco planos desde 1986) exigia aprendizado institucional e inovação.
+        \item Havia resistência à dolarização (modelo argentino), e as alternativas nacionais ainda estavam em elaboração.
+    \end{itemize}
+
+    \item \textbf{Construção da equipe econômica e liberdade técnica:}
+    \begin{itemize}
+        \item FHC formou uma equipe técnica de alto nível, com liberdade para debater ideias sem hierarquias rígidas.
+        \item O pacto implícito previa não interferência política direta nas decisões técnicas do grupo.
+    \end{itemize}
+
+    \item \textbf{Atuação política de FHC:}
+    \begin{itemize}
+        \item Atuou como negociador no governo e no Congresso, garantindo apoio institucional para o plano.
+        \item Enfrentou resistências internas e chegou a ameaçar demissão para proteger a integridade do projeto.
+        \item Buscou engajar seu partido (PSDB), que inicialmente demonstrava ceticismo.
+    \end{itemize}
+
+    \item \textbf{Mobilização da opinião pública:}
+    \begin{itemize}
+        \item O plano foi planejado com ampla antecedência, de forma transparente, evitando congelamentos ou medidas arbitrárias.
+        \item FHC comunicou eficazmente as etapas do plano, desarmando expectativas inflacionárias defensivas.
+    \end{itemize}
+
+    \item \textbf{Estrutura técnica do plano:}
+    \begin{itemize}
+        \item A estratégia de estabilização foi anunciada em três etapas: ajuste fiscal, criação da URV e reforma monetária com introdução do real.
+        \item Em julho de 1993, houve reforma monetária inicial (corte de três zeros, criação do cruzeiro real).
+    \end{itemize}
+
+    \item \textbf{Pilar fiscal do Plano:}
+    \begin{itemize}
+        \item Medidas de ajuste foram viabilizadas pelo aumento de impostos sobre o setor financeiro e pela criação do Fundo Social de Emergência.
+        \item Reformas mais profundas (Previdência e tributos) foram reconhecidas como necessárias, mas postergadas.
+        \item Os superávits primários foram de 2,6\% do PIB (1993) e 5,1\% (1994), em parte pela corrosão inflacionária dos gastos públicos.
+    \end{itemize}
+
+    \item \textbf{Implementação da URV:}
+    \begin{itemize}
+        \item De março a junho de 1994, a URV conviveu com o cruzeiro real; sua cotação diária era corrigida conforme índices de preços.
+        \item Contratos novos eram obrigatoriamente em URV; contratos antigos podiam ser convertidos voluntariamente.
+        \item Essa conversão descentralizada permitiu transição suave, com preservação dos preços relativos.
+    \end{itemize}
+
+    \item \textbf{Criação do real:}
+    \begin{itemize}
+        \item Em julho de 1994, a URV foi convertida em real (1 real = 2.750 cruzeiros reais), com paridade inicial de 1 real = 1 dólar.
+        \item A inflação caiu de 40--50\% ao mês (em cruzeiros reais) para abaixo de 10\% em julho e 1\% no fim do ano.
+    \end{itemize}
+
+    \item \textbf{As três âncoras do plano:}
+    \begin{itemize}
+        \item \textbf{Âncora cambial}: paridade inicial com o dólar, sustentada por reservas de US\$ 40 bilhões.
+        \item \textbf{Âncora fiscal}: viabilizada pelo FSE e superávits primários.
+        \item \textbf{Âncora monetária}: taxas de juros reais mantidas elevadas para conter demanda.
+    \end{itemize}
+
+    \item \textbf{Ajustes diante do superaquecimento:}
+    \begin{itemize}
+        \item No segundo semestre de 1994, o setor automobilístico mostrou forte expansão, com pressões salariais.
+        \item O ministro Ciro Gomes reduziu tarifas de importação de automóveis (de 35\% para 20\%) para conter aumentos de preços.
+        \item Com a crise do México (fim de 1994), o cenário externo piorou, e as críticas à liberalização comercial ganharam força.
+    \end{itemize}
+
+    \item \textbf{Desempenho macroeconômico:}
+    \begin{itemize}
+        \item Crescimento do PIB: 4,7\% em 1993 e 5,3\% em 1994.
+        \item Formação bruta de capital fixo atingiu 20,7\% do PIB em 1994.
+        \item O saldo comercial caiu de US\$ 13,3 bi (1993) para US\$ 10,5 bi (1994), com aumento de importações.
+        \item Reservas internacionais subiram de US\$ 23,8 bi (1992) para US\$ 38,8 bi (1994).
+    \end{itemize}
+
+    \item \textbf{Relação com o FMI:}
+    \begin{itemize}
+        \item O FMI não apoiou o Plano Real, por ceticismo em relação ao seu sucesso.
+        \item Esse distanciamento, após 12 anos de colaboração com planos fracassados, tornou-se um fato irônico diante do êxito do plano.
+    \end{itemize}
+
+\end{itemize}
+
+\newpage
+\section{\textbf{Respondendo as perguntas da discussão}}
+\subsection{\textbf{Bloco 1 A questão fiscal no Real :Plano Real, a questão fiscal e a contribuição de Edmar Bacha. A 1ª fase do plano procurava corrigir o problema fiscal do Brasil no curto prazo; A presença do efeito Tanzi exigia um ajuste fiscal prévio a estabilização da moeda; A 1ª fase do plano Real teria sido irrelevante, já que a queda da inflação foi atingida sem o ajuste fiscal completo. Vocês concordam? Expliquem a resposta.}}
+
+Afirmar que a 1ª fase do Plano Real foi “irrelevante” é um exagero. Embora sua eficácia no combate direto à inflação tenha sido inferior à esperada, ela cumpriu papéis políticos, simbólicos e institucionais importantes no processo de estabilização. Abaixo detalhamos os argumentos, com base exclusiva nos dois textos analisados.
+
+\begin{itemize}
+
+    \item \textbf{Contribuição de Edmar Bacha e o efeito Tanzi às avessas:}
+    \begin{itemize}
+        \item Bacha argumentava que a inflação elevada no Brasil coexistia com um déficit operacional aparentemente baixo devido a distorções geradas pela indexação das receitas e à subestimação da inflação nos orçamentos.
+        \item Essa dinâmica produzia um \textit{“efeito Tanzi às avessas”}, pois a inflação corroía os gastos nominais do governo mais rapidamente que as receitas indexadas, reduzindo o déficit \textit{ex post} — mascarando, assim, um forte desequilíbrio fiscal \textit{ex ante}.
+        \item Para Bacha, sem ajuste fiscal real, qualquer tentativa de estabilização puramente monetária estava fadada ao fracasso, pois a inflação tenderia a voltar para financiar o déficit oculto.
+    \end{itemize}
+
+    \item \textbf{A estrutura e os limites da 1ª fase do Plano Real:}
+    \begin{itemize}
+        \item O ajuste fiscal proposto envolvia o Programa de Ação Imediata (PAI) e a criação do Fundo Social de Emergência (FSE), cujo objetivo era ampliar a flexibilidade orçamentária.
+        \item Segundo o texto do Cap. 6, essas medidas foram importantes no plano político, mas não produziram um equilíbrio fiscal sustentável. Reformas estruturais, como da Previdência e do sistema tributário, foram reconhecidas como necessárias, mas não avançaram.
+        \item Ainda assim, os efeitos combinados da inflação sobre os gastos e a elevação da carga sobre o setor financeiro geraram superávits primários relevantes (2,6\% do PIB em 1993 e 5,1\% em 1994), embora sem resolver o problema estrutural.
+    \end{itemize}
+
+    \item \textbf{A inflação caiu sem o ajuste fiscal completo — e por quê:}
+    \begin{itemize}
+        \item Como ambos os textos deixam claro, a queda da inflação se deveu, majoritariamente, à introdução da URV, que rompeu com a memória inflacionária e preparou o sistema de preços para a nova moeda.
+        \item A URV foi implementada sem medidas arbitrárias e com grande transparência, conquistando a confiança da sociedade — o que ajudou a evitar os efeitos desestabilizadores comuns aos planos anteriores.
+        \item A âncora cambial e, depois, a elevação das taxas de juros reais, também tiveram papel fundamental na contenção da inflação, conforme discutido no Cap. 6.
+    \end{itemize}
+
+    \item \textbf{Conclusão:}
+    \begin{itemize}
+        \item A 1ª fase do plano teve função relevante ao sinalizar responsabilidade fiscal e construir as bases políticas e institucionais para a estabilização.
+        \item Entretanto, sua capacidade técnica de conter a inflação foi limitada. O sucesso da estabilização derivou, principalmente, da segunda fase (desindexação via URV) e da combinação de âncoras nominal e cambial.
+        \item Portanto, a 1ª fase não foi “irrelevante”, mas tampouco foi determinante para a queda da inflação. Sua principal contribuição foi preparar o terreno político e institucional para que as fases seguintes pudessem funcionar com credibilidade.
+
+    \end{itemize}
+
+\end{itemize}
+
+\subsection{\textbf{Bloco 2 Medidas do Real : No geral, as medidas introduzidas com o plano Real: Tinham mentalidade nas linhas ortodoxa e heterodoxa; Diferentemente do plano Cruzado, não procuravam interferir na indexação e no processo de formação de preços; Estabeleceram conjuntamente com sucesso as âncoras monetária e cambial. Vocês concordam? Expliquem a resposta.}}
+
+Concordamos com a afirmação de que o Plano Real combinou estratégias ortodoxas e heterodoxas de forma inovadora, rompeu com a tradição intervencionista dos planos anteriores (como o Cruzado) e conseguiu, com sucesso, estabelecer âncoras monetária e cambial articuladas. Essa combinação foi essencial para o êxito inicial da estabilização da inflação.
+
+\begin{itemize}
+
+    \item \textbf{Composição ortodoxa e heterodoxa:}
+    \begin{itemize}
+        \item O Plano Real utilizou elementos \textbf{ortodoxos}, como metas monetárias, contenção de liquidez via compulsórios elevados e manutenção de juros reais altos. Essas medidas refletiam uma preocupação com o controle da demanda agregada e a preservação do valor da nova moeda.
+        \item Simultaneamente, incorporou componentes \textbf{heterodoxos}, como a criação da URV, uma unidade de conta paralela, inspirada na proposta Larida. Sua função era desindexar a economia sem congelar preços, por meio de uma transição gradual e voluntária.
+        \item Essa abordagem híbrida foi uma resposta aos sucessivos fracassos dos planos anteriores e buscava resgatar a confiança dos agentes econômicos sem recorrer a choques abruptos.
+    \end{itemize}
+
+    \item \textbf{Diferença fundamental em relação ao Plano Cruzado:}
+    \begin{itemize}
+        \item O Plano Cruzado adotou congelamentos generalizados de preços e salários, além da famosa ``tablita'' de indexação decrescente, medidas que causaram distorções severas no sistema de preços relativos.
+        \item O Plano Real, por outro lado, \textbf{não interferiu diretamente na formação de preços}: a URV foi uma unidade de conta com adesão descentralizada e negociada, permitindo que fornecedores e consumidores ajustassem voluntariamente seus contratos.
+        \item Essa estratégia evitou os efeitos colaterais típicos dos congelamentos — como escassez, distorções e explosão inflacionária posterior — e manteve a funcionalidade do sistema de preços.
+        \item Como destaca o texto de “Ordem e Progresso”, a credibilidade da URV derivava justamente de sua transparência e previsibilidade, sem surpresas nem medidas autoritárias.
+    \end{itemize}
+
+    \item \textbf{Estabelecimento das âncoras: cambial e monetária:}
+    \begin{itemize}
+        \item O plano foi estruturado para operar com três âncoras: \textbf{cambial}, \textbf{fiscal} e \textbf{monetária}.
+        \item A âncora cambial foi estabelecida com a paridade inicial de 1 real = 1 dólar, sustentada por reservas internacionais robustas (US\$ 40 bilhões). Essa fixação de referência ajudou a coordenar expectativas inflacionárias, especialmente no setor de bens comercializáveis.
+        \item A âncora monetária envolveu metas para a base monetária, reforçadas por compulsórios sobre depósitos (até 100\%) e juros reais elevados, como forma de impedir uma explosão de consumo pós-estabilização.
+        \item Ainda que as metas monetárias tenham sido abandonadas poucos meses após o lançamento do real, os juros elevados foram mantidos como instrumento central de contenção inflacionária, tornando-se a nova âncora de preços a partir de 1995.
+    \end{itemize}
+
+    \item \textbf{Efetividade e limitações das âncoras:}
+    \begin{itemize}
+        \item A estratégia teve sucesso na estabilização da inflação: o índice mensal caiu de cerca de 50\% em junho de 1994 para menos de 10\% em julho e 1\% no final do ano.
+        \item Por outro lado, as âncoras, sobretudo a cambial, trouxeram efeitos colaterais: apreciação do real, aumento das importações, perda de competitividade externa e rápida deterioração da conta-corrente.
+        \item Como descrito no Capítulo 6, a combinação de câmbio valorizado com juros elevados causou distorções no setor externo e agravou o déficit público ao longo do tempo, embora tenha sido decisiva no curto prazo.
+    \end{itemize}
+
+    \item \textbf{Conclusão:}
+    \begin{itemize}
+        \item O Plano Real representou um avanço importante ao evitar os erros de planos anteriores, apostando em uma engenharia institucional mais sofisticada, baseada em coordenação gradual e transparência.
+        \item As medidas não buscaram intervir autoritariamente nos preços, mas sim reestruturar as bases da economia por meio da URV e da confiança nos mecanismos de mercado.
+        \item A dupla ancoragem (monetária e cambial), apesar de seus custos, foi efetiva na rápida desaceleração da inflação — e seu sucesso deve ser compreendido dentro da lógica híbrida do plano.
+    \end{itemize}
+
+\end{itemize}
+
+\subsection{\textbf{Bloco 3 Inovações na proposta Larida : A proposta Larida que já estava disponível desde a década de 1980 como estratégia para promover a desindexação passou por inovações dentro do plano Real: A política monetária teria de ser passiva; A URV circularia paralelamente com a moeda atual; O arranjo ideal para a taxa de câmbio auxiliar na estabilização da moeda seria o flutuante. Vocês concordam? Expliquem a resposta.}}
+
+Discordamos, em parte, das afirmações apresentadas. As inovações promovidas no interior do Plano Real em relação à proposta Larida foram substanciais, especialmente nos seguintes pontos: a política monetária adotada foi ativa (e não passiva), a URV não circulou como moeda, e a taxa de câmbio adotada inicialmente foi fixa (não flutuante), dentro de uma banda cambial assimétrica. Abaixo detalhamos as evidências com base nos textos analisados.
+
+\begin{itemize}
+
+    \item \textbf{A proposta Larida como base teórica:}
+    \begin{itemize}
+        \item Elaborada por Persio Arida e André Lara Resende em 1984, a proposta sugeria a criação de uma nova unidade de conta indexada (como a ORTN) que conviveria com a moeda antiga e permitiria a transição para a estabilização via desindexação voluntária.
+        \item Sua principal inovação era reduzir a memória inflacionária sem recorrer a congelamentos, confiando na escolha livre dos agentes para migrarem seus contratos para a nova unidade.
+    \end{itemize}
+
+    \item \textbf{Inovações no Plano Real:}
+    \begin{itemize}
+        \item No Plano Real, a URV não foi criada como uma nova moeda em circulação, mas como uma unidade de conta: todos os pagamentos continuaram sendo realizados em cruzeiros reais até 1º de julho de 1994.
+        \item Essa medida foi desenhada para evitar os erros da experiência húngara de 1945–46, em que a moeda indexada gerou hiperinflação na moeda antiga e contaminou a nova.
+        \item A URV teve sua paridade com o cruzeiro real corrigida diariamente, com base em três índices (IGP-M, IPCA-E, IPC-Fipe), funcionando como um indexador neutro e tecnicamente sofisticado.
+        \item A legislação determinou que novos contratos fossem firmados em URV e que os contratos antigos pudessem ser convertidos por negociação. Com a criação do real, em julho, todos os contratos foram convertidos automaticamente para a nova moeda.
+    \end{itemize}
+
+    \item \textbf{Política monetária: ativa, não passiva:}
+    \begin{itemize}
+        \item Ao contrário da proposta Larida original, que previa uma condução passiva da política monetária durante a transição, o Plano Real adotou uma postura ativa.
+        \item Persio Arida, inclusive, reviu sua posição e defendeu que, mesmo em um processo de desindexação, seria necessário elevar os juros no curto prazo para conter o impulso de consumo gerado pela queda abrupta da inflação.
+        \item O governo elevou compulsórios bancários (até 100\%) e manteve juros reais elevados (média de 21\% ao ano entre 1994–98), o que contribuiu decisivamente para sustentar a estabilidade de preços.
+    \end{itemize}
+
+    \item \textbf{URV não circulou como moeda paralela:}
+    \begin{itemize}
+        \item A URV não foi uma nova moeda em circulação, mas uma unidade de conta de transição.
+        \item O cruzeiro real continuou exercendo a função de meio de pagamento. A URV funcionou apenas como base para cálculo de contratos e reajustes.
+        \item Essa separação funcional (conta vs. pagamento) foi crucial para evitar a explosão da velocidade de circulação da moeda antiga e garantir uma transição ordenada.
+        \item Como aponta o texto de “Ordem e Progresso”, essa arquitetura institucional foi desenhada de forma transparente e antecipada, contribuindo para a credibilidade e aceitação do plano.
+    \end{itemize}
+
+    \item \textbf{Taxa de câmbio: fixa, não flutuante:}
+    \begin{itemize}
+        \item O Plano Real adotou inicialmente uma \textbf{âncora cambial} baseada em paridade fixa: 1 real = 1 dólar.
+        \item A política cambial operava com banda assimétrica: o câmbio poderia se valorizar livremente, mas havia um teto rígido para a desvalorização, garantindo previsibilidade.
+        \item Esse regime foi escolhido para ancorar expectativas inflacionárias e estabilizar os preços dos bens comercializáveis.
+        \item A taxa de câmbio flutuante foi descartada no início, pois não forneceria um referencial estável para preços e contratos na fase inicial de confiança frágil.
+    \end{itemize}
+
+    \item \textbf{Conclusão:}
+    \begin{itemize}
+        \item O Plano Real se apropriou da base teórica da proposta Larida, mas promoveu ajustes fundamentais:
+        \begin{itemize}
+            \item Rejeitou a ideia de política monetária passiva e adotou postura ativa com juros elevados;
+            \item Impediu a circulação de uma segunda moeda ao manter a URV apenas como unidade de conta;
+            \item Utilizou um câmbio administrado com paridade fixa como âncora nominal no lugar de flutuação.
+        \end{itemize}
+        \item Essas inovações foram fundamentais para evitar os erros de planos anteriores e garantir uma transição gradual, crível e bem-sucedida para a nova moeda.
+    \end{itemize}
+
+\end{itemize}
+
+\newpage
+\section{\textbf{Respondendo a pergunta para entregar}}
+
+\end{document}

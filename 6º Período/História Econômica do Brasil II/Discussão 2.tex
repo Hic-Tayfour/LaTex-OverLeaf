@@ -1,0 +1,571 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+
+
+% Definições de layout e formatação
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\onehalfspacing % Espaçamento entre linhas de 1,5
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage{ragged2e} % Melhor controle de justificação do texto
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização)
+
+% Pacotes de cabeçalho, rodapé e títulos
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\setlength{\headheight}{14.49998pt} % Altura do cabeçalho
+\pagestyle{fancy}
+\fancyhf{} % Limpa cabeçalho e rodapé
+\rhead{\thepage} % Página no canto direito do cabeçalho
+
+% Pacotes para tabelas
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+
+% Pacotes para gráficos e imagens
+\usepackage{graphicx} % Suporte para inclusão de imagens
+
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+
+\lstset{
+    language=R,                      
+    basicstyle=\ttfamily\scalefont{1.0},
+    keywordstyle=\color{blue},       
+    stringstyle=\color{red},         
+    commentstyle=\color{green},      
+    numbers=left,                    
+    numberstyle=\tiny\color{gray},   
+    stepnumber=1,                    
+    numbersep=5pt,                   
+    backgroundcolor=\color{lightgray!10}, 
+    frame=single,                    
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,          
+    showtabs=false,                  
+    tabsize=2,
+     literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {Ú}{{\'U}}1
+             {â}{{\^a}}1
+             {ê}{{\^e}}1
+             {î}{{\^i}}1
+             {ô}{{\^o}}1
+             {û}{{\^u}}1
+             {ã}{{\~a}}1
+             {õ}{{\~o}}1
+             {ç}{{\c{c}}}1,
+}
+
+
+% Pacotes para unidades e formatação numérica
+\usepackage{siunitx} % Tipografia de unidades do Sistema Internacional e formatação de números
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+
+% Pacotes para hiperlinks e referências
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+
+% Pacotes para texto e outros
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Discussão 2}\\
+    \textbf{História Econômica do Brasil II}\\
+    \vspace{1.5cm}
+    Prof. Heleno Piazentini Vieira \\
+    Prof. Auxiliar  \\
+    \vfill
+    \normalsize
+    Andreas Azambuja Barbisan, \href{mailto:andreasab@al.insper.edu.br}{andreasab@al.insper.edu.br}\\
+    Bruno Frasao Brazil Leiros, \href{mailto:brunofbl@al.insper.edu.br}{brunofbl@al.insper.edu.br}\\
+    Érika Kaori Fuzisaka, \href{mailto:erikakf1@al.insper.edu.br}{erikakf1@al.insper.edu.br}\\
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    Lorena Liz Giusti e Santos,\href{mailto:lorenalgs@al.insper.edu.br}{lorenalgs@al.insper.edu.br}\\
+    Nicolas Pedro Diniz Brito, \href{mailto:nicolasb2@al.insper.edu.br}{nicolasb2@al.insper.edu.br}\\
+    Sarah de Araújo Nascimento Silva, \href{mailto:sarahans@al.insper.edu.br}{sarahans@al.insper.edu.br}\\
+
+
+    \vfill
+    São Paulo\\
+    Fevereiro/2025
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % Esse comando remove a numeração de pagina da tabela de conteúdo
+
+\newpage
+\setcounter{page}{1} % Inicia a contagem de páginas a partir desta página
+\justify
+\onehalfspacing
+\section{\textbf{II Plano Nacional de Desenvolvimento (II PND)}}
+
+O \textbf{II Plano Nacional de Desenvolvimento (II PND)} foi a principal estratégia econômica implementada pelo governo do presidente \textbf{Ernesto Geisel} (1974-1979) em resposta ao primeiro choque do petróleo ocorrido em 1973. A crise internacional elevou drasticamente os preços do petróleo, aumentando a vulnerabilidade da economia brasileira, que dependia fortemente da importação desse insumo. Diante desse cenário, o II PND foi elaborado com o objetivo de garantir a continuidade do crescimento econômico, reduzir a dependência externa e fortalecer a estrutura industrial do país.
+
+A estratégia do II PND era ambiciosa. O governo projetava um crescimento médio do \textbf{PIB de 10\% ao ano} e da indústria em torno de \textbf{12\% ao ano}. Para atingir essas metas, o plano adotou uma abordagem baseada na \textbf{substituição de importações} e na \textbf{expansão dos setores estratégicos}, incluindo a indústria de bens de capital, insumos básicos e energia. O governo acreditava que o desenvolvimento desses setores era essencial para fortalecer a economia brasileira e reduzir a vulnerabilidade externa diante das oscilações do mercado internacional.
+
+A política industrial do II PND priorizou a \textbf{substituição de importações}, incentivando a produção interna de bens estratégicos para diminuir a necessidade de importação. O governo investiu fortemente nos setores de \textbf{bens de capital, petroquímica, fertilizantes, papel e celulose, metais não ferrosos e siderurgia}. Para viabilizar essa estratégia, foram concedidos incentivos fiscais, subsídios e financiamento subsidiado por meio do \textbf{Banco Nacional de Desenvolvimento Econômico (BNDE)}. Além disso, foram impostas barreiras comerciais, como \textbf{aumento de tarifas, restrições quantitativas e encargos financeiros}, dificultando a entrada de produtos estrangeiros no mercado brasileiro.
+
+Outro pilar fundamental do II PND foi a \textbf{política energética}. O aumento expressivo dos preços do petróleo obrigou o governo a buscar alternativas para garantir a segurança energética do país. Assim, foram intensificados os investimentos na exploração da \textbf{Bacia de Campos}, visando ampliar a produção nacional de petróleo e reduzir a dependência de importações. Além disso, houve um grande esforço para expandir a capacidade de geração de energia hidroelétrica, com um aumento projetado de \textbf{60\%} na capacidade instalada. Projetos de grande porte, como \textbf{as usinas hidrelétricas de Itaipu e Tucuruí}, foram desenvolvidos para garantir o fornecimento de energia a longo prazo, permitindo o crescimento da indústria e a redução da vulnerabilidade externa.
+
+O plano também enfatizou \textbf{investimentos em infraestrutura}, com a construção de rodovias, ferrovias, portos e aeroportos para facilitar a integração econômica do país. O objetivo era criar uma base logística eficiente que permitisse o escoamento da produção industrial e agrícola, garantindo maior competitividade para os setores produtivos. A infraestrutura passou a ser vista como um elemento fundamental para consolidar a industrialização e reduzir os custos operacionais da economia brasileira.
+
+Para financiar esse ambicioso programa de investimentos, o governo optou por uma estratégia de \textbf{endividamento externo}. O contexto internacional da época favorecia essa decisão, pois havia uma oferta abundante de crédito internacional a juros relativamente baixos. Dessa forma, a dívida externa brasileira cresceu rapidamente, passando de \textbf{US\$12,5 bilhões em 1974} para \textbf{US\$21,1 bilhões em 1978}. O serviço da dívida tornou-se um problema crescente: os pagamentos anuais de juros aumentaram de \textbf{US\$600 milhões em 1974} para \textbf{US\$2,7 bilhões em 1978} e chegaram a \textbf{US\$4,2 bilhões no início do governo Figueiredo}. Apesar de possibilitar a continuidade do crescimento no curto prazo, o modelo de financiamento adotado pelo II PND criou um passivo significativo para os anos seguintes.
+
+Embora o plano tenha contribuído para a industrialização e fortalecimento da infraestrutura nacional, ele também gerou desafios macroeconômicos. O protecionismo adotado para incentivar a indústria nacional resultou na produção de bens de capital e insumos básicos a custos mais elevados do que os produtos importados, encarecendo a produção industrial brasileira e reduzindo a competitividade de diversos setores. Além disso, o aumento dos gastos públicos e o crescimento acelerado do crédito subsidiado pressionaram a inflação e comprometeram a sustentabilidade fiscal do país.
+
+Outro problema decorrente do II PND foi a \textbf{dependência das empresas em relação ao Estado}. Muitas companhias passaram a contar com subsídios e incentivos estatais para viabilizar seus investimentos, em vez de buscar competitividade e inovação. Isso gerou distorções no mercado e dificultou a transição para um modelo econômico mais equilibrado, baseado na eficiência produtiva e na concorrência.
+
+O impacto do plano na balança comercial também se tornou um ponto crítico. Embora a substituição de importações tenha reduzido a dependência externa em alguns setores, o crescimento acelerado da economia elevou a demanda por bens de capital e insumos estratégicos, levando a um aumento das importações. O déficit acumulado em transações correntes entre \textbf{1974 e 1975} superou \textbf{US\$14,5 bilhões}, tornando o Brasil cada vez mais vulnerável às condições do mercado internacional.
+
+Mesmo com esses desafios, o II PND teve impactos significativos sobre a economia brasileira. A taxa média de crescimento do PIB durante o período foi de \textbf{7\% ao ano}, permitindo uma expansão expressiva da indústria e da infraestrutura. O coeficiente de importação da economia caiu de \textbf{12\% do PIB em 1974} para \textbf{7,2\% em 1978}, evidenciando o efeito das políticas protecionistas sobre a estrutura produtiva do país. No entanto, a desaceleração do comércio global após 1978 e o aumento das taxas de juros internacionais dificultaram a continuidade do crescimento, expondo as fragilidades do modelo adotado.
+
+O legado do II PND é marcado por avanços e desafios. O plano representou um esforço significativo para consolidar a industrialização do Brasil e reduzir sua vulnerabilidade externa, promovendo a expansão da infraestrutura energética e de transporte. No entanto, as consequências do aumento do endividamento externo e do protecionismo excessivo tornaram-se evidentes na década seguinte, resultando em inflação elevada, déficits fiscais persistentes e dificuldades para ajustar a economia a um novo cenário global.
+
+Dessa forma, o II PND exemplifica os dilemas enfrentados por políticas industriais de grande porte. Embora tenha permitido avanços estruturais importantes, sua execução revelou os riscos associados ao excesso de intervenção estatal, ao protecionismo prolongado e à dependência do endividamento externo. A experiência desse período serve como lição para a formulação de políticas econômicas futuras, destacando a necessidade de equilíbrio entre incentivo governamental e responsabilidade fiscal.
+\newpage
+
+\section{\textbf{Resumo dos Textos da 2º Discussão}}
+\subsection{\textbf{Ordem e Progresso, Cap. 12, item: Condicionantes externos e internos da política econômica}}
+
+No período pós-milagre econômico, as restrições à formulação da política econômica começaram a se manifestar desde a fase preparatória do governo Geisel. A nomeação dos ministros indicava uma prioridade ao equilíbrio político em detrimento de uma diretriz econômica mais clara. O governo enfatizou a necessidade de uma abertura política controlada, denominada "distensão", conduzida de forma "lenta, gradual e segura" para evitar oposição interna dentro do regime militar.
+
+A política econômica foi marcada por uma continuidade parcial da equipe do governo Médici, mantendo-se o grupo do Planejamento responsável pelos "projetos de impacto", enquanto na Fazenda, Delfim Netto foi substituído por Mário Simonsen, cujo perfil conservador buscava maior controle sobre a economia. O general Golbery do Couto e Silva teve papel central na condução da transição política, garantindo que a distensão não resultasse em um colapso do regime.
+
+No primeiro ano de governo, as autoridades econômicas não demonstraram percepção clara sobre as mudanças do cenário global, principalmente o impacto do choque do petróleo. A transferência de renda dos países importadores para os exportadores de petróleo gerou uma contração na economia mundial, mas o Brasil manteve uma postura otimista, confiando na continuidade do crescimento. Essa abordagem mostrou-se equivocada quando, em 1975, ocorreu uma brusca desaceleração das exportações, expondo a fragilidade da estratégia adotada.
+
+A política econômica do governo Geisel oscilou entre estabilização e ajuste estrutural. Em retrospecto, uma estratégia de estabilização mais drástica, com um crescimento deliberadamente menor nos primeiros anos, poderia ter permitido uma retomada mais sustentável da expansão econômica. No entanto, o contexto político limitava essa possibilidade. A distensão política era considerada precária e dependia de apoio militar, o que dificultava a implementação de medidas recessivas que pudessem enfraquecer a legitimidade do governo em comparação ao período Médici.
+
+Além disso, a adoção de políticas contracionistas esbarrava em três fatores principais: \begin{itemize}
+    \item  \textbf{Herdeira de um quadro macroeconômico deteriorado}, a nova equipe econômica enfrentava desafios decorrentes da perda de controle monetário e da repressão de preços no governo anterior. A necessidade de ajustes era reconhecida, mas sem uma percepção clara da urgência de reduzir o ritmo de crescimento para equilibrar as contas externas.  
+    \item \textbf{Falta de apoio político para um ajuste recessivo}. O governo enfrentava resistência a medidas de contração econômica que pudessem ser interpretadas como um retrocesso em relação ao crescimento acelerado dos anos anteriores.  
+    \item \textbf{Erros de avaliação quanto ao tempo necessário para a implementação das políticas}. A direção das políticas econômicas estava, em grande parte, correta, mas houve uma subestimação do período necessário para que surtissem efeito.  
+\end{itemize}
+
+A análise retrospectiva sugere que os condicionantes internos foram mais decisivos do que os externos na definição das políticas econômicas. A disponibilidade de liquidez internacional permitiu que os déficits em conta corrente fossem financiados sem gerar uma percepção imediata da gravidade das restrições externas. Isso levou o Brasil a optar pela rota do endividamento externo, impulsionado pelo otimismo gerado pela indexação da economia. Dessa forma, a necessidade de um programa de ajuste mais rigoroso foi postergada, enquanto a tolerância com taxas mais elevadas de inflação aumentou, contribuindo para os desafios econômicos dos anos seguintes.
+
+\subsection{\textbf{Ordem e Progresso, Cap. 12, item: Opções para o ajuste de curto prazo e as causas do fracasso}}
+
+Diante do primeiro choque do petróleo em 1973, que quadruplicou os preços do insumo, o Brasil enfrentou um cenário econômico adverso, marcado pelo aumento do custo das importações e pela necessidade de ajustes para manter sua trajetória de crescimento. O choque externo impôs um empobrecimento relativo ao país, pois a desvalorização dos termos de troca exigia maior volume de exportações para cobrir o custo crescente das importações de bens essenciais e de capital.
+
+As opções de ajuste econômico disponíveis ao governo brasileiro eram essencialmente duas:
+
+\begin{enumerate}
+    \item \textbf{Desvalorização cambial imediata e reestruturação rápida dos preços relativos}  
+    Essa alternativa previa uma resposta rápida ao choque externo, reajustando os preços dos bens importados e valorizando as exportações brasileiras. Para que a estratégia fosse bem-sucedida, seria necessário conter rigorosamente a demanda interna, evitando que a alta dos preços importados se transformasse em inflação estrutural e permanente. O principal risco dessa opção era a possibilidade de uma recessão prolongada.
+
+    \item \textbf{Ajuste gradual com financiamento externo}  
+    A segunda alternativa buscava retardar os impactos da crise por meio de crescimento acelerado e ajustes graduais dos preços relativos. Enquanto houvesse disponibilidade de crédito externo, essa estratégia permitiria um ajuste mais suave, sem a necessidade de um choque recessivo imediato. No entanto, essa abordagem elevava o risco de descontrole inflacionário e aumento do endividamento externo, pois a demanda permaneceria aquecida.
+\end{enumerate}
+
+O governo Geisel optou pela segunda alternativa, priorizando a manutenção do crescimento econômico e recorrendo ao financiamento externo para suavizar os impactos do choque do petróleo. No entanto, essa decisão gerou desequilíbrios macroeconômicos que se agravariam nos anos seguintes, com consequências como:
+
+\begin{enumerate}
+    \item \textbf{Endividamento externo crescente} – O país passou a depender cada vez mais de capital estrangeiro para financiar sua balança de pagamentos.
+    \item \textbf{Inflação persistente} – O ajuste gradual dos preços relativos manteve a inflação elevada ao longo dos anos.
+    \item \textbf{Desestruturação do setor público} – O aumento do gasto público e a ampliação dos subsídios comprometeram o equilíbrio das contas governamentais.
+\end{enumerate}
+
+A política econômica de curto prazo no início do governo Geisel foi marcada por quatro decisões fundamentais:
+
+\begin{enumerate}
+    \item \textbf{Desrepressão dos preços}  
+    O governo removeu os controles artificiais de preços que haviam sido utilizados no governo Médici para conter a inflação. Essa medida resultou em um aumento imediato da inflação oficial e desencadeou um período de instabilidade nos índices de preços, afetando a previsibilidade da economia.
+
+    \item \textbf{Oficialização da correção monetária}  
+    Para reduzir a incerteza inflacionária, foi estabelecida uma regra para a correção monetária. No entanto, essa medida incentivou a especulação financeira, pois tornou possível operar no mercado de títulos com previsibilidade de indexação.
+
+    \item \textbf{Intervenção no Grupo Halles}  
+    A crise financeira que levou à quebra desse conglomerado evidenciou as fragilidades do sistema bancário e exigiu uma resposta emergencial do governo para evitar um colapso sistêmico.
+
+    \item \textbf{Revisão da lei salarial}  
+    A nova legislação buscava mitigar críticas ao arrocho salarial, garantindo compensações para perdas inflacionárias passadas e evitando que a defasagem dos reajustes corroesse o poder de compra dos trabalhadores.
+\end{enumerate}
+
+O governo Geisel adotou um discurso de austeridade monetária, mas sua política foi contraditória. Apesar da necessidade de estabilização, o crédito interno continuou em expansão, impulsionado por:
+
+\begin{enumerate}
+    \item \textbf{Empréstimos do Banco do Brasil} – O setor privado continuou a receber altos volumes de crédito, ampliando a liquidez na economia.
+    \item \textbf{Expansão dos repasses do Banco Central} – O aumento das operações de financiamento via Banco Central dificultou a implementação de uma política monetária contracionista eficaz.
+\end{enumerate}
+
+A tentativa de controle monetário foi limitada pelo fato de que, até 1976, as taxas de juros permaneceram administradas pelo governo, tornando a política monetária dependente de fatores externos, como:
+
+\begin{enumerate}
+    \item \textbf{Reservas internacionais} – A queda das reservas limitava a capacidade de intervenção cambial do governo.
+    \item \textbf{Empréstimos do Banco do Brasil} – A expansão do crédito público enfraquecia os esforços de contenção da liquidez.
+\end{enumerate}
+
+\textbf{Os principais eventos de 1975 consolidaram a dificuldade do governo em implementar uma política de contenção da demanda:}
+
+\begin{enumerate}
+    \item \textbf{Crise financeira} – A instabilidade econômica e a pressão inflacionária demonstraram a fragilidade da política econômica adotada.
+    \item \textbf{Queda das exportações} – A desaceleração do comércio exterior impôs desafios adicionais à balança de pagamentos.
+    \item \textbf{Aprovação do II PND} – O plano de investimentos priorizou o crescimento de longo prazo em detrimento da estabilidade de curto prazo.
+\end{enumerate}
+
+A adoção de uma estratégia econômica híbrida, com momentos alternados de contenção e estímulo à demanda, resultou na incapacidade do governo de controlar a inflação e o endividamento. A política de crescimento foi priorizada em detrimento dos ajustes de curto prazo, resultando em:
+
+\begin{enumerate}
+    \item \textbf{Tolerância com a inflação elevada} – O governo aceitou taxas inflacionárias mais altas como parte do processo de ajuste econômico.
+    \item \textbf{Expansão contínua do endividamento} – O financiamento externo foi amplamente utilizado para cobrir déficits, postergando ajustes estruturais.
+\end{enumerate}
+
+No final do governo Geisel, as tentativas de estabilização foram insuficientes para conter os desequilíbrios macroeconômicos. A falta de consenso dentro do próprio governo sobre a melhor estratégia de política econômica levou a um cenário de instabilidade e ao aprofundamento das fragilidades estruturais que marcaram a transição para a década de 1980.
+
+\subsection{\textbf{Ordem e Progresso, Cap. 12, item: A natureza do ajuste de longo prazo: o crescimento com endividamento}}
+
+\textbf{Crescimento com dívida}
+
+O crescimento econômico do Brasil no período de \textbf{1974 a 1979} foi sustentado pelo aumento expressivo do endividamento externo. Entre \textbf{1974 e 1977}, a dívida externa brasileira cresceu \textbf{US\$18 bilhões}, e nos dois anos seguintes, esse montante foi ampliado em mais \textbf{US\$18 bilhões}. Como consequência desse crescimento acelerado da dívida, os pagamentos anuais de juros aumentaram significativamente: 
+
+\begin{enumerate}
+    \item \textbf{Início do governo Geisel (1974)} – Pagamento de \textbf{US\$600 milhões} anuais em juros.
+    \item \textbf{Ano de 1978} – Pagamento de \textbf{US\$2,7 bilhões} anuais em juros.
+    \item \textbf{Início do governo Figueiredo (1979)} – Pagamento de \textbf{US\$4,2 bilhões} anuais em juros, devido ao aumento das taxas internacionais.
+\end{enumerate}
+
+O endividamento foi uma consequência direta da estratégia de crescimento baseada em elevados investimentos. A taxa de investimento foi mantida acima de \textbf{25\% do PIB}, permitindo um crescimento médio da economia de \textbf{6,8\% ao ano}. Essa política estava fundamentada nos seguintes eixos principais:
+
+\begin{enumerate}
+    \item \textbf{Metas do II Plano Nacional de Desenvolvimento (II PND)}  
+    O governo estabeleceu como objetivo um crescimento médio de \textbf{10\% ao ano} para o PIB e \textbf{12\% ao ano} para a indústria. Essas metas foram aceitas pelo Congresso Nacional, com a justificativa de que o crescimento elevado permitiria superar as dificuldades do balanço de pagamentos.
+
+    \item \textbf{Reestruturação da economia}  
+    Diante da \textbf{escassez de petróleo}, a estratégia econômica priorizou investimentos em setores estratégicos, como bens de capital e indústrias de insumos básicos.
+
+    \item \textbf{Expansão da produção de energia}  
+    O governo investiu na exploração da \textbf{Bacia de Campos} e ampliou a capacidade de geração de energia hidroelétrica em \textbf{60\%}, visando fornecer eletricidade barata para setores de alto consumo energético, como a indústria do alumínio.
+
+    \item \textbf{Política comercial protecionista}  
+    Em vez de desvalorizar a moeda, o governo optou por dificultar as importações por meio de:
+    \begin{enumerate}
+        \item \textbf{Aumento de tarifas} sobre produtos importados.
+        \item \textbf{Criação de encargos financeiros} para encarecer bens estrangeiros.
+        \item \textbf{Restrição quantitativa} de importações, regulando volumes de entrada no país.
+    \end{enumerate}
+\end{enumerate}
+
+Essas políticas reduziram o coeficiente de importação da economia brasileira. Em \textbf{1974}, as importações representavam \textbf{12\% do PIB}, nível semelhante ao de \textbf{1954}. Com as restrições adotadas, esse índice caiu para \textbf{7,2\% em 1978}, antes do segundo choque do petróleo.
+
+Apesar do crescimento médio de \textbf{7\% ao ano}, o déficit em conta corrente continuou elevado. A desaceleração do comércio mundial, que se intensificou após \textbf{1978}, dificultou a redução desse déficit. Assim, embora o Brasil tenha conseguido controlar a balança comercial, a deterioração do balanço de pagamentos se tornou inevitável devido a:
+
+\begin{enumerate}
+    \item \textbf{Redução do crescimento das importações globais}, que foram \textbf{50\% menores} entre 1974-1978 do que no período 1970-1974.
+    \item \textbf{Aumento progressivo das taxas de juros internacionais}, especialmente a partir de \textbf{1979}.
+\end{enumerate}
+
+\textbf{A política industrial}
+
+A política industrial do governo Geisel baseou-se na \textbf{substituição de importações}, focando na produção interna de bens de capital, insumos industriais e petróleo. Para estimular a produção nacional, foram adotadas as seguintes medidas:
+
+\begin{enumerate}
+    \item \textbf{Incentivos fiscais e financeiros}  
+    \begin{enumerate}
+        \item \textbf{Crédito do IPI} sobre a compra de equipamentos industriais.
+        \item \textbf{Depreciação acelerada} para equipamentos fabricados no Brasil.
+        \item \textbf{Isenção do imposto de importação} para insumos essenciais.
+        \item \textbf{Crédito subsidiado} para investimentos em setores estratégicos.
+    \end{enumerate}
+
+    \item \textbf{Órgãos responsáveis pela implementação da política}  
+    A política industrial foi conduzida por instituições como:
+    \begin{enumerate}
+        \item \textbf{Conselho de Desenvolvimento Industrial}.
+        \item \textbf{Banco Nacional de Desenvolvimento Econômico (BNDE)}.
+        \item \textbf{Conselho de Política Aduaneira}.
+        \item \textbf{Carteira de Comércio Exterior do Banco do Brasil}.
+        \item \textbf{Conselho Interministerial de Preços}.
+    \end{enumerate}
+
+    \item \textbf{Redução da dependência externa}  
+    \begin{enumerate}
+        \item O valor das importações de insumos básicos caiu de \textbf{US\$3,5 bilhões em 1974} para \textbf{US\$1,2 bilhão em 1979}.
+        \item A participação dos bens de capital importados no total de investimentos caiu de \textbf{25,6\% em 1972} para \textbf{9\% em 1982}.
+    \end{enumerate}
+
+    \item \textbf{Expansão das exportações}  
+    O Brasil combinou a política de substituição de importações com estímulos às exportações, o que gerou:
+    \begin{enumerate}
+        \item Crescimento da participação das exportações no PIB de \textbf{7,5\% em 1974} para \textbf{8,4\% em 1980}.
+        \item Redução da participação das importações no PIB de \textbf{11,9\% para 9,5\%}, mesmo após o segundo choque do petróleo.
+    \end{enumerate}
+\end{enumerate}
+
+\textbf{Consequências da estratégia de crescimento com endividamento}
+
+Embora a política econômica tenha impulsionado o crescimento e fortalecido a indústria nacional, ela trouxe desafios estruturais que afetariam a economia brasileira na década seguinte:
+
+\begin{enumerate}
+    \item \textbf{Aumento do endividamento público}  
+    O modelo baseado em crédito externo e subsídios fiscais resultou em déficit crescente do setor público.
+
+    \item \textbf{Pressão inflacionária}  
+    A política expansionista elevou os déficits fiscais, aumentando a inflação nos anos seguintes.
+
+    \item \textbf{Crise da dívida externa}  
+    O acúmulo de passivos externos tornou-se insustentável quando os juros internacionais subiram no final dos anos 1970, levando o Brasil a uma crise de solvência na década de 1980.
+\end{enumerate}
+
+A estratégia de crescimento adotada no governo Geisel garantiu uma industrialização acelerada e uma redução da vulnerabilidade externa no curto prazo. No entanto, a fragilidade financeira do Estado e o crescimento da dívida externa comprometeriam a estabilidade econômica do país nos anos seguintes.
+
+\subsection{\textbf{A gerente repetiu o fracasso do general - Marcos Lisboa}}
+
+As causas da crise econômica no Brasil podem ser classificadas em duas grandes categorias: uma \textbf{óbvia}, relacionada ao descontrole das contas públicas, e outra \textbf{sutil}, referente a uma política econômica baseada na substituição de importações, que ignorou seus efeitos colaterais.
+
+\begin{enumerate}
+    \item \textbf{Causa óbvia: expansão excessiva dos gastos públicos}  
+    O setor público assumiu compromissos além de sua capacidade de financiamento, refletidos nos seguintes fatores:
+    \begin{enumerate}
+        \item \textbf{Desonerações tributárias} – O governo reduziu impostos para determinados setores sem uma compensação na arrecadação, agravando o déficit fiscal.
+        \item \textbf{Crédito subsidiado excessivo} – A concessão indiscriminada de crédito barato para setores privilegiados incentivou investimentos ineficientes.
+        \item \textbf{Déficit da Previdência Social} – O aumento das despesas previdenciárias não foi acompanhado por uma reforma estrutural, ampliando o rombo nas contas públicas.
+        \item \textbf{Gastos crescentes com servidores públicos} – O inchaço da máquina estatal e os aumentos salariais sem planejamento impactaram negativamente a sustentabilidade fiscal.
+    \end{enumerate}
+
+    \item \textbf{Causa sutil: substituição de importações como estratégia de crescimento}  
+    A política econômica buscou incentivar a produção interna de bens, com o objetivo de reduzir a dependência de importações. A lógica subjacente era que a produção local geraria empregos e fortaleceria a economia nacional. No entanto, essa estratégia resultou em distorções significativas. Os principais setores afetados foram:
+    \begin{enumerate}
+        \item \textbf{Construção naval} – O governo incentivou a fabricação de navios no Brasil, em vez de permitir a importação de embarcações mais baratas e eficientes.
+        \item \textbf{Bens de capital} – Empresas foram estimuladas a fabricar equipamentos industriais localmente, apesar dos custos elevados e da falta de competitividade internacional.
+        \item \textbf{Indústria automobilística} – A proteção excessiva ao setor resultou em veículos mais caros e com menor qualidade comparados aos concorrentes estrangeiros.
+    \end{enumerate}
+\end{enumerate}
+
+Essa estratégia repetiu o erro do governo Geisel, que via a substituição de importações como uma solução para os desafios econômicos. Assim como no regime militar, o planejamento ignorou os impactos sobre o conjunto da economia, resultando em desperdício de recursos e agravamento da crise fiscal.
+
+\textbf{Consequências da política de substituição de importações:}
+
+\begin{enumerate}
+    \item \textbf{Ineficiência produtiva} – O país desviou esforços de setores nos quais possuía vantagens comparativas para produzir bens que poderiam ser importados a preços menores e com melhor qualidade.
+    \item \textbf{Distorção do mercado} – Empresas foram obrigadas a adquirir equipamentos e insumos nacionais mais caros, aumentando seus custos e reduzindo sua competitividade.
+    \item \textbf{Endividamento excessivo das empresas} – Muitas companhias que apostaram na proteção estatal ficaram com alto nível de endividamento ou capacidade produtiva ociosa. Entre os setores mais afetados destacam-se:
+    \begin{enumerate}
+        \item \textbf{Óleo e gás} – Empresas investiram em projetos de alto custo que se tornaram inviáveis diante da crise econômica.
+        \item \textbf{Indústria automobilística} – A proteção ao setor resultou em produção acima da demanda, levando à ociosidade das fábricas e dificuldades financeiras.
+        \item \textbf{Construção civil} – O programa \textbf{Minha Casa, Minha Vida} gerou uma bolha no setor, com excesso de oferta e dificuldades para as incorporadoras.
+    \end{enumerate}
+    \item \textbf{Concessões mal planejadas} – A falta de critérios rigorosos para projetos de infraestrutura comprometeu diversos setores, incluindo:
+    \begin{enumerate}
+        \item \textbf{Presídios} – Modelos de concessão falhos geraram dificuldades operacionais e financeiras.
+        \item \textbf{Estádios de futebol} – Grandes investimentos em arenas esportivas se tornaram inviáveis financeiramente após a realização de eventos específicos.
+        \item \textbf{Estradas e aeroportos} – Concessões mal estruturadas levaram à necessidade de renegociações e reequilíbrios contratuais frequentes.
+    \end{enumerate}
+\end{enumerate}
+
+Além das falhas estruturais, o governo adotou \textbf{políticas heterodoxas de controle da inflação}, que agravaram ainda mais a crise econômica. As principais medidas adotadas foram:
+
+\begin{enumerate}
+    \item \textbf{Defasagem no reajuste do preço da gasolina} – O congelamento artificial dos preços da gasolina prejudicou o setor energético, comprometeu a Petrobras e gerou distorções no mercado de combustíveis.
+    \item \textbf{Intervenção no setor elétrico} – A tentativa de reduzir artificialmente as tarifas de energia elétrica gerou insegurança regulatória, impactando investimentos no setor e comprometendo a sustentabilidade do fornecimento.
+\end{enumerate}
+
+\textbf{Impactos finais da política econômica adotada:}
+
+\begin{enumerate}
+    \item \textbf{Agravamento da crise fiscal} – O aumento descontrolado dos gastos públicos levou a um déficit persistente nas contas governamentais.
+    \item \textbf{Recessão prolongada} – A economia entrou em um período de estagnação, com desaceleração do crescimento e aumento do desemprego.
+    \item \textbf{Desperdício de recursos} – O governo direcionou investimentos para setores ineficientes, comprometendo o desenvolvimento econômico sustentável do país.
+\end{enumerate}
+
+O texto conclui que a \textbf{esquerda desenvolvimentista} e a \textbf{ditadura militar} cometeram erros semelhantes na gestão da economia. Ambos os governos acreditaram que o Estado poderia direcionar o crescimento econômico sem considerar os custos e impactos no equilíbrio fiscal e na produtividade. O resultado foi o fracasso de ambas as abordagens, deixando como herança crises prolongadas e desperdício de recursos públicos.
+
+\subsection{\textbf{O Diabo Mora nos Detalhes - Marcos Lisboa}}
+
+O artigo aborda a Nova Política Industrial brasileira e os riscos de repetição de erros do passado. O autor questiona a eficácia da intervenção estatal como estratégia de crescimento econômico e alerta para os desafios da implementação de políticas públicas eficientes.
+
+\textbf{O debate sobre a política industrial}
+
+\begin{enumerate}
+    \item \textbf{Posições ideológicas antagônicas:}  
+    A discussão sobre política industrial frequentemente opõe duas correntes de pensamento:
+    \begin{enumerate}
+        \item \textbf{Liberais:}  
+        Defendem que a intervenção do governo na economia gera ineficiências e distorções de mercado, favorecendo grupos específicos sem benefícios sustentáveis para a sociedade.
+        \item \textbf{Desenvolvimentistas:}  
+        Argumentam que o crescimento econômico depende de ações estatais para estimular investimentos e a produção, especialmente em setores estratégicos.
+    \end{enumerate}
+
+    \item \textbf{A complexidade do tema:}  
+    \begin{enumerate}
+        \item A eficácia da política industrial não pode ser analisada apenas sob uma ótica ideológica, pois existem exemplos de sucesso e fracasso no Brasil e no mundo.
+        \item A teoria econômica reconhece que, em determinados casos, a intervenção governamental pode ser positiva, como no incentivo a novas tecnologias ou na facilitação do acesso de produtores locais ao mercado externo.
+        \item Algumas iniciativas não são lucrativas para empresas privadas individualmente, mas geram ganhos coletivos quando coordenadas pelo Estado, como pesquisa científica e protocolos sanitários.
+    \end{enumerate}
+\end{enumerate}
+
+\textbf{Os desafios da implementação de políticas industriais}
+
+\begin{enumerate}
+    \item \textbf{Diagnóstico correto dos setores a serem beneficiados:}  
+    \begin{enumerate}
+        \item A identificação de setores que realmente necessitam de apoio governamental é um desafio técnico complexo.
+        \item Sem uma análise criteriosa, há risco de desperdício de recursos públicos em setores que não possuem potencial competitivo sustentável.
+    \end{enumerate}
+
+    \item \textbf{Risco de captura por interesses privados:}  
+    \begin{enumerate}
+        \item Empresas podem se tornar dependentes de subsídios e incentivos, sem desenvolver competitividade real.
+        \item Uma vez concedidos, os benefícios tornam-se difíceis de retirar, mesmo quando as políticas falham, devido à pressão de lobbies empresariais.
+    \end{enumerate}
+
+    \item \textbf{Dificuldade de avaliação dos impactos:}  
+    \begin{enumerate}
+        \item Por muito tempo, o debate sobre política industrial foi conduzido com base em narrativas frágeis e dados seletivos, sem metodologia clara para mensurar os efeitos das políticas adotadas.
+        \item Nos últimos 15 anos, avanços na pesquisa econômica possibilitaram um diagnóstico mais preciso dos impactos dessas políticas.
+    \end{enumerate}
+\end{enumerate}
+
+\textbf{Elementos essenciais para o sucesso da política industrial}
+
+\begin{enumerate}
+    \item \textbf{Objetivo claro e mensurável:}  
+    A intervenção estatal deve ter como propósito tornar o setor beneficiado produtivo e competitivo globalmente.
+
+    \item \textbf{Prazo de validade definido:}  
+    \begin{enumerate}
+        \item A política deve ser temporária, encerrando-se quando o setor atingir a maturidade necessária para competir sem subsídios.
+        \item Se os benefícios forem mantidos por tempo indefinido, o setor tenderá a depender do governo, gerando ineficiência econômica.
+    \end{enumerate}
+
+    \item \textbf{Análise rigorosa dos custos e benefícios:}  
+    \begin{enumerate}
+        \item O uso de recursos públicos para incentivar setores produtivos deve ser comparado com outras possibilidades de investimento do Estado.
+        \item A governança da política industrial deve ser independente, evitando interferências políticas que distorçam seus objetivos.
+    \end{enumerate}
+
+    \item \textbf{Redefinição do conceito de indústria:}  
+    \begin{enumerate}
+        \item A política industrial não deve se restringir à manufatura, pois a estrutura produtiva global mudou com a digitalização e a fragmentação das cadeias produtivas.
+        \item Setores de alto valor agregado, como inovação, tecnologia e serviços especializados, devem ser priorizados.
+    \end{enumerate}
+
+    \item \textbf{Diagnóstico técnico preciso:}  
+    \begin{enumerate}
+        \item Proteções e subsídios não garantem produtividade. Empresas devem ser capazes de crescer sem dependência do governo.
+        \item O caso da Embraer ilustra que o sucesso depende de investimentos de longo prazo em tecnologia e capital humano, não apenas de incentivos estatais.
+    \end{enumerate}
+
+    \item \textbf{Transparência na concessão de subsídios:}  
+    \begin{enumerate}
+        \item Os custos dos benefícios concedidos devem ser amplamente divulgados e avaliados publicamente.
+        \item No Brasil, muitas políticas industriais utilizaram fundos públicos sem transparência, mascarando o impacto fiscal real.
+    \end{enumerate}
+
+    \item \textbf{Governança eficiente e autônoma:}  
+    \begin{enumerate}
+        \item O governo precisa ter conhecimento técnico aprofundado sobre os setores beneficiados para coordenar ações efetivas.
+        \item Deve haver autonomia para evitar que lobbies empresariais capturem a política industrial em benefício próprio.
+    \end{enumerate}
+\end{enumerate}
+
+\textbf{Conclusão}
+
+O autor argumenta que a formulação de políticas industriais exige mais do que boas intenções. Sem critérios rigorosos e avaliações contínuas, há risco de desperdício de recursos públicos e fracasso econômico. Os elementos essenciais para o sucesso de uma política industrial incluem \textbf{intervenções temporárias, baseadas em evidências, com governança independente e foco na produtividade}. A Nova Política Industrial brasileira corre o risco de falhar por não considerar esses princípios fundamentais.
+
+\newpage
+\section{\textbf{Respondendo as perguntas da discussão}}
+\subsection{\textbf{II PND: Considerem os dois pontos abaixo: Como relacionar a conjuntura econômica de meados da década de 1970 com o II PND? Essa conjuntura permitiu dar uma racionalidade para o II PND? Os resultados desse plano, especificamente sobre a balança comercial, foram ambíguos ao longo do período 1976/80. Vocês concordam? Expliquem a resposta.}}
+
+\textbf{Como relacionar a conjuntura econômica de meados da década de 1970 com o II PND? Essa conjuntura permitiu dar uma racionalidade para o II PND?}
+
+A conjuntura econômica de meados da década de 1970 foi fortemente influenciada pelo \textbf{primeiro choque do petróleo}, ocorrido em 1973, que quadruplicou o preço do barril de petróleo e impactou diretamente a economia global. O Brasil, que dependia fortemente de petróleo importado para sustentar sua industrialização acelerada, viu seus custos de importação crescerem significativamente, pressionando sua balança de pagamentos e elevando a inflação. Além disso, o comércio mundial começou a desacelerar, reduzindo a demanda por exportações brasileiras, o que agravou ainda mais o desequilíbrio externo do país.
+
+Diante desse cenário, o governo Geisel formulou o \textbf{II Plano Nacional de Desenvolvimento (II PND)}, uma estratégia econômica voltada para garantir a continuidade do crescimento econômico e reduzir a vulnerabilidade externa do Brasil. O plano previa uma série de \textbf{investimentos estratégicos em setores considerados essenciais}, como a indústria de bens de capital, petroquímica, siderurgia e energia. O objetivo central era fortalecer a capacidade produtiva interna do país, reduzir a dependência de importações e aumentar a autossuficiência energética.
+
+A conjuntura econômica permitiu dar \textbf{racionalidade ao II PND}, pois a crise global demonstrou a necessidade de um planejamento estruturado para enfrentar os desafios impostos pelo aumento dos custos externos e a desaceleração do comércio mundial. Para viabilizar essa estratégia, o governo optou por um modelo de \textbf{endividamento externo}, aproveitando a disponibilidade de crédito internacional abundante e a taxas relativamente baixas. Essa decisão possibilitou o financiamento dos investimentos necessários para implementar o plano, mas também gerou um passivo crescente que se tornaria um problema nos anos seguintes.
+
+Além disso, a política de \textbf{substituição de importações} adotada no II PND foi uma resposta direta à conjuntura adversa. A lógica era clara: se o país enfrentava dificuldades para financiar importações devido ao aumento dos preços internacionais, a solução era fortalecer a produção interna para reduzir essa dependência. Assim, o governo estimulou a produção nacional de insumos básicos e bens de capital, utilizando medidas como incentivos fiscais, subsídios e protecionismo comercial.
+
+Portanto, o contexto econômico da década de 1970 justificava a formulação do II PND, tornando-o um plano coerente com as necessidades do momento. No entanto, a estratégia adotada apresentou desafios significativos, como o aumento do endividamento externo e o crescimento da inflação, que se tornariam problemas estruturais para a economia brasileira nos anos seguintes.
+
+\textbf{Os resultados desse plano, especificamente sobre a balança comercial, foram ambíguos ao longo do período 1976/80. Vocês concordam? Expliquem a resposta.}
+
+Sim, os resultados do II PND sobre a \textbf{balança comercial} foram, de fato, ambíguos ao longo do período de 1976 a 1980. O plano obteve sucesso em reduzir a dependência de algumas importações, especialmente nos setores de insumos básicos e bens de capital. Como resultado das políticas protecionistas e dos investimentos direcionados, o coeficiente de importação da economia caiu de \textbf{12\% do PIB em 1974} para \textbf{7,2\% em 1978}. Isso indica que a política de substituição de importações conseguiu reduzir a necessidade de compra de determinados produtos no exterior.
+
+Por outro lado, a estratégia adotada pelo II PND gerou \textbf{contradições que comprometeram a balança comercial}. O crescimento acelerado da economia, impulsionado pelos investimentos estatais, aumentou a demanda por \textbf{bens de capital e insumos produtivos}, muitos dos quais ainda precisavam ser importados. Isso fez com que o déficit em transações correntes se mantivesse elevado, atingindo um valor acumulado de \textbf{US\$14,5 bilhões entre 1974 e 1975}. Além disso, o modelo de financiamento baseado no endividamento externo fez com que a dívida brasileira aumentasse de \textbf{US\$12,5 bilhões em 1974} para \textbf{US\$21,1 bilhões em 1978}, elevando os encargos financeiros sobre as contas externas.
+
+Outro fator que contribuiu para a ambiguidade dos resultados foi a \textbf{desaceleração do comércio mundial após 1978}. Enquanto a política de substituição de importações reduziu as compras externas, as exportações brasileiras não cresceram na mesma proporção, dificultando a geração de superávits comerciais. O governo projetava uma redução progressiva do déficit em conta corrente até o início da década de 1980, mas essas previsões não se concretizaram como esperado, devido à conjuntura internacional desfavorável.
+
+Além disso, o protecionismo excessivo e os subsídios concedidos a setores específicos resultaram na produção interna de bens a custos elevados, reduzindo a competitividade da indústria brasileira no mercado externo. Muitas empresas passaram a depender de incentivos estatais em vez de buscar eficiência e inovação, criando distorções no mercado e dificultando a transição para um modelo econômico mais sustentável.
+
+Portanto, pode-se afirmar que os \textbf{resultados do II PND sobre a balança comercial foram ambíguos}, pois, embora a política de substituição de importações tenha reduzido a dependência externa em alguns setores, o aumento do endividamento e a persistência de déficits expressivos comprometeram a estabilidade das contas externas. Esse cenário contribuiu para os desafios econômicos enfrentados pelo Brasil na década seguinte, incluindo inflação elevada e dificuldades para ajustar a política econômica ao novo contexto global.
+
+\subsection{\textbf{As escolhas do II PND : Os instrumentos empregados no II PND comprometeram de modo parcial a estrutura fiscal do estado brasileiro. Contratar dívida no exterior seria, no contexto global da época, algo sem qualquer justificativa no longo prazo. Vocês concordam? Expliquem a resposta.}}
+
+Os instrumentos empregados no II PND comprometeram de modo parcial a estrutura fiscal do Estado brasileiro. Contratar dívida no exterior seria, no contexto global da época, algo sem qualquer justificativa no longo prazo. Vocês concordam? Expliquem a resposta.
+
+O II Plano Nacional de Desenvolvimento (II PND) foi formulado e implementado pelo governo Geisel em um contexto de crise econômica internacional desencadeada pelo \textbf{primeiro choque do petróleo} de 1973. O aumento expressivo dos preços do petróleo impactou negativamente a economia global, transferindo renda dos países importadores para os exportadores da commodity. O Brasil, como um dos países mais dependentes da importação de petróleo para sustentar sua industrialização, viu sua \textbf{balança de pagamentos} se deteriorar rapidamente. Em resposta a essa conjuntura adversa, o governo optou por uma estratégia de \textbf{substituição de importações}, expansão da infraestrutura energética e fortalecimento da indústria de base, buscando reduzir a vulnerabilidade externa e manter o crescimento econômico.
+
+A execução do II PND exigia um volume significativo de investimentos para consolidar os setores considerados estratégicos, como \textbf{bens de capital, siderurgia, petroquímica, papel e celulose e fertilizantes}. Para viabilizar esses investimentos, o governo adotou o \textbf{endividamento externo} como principal fonte de financiamento, aproveitando-se da abundância de crédito internacional disponível na época a taxas relativamente baixas. Assim, a dívida externa brasileira cresceu de \textbf{US\$12,5 bilhões em 1974} para \textbf{US\$21,1 bilhões em 1978}, permitindo que o país financiasse a expansão industrial e os projetos de infraestrutura sem comprometer de imediato suas reservas internacionais.
+
+No curto prazo, essa estratégia parecia justificável. O financiamento externo possibilitou a continuidade do crescimento econômico, reduzindo os impactos da crise global sobre a economia brasileira. Além disso, permitiu a realização de projetos de grande porte, como a \textbf{expansão da Bacia de Campos} para a exploração de petróleo e a construção de \textbf{usinas hidrelétricas}, como \textbf{Itaipu e Tucuruí}, essenciais para garantir a autossuficiência energética do país.
+
+Entretanto, a médio e longo prazo, essa estratégia revelou-se problemática. A \textbf{deterioração do cenário internacional a partir de 1979}, com o \textbf{segundo choque do petróleo} e a elevação das \textbf{taxas de juros internacionais}, aumentou significativamente o custo do endividamento externo brasileiro. Em 1974, o país pagava \textbf{US\$600 milhões} anuais em juros da dívida externa, mas esse valor subiu para \textbf{US\$2,7 bilhões} em 1978 e atingiu \textbf{US\$4,2 bilhões} no primeiro ano do governo Figueiredo. Esse aumento dos encargos financeiros comprometeu a estabilidade das contas externas e agravou os problemas fiscais do país.
+
+Além disso, os instrumentos adotados no II PND, como \textbf{subsídios, incentivos fiscais e protecionismo}, comprometeram a estrutura fiscal do Estado de forma significativa. A concessão de crédito subsidiado a setores estratégicos, combinada com a ampliação dos gastos públicos, pressionou as contas do governo e gerou \textbf{distorções produtivas}. Muitas empresas passaram a depender desses incentivos para operar, reduzindo sua busca por eficiência e inovação. O modelo protecionista adotado pelo governo também resultou em \textbf{custos elevados de produção}, pois a produção interna de bens de capital e insumos básicos era mais cara do que sua importação, impactando a competitividade da indústria brasileira.
+
+Outro problema foi o impacto sobre a \textbf{balança comercial}. Embora a substituição de importações tenha reduzido a dependência de alguns produtos estrangeiros, o crescimento acelerado da economia aumentou a demanda por \textbf{bens de capital e insumos produtivos}, que ainda precisavam ser importados. Como consequência, o déficit em transações correntes acumulado entre 1974 e 1975 superou \textbf{US\$14,5 bilhões}, tornando cada vez mais difícil equilibrar as contas externas.
+
+Portanto, pode-se afirmar que a contratação de dívida externa teve uma \textbf{justificativa válida no curto prazo}, uma vez que permitiu a continuidade do crescimento econômico e a implementação de investimentos estratégicos em infraestrutura e indústria. No entanto, no \textbf{longo prazo}, essa estratégia revelou-se insustentável. O aumento dos encargos da dívida, combinado com a desaceleração do comércio mundial e a dependência de subsídios estatais, comprometeu a capacidade do Brasil de ajustar sua política econômica a um novo cenário global.
+
+A experiência do II PND demonstra os riscos de um modelo de crescimento baseado no \textbf{endividamento externo e na intervenção estatal excessiva}. Embora tenha permitido avanços estruturais importantes, como a consolidação da indústria de base e o fortalecimento da infraestrutura energética, a falta de um planejamento de longo prazo para a sustentabilidade fiscal e a dependência do crédito externo acabaram gerando dificuldades que o país enfrentaria na década seguinte, incluindo inflação elevada, crise da dívida e restrições orçamentárias severas.
+
+\subsection{\textbf{Geisel e Dilma : “O seu legado foi uma década perdida” (o legado de Geisel?). Diante do II PND, sua estratégia e seus instrumentos: que aspectos prováveis moldarão o cenário de década perdida? Expliquem a resposta.(Obs.: nós estudaremos nas próximas aulas a década perdida. Aqui, o objetivo é levantar prováveis consequências do II PND, ou seja, desdobramentos esperados a priori para o início dos anos 1980.).A partir do texto de Lisboa, como estabelecer a comparação entre Geisel e Dilma? Podemos utilizar o texto extra (“O diabo mora nos detalhes”, também do Lisboa), nessa resposta? Como?}}
+
+O governo Geisel, por meio do \textbf{II Plano Nacional de Desenvolvimento (II PND)}, adotou uma estratégia econômica de forte intervenção estatal, buscando garantir a continuidade do crescimento econômico em um cenário global adverso. Diante do \textbf{primeiro choque do petróleo} de 1973, que quadruplicou o preço do barril e afetou a balança de pagamentos brasileira, o plano foi estruturado com foco na \textbf{substituição de importações}, no \textbf{fortalecimento da indústria de base} e na \textbf{expansão da infraestrutura energética e logística}. A política adotada permitiu que a economia brasileira mantivesse taxas elevadas de crescimento durante a segunda metade da década de 1970. No entanto, os instrumentos utilizados para viabilizar essa estratégia, como o endividamento externo e a concessão de incentivos estatais, criaram distorções que comprometeriam a estabilidade econômica do país nos anos seguintes.
+
+A principal vulnerabilidade deixada pelo II PND foi o \textbf{rápido crescimento da dívida externa}, que saltou de \textbf{US\$12,5 bilhões em 1974} para \textbf{US\$21,1 bilhões em 1978}. O financiamento do plano baseou-se na disponibilidade de crédito internacional barato, mas essa condição mudou drasticamente a partir de 1979, quando o Federal Reserve, nos Estados Unidos, elevou as taxas de juros internacionais como resposta à inflação global. Como consequência, os encargos financeiros da dívida brasileira aumentaram de \textbf{US\$600 milhões em 1974} para \textbf{US\$4,2 bilhões no início da década de 1980}. Isso comprometeu a capacidade do Brasil de honrar seus compromissos externos, levando ao agravamento da crise da dívida e ao estrangulamento da economia brasileira.
+
+Além do endividamento, o modelo adotado pelo II PND gerou \textbf{distorções produtivas} significativas. A política de substituição de importações incentivou a produção doméstica de bens de capital e insumos básicos, mas muitas dessas indústrias operavam com \textbf{custos elevados} e baixa eficiência, tornando-se dependentes de subsídios e protecionismo. Como resultado, o Estado passou a intervir cada vez mais na economia, concedendo incentivos fiscais e crédito subsidiado para manter setores estratégicos em funcionamento. No entanto, essa dependência gerou \textbf{déficits fiscais}, pois os subsídios não eram acompanhados por aumentos proporcionais na arrecadação. A inflação e o desequilíbrio fiscal se tornaram problemas estruturais, agravando as dificuldades do país na década de 1980.
+
+Outro problema decorrente do II PND foi seu \textbf{impacto sobre a balança comercial}. Embora o plano tenha reduzido a dependência de importações em alguns setores, o crescimento acelerado da economia aumentou a demanda por \textbf{bens de capital e insumos produtivos}, que ainda precisavam ser importados. Como resultado, o déficit em transações correntes acumulado entre \textbf{1974 e 1975} ultrapassou \textbf{US\$14,5 bilhões}, tornando cada vez mais difícil equilibrar as contas externas. A desaceleração do comércio global após 1978 piorou ainda mais essa situação, pois o Brasil não conseguiu expandir suas exportações no ritmo esperado.
+
+Diante desses elementos, é possível estabelecer uma comparação entre as políticas adotadas pelo governo \textbf{Ernesto Geisel} e aquelas implementadas pelo governo \textbf{Dilma Rousseff}, conforme analisado no texto de \textbf{Marcos Lisboa}. Assim como Geisel, Dilma adotou uma estratégia baseada na \textbf{intervenção estatal}, acreditando que a concessão de incentivos e subsídios seria capaz de impulsionar o crescimento econômico. Durante o governo Dilma, foram implementadas políticas de \textbf{desoneração fiscal, crédito subsidiado e controle de preços}, visando estimular setores específicos da economia. No entanto, essas medidas resultaram em \textbf{desequilíbrios fiscais}, \textbf{inflação elevada} e \textbf{perda de credibilidade econômica}, assim como ocorreu durante a implementação do II PND.
+
+O texto \textbf{“O diabo mora nos detalhes”}, de Marcos Lisboa, reforça essa comparação ao criticar a adoção de políticas industriais sem critérios rigorosos de avaliação e com forte interferência estatal. Lisboa argumenta que, embora políticas de incentivo possam ser justificáveis, elas devem ser baseadas em evidências e ter objetivos mensuráveis. No entanto, tanto o II PND quanto as políticas econômicas adotadas pelo governo Dilma foram marcados por \textbf{protecionismo excessivo}, \textbf{dependência de subsídios} e \textbf{falta de transparência nos custos}, gerando distorções produtivas que comprometeram a competitividade da economia brasileira.
+
+A consequência dessas políticas foi a criação de setores que sobreviveram apenas devido ao suporte estatal, sem desenvolver competitividade real. No caso do II PND, muitas indústrias de bens de capital e insumos básicos se tornaram dependentes do Estado, produzindo a custos elevados e com baixa eficiência. Da mesma forma, no governo Dilma, setores como a indústria automobilística e a construção civil se beneficiaram de incentivos artificiais que não se sustentaram no longo prazo, resultando em \textbf{endividamento excessivo} e \textbf{capacidade produtiva ociosa}. Em ambos os casos, o aumento do \textbf{déficit fiscal} e o \textbf{crescimento da dívida} criaram um ambiente econômico insustentável, levando a períodos de crise.
+
+Portanto, pode-se afirmar que o legado do II PND moldou as condições para a crise da \textbf{década perdida}, assim como as políticas econômicas adotadas no governo Dilma Rousseff contribuíram para a recessão econômica do Brasil a partir de 2014. Em ambos os casos, a tentativa de impulsionar a economia por meio de \textbf{intervenção estatal excessiva} e \textbf{endividamento} resultou em um crescimento artificial, seguido por um período prolongado de ajuste econômico. Esse paralelismo evidencia como políticas mal planejadas, sem controle fiscal adequado e sem mecanismos eficientes de avaliação de impacto, podem gerar efeitos negativos duradouros, comprometendo a estabilidade macroeconômica do país.
+
+\newpage
+\section{\textbf{Respondendo a pergunta para entregar}}
+\textbf{Dada a afirmação abaixo: A promessa do II PND acerca da mudança de longo prazo era contraditória com relação à estratégia de uma política de substituição de importações (PSI). Na avaliação do grupo, como devemos nos posicionar sobre essa afirmação? Explique.}
+
+\end{document}

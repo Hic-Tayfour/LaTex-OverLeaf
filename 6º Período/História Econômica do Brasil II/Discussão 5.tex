@@ -1,0 +1,470 @@
+\documentclass[a4paper,12pt]{article}[abntex2]
+\bibliographystyle{abntex2-alf}
+
+
+% Definições de layout e formatação
+\usepackage[a4paper, left=3.0cm, top=3.0cm, bottom=2.0cm, right=2.0cm]{geometry} % Personalização das margens do documento
+\usepackage{setspace} % Controle do espaçamento entre linhas
+\onehalfspacing % Espaçamento entre linhas de 1,5
+\usepackage{indentfirst} % Indentação do primeiro parágrafo das seções
+\usepackage{newtxtext} % Substitui a fonte padrão pela Times Roman
+\usepackage{titlesec} % Personalização dos títulos de seções
+\usepackage{ragged2e} % Melhor controle de justificação do texto
+\usepackage[portuguese]{babel} % Adaptação para o português (nomes e hifenização)
+
+% Pacotes de cabeçalho, rodapé e títulos
+\usepackage{fancyhdr} % Customização de cabeçalhos e rodapés
+\setlength{\headheight}{14.49998pt} % Altura do cabeçalho
+\pagestyle{fancy}
+\fancyhf{} % Limpa cabeçalho e rodapé
+\rhead{\thepage} % Página no canto direito do cabeçalho
+
+% Pacotes para tabelas
+\usepackage{booktabs} % Melhora a qualidade das tabelas
+\usepackage{tabularx} % Permite tabelas com larguras de colunas ajustáveis
+\usepackage{float} % Melhor controle sobre o posicionamento de figuras e tabelas
+
+% Pacotes para gráficos e imagens
+\usepackage{graphicx} % Suporte para inclusão de imagens
+
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+
+\lstset{
+    language=R,                      
+    basicstyle=\ttfamily\scalefont{1.0},
+    keywordstyle=\color{blue},       
+    stringstyle=\color{red},         
+    commentstyle=\color{green},      
+    numbers=left,                    
+    numberstyle=\tiny\color{gray},   
+    stepnumber=1,                    
+    numbersep=5pt,                   
+    backgroundcolor=\color{lightgray!10}, 
+    frame=single,                    
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,          
+    showtabs=false,                  
+    tabsize=2,
+     literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {Ú}{{\'U}}1
+             {â}{{\^a}}1
+             {ê}{{\^e}}1
+             {î}{{\^i}}1
+             {ô}{{\^o}}1
+             {û}{{\^u}}1
+             {ã}{{\~a}}1
+             {õ}{{\~o}}1
+             {ç}{{\c{c}}}1,
+}
+
+
+% Pacotes para unidades e formatação numérica
+\usepackage{siunitx} % Tipografia de unidades do Sistema Internacional e formatação de números
+\sisetup{
+  output-decimal-marker = {,},
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  per-mode = symbol
+}
+\DeclareSIUnit{\real}{R\$}
+\newcommand{\real}[1]{R\$#1}
+
+% Pacotes para hiperlinks e referências
+\usepackage{hyperref} % Suporte a hiperlinks
+\usepackage{footnotehyper} % Notas de rodapé clicáveis em combinação com hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black,        
+    pdfborder={0 0 0},
+}
+\makeatletter
+\def\@pdfborder{0 0 0} % Remove a borda dos links
+\def\@pdfborderstyle{/S/U/W 1} % Estilo da borda dos links
+\makeatother
+
+% Pacotes para texto e outros
+\usepackage{lipsum} % Geração de texto dummy 'Lorem Ipsum'
+\usepackage[normalem]{ulem} % Permite o uso de diferentes tipos de sublinhados sem alterar o \emph{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Large\textbf{INSPER – INSTITUTO DE ENSINO E PESQUISA}\\
+    \Large ECONOMIA\\
+    \vspace{1.5cm}
+    \Large\textbf{Discussão 5}\\
+    \textbf{História Econômica do Brasil II}\\
+    \vspace{1.5cm}
+    Prof. Heleno Piazentini Vieira \\
+    Prof. Auxiliar  \\
+    \vfill
+    \normalsize
+    Andreas Azambuja Barbisan, \href{mailto:andreasab@al.insper.edu.br}{andreasab@al.insper.edu.br}\\
+    Bruno Frasao Brazil Leiros, \href{mailto:brunofbl@al.insper.edu.br}{brunofbl@al.insper.edu.br}\\
+    Érika Kaori Fuzisaka, \href{mailto:erikakf1@al.insper.edu.br}{erikakf1@al.insper.edu.br}\\
+    Hicham Munir Tayfour, \href{mailto:hichamt@al.insper.edu.br}{hichamt@al.insper.edu.br}\\
+    Lorena Liz Giusti e Santos,\href{mailto:lorenalgs@al.insper.edu.br}{lorenalgs@al.insper.edu.br}\\
+    Nicolas Pedro Diniz Brito, \href{mailto:nicolasb2@al.insper.edu.br}{nicolasb2@al.insper.edu.br}\\
+    Sarah de Araújo Nascimento Silva, \href{mailto:sarahans@al.insper.edu.br}{sarahans@al.insper.edu.br}\\
+
+
+    \vfill
+    São Paulo\\
+    Abril/2025
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty} % Esse comando remove a numeração de pagina da tabela de conteúdo
+
+\newpage
+\setcounter{page}{1} % Inicia a contagem de páginas a partir desta página
+\justify
+\onehalfspacing
+
+\section{\textbf{Política Econômica após a crise cambial de 1999}}
+
+A política econômica brasileira passou por uma reestruturação profunda a partir de janeiro de 1999, quando a crise cambial forçou o abandono do regime de bandas cambiais e impôs a necessidade de reconstruir os fundamentos da estabilidade macroeconômica. A desvalorização abrupta do real — que saltou de R\$1,20 para mais de R\$2,00 por dólar em menos de dois meses — refletiu a perda de confiança do mercado na capacidade do país de manter seus compromissos externos sem ajustes mais profundos. A fuga de capitais, agravada pela rejeição de medidas fiscais no Congresso e pelo esgotamento das reservas internacionais, precipitou a adoção do regime de câmbio flutuante, encerrando definitivamente o modelo baseado em âncora cambial que prevalecera desde o início do Plano Real.
+
+A resposta do governo foi rápida e, em muitos aspectos, eficaz. A manutenção de Pedro Malan no Ministério da Fazenda e a nomeação de Armínio Fraga para a presidência do Banco Central foram decisões estratégicas que sinalizaram continuidade institucional e capacidade técnica. Fraga elevou a taxa básica de juros para conter os impactos inflacionários da desvalorização e iniciou imediatamente os estudos para adoção de um novo regime monetário: o regime de metas de inflação. Formalizado em junho de 1999, esse regime estabeleceu metas anuais para o IPCA, definidas pelo Conselho Monetário Nacional, com margens de tolerância de dois pontos percentuais para cima ou para baixo. A condução da política monetária passou a ser responsabilidade do Comitê de Política Monetária (COPOM), que ajustava a taxa Selic com base em projeções que combinavam expectativas de inflação, taxa de câmbio e atividade econômica.
+
+O novo regime representava uma verdadeira “troca de âncora”: ao abandonar a fixação cambial, a política monetária passava a se ancorar na credibilidade institucional e na capacidade de o Banco Central atingir metas explícitas de inflação. Essa mudança foi acompanhada por um esforço fiscal robusto. O governo renegociou com o FMI um conjunto de metas de superávit primário que foram progressivamente ampliadas: de 2,6\% do PIB em 1999 para 3,35\% em 2001. Esse compromisso com a responsabilidade fiscal era fundamental para conter o impacto da desvalorização sobre a dívida pública — uma parte significativa da qual era atrelada ao câmbio — e para assegurar a confiança dos credores e investidores.
+
+Os efeitos imediatos do novo arcabouço foram positivos. Apesar dos temores de um novo surto inflacionário, a inflação foi contida: 0,7\% em janeiro e 1,1\% em fevereiro de 1999, fechando o ano em 9\%. A recuperação da confiança permitiu um retorno dos fluxos de capital, que por sua vez contribuíram para a valorização do real e a redução gradual da taxa de juros, que caiu de 45\% ao ano para menos de 20\% em julho de 1999. A política econômica ganhou, a partir de então, coerência e previsibilidade: havia agora um tripé institucional — metas de inflação, câmbio flutuante e disciplina fiscal — que passava a orientar as decisões econômicas.
+
+Em 2000, os efeitos positivos desse novo arranjo se tornaram ainda mais visíveis. O crescimento econômico superou 4\%, a inflação caiu para 6\% — atingindo exatamente a meta definida — e o país obteve superávit comercial, revertendo o déficit de US\$6 bilhões registrado em 1998. No entanto, o ano de 2001 trouxe novos desafios, demonstrando os limites do novo regime frente a choques exógenos. A crise energética, causada por um vácuo de investimentos no setor elétrico após a tentativa fracassada de privatização plena, obrigou o governo a impor racionamento e resultou em dois trimestres consecutivos de queda do PIB. Paralelamente, o país foi impactado pelo contágio da crise argentina e pelos efeitos globais dos atentados de 11 de setembro, que elevaram o risco-país e comprometeram o fluxo de capitais.
+
+Esses eventos mostraram que, embora mais resiliente, a economia brasileira ainda não estava imune às adversidades do cenário internacional. A necessidade de manter taxas de juros elevadas para atrair capital externo e financiar o déficit em conta-corrente continuava sendo um fator limitante ao crescimento. A política econômica havia evoluído institucionalmente, mas o país permanecia exposto às volatilidades típicas das economias emergentes inseridas em um sistema financeiro globalizado.
+
+Em síntese, a política econômica adotada após a crise de 1999 representou uma inflexão decisiva na história macroeconômica brasileira. O modelo baseado em regras — com metas explícitas e maior autonomia operacional para o Banco Central — substituiu o controle direto sobre preços e fluxos externos. Esse novo arcabouço permitiu ao país recuperar a estabilidade de forma relativamente rápida e sustentou importantes avanços institucionais. No entanto, os desafios enfrentados entre 2000 e 2001 também revelaram a complexidade de manter estabilidade e crescimento em um ambiente de alta vulnerabilidade externa.
+
+\newpage
+\section{\textbf{Resumo dos Textos da 5º Discussão}}
+\subsection{\textbf{Ordem e Progresso, Cap. 16, item: Novo Arcabouço de Política Econômica}}
+
+A superação da crise cambial brasileira de 1999 marcou um ponto de inflexão na condução da política econômica. Embora o início da crise tenha gerado instabilidade e incertezas profundas, a resposta institucional foi mais eficaz do que em outras experiências semelhantes em economias emergentes. A capacidade do governo de conter os danos e articular uma nova estratégia foi fundamental para restabelecer a confiança dos agentes econômicos e retomar a trajetória de estabilidade.
+
+\subsubsection{\textbf{Resiliência institucional e manutenção da equipe econômica}}
+
+Logo após a desvalorização do real em janeiro de 1999, o presidente Fernando Henrique Cardoso (FHC) resistiu à tentação política de substituir membros de sua equipe econômica. Em um cenário típico de crise, é comum que governos promovam demissões na tentativa de sinalizar mudança de rumos, mas, neste caso, FHC optou por manter o ministro da Fazenda, Pedro Malan, e sua equipe. Tal decisão se mostrou acertada, pois:
+
+\begin{itemize}
+    \item Preservou a credibilidade das políticas macroeconômicas em curso.
+    \item Evitou rupturas bruscas que poderiam intensificar a fuga de capitais.
+    \item Facilitou a construção de uma nova estratégia de estabilização.
+\end{itemize}
+
+\subsubsection{\textbf{Nomeação de Armínio Fraga e reposicionamento da política econômica}}
+
+A inflexão ocorreu com a nomeação de \textbf{Armínio Fraga} para a presidência do Banco Central, em março de 1999. Com sólida reputação nos mercados internacionais, sua chegada permitiu a retomada das negociações com o Fundo Monetário Internacional (FMI), resultando em um novo programa de ajuste macroeconômico. Esse programa possuía três eixos centrais:
+
+\begin{enumerate}
+    \item \textbf{Ajuste fiscal ampliado}: A desvalorização havia elevado significativamente o valor da dívida pública atrelada ao câmbio, exigindo um superávit primário maior do que o previsto originalmente.
+    \item \textbf{Sustentabilidade externa}: Dado o cenário de restrição no financiamento externo, era necessário assegurar o equilíbrio das contas externas para reduzir a vulnerabilidade cambial.
+    \item \textbf{Estabilização da inflação}: A forte depreciação do real gerava pressões inflacionárias, exigindo resposta firme da política monetária.
+\end{enumerate}
+
+\subsubsection{\textbf{Estabilização e início de um ciclo virtuoso}}
+
+Entre março e julho de 1999, observou-se uma melhora surpreendente nos indicadores econômicos:
+
+\begin{itemize}
+    \item A aprovação de medidas de ajuste no Congresso foi facilitada pelo clima de urgência.
+    \item O controle inflacionário foi mais efetivo do que se previa, com os efeitos da desvalorização sendo acomodados mais rapidamente.
+    \item A retomada da confiança externa resultou em ingresso de capitais, apreciação do real e queda acentuada da taxa de juros, de 45\% para menos de 20\% até julho.
+\end{itemize}
+
+\subsubsection{\textbf{Resultados fiscais, monetários e de crescimento}}
+
+O novo arcabouço gerou impactos positivos nas finanças públicas e na política monetária:
+
+\begin{itemize}
+    \item A combinação de câmbio menos depreciado, juros mais baixos e forte superávit primário melhorou as projeções da dívida pública.
+    \item O regime de metas de inflação foi oficialmente instaurado, com metas de 8\% para 1999 e 6\% para 2000.
+    \item O impacto da crise sobre o PIB foi mitigado: a retração prevista entre -3,5\% e -4\% deu lugar a um crescimento de 0,3\%.
+\end{itemize}
+
+\subsubsection{\textbf{Desempenho da balança comercial e debates internos}}
+
+Apesar da grande desvalorização cambial, a resposta da balança comercial foi modesta. O déficit de US\$6 bilhões de 1998 foi eliminado, mas os ganhos esperados foram inferiores ao projetado. A valorização do real após a crise contribuiu para isso. Essa frustração levou a debates dentro do governo sobre a necessidade de maior intervenção na política comercial e industrial, discussão que se estenderia ao longo do segundo mandato de FHC.
+
+\subsubsection{\textbf{Legado do novo arcabouço: três pilares da política econômica}}
+
+A partir da crise, consolidou-se um novo modelo de gestão macroeconômica no Brasil, baseado em três pilares fundamentais:
+
+\begin{enumerate}
+    \item \textbf{Responsabilidade fiscal}: foco no equilíbrio das contas públicas e superávits primários consistentes.
+    \item \textbf{Câmbio flutuante}: substituição do regime de bandas cambiais por um modelo mais flexível, permitindo amortecer choques externos.
+    \item \textbf{Metas de inflação}: ancoragem das expectativas inflacionárias por meio de metas explícitas e atuação autônoma do Banco Central.
+\end{enumerate}
+
+Esses pilares estruturaram a política econômica nos anos seguintes e permitiram ao governo alcançar maior coerência e previsibilidade. O episódio de 1999 tornou-se, assim, um divisor de águas na história econômica recente do Brasil.
+
+\subsection{\textbf{Economia Brasileira Contemporânea, Cap. 7, item: O Segundo Governo de FHC}}
+
+O segundo mandato de Fernando Henrique Cardoso (1999–2002) foi iniciado sob uma conjuntura crítica, marcada por desequilíbrios externos, fuga de capitais e esgotamento do modelo de âncora cambial. A resposta envolveu reformas estruturais, negociações com o FMI, mudança no regime cambial e a adoção de um novo arcabouço monetário baseado em metas de inflação.
+
+\subsubsection{\textbf{O Acordo com o FMI e a Crise Cambial}}
+
+Com o cenário externo adverso e a aproximação das eleições de 1998, o Brasil iniciou negociações com o FMI para obter um pacote de apoio financeiro diante da crescente fuga de capitais e da desconfiança dos mercados. O acordo previa:
+
+\begin{itemize}
+    \item Um pacote total de US\$42 bilhões (US\$18 bi do FMI e o restante de organismos multilaterais e países do G-7);
+    \item Metas fiscais ambiciosas, com superávits primários crescentes: 2,6\% do PIB em 1999, 2,8\% em 2000 e 3,0\% em 2001;
+    \item Manutenção do regime de câmbio fixo por bandas.
+\end{itemize}
+
+No entanto, dois fatores comprometeram a eficácia do plano:
+\begin{enumerate}
+    \item Rejeição pelo Congresso da proposta de contribuição previdenciária dos inativos;
+    \item Ceticismo dos mercados, que viam a desvalorização como inevitável.
+\end{enumerate}
+
+Com a aceleração da saída de reservas (chegando a US\$1 bilhão por dia), o governo abandonou o regime de bandas cambiais em janeiro de 1999. Após tentativa fracassada de desvalorização controlada, o real passou a flutuar. A cotação saltou de R\$1,20/US\$ para mais de R\$2,00/US\$ em menos de dois meses.
+
+\subsubsection{\textbf{A Nova Política Monetária e o Regime de Metas de Inflação}}
+
+A nomeação de Armínio Fraga para a presidência do Banco Central foi decisiva para restaurar a confiança dos mercados. Sua estratégia incluiu:
+
+\begin{itemize}
+    \item Elevação da taxa básica de juros (Selic) como medida imediata de controle inflacionário;
+    \item Preparação da adoção do regime de metas de inflação, implementado oficialmente em junho de 1999.
+\end{itemize}
+
+O regime funcionava com o Conselho Monetário Nacional (CMN) definindo metas anuais de inflação com margens de tolerância. O Comitê de Política Monetária (Copom) tomava decisões sobre a Selic conforme projeções de inflação baseadas em modelos que integravam juros e câmbio.
+
+\textbf{Metas iniciais:}
+\begin{itemize}
+    \item 1999: 8\% (\(\pm2\%\));
+    \item 2000: 6\%;
+    \item 2001: 4\%.
+\end{itemize}
+
+O novo sistema passou a ancorar expectativas e substituir a antiga âncora cambial, com impacto importante sobre a credibilidade da política monetária.
+
+\subsubsection{\textbf{Impactos da Desvalorização e Estabilização Econômica}}
+
+Apesar da forte desvalorização, os efeitos inflacionários foram contidos. Contribuíram para isso:
+
+\begin{itemize}
+    \item A recessão industrial (produção 3\% abaixo de 1998 no 1º trimestre);
+    \item O fim da cultura de indexação herdada da hiperinflação;
+    \item Inflação inicial moderada: 0,7\% em jan. e 1,1\% em fev. de 1999;
+    \item Juros reais elevados (15\% em média em 1999);
+    \item Cumprimento rigoroso das metas fiscais com o FMI;
+    \item Reajuste nominal contido do salário mínimo (menos de 5\%);
+    \item Definição pública da meta de 8\% de inflação.
+\end{itemize}
+
+Esses fatores geraram estabilização e recuperação econômica:
+\begin{itemize}
+    \item Inflação: 9\% (1999) e 6\% (2000);
+    \item Crescimento do PIB: mais de 4\% em 2000.
+\end{itemize}
+
+\subsubsection{\textbf{A Crise de Energia de 2001}}
+
+Em 2001, uma crise de abastecimento de energia elétrica afetou duramente a economia. Suas causas remontam à década anterior:
+
+\begin{itemize}
+    \item Expectativa de privatização das hidrelétricas paralisou investimentos públicos;
+    \item O setor privado não assumiu os projetos;
+    \item A demanda aumentava com a popularização de eletrodomésticos e computadores.
+\end{itemize}
+
+Com os reservatórios das regiões Sudeste/Centro-Oeste chegando a apenas 34\% da capacidade, o governo impôs um racionamento de 20\% no consumo de energia. O PIB sofreu dois trimestres consecutivos de retração em 2001. As consequências incluíram:
+
+\begin{itemize}
+    \item Tarifações mais altas para compensar perdas das concessionárias;
+    \item Endividamento das empresas do setor;
+    \item Modelo setorial indefinido, dificultando investimentos futuros;
+    \item Fim da possibilidade política de continuar o processo de privatização no setor elétrico.
+\end{itemize}
+
+\subsubsection{\textbf{Choques Externos e Avaliação Final do Governo (1999–2002)}}
+
+O ano de 2001 foi marcado por uma combinação de choques adversos:
+
+\begin{itemize}
+    \item Crise de energia e seus efeitos sobre o PIB;
+    \item Crise argentina, que reduziu a entrada de capitais no Brasil;
+    \item Atentados de 11 de setembro, que aumentaram o risco-país e a aversão ao risco global.
+\end{itemize}
+
+\textbf{Síntese do desempenho (1999–2002):}
+\begin{itemize}
+    \item Crescimento do PIB: 2,1\% ao ano;
+    \item Inflação média (IPCA): 8,8\% ao ano;
+    \item Forte ajuste fiscal: superávits primários crescentes;
+    \item Melhora da balança comercial: de déficit de US\$5,6 bi para superávit de US\$3,5 bi;
+    \item Conta-corrente: redução de déficit de US\$26,4 bi para US\$20,1 bi;
+    \item Dívida externa líquida sobre exportações estabilizada em 3,1.
+\end{itemize}
+
+O balanço final do período é ambíguo: embora o crescimento tenha sido baixo e os juros elevados, houve avanços significativos na estabilização macroeconômica, na consolidação fiscal e na estruturação de um novo regime de política econômica.
+
+\newpage
+\section{\textbf{Respondendo as perguntas da discussão}}
+\subsection{\textbf{Os efeitos da desvalorização de 1999 - Considerando a forte depreciação cambial observada no início de 1999 e seus desdobramentos: tal evento era muito preocupante naquele momento; as condições conjunturais e estruturais eram ruins e a economia brasileira estava bastante sujeita ao retorno da alta inflação; a taxa de juros básica, após a flutuação cambial, tenderia a ser mais reduzida no curto e no médio prazo (relativamente à FHC I). Vocês concordam? Expliquem a resposta.}}
+
+Sim, é possível concordar com a afirmação proposta, desde que se considerem os diferentes momentos e os desdobramentos posteriores à desvalorização cambial de janeiro de 1999. O episódio foi inicialmente percebido como altamente preocupante tanto pelo governo quanto pelos agentes econômicos, devido às seguintes razões:
+
+\begin{itemize}
+    \item A desvalorização foi abrupta: o câmbio saltou de R\$1,20 para mais de R\$2,00 em cerca de 45 dias, refletindo uma fuga generalizada de capitais e perda de reservas internacionais.
+    \item O país enfrentava um cenário externo hostil, com escassez de financiamento para sustentar déficits elevados em conta-corrente (em torno de US\$30 bilhões).
+    \item As condições internas também eram frágeis: o Congresso havia rejeitado parte essencial do plano de ajuste fiscal (contribuição previdenciária dos inativos), gerando dúvidas sobre a capacidade do governo de cumprir metas acordadas com o FMI.
+    \item O temor inflacionário era significativo, dado o histórico recente de hiperinflação e a memória institucional ainda presente no comportamento dos agentes.
+\end{itemize}
+
+Apesar disso, os efeitos inflacionários foram mais limitados do que se previa. Diversos fatores estruturais e conjunturais contribuíram para essa moderação:
+
+\begin{enumerate}
+    \item A economia já se encontrava em retração: a produção industrial no primeiro trimestre de 1999 era 3\% inferior à do mesmo período de 1998. Essa ociosidade reduziu a possibilidade de repasse do câmbio aos preços.
+    \item O processo de estabilização iniciado com o Plano Real havia enfraquecido os mecanismos de indexação, alterando o comportamento das negociações salariais e dos reajustes automáticos.
+    \item Os índices de inflação dos primeiros meses pós-desvalorização foram relativamente baixos: 0,7\% em janeiro e 1,1\% em fevereiro, sinalizando que o temido surto inflacionário poderia ser evitado.
+    \item A política monetária adotada foi extremamente rígida: a taxa Selic foi elevada para 45\% ao ano, o que correspondeu a juros reais de aproximadamente 15\%, inibindo a demanda e ancorando expectativas.
+    \item O cumprimento rigoroso das metas fiscais firmadas com o FMI contribuiu para a reconstrução da credibilidade do governo.
+\end{enumerate}
+
+A partir de março de 1999, com a nomeação de Armínio Fraga para o Banco Central, iniciou-se um processo de estabilização que incluiu a adoção do regime de metas de inflação. A combinação entre o compromisso fiscal, o novo regime monetário e o controle gradual da inflação permitiu uma queda acentuada da taxa de juros ao longo do ano:
+
+\begin{itemize}
+    \item A taxa Selic foi reduzida de 45\% em março para menos de 20\% em julho de 1999, um movimento viabilizado pela apreciação do câmbio e pelo retorno dos fluxos de capital.
+\end{itemize}
+
+Portanto, embora a desvalorização cambial tenha representado, de fato, um evento grave e altamente preocupante em sua origem, os desdobramentos subsequentes revelaram que a inflação pôde ser controlada por meio de uma política monetária rígida e disciplina fiscal. Ao longo do segundo mandato de FHC, a taxa básica de juros foi gradualmente reduzida, especialmente quando comparada ao primeiro mandato, marcado pela defesa da âncora cambial e juros persistentemente elevados.
+
+Em síntese, concordamos com a afirmação, desde que ela seja analisada à luz dos efeitos reais observados no pós-crise. A conjuntura inicial era adversa, mas os fundamentos institucionais criados a partir de 1999 permitiram uma transição bem-sucedida para um novo regime de estabilidade macroeconômica.
+
+\subsection{\textbf{O regime de metas de inflação - Sobre o regime de metas de inflação, implementado no 1º semestre de 1999: a ação desse regime, basicamente, dependia da atuação do COPOM; esse regime era somente uma parte da nova lógica de política econômica a partir de 1999; a partir dessa nova lógica da política econômica, o BP brasileiro estaria plenamente protegido das adversidades do cenário global. Vocês concordam? Expliquem a resposta.}}
+
+A afirmação proposta contém três partes distintas, cada uma exigindo análise específica. Com base na leitura dos capítulos "Novo Arcabouço de Política Econômica" e "O Segundo Governo de FHC", é possível afirmar que duas delas estão corretas, enquanto a terceira — que supõe uma proteção plena do Balanço de Pagamentos (BP) brasileiro — é excessivamente otimista e não se sustenta à luz da própria experiência entre 1999 e 2002.
+
+\subsubsection{\textbf{A atuação do COPOM como base do regime}}
+
+É correto afirmar que o funcionamento prático do regime de metas de inflação dependia da atuação do COPOM (Comitê de Política Monetária), órgão decisório do Banco Central responsável por definir a taxa básica de juros (Selic). A estrutura operacional do regime seguia a seguinte lógica:
+
+\begin{itemize}
+    \item O \textbf{Conselho Monetário Nacional (CMN)} estipulava a meta de inflação anual (medida pelo IPCA), com uma margem de tolerância de dois pontos percentuais para cima ou para baixo;
+    \item O \textbf{COPOM}, reunido mensalmente, decidia a taxa Selic com base em modelos que simulavam os impactos das variáveis econômicas (juros, câmbio, nível de atividade) sobre a inflação futura;
+    \item A cada nova projeção que indicasse uma inflação superior ou inferior à meta, o Banco Central deveria atuar preventivamente, ajustando os juros.
+\end{itemize}
+
+Esse mecanismo visava antecipar os efeitos inflacionários e manter as expectativas dos agentes econômicos ancoradas. Portanto, a função do COPOM era central no novo regime monetário, substituindo o antigo papel desempenhado pelo câmbio fixo como âncora nominal.
+
+\subsubsection{\textbf{Parte de uma nova lógica mais ampla}}
+
+O regime de metas de inflação, por mais relevante que fosse, integrava uma arquitetura institucional mais ampla, que foi implementada como resposta à crise de 1999. Conforme descrito nos textos, a política econômica brasileira passou a ser estruturada sobre três pilares fundamentais:
+
+\begin{enumerate}
+    \item \textbf{Responsabilidade fiscal} — com metas de superávit primário robustas: 3,1\% do PIB em 1999, 3,25\% em 2000 e 3,35\% em 2001, conforme renegociado com o FMI.
+    \item \textbf{Câmbio flutuante} — adotado após o fracasso do regime de bandas em janeiro de 1999, permitindo maior resiliência diante de choques externos.
+    \item \textbf{Metas de inflação} — formalizadas em junho de 1999, com metas decrescentes: 8\% (1999), 6\% (2000) e 4\% (2001).
+\end{enumerate}
+
+Esses três pilares formaram o que a literatura e os próprios textos chamam de \textit{novo arcabouço de política econômica}. Ele substituiu o modelo baseado em âncora cambial e controle direto dos preços e fluxos externos, por um regime de regras, previsibilidade e maior transparência institucional.
+
+\subsubsection{\textbf{Limites da proteção ao Balanço de Pagamentos}}
+
+Por outro lado, a ideia de que esse novo modelo tornaria o BP brasileiro \textit{plenamente protegido} das adversidades do cenário internacional é claramente refutada pelos próprios eventos narrados no texto do Capítulo 7:
+
+\begin{itemize}
+    \item Em 2001, a economia brasileira foi severamente afetada por uma \textbf{crise energética}, que reduziu o PIB por dois trimestres consecutivos;
+    \item Houve também um \textbf{contágio da crise argentina}, que diminuiu o fluxo de capitais para o Brasil;
+    \item Os \textbf{atentados de 11 de setembro de 2001} aumentaram o risco-país e desorganizaram os mercados financeiros internacionais;
+    \item Como resultado, o Brasil enfrentou elevação de juros domésticos e volatilidade cambial, mostrando que, embora mais preparado, o país ainda era vulnerável.
+\end{itemize}
+
+Além disso, o desempenho do Balanço de Pagamentos ainda dependia fortemente da entrada de capitais externos. Apesar da melhora na balança comercial — que passou de déficit de US\$6 bilhões para superávit —, o país manteve um déficit em conta-corrente expressivo e dívida externa relevante. Ou seja, a nova política econômica aumentou a capacidade de absorção de choques, mas não eliminou completamente a fragilidade externa.
+
+\subsubsection{\textbf{Conclusão}}
+
+Concluímos que:
+\begin{itemize}
+    \item A ação do COPOM foi, de fato, o pilar operacional do regime de metas;
+    \item O regime de metas era apenas uma parte de um conjunto mais amplo de reformas — o novo arcabouço de política econômica — baseado também no câmbio flutuante e na responsabilidade fiscal;
+    \item No entanto, esse modelo não blindava o Balanço de Pagamentos de todos os choques externos, como evidenciado pelas crises de 2001.
+\end{itemize}
+
+Portanto, a afirmação deve ser considerada parcialmente correta: ela reconhece com precisão o papel do COPOM e a importância do regime de metas como parte de um novo sistema, mas superestima sua capacidade de imunizar o país contra as adversidades do ambiente global.
+
+\subsection{\textbf{Período de 1999 até 2001: um balanço - No geral, os pontos positivos foram mais importantes do que os pontos negativos (governo FHC II): O ambiente doméstico favoreceu o período, mas o internacional trouxe desafios importantes; O crescimento econômico foi elevado e sustentável a partir de 1999; As mudanças institucionais propostas neste período foram positivas e suficientes para isolar o Brasil das adversidades. Vocês concordam? Expliquem a resposta.}}
+
+A análise do período de 1999 até 2001, no segundo governo de Fernando Henrique Cardoso, revela um conjunto de transformações institucionais relevantes, mas também evidencia importantes limitações. Com base nos capítulos estudados, é possível afirmar que os pontos positivos foram significativos, mas não suficientes para garantir crescimento sustentado nem blindagem contra choques externos.
+
+\subsubsection{\textbf{O ambiente doméstico favoreceu o período, mas o internacional trouxe desafios importantes}}
+
+Essa afirmação encontra respaldo direto nos textos analisados. Após a grave crise cambial de janeiro de 1999, o ambiente interno passou a favorecer a implementação de reformas estruturais. O governo manteve a equipe econômica, nomeou Armínio Fraga para o Banco Central e conseguiu aprovar no Congresso medidas de ajuste fiscal e a consolidação de um novo arcabouço de política econômica. Como indica o Capítulo 16:
+
+\begin{quote}
+\textit{“O clima de alarme [...] ajudou o governo a mobilizar sólida coalizão no Congresso e superar, com relativa facilidade, as resistências à aprovação das medidas de ajuste que se faziam necessárias.”}
+\end{quote}
+
+Contudo, o cenário externo impôs choques severos, conforme descrito no Capítulo 7:
+
+\begin{itemize}
+    \item A \textbf{crise de energia de 2001}, que paralisou setores da economia;
+    \item O \textbf{contágio da crise argentina}, que reduziu o ingresso de capitais;
+    \item Os \textbf{atentados de 11 de setembro}, que elevaram o risco-país e afetaram negativamente a estabilidade financeira.
+\end{itemize}
+
+Assim, o ambiente doméstico possibilitou avanços, mas o contexto internacional limitou seus efeitos.
+
+\subsubsection{\textbf{O crescimento econômico foi elevado e sustentável a partir de 1999}}
+
+Essa parte da afirmação não é compatível com os dados e análises contidas nos capítulos. Embora tenha havido uma recuperação no segundo semestre de 1999 e um bom desempenho em 2000, o crescimento não foi contínuo nem alto o suficiente para ser considerado “elevado e sustentável”:
+
+\begin{itemize}
+    \item Em 1999, o crescimento do PIB foi de apenas \textbf{0,3\%}, conforme indicado no Capítulo 16: \textit{“Na verdade, a economia acabaria mostrando pequena expansão de 0,3\% do PIB em 1999.”}
+    \item Em 2000, o desempenho foi mais positivo: \textbf{mais de 4\%}, conforme o Capítulo 7.
+    \item Em 2001, no entanto, a \textbf{crise de energia provocou dois trimestres consecutivos de queda do PIB}, interrompendo o ciclo de crescimento.
+\end{itemize}
+
+O crescimento médio anual no período 1999–2002 foi de apenas \textbf{2,1\%}, inferior ao do primeiro mandato (1995–1998), que foi de 2,5\%, segundo a \textbf{Tabela 7.3}. Portanto, essa parte da afirmação é incorreta.
+
+\subsubsection{\textbf{As mudanças institucionais foram positivas e suficientes para isolar o Brasil das adversidades}}
+
+É correto afirmar que as mudanças institucionais implementadas a partir de 1999 foram importantes:
+
+\begin{itemize}
+    \item Adoção do \textbf{regime de metas de inflação} pelo Banco Central, com metas decrescentes de 8\%, 6\% e 4\% para os anos seguintes;
+    \item Consolidação do \textbf{regime de câmbio flutuante}, substituindo a âncora cambial;
+    \item Fortalecimento da \textbf{disciplina fiscal}, com metas de superávit primário superiores a 3\% do PIB, renegociadas com o FMI.
+\end{itemize}
+
+Contudo, dizer que essas reformas foram “suficientes para isolar o Brasil das adversidades” é um exagero. Os próprios textos mostram que, apesar dos avanços, o país continuava vulnerável a fatores externos:
+
+\begin{quote}
+\textit{“A economia foi prejudicada por uma combinação de eventos, incluindo a crise de energia, o ‘contágio’ argentino [...] e os atentados terroristas de 11 de setembro [...] o risco-país voltou a aumentar [...] afetando os juros domésticos.”} (Cap. 7)
+\end{quote}
+
+O Brasil ganhou resiliência institucional, mas não imunidade. O Balanço de Pagamentos continuava dependente do ingresso de capitais e o risco-país ainda oscilava fortemente frente a crises globais.
+
+\subsubsection{\textbf{Conclusão}}
+
+\begin{itemize}
+    \item \textbf{Concordamos} que o ambiente interno foi favorável e as reformas institucionais foram positivas e estruturantes.
+    \item \textbf{Discordamos} que o crescimento tenha sido elevado e sustentável, pois foi interrompido em 2001 e teve média inferior à do primeiro mandato.
+    \item \textbf{Discordamos} que o país tenha se isolado das adversidades externas, pois permaneceu vulnerável a choques internacionais ao longo de todo o período.
+\end{itemize}
+
+Portanto, a afirmação deve ser considerada apenas parcialmente correta. Os pontos positivos existiram, mas foram insuficientes para garantir crescimento contínuo ou blindagem contra crises externas.
+
+\newpage
+\section{\textbf{Respondendo a pergunta para entregar}}
+
+
+
+\end{document}
